@@ -3,6 +3,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 // @material-ui/icons
+import GroupIcon from '@material-ui/icons/Group';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+import ViewListIcon from '@material-ui/icons/ViewList';
+import MoneyOffIcon from '@material-ui/icons/MoneyOff';
+import EmailIcon from '@material-ui/icons/Email';
 import Chat from "@material-ui/icons/Chat";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
 import Fingerprint from "@material-ui/icons/Fingerprint";
@@ -21,13 +26,8 @@ export default function SectionProduct() {
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={8} md={8}>
-          <h2 className={classes.title}>Let{"'"}s talk product</h2>
-          <h5 className={classes.description}>
-            This is the paragraph where you can write more details about your
-            product. Keep you user engaged by providing meaningful information.
-            Remember that by this time, the user is curious, otherwise he wouldn
-            {"'"}t scroll to get here. Add a button if you want the user to see
-            more.
+          <h2 className={classes.title}>Membership Perks</h2>
+          <h5 className={classes.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non eros erat. Fusce malesuada nisl et elit interdum tincidunt. Vivamus tempor, elit et pharetra tristique.
           </h5>
         </GridItem>
       </GridContainer>
@@ -35,17 +35,17 @@ export default function SectionProduct() {
         <GridContainer>
           <GridItem xs={12} sm={4} md={4}>
             <InfoArea
-              title="Free Chat"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              icon={Chat}
+              title="Added to the Membership Registery"
+              description="Insert perks of being on the Registery"
+              icon={GroupIcon}
               iconColor="info"
               vertical
             />
           </GridItem>
           <GridItem xs={12} sm={4} md={4}>
             <InfoArea
-              title="Verified Users"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+              title="Verified Interpreters & Translators"
+              description="Text for Verified Interpreters and Translators"
               icon={VerifiedUser}
               iconColor="success"
               vertical
@@ -53,12 +53,40 @@ export default function SectionProduct() {
           </GridItem>
           <GridItem xs={12} sm={4} md={4}>
             <InfoArea
-              title="Fingerprint"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              icon={Fingerprint}
+              title="Training Materials"
+              description="Text for training Materials"
+              icon={LocalLibraryIcon}
               iconColor="danger"
               vertical
             />
+          </GridItem>
+          <GridItem xs={12} sm={4} md={4}>
+            <InfoArea
+              title="Search Membership Registry"
+              description="Text for searching registry"
+              icon={ViewListIcon}
+              iconColor="rose"
+              vertical
+            />
+          </GridItem>
+          <GridItem xs={12} sm={4} md={4}>
+            <InfoArea
+              title="Symposium Discount"
+              description="Text for Symposium Discount"
+              icon={MoneyOffIcon}
+              iconColor="success"
+              vertical
+            />
+          </GridItem>
+          <GridItem xs={12} sm={4} md={4}>
+            <InfoArea
+              title="Receive Quarterly Newsletter"
+              description="Text for searching registry"
+              icon={EmailIcon}
+              iconColor="primary"
+              vertical
+            />
+
           </GridItem>
         </GridContainer>
       </div>

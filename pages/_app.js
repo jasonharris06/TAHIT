@@ -81,7 +81,9 @@ export default class MyApp extends App {
     return (
       <React.Fragment>
         <Head>
-          <title>NextJS Material Kit by Creative Tim</title>
+          <title>
+            TAHIT
+Texas Association of Healthcare Interpreters & Translators</title>
         </Head>
         <Component {...pageProps} />
       </React.Fragment>

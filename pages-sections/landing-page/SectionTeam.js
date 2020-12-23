@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image'
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons

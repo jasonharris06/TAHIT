@@ -75,7 +75,7 @@ export default function HeaderLinks(props) {
       currentTime = 0,
       increment = 20;
 
-    var animateScroll = function() {
+    var animateScroll = function () {
       currentTime += increment;
       var val = easeInOutQuad(currentTime, start, change, duration);
       element.scrollTop = val;
@@ -295,7 +295,7 @@ export default function HeaderLinks(props) {
             className={classes.navButton}
             round
           >
-            <ShoppingCart className={classes.icons} /> buy now
+            <ShoppingCart className={classes.icons} />become a member
           </Button>
         </Hidden>
         <Hidden mdUp>
@@ -306,7 +306,7 @@ export default function HeaderLinks(props) {
             className={classes.navButton}
             round
           >
-            <ShoppingCart className={classes.icons} /> buy now
+            <ShoppingCart className={classes.icons} /> become a member
           </Button>
         </Hidden>
       </ListItem>
