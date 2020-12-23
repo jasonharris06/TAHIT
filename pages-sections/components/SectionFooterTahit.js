@@ -32,7 +32,7 @@ export default function SectionFooter() {
             <div>
               <ul className={classes.socialButtons}>
                 <li>
-                  <Button justIcon simple href="#pablo" color="twitter">
+                  <Button justIcon simple href="https://twitter.com/tahitus" color="twitter">
                     <i className="fab fa-twitter" />
                   </Button>
                 </li>
@@ -43,8 +43,13 @@ export default function SectionFooter() {
                 </li>
          
                 <li>
-                  <Button justIcon simple href="#pablo" color="youtube">
+                  <Button justIcon simple href="https://www.youtube.com/user/TAHITOnline" color="youtube">
                     <i className="fab fa-youtube" />
+                  </Button>
+                </li>
+                <li>
+                  <Button justIcon simple href="https://www.linkedin.com/groups/1795560/" color="linkedin">
+                    <i className="fab fa-linkedin" />
                   </Button>
                 </li>
               </ul>
@@ -127,7 +132,7 @@ export default function SectionFooter() {
               <GridItem xs={12} sm={3} md={3}>
                 <h5>Contact Us</h5>
                 <p>
-                  If you have any questions about becoming a member, questions about the orgainization, or anything else regarding to TAHIT please sumbit your quesition.
+                  If you have any questions about becoming a member, questions about the orgainization, or anything else TAHIT related please sumbit your question.
                 </p>
                 <form>
                   <CustomInput
