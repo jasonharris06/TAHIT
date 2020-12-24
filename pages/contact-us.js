@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react components used to create a google map
@@ -19,6 +19,7 @@ import PinDrop from "@material-ui/icons/PinDrop";
 import Phone from "@material-ui/icons/Phone";
 import BusinessCenter from "@material-ui/icons/BusinessCenter";
 // core components
+import Parallax from "components/Parallax/Parallax.js";
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -27,87 +28,37 @@ import InfoArea from "components/InfoArea/InfoArea.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import Footer from "components/Footer/Footer.js";
+import Accordion from "components/Accordion/AccordionClick.js";
 
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
+import landingPageStyle from "assets/jss/nextjs-material-kit-pro/pages/landingPageStyle.js";
+import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 
-const CustomSkinMap = withScriptjs(
-  withGoogleMap(() => (
-    <GoogleMap
-      defaultZoom={14}
-      defaultCenter={{ lat: 44.43353, lng: 26.093928 }}
-      defaultOptions={{
-        scrollwheel: false,
-        zoomControl: true,
-        styles: [
-          {
-            featureType: "water",
-            stylers: [
-              { saturation: 43 },
-              { lightness: -11 },
-              { hue: "#0088ff" }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "geometry.fill",
-            stylers: [
-              { hue: "#ff0000" },
-              { saturation: -100 },
-              { lightness: 99 }
-            ]
-          },
-          {
-            featureType: "road",
-            elementType: "geometry.stroke",
-            stylers: [{ color: "#808080" }, { lightness: 54 }]
-          },
-          {
-            featureType: "landscape.man_made",
-            elementType: "geometry.fill",
-            stylers: [{ color: "#ece2d9" }]
-          },
-          {
-            featureType: "poi.park",
-            elementType: "geometry.fill",
-            stylers: [{ color: "#ccdca1" }]
-          },
-          {
-            featureType: "road",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#767676" }]
-          },
-          {
-            featureType: "road",
-            elementType: "labels.text.stroke",
-            stylers: [{ color: "#ffffff" }]
-          },
-          { featureType: "poi", stylers: [{ visibility: "off" }] },
-          {
-            featureType: "landscape.natural",
-            elementType: "geometry.fill",
-            stylers: [{ visibility: "on" }, { color: "#b8cb93" }]
-          },
-          { featureType: "poi.park", stylers: [{ visibility: "on" }] },
-          {
-            featureType: "poi.sports_complex",
-            stylers: [{ visibility: "on" }]
-          },
-          { featureType: "poi.medical", stylers: [{ visibility: "on" }] },
-          {
-            featureType: "poi.business",
-            stylers: [{ visibility: "simplified" }]
-          }
-        ]
-      }}
-    >
-      <Marker position={{ lat: 44.43353, lng: 26.093928 }} />
-    </GoogleMap>
-  ))
-);
+
 
 const useStyles = makeStyles(contactUsStyle);
 
-export default function ContactUsPage() {
+export default function ContactUsPage({ ...rest }) {
+  const [title, setTitle] = useState({ email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.` })
+
+  const dropDown = [
+    { email: "membership@tahit.org", text: "Ask the Membership Chair a Question...", dropdownText: "Membership" },
+    { email: "perfessional.development@tahit.org", text: "Ask the Professional Development Chair a Question...", dropdownText: "Professional Development" },
+    { email: "outreach@tahit.org", text: "Ask the Outreach Chair a Question...", dropdownText: "Community Outreach" },
+    { email: "media@tahit.org", text: "Ask the Social Media Chair a Question...", dropdownText: "Social Media" },
+    { email: "treasurer@tahit.org", text: "Ask the Treasurer a Question...", dropdownText: "Payment or Refund" },
+    { email: "VP@tahit.org", text: "Ask the Vice President a Question...", dropdownText: "Tahit Events" },
+    { email: "evidence-practices@tahit.org", text: "Ask the Chair of Evidence-based Practices a Question...", dropdownText: "Evidence-based Practices" },
+    { email: "secretary@tahit.org", text: "Ask the Secretary a Question...", dropdownText: "Tahit History or Records" },
+    { email: "president@tahit.org", text: "Ask the President a Question...", dropdownText: "Other questions" },
+
+
+  ]
+  function handleOnclick(e) {
+    console.log("I was clicked")
+    console.log(e.currentTarget.getAttribute("data-email"))
+    setTitle({ email: e.currentTarget.getAttribute("data-email"), text: e.currentTarget.getAttribute("data-text") })
+  }
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -116,39 +67,66 @@ export default function ContactUsPage() {
   return (
     <div>
       <Header
-        brand="NextJS Material Kit PRO"
-        links={<HeaderLinks dropdownHoverColor="dark" />}
+        color="transparent"
+        brand={`TAHIT`}
+        links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
-        color="dark"
+        changeColorOnScroll={{
+          height: 300,
+          color: "info"
+        }}
+        {...rest}
       />
-      <div className={classes.bigMap}>
-        <CustomSkinMap
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={
-            <div
-              style={{
-                height: `100%`,
-                borderRadius: "6px",
-                overflow: "hidden"
-              }}
-            />
-          }
-          mapElement={<div style={{ height: `100%` }} />}
-        />
-      </div>
+      <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
+        <div className={classes.container}>
+          <GridContainer justify="center">
+            <GridItem
+              md={8}
+              sm={8}
+              className={classNames(
+                // classes.mlAuto,
+                // classes.mrAuto,
+                classes.textCenter
+              )}
+            >
+
+              <h1 className={classes.title}>Contact Us</h1>
+              <h4 >
+                We want to hear from you
+              </h4>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.contactContent}>
           <div className={classes.container}>
-            <h2 className={classes.title}>Send us a message</h2>
+            <h2 className={classes.title} style={{ color: "black" }}>Send us a message</h2>
             <GridContainer>
               <GridItem md={6} sm={6}>
-                <p>
-                  You can contact us with anything related to our Products. We
-                  {"'"}ll get in touch with you as soon as possible.
+                <p style={{ color: "black" }}>
+                  {title.text}
                   <br />
-                  <br />
+
                 </p>
+                <CustomDropdown
+                  dropdownHeader="Questions:"
+                  buttonText="Commonly asked questions"
+                  buttonProps={{
+                    href: "#pablo",
+                    round: true,
+                    block: true,
+                    color: "info",
+
+                  }}
+                  dropdownList={dropDown.map((item, index) => {
+                    return (
+                      <div key={index}>
+                        <div onClick={handleOnclick} data-email={item.email} data-text={item.text}>{item.dropdownText}</div>
+                      </div>)
+                  })}
+
+                />
                 <form>
                   <CustomInput
                     labelText="Your Name"
@@ -231,6 +209,7 @@ export default function ContactUsPage() {
           </div>
         </div>
       </div>
+
       <Footer
         content={
           <div>
@@ -252,14 +231,6 @@ export default function ContactUsPage() {
                     className={classes.block}
                   >
                     About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="http://blog.creative-tim.com/?ref=njsmkp-contact-us"
-                    className={classes.block}
-                  >
-                    Blog
                   </a>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>

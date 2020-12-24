@@ -58,12 +58,10 @@ export default function Accordion(props) {
             <ExpansionPanelSummary
               expandIcon={<ExpandMore />}
               classes={{
-                root: `${classes.expansionPanelSummary} ${
-                  classes[activeColor + "ExpansionPanelSummary"]
-                }`,
-                expanded: `${classes.expansionPanelSummaryExpaned} ${
-                  classes[activeColor + "ExpansionPanelSummaryExpaned"]
-                }`,
+                root: `${classes.expansionPanelSummary} ${classes[activeColor + "ExpansionPanelSummary"]
+                  }`,
+                expanded: `${classes.expansionPanelSummaryExpaned} ${classes[activeColor + "ExpansionPanelSummaryExpaned"]
+                  }`,
                 content: classes.expansionPanelSummaryContent,
                 expandIcon: classes.expansionPanelSummaryExpandIcon
               }}
@@ -94,7 +92,7 @@ Accordion.propTypes = {
   collapses: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      content: PropTypes.node
+      content: PropTypes.node,
     })
   ).isRequired,
   activeColor: PropTypes.oneOf([

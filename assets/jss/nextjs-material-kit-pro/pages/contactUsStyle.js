@@ -2,6 +2,7 @@ import {
   container,
   title,
   main,
+  whiteColor,
   mainRaised,
   mlAuto,
   description
@@ -10,12 +11,23 @@ import {
 const contactUsStyle = {
   main,
   mainRaised,
-  title,
+
   mlAuto,
   description,
   container: {
+    color: whiteColor,
     ...container,
+    zIndex: "2",
     maxWidth: "970px !important"
+  },
+  title: {
+    ...title,
+    display: "inline-block",
+    position: "relative",
+    marginTop: "30px",
+    minHeight: "32px",
+    color: whiteColor,
+    textDecoration: "none"
   },
   contactContent: {
     paddingBottom: "40px",

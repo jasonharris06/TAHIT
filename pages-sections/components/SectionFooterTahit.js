@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import Link from "next/link"
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -56,14 +57,8 @@ export default function SectionFooter() {
               <div
                 className={classNames(classes.pullCenter, classes.copyRight)}
               >
-                Copyright &copy; {1900 + new Date().getYear()}{" "}
-                <a
-                  href="https://www.creative-tim.com?ref=njsmkp-footer-components"
-                  target="_blank"
-                >
-                  Creative Tim
-                </a>{" "}
-                All Rights Reserved.
+                Copyright &copy; {1900 + new Date().getYear()}{" "} TAHIT
+               
               </div>
             </div>
           }
@@ -82,16 +77,15 @@ export default function SectionFooter() {
                 <h5>About</h5>
                 <ul className={classes.linksVertical}>
                   <li>
-                    <a href="#pablo">Blog</a>
-                  </li>
-                  <li>
                     <a href="#pablo">About us</a>
                   </li>
                   <li>
-                    <a href="#pablo">Presentation</a>
+                    <a href="#pablo">History</a>
                   </li>
                   <li>
+                    <Link href="/contact-us" as="/contact-us">
                     <a href="#pablo">Contact us</a>
+                    </Link>
                   </li>
                 </ul>
               </GridItem>
@@ -99,19 +93,13 @@ export default function SectionFooter() {
                 <h5>Symposium</h5>
                 <ul className={classes.linksVertical}>
                   <li>
-                    <a href="#pablo">Sales FAQ</a>
-                  </li>
-                  <li>
                     <a href="#pablo">How to register</a>
                   </li>
                   <li>
-                    <a href="#pablo">Sell Goods</a>
+                    <a href="#pablo">Sponsorship</a>
                   </li>
                   <li>
-                    <a href="#pablo">Receive Payment</a>
-                  </li>
-                  <li>
-                    <a href="#pablo">Transactions Issues</a>
+                    <a href="#pablo">Past Symposia</a>
                   </li>
                 </ul>
               </GridItem>
