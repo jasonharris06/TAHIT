@@ -554,6 +554,15 @@ const buttonStyle = {
         ", 0.2)"
     }
   },
+  root: {
+    background: 'linear-gradient(90deg, rgba(131,58,180,1) 10%, rgba(253,29,29,1) 90%);',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
   simple: {
     "&,&:focus,&:hover": {
       color: whiteColor,

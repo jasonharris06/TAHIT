@@ -33,13 +33,14 @@ import Accordion from "components/Accordion/AccordionClick.js";
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
 import landingPageStyle from "assets/jss/nextjs-material-kit-pro/pages/landingPageStyle.js";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
+import SectionFooter from "../pages-sections/components/SectionFooterTahit";
 
 
 
 const useStyles = makeStyles(contactUsStyle);
 
 export default function ContactUsPage({ ...rest }) {
-  const [title, setTitle] = useState({ email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.` })
+  const [title, setTitle] = useState({ email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.`, dropdownText: "" })
 
   const dropDown = [
     { email: "membership@tahit.org", text: "Ask the Membership Chair a Question...", dropdownText: "Membership" },
@@ -55,9 +56,11 @@ export default function ContactUsPage({ ...rest }) {
 
   ]
   function handleOnclick(e) {
-    console.log("I was clicked")
-    console.log(e.currentTarget.getAttribute("data-email"))
-    setTitle({ email: e.currentTarget.getAttribute("data-email"), text: e.currentTarget.getAttribute("data-text") })
+    setTitle({
+      email: e.currentTarget.getAttribute("data-email"),
+      text: e.currentTarget.getAttribute("data-text"),
+      dropdownText: e.currentTarget.getAttribute("data-dropdown")
+    })
   }
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -111,9 +114,9 @@ export default function ContactUsPage({ ...rest }) {
                 </p>
                 <CustomDropdown
                   dropdownHeader="Questions:"
-                  buttonText="Commonly asked questions"
+                  buttonText={!title.dropdownText ? "Commonly asked questions" : title.dropdownText}
                   buttonProps={{
-                    href: "#pablo",
+                    // href: "#pablo",
                     round: true,
                     block: true,
                     color: "info",
@@ -122,7 +125,7 @@ export default function ContactUsPage({ ...rest }) {
                   dropdownList={dropDown.map((item, index) => {
                     return (
                       <div key={index}>
-                        <div onClick={handleOnclick} data-email={item.email} data-text={item.text}>{item.dropdownText}</div>
+                        <div onClick={handleOnclick} data-email={item.email} data-text={item.text} data-dropdown={item.dropdownText}>{item.dropdownText}</div>
                       </div>)
                   })}
 
@@ -209,55 +212,8 @@ export default function ContactUsPage({ ...rest }) {
           </div>
         </div>
       </div>
+      <SectionFooter />
 
-      <Footer
-        content={
-          <div>
-            <div className={classes.left}>
-              <List className={classes.list}>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/?ref=njsmkp-contact-us"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Creative Tim
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-contact-us"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=njsmkp-contact-us"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Licenses
-                  </a>
-                </ListItem>
-              </List>
-            </div>
-            <div className={classes.right}>
-              &copy; {1900 + new Date().getYear()} , made with{" "}
-              <Favorite className={classes.icon} /> by{" "}
-              <a
-                href="https://www.creative-tim.com?ref=njsmkp-contact-us"
-                target="_blank"
-              >
-                Creative Tim
-              </a>{" "}
-              for a better web.
-            </div>
-          </div>
-        }
-      />
     </div>
   );
 }

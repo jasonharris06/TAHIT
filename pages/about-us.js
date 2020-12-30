@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -17,10 +18,11 @@ import Parallax from "components/Parallax/Parallax.js";
 import Footer from "components/Footer/Footer.js";
 // sections for this page
 import SectionDescription from "pages-sections/about-us/SectionDescription.js";
-import SectionTeam from "pages-sections/about-us/SectionTeam.js";
+import SectionTeam from "pages-sections/sections-page/SectionBoardTahit.js";
 import SectionServices from "pages-sections/about-us/SectionServices.js";
 import SectionOffice from "pages-sections/about-us/SectionOffice.js";
 import SectionContact from "pages-sections/about-us/SectionContact.js";
+
 
 import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
 
@@ -44,7 +46,7 @@ export default function AboutUsPage() {
           color: "info"
         }}
       />
-      <Parallax image={require("assets/img/bg9.jpg")} filter="dark" small>
+      <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem
@@ -69,9 +71,9 @@ export default function AboutUsPage() {
         <div className={classes.container}>
           <SectionDescription />
           <SectionTeam />
-          <SectionServices />
+          {/* <SectionServices />
           <SectionOffice />
-          <SectionContact />
+          <SectionContact /> */}
         </div>
       </div>
       <Footer

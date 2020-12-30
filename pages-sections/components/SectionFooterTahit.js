@@ -14,6 +14,7 @@ import Favorite from "@material-ui/icons/Favorite";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
+import Muted from "components/Typography/Muted.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Footer from "components/Footer/Footer.js";
 
@@ -42,7 +43,7 @@ export default function SectionFooter() {
                     <i className="fab fa-facebook-square" />
                   </Button>
                 </li>
-         
+
                 <li>
                   <Button justIcon simple href="https://www.youtube.com/user/TAHITOnline" color="youtube">
                     <i className="fab fa-youtube" />
@@ -58,7 +59,7 @@ export default function SectionFooter() {
                 className={classNames(classes.pullCenter, classes.copyRight)}
               >
                 Copyright &copy; {1900 + new Date().getYear()}{" "} TAHIT
-               
+
               </div>
             </div>
           }
@@ -66,12 +67,14 @@ export default function SectionFooter() {
           <div className={classes.footer}>
             <GridContainer>
               <GridItem xs={12} sm={3} md={3}>
-                <a href="#pablo">
-                  <h5>TAHIT</h5>
-                </a>
-                <p>
-                  Texas Association of Healthcare Interpreters and Translators. All rights reserved. The Texas Association of Healthcare Interpreters and Translators is a 501(c)(6) non-profit association whose mission is to promote language access within healthcare by facilitating training, education, and communication between government, provider, and individual stakeholders.
-                </p>
+                <Link href='/home' as="/home" >
+                  <a href="/home">
+                    <h5>TAHIT</h5>
+                  </a>
+                </Link>
+                <Muted>
+                  Texas Association of Healthcare Interpreters and Translators. All rights reserved.
+                </Muted>
               </GridItem>
               <GridItem xs={12} sm={2} md={2}>
                 <h5>About</h5>
@@ -84,7 +87,7 @@ export default function SectionFooter() {
                   </li>
                   <li>
                     <Link href="/contact-us" as="/contact-us">
-                    <a href="#pablo">Contact us</a>
+                      <a href="/contact-us">Contact us</a>
                     </Link>
                   </li>
                 </ul>
@@ -117,7 +120,12 @@ export default function SectionFooter() {
                   </li>
                 </ul>
               </GridItem>
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
+                <a href="https://www.cafepress.com/tahit#" target="_blank">
+                  <h5>Merchandise</h5>
+                </a>
+              </GridItem>
+              {/* <GridItem xs={12} sm={3} md={3}>
                 <h5>Contact Us</h5>
                 <p>
                   If you have any questions about becoming a member, questions about the orgainization, or anything else TAHIT related please sumbit your question.
@@ -140,7 +148,7 @@ export default function SectionFooter() {
                 <Button color="primary" >Submit
                   
                 </Button>
-              </GridItem>
+              </GridItem> */}
             </GridContainer>
           </div>
         </Footer>

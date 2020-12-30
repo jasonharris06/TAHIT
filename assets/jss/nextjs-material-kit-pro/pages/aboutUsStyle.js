@@ -9,7 +9,9 @@ import {
 } from "assets/jss/nextjs-material-kit-pro.js";
 
 const aboutUsStyle = {
-  main,
+  main: {
+    ...main
+  },
   mainRaised,
   mrAuto,
   mlAuto,
