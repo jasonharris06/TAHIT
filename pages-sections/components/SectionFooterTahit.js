@@ -66,7 +66,7 @@ export default function SectionFooter() {
         >
           <div className={classes.footer}>
             <GridContainer>
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={4} sm={3} md={3}>
                 <Link href='/home' as="/home" >
                   <a href="/home">
                     <h5>TAHIT</h5>
@@ -76,7 +76,7 @@ export default function SectionFooter() {
                   Texas Association of Healthcare Interpreters and Translators. All rights reserved.
                 </Muted>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={4} sm={2} md={2}>
                 <h5>About</h5>
                 <ul className={classes.linksVertical}>
                   <li>
@@ -96,7 +96,7 @@ export default function SectionFooter() {
                   </li>
                 </ul>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={4} sm={2} md={2}>
                 <h5>Symposium</h5>
                 <ul className={classes.linksVertical}>
                   <li>
@@ -112,7 +112,7 @@ export default function SectionFooter() {
                   </li>
                 </ul>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={6} sm={2} md={2}>
                 <h5>Legal</h5>
                 <ul className={classes.linksVertical}>
                   <li>
@@ -126,7 +126,7 @@ export default function SectionFooter() {
                   </li>
                 </ul>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={6} sm={2} md={2}>
                 <a href="https://www.cafepress.com/tahit#" target="_blank">
                   <h5>Merchandise</h5>
                 </a>

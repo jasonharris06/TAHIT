@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import Hidden from '@material-ui/core/Hidden';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
@@ -45,11 +46,21 @@ export default function LandingPage({ ...rest }) {
 
       <Header
         color="transparent"
-        brand={`TAHIT`}
+        brand={
+          <GridContainer>
+            <GridItem xs={6} sm={6} md={6}>
+              <img src={whiteLogo}
+                alt="Tahit Logo"
+                width={35}
+                height={35} /></GridItem>
+            <GridItem xs={6} sm={6} md={6}>
+              <h5>TAHIT</h5>
+            </GridItem>
+          </GridContainer>}
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         changeColorOnScroll={{
-          height: 400,
+          height: 300,
           color: "gradient",
           filter: "dark"
         }}
@@ -59,17 +70,18 @@ export default function LandingPage({ ...rest }) {
       <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark">
         <div className={classes.container}>
           <GridContainer>
+            <Hidden xsDown>
+              <GridItem xs={12} sm={4} md={4}>
+                <Image
+                  src={whiteLogo}
+                  alt="Tahit Logo"
+                  width={275}
+                  height={275}
 
-            <GridItem xs={3} sm={4} md={4}>
-              <Image
-                src={whiteLogo}
-                alt="Tahit Logo"
-                width={275}
-                height={275}
 
-
-              />
-            </GridItem>
+                />
+              </GridItem>
+            </Hidden>
             <GridItem xs={12} sm={8} md={8}>
               <h1 className={classes.title}>Texas Association of Healthcare Interpreters & Translators</h1>
             </GridItem>
@@ -79,7 +91,7 @@ export default function LandingPage({ ...rest }) {
           </GridContainer>
           <GridContainer>
             <GridItem xs={12} sm={8} md={8}>
-              <h1 className={classes.title}>Our Mission:</h1>
+              <h2 className={classes.title}>Our Mission:</h2>
               <h4>
                 Promote language access within healthcare by facilitating training, education, and communication between government, provider, and individual stakeholders.
               </h4>
