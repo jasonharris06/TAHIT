@@ -163,6 +163,15 @@ const headerStyle = theme => ({
       hexToRgb(blackColor) +
       ", 0.15)"
   },
+  gradient: {
+    background: 'linear-gradient(90deg, #222463 0%, #4e1d38 50%, #77581a 100%);',
+    // border: 0,
+    // borderRadius: 3,
+    //boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 55,
+    padding: '0 30px',
+  },
   drawerPaper: {
     border: "none",
     bottom: "0",

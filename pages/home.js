@@ -49,8 +49,9 @@ export default function LandingPage({ ...rest }) {
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         changeColorOnScroll={{
-          height: 300,
-          color: "info"
+          height: 400,
+          color: "gradient",
+          filter: "dark"
         }}
         {...rest}
       />
@@ -59,7 +60,7 @@ export default function LandingPage({ ...rest }) {
         <div className={classes.container}>
           <GridContainer>
 
-            <GridItem xs={12} sm={4} md={4}>
+            <GridItem xs={3} sm={4} md={4}>
               <Image
                 src={whiteLogo}
                 alt="Tahit Logo"
@@ -75,6 +76,8 @@ export default function LandingPage({ ...rest }) {
             {/* <GridItem xs={12} sm={4} md={4}>
               <></>
             </GridItem> */}
+          </GridContainer>
+          <GridContainer>
             <GridItem xs={12} sm={8} md={8}>
               <h1 className={classes.title}>Our Mission:</h1>
               <h4>
@@ -100,6 +103,8 @@ export default function LandingPage({ ...rest }) {
           <SectionProduct />
           <hr />
           <SectionPricing />
+          <hr />
+
           {/* <SectionTeam /> */}
           {/* <SectionWork /> */}
         </div>

@@ -68,7 +68,6 @@ export default function SectionTeams({ ...rest }) {
       position: board[index].position,
       description: board[index].description
     })
-    console.log(e.currentTarget.id)
 
     setModal(true)
   }
@@ -154,7 +153,7 @@ export default function SectionTeams({ ...rest }) {
 
                 <GridItem xs={12} sm={4} md={4}>
                   <div key={index}>
-                    <Card profile
+                    <Card profile raised
 
                     >
 

@@ -22,7 +22,7 @@ import SectionTeam from "pages-sections/sections-page/SectionBoardTahit.js";
 import SectionServices from "pages-sections/about-us/SectionServices.js";
 import SectionOffice from "pages-sections/about-us/SectionOffice.js";
 import SectionContact from "pages-sections/about-us/SectionContact.js";
-
+import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
 
 import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
 
@@ -37,7 +37,7 @@ export default function AboutUsPage() {
   return (
     <div>
       <Header
-        brand="NextJS Material Kit PRO"
+        brand="TAHIT"
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         color="transparent"
@@ -69,70 +69,15 @@ export default function AboutUsPage() {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <SectionDescription />
+          {/* <SectionDescription /> */}
           <SectionTeam />
           {/* <SectionServices />
           <SectionOffice />
           <SectionContact /> */}
         </div>
       </div>
-      <Footer
-        content={
-          <div>
-            <div className={classes.left}>
-              <List className={classes.list}>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Creative Tim
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="http://blog.creative-tim.com/?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Blog
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Licenses
-                  </a>
-                </ListItem>
-              </List>
-            </div>
-            <div className={classes.right}>
-              &copy; {1900 + new Date().getYear()} , made with{" "}
-              <Favorite className={classes.icon} /> by{" "}
-              <a
-                href="https://www.creative-tim.com?ref=njsmkp-about-us"
-                target="_blank"
-              >
-                Creative Tim
-              </a>{" "}
-              for a better web.
-            </div>
-          </div>
-        }
-      />
+      <SectionFooter />
+
     </div>
   );
 }

@@ -123,7 +123,8 @@ Header.propTypes = {
     "transparent",
     "white",
     "rose",
-    "dark"
+    "dark",
+    "gradient"
   ]),
   links: PropTypes.node,
   brand: PropTypes.string,
@@ -146,7 +147,8 @@ Header.propTypes = {
       "transparent",
       "white",
       "rose",
-      "dark"
+      "dark",
+      "gradient"
     ]).isRequired
   })
 };

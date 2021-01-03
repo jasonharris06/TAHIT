@@ -1,0 +1,85 @@
+[
+  {
+    "symposium": "1st Annual TAHIT Symposium",
+    "host": "Houston",
+    "venue":  "MD Anderson Cancer Center",
+    "attendance": 107,
+    "dates": "August 24th & 25th, 2007",
+    "image": "img/symposiums/symposium-1.jpg"
+  },
+  {
+    "symposium": "2nd Annual TAHIT Symposium",
+    "host": "Fort Worth",
+    "venue":  "American Airlines Training & Conference Center",
+    "attendance": 87,
+    "dates": "April 25th & 26th, 2008",
+    "image": "img/symposiums/symposium-2.jpg"
+  },
+  {
+    "symposium": "3rd Annual TAHIT Symposium",
+    "host": "Austin",
+    "venue":  "Holiday Inn - Town Lake",
+    "attendance": 63,
+    "dates": "April 17th & 18th, 2009",
+    "image": "img/symposiums/symposium-3.jpg"
+  },
+  {
+    "symposium": "4th Annual TAHIT Symposium",
+    "host": "Houston",
+    "venue":  "United Way Community Resource Center",
+    "attendance": 87,
+    "dates": "August 13th & 14th, 2010",
+    "image": "img/symposiums/symposium-4.jpg"
+  },
+  {
+    "symposium": "5th Annual TAHIT Symposium",
+    "host": "Dallas",
+    "venue":  "Texas Health Presbyterian Hospital",
+    "attendance": 102,
+    "dates": "August 19th & 20th, 2011",
+    "image": "img/symposiums/symposium-5.jpg"
+  },
+  {
+    "symposium": "6th Annual TAHIT Symposium",
+    "host": "San Antonio",
+    "venue":  "La Quinta Inn - Medical Center",
+    "attendance": 133,
+    "dates": "September 7th & 8th, 2012",
+    "image": "img/symposiums/symposium-6.jpg"
+  },
+  {
+    "symposium": "7th Annual TAHIT Symposium",
+    "host": "Austin",
+    "venue":  "AT&T Conference Center",
+    "attendance": 135,
+    "dates": "September 6th & 7th, 2013",
+    "image": "img/symposiums/symposium-7.jpg"
+  },
+  {
+    "symposium": "8th Annual TAHIT Symposium",
+    "host": "San Antonio",
+    "venue":  "Sheraton Gunter Hotel",
+    "attendance": 192,
+    "dates": "September 5th & 6th, 2014",
+    "image": "img/symposiums/symposium-8.jpg"
+  },
+  {
+    "symposium": "9th Annual TAHIT Symposium",
+    "host": "Galveston",
+    "venue":  "Mody Gardens Hotel and Convention Center",
+    "attendance": 147,
+    "dates": "September 25th & 26th, 2015",
+    "image": "img/symposiums/symposium-9.jpg"
+  },
+  {
+    "symposium": "10th Annual TAHIT Symposium",
+    "host": "Fort Worth",
+    "venue":  "Hilton DFW Lakes Executive Conference Center",
+    "attendance": 214,
+    "dates": "September 9th & 10th, 2016",
+    "image": "img/symposiums/symposium-10.jpg"
+  }
+
+
+
+]

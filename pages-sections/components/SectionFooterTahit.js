@@ -80,10 +80,14 @@ export default function SectionFooter() {
                 <h5>About</h5>
                 <ul className={classes.linksVertical}>
                   <li>
-                    <a href="#pablo">About us</a>
+                    <Link href="/about-us" as="/about-us">
+                      <a href="#pablo">About us</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#pablo">History</a>
+                    <Link href="/history" as="/history">
+                      <a href="#pablo">History</a>
+                    </Link>
                   </li>
                   <li>
                     <Link href="/contact-us" as="/contact-us">
@@ -102,7 +106,9 @@ export default function SectionFooter() {
                     <a href="#pablo">Sponsorship</a>
                   </li>
                   <li>
-                    <a href="#pablo">Past Symposia</a>
+                    <Link href="/past-symposia" as="/past-symposia">
+                      <a href="/past-symposia">Past Symposia</a>
+                    </Link>
                   </li>
                 </ul>
               </GridItem>
@@ -153,6 +159,6 @@ export default function SectionFooter() {
           </div>
         </Footer>
       </div>
-    </div>
+    </div >
   );
 }
