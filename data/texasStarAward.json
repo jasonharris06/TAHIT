@@ -1,0 +1,44 @@
+[
+  {
+    "year": 2014,
+    "individualImg": "/img/texasStarAward/individual/individual-2014.jpg",
+    "individualName": "Esther Diaz",
+    "organizationImg": "/img/texasStarAward/organization/organization-2014.png",
+    "organizationName": "Texas Health Resources"
+  },
+  {
+    "year": 2015,
+    "individualImg": "/img/texasStarAward/individual/individual-2015.jpg",
+    "individualName": "Jorge Ungo",
+    "organizationImg": "/img/texasStarAward/organization/organization-2015.png",
+    "organizationName": "MasterWord Services"
+  },
+  {
+    "year": 2016,
+    "individualImg": "/img/texasStarAward/individual/individual-2016.jpg",
+    "individualName": "Jacque Burandt",
+    "organizationImg": "/img/texasStarAward/organization/organization-2016.png",
+    "organizationName": "Children's Health System"
+  },
+  {
+    "year": 2017,
+    "individualImg": "/img/texasStarAward/individual/individual-2017.jpg",
+    "individualName": "Randy Turner",
+    "organizationImg": "/img/texasStarAward/organization/organization-2017.jpg",
+    "organizationName": "MD Anderson Cancer Center"
+  },
+  {
+    "year": 2018,
+    "individualImg": "/img/texasStarAward/individual/individual-2018.jpg",
+    "individualName": "Melina Kolbeck",
+    "organizationImg": "/img/texasStarAward/organization/organization-2018.jpg",
+    "organizationName": "Translation & Interpretation Network"
+  },
+  {
+    "year": 2019,
+    "individualImg": "/img/texasStarAward/individual/individual-2019.png",
+    "individualName": "Ludmila Golovine",
+    "organizationImg": "/img/texasStarAward/organization/organization-2019.jpg",
+    "organizationName": "Certification Commission for Healthcare Interpreters"
+  }
+]

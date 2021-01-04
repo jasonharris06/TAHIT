@@ -9,11 +9,15 @@ import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import Icon from "@material-ui/core/Icon";
+//import Icon from "@material-ui/core/Icon";
 import Hidden from "@material-ui/core/Hidden";
 
 // @material-ui/icons
 import Apps from "@material-ui/icons/Apps";
+import StarIcon from '@material-ui/icons/Star';
+import StarOutlineIcon from '@material-ui/icons/StarBorder';
+import LocalPlayIcon from '@material-ui/icons/LocalPlay';
+import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import ViewDay from "@material-ui/icons/ViewDay";
 import Dns from "@material-ui/icons/Dns";
@@ -38,6 +42,9 @@ import Layers from "@material-ui/icons/Layers";
 import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
 import LineStyle from "@material-ui/icons/LineStyle";
 import Error from "@material-ui/icons/Error";
+
+//feathericons
+import * as Icon from 'react-feather';
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
@@ -96,33 +103,64 @@ export default function HeaderLinks(props) {
           noLiPadding
           navDropdown
           hoverColor={dropdownHoverColor}
-          buttonText="Components"
+          buttonText="Symposium"
           buttonProps={{
             className: classes.navLink,
             color: "transparent"
           }}
-          buttonIcon={Apps}
+          buttonIcon={InsertInvitationIcon}
           dropdownList={[
-            <Link href="/presentation">
+            <Link href="/symposium/registration">
               <a className={classes.dropdownLink}>
-                <LineStyle className={classes.dropdownIcons} /> Presentation
-                Page
+                <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
               </a>
             </Link>,
-            <Link href="/components">
+            <Link href="/symposium/sponsorship">
               <a className={classes.dropdownLink}>
-                <Layers className={classes.dropdownIcons} />
-                All components
+                <LocalPlayIcon className={classes.dropdownIcons} />
+                Sponsorship
               </a>
             </Link>,
-            <a
-              href="https://demos.creative-tim.com/nextjs-material-kit-pro/documentation/tutorial?ref=njsmkp-navbar"
-              target="_blank"
-              className={classes.dropdownLink}
-            >
-              <Icon className={classes.dropdownIcons}>content_paste</Icon>
-              Documentation
-            </a>
+            <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
+              <a className={classes.dropdownLink}>
+                <StarOutlineIcon className={classes.dropdownIcons} />
+                 Past Symposia
+               </a>
+            </Link>
+
+          ]}
+        />
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <CustomDropdown
+          noLiPadding
+          navDropdown
+          hoverColor={dropdownHoverColor}
+          buttonText="Texas Star Award"
+          buttonProps={{
+            className: classes.navLink,
+            color: "transparent"
+          }}
+          buttonIcon={StarIcon}
+          dropdownList={[
+            <Link href="/texas-star-award/past-recipients">
+              <a className={classes.dropdownLink}>
+                <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
+              </a>
+            </Link>,
+            <Link href="/symposium/sponsorship">
+              <a className={classes.dropdownLink}>
+                <LocalPlayIcon className={classes.dropdownIcons} />
+                Sponsorship
+              </a>
+            </Link>,
+            <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
+              <a className={classes.dropdownLink}>
+                <StarOutlineIcon className={classes.dropdownIcons} />
+                 Past Symposia
+               </a>
+            </Link>
+
           ]}
         />
       </ListItem>
@@ -286,6 +324,7 @@ export default function HeaderLinks(props) {
           ]}
         />
       </ListItem>
+
       <ListItem className={classes.listItem}>
         <Hidden mdDown>
           <Button
@@ -309,6 +348,16 @@ export default function HeaderLinks(props) {
             <ShoppingCart className={classes.icons} /> become a member
           </Button>
         </Hidden>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+
+          color={"login"}
+          target="_blank"
+          className={classes.navButton}
+          round
+        ><Icon.LogIn className={classes.icons} />Log In
+        </Button>
       </ListItem>
     </List>
   );

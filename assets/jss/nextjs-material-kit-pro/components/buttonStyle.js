@@ -563,6 +563,15 @@ const buttonStyle = {
     height: 48,
     padding: '0 30px',
   },
+  login: {
+    background: 'linear-gradient(90deg, #00b09b 10%, #96c93d 90%);',
+    border: 0,
+    borderRadius: 3,
+
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
   simple: {
     "&,&:focus,&:hover": {
       color: whiteColor,
