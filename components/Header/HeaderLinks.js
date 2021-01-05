@@ -164,7 +164,7 @@ export default function HeaderLinks(props) {
           ]}
         />
       </ListItem>
-      <ListItem className={classes.listItem}>
+      {/* <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
           navDropdown
@@ -323,41 +323,47 @@ export default function HeaderLinks(props) {
             </Link>
           ]}
         />
-      </ListItem>
+      </ListItem> */}
 
       <ListItem className={classes.listItem}>
         <Hidden mdDown>
-          <Button
-            href="https://www.creative-tim.com/product/nextjs-material-kit-pro?ref=njsmkp-navbar"
-            color={"white"}
-            target="_blank"
-            className={classes.navButton}
-            round
-          >
-            <ShoppingCart className={classes.icons} />become a member
+          <Link href="/signup" as="/signup">
+            <Button
+
+              color={"white"}
+              target="_blank"
+              className={classes.navButton}
+              round
+            >
+              <ShoppingCart className={classes.icons} />become a member
           </Button>
+          </Link>
         </Hidden>
         <Hidden mdUp>
-          <Button
-            href="https://www.creative-tim.com/product/nextjs-material-kit-pro?ref=njsmkp-navbar"
-            color={"info"}
-            target="_blank"
-            className={classes.navButton}
-            round
-          >
-            <ShoppingCart className={classes.icons} /> become a member
+          <Link href="/signup" as="/signup">
+            <Button
+
+              color={"info"}
+              target="_blank"
+              className={classes.navButton}
+              round
+            >
+              <ShoppingCart className={classes.icons} /> become a member
           </Button>
+          </Link>
         </Hidden>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
+        <Link href="/login" as="/login">
+          <Button
 
-          color={"login"}
-          target="_blank"
-          className={classes.navButton}
-          round
-        ><Icon.LogIn className={classes.icons} />Log In
+            color={"login"}
+            target="_blank"
+            className={classes.navButton}
+            round
+          ><Icon.LogIn className={classes.icons} />Log In
         </Button>
+        </Link>
       </ListItem>
     </List>
   );

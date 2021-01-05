@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import Link from "next/link"
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -16,6 +17,7 @@ import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
 import Check from "@material-ui/icons/Check";
 import Favorite from "@material-ui/icons/Favorite";
+import whiteLogo from "assets/img/logo-white.png"
 // core components
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
@@ -30,7 +32,7 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 
 import signupPageStyle from "assets/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
 
-import image from "assets/img/bg7.jpg";
+import image from "assets/img/background-gradient.jpg"
 
 const useStyles = makeStyles(signupPageStyle);
 
@@ -56,16 +58,27 @@ export default function SignUpPage({ ...rest }) {
       <Header
         absolute
         color="transparent"
-        brand="NextJS Material Kit PRO"
-        links={<HeaderLinks dropdownHoverColor="rose" />}
+        brand={
+          <GridContainer>
+            <GridItem xs={6} sm={6} md={6}>
+              <img src={whiteLogo}
+                alt="Tahit Logo"
+                width={40}
+                height={40} /></GridItem>
+            <GridItem xs={6} sm={6} md={6}>
+              <h5>TAHIT</h5>
+            </GridItem>
+          </GridContainer>}
+
         {...rest}
       />
       <div
-        className={classes.pageHeader}
+        className={classes.page}
         style={{
           backgroundImage: "url(" + image + ")",
           backgroundSize: "cover",
-          backgroundPosition: "top center"
+          backgroundPosition: "top center",
+
         }}
       >
         <div className={classes.container}>
@@ -76,7 +89,7 @@ export default function SignUpPage({ ...rest }) {
                 <CardBody>
                   <GridContainer justify="center">
                     <GridItem xs={12} sm={5} md={5}>
-                      <InfoArea
+                      {/* <InfoArea
                         className={classes.infoArea}
                         title="Marketing"
                         description="We've created the marketing campaign of the website. It was a very interesting collaboration."
@@ -96,10 +109,10 @@ export default function SignUpPage({ ...rest }) {
                         description="There is also a Fully Customizable CMS Admin Dashboard for this product."
                         icon={Group}
                         iconColor="info"
-                      />
+                      /> */}
                     </GridItem>
                     <GridItem xs={12} sm={5} md={5}>
-                      <div className={classes.textCenter}>
+                      {/* <div className={classes.textCenter}>
                         <Button justIcon round color="twitter">
                           <i className={classes.socials + " fab fa-twitter"} />
                         </Button>
@@ -115,7 +128,7 @@ export default function SignUpPage({ ...rest }) {
                         </Button>
                         {` `}
                         <h4 className={classes.socialTitle}>or be classical</h4>
-                      </div>
+                      </div> */}
                       <form className={classes.form}>
                         <CustomInput
                           formControlProps={{
@@ -132,6 +145,23 @@ export default function SignUpPage({ ...rest }) {
                               </InputAdornment>
                             ),
                             placeholder: "First Name..."
+                          }}
+                        />
+                        <CustomInput
+                          formControlProps={{
+                            fullWidth: true,
+                            className: classes.customFormControlClasses
+                          }}
+                          inputProps={{
+                            startAdornment: (
+                              <InputAdornment
+                                position="start"
+                                className={classes.inputAdornment}
+                              >
+                                <Face className={classes.inputAdornmentIcon} />
+                              </InputAdornment>
+                            ),
+                            placeholder: "Last Name..."
                           }}
                         />
                         <CustomInput
@@ -168,6 +198,25 @@ export default function SignUpPage({ ...rest }) {
                               </InputAdornment>
                             ),
                             placeholder: "Password..."
+                          }}
+                        />
+                        <CustomInput
+                          formControlProps={{
+                            fullWidth: true,
+                            className: classes.customFormControlClasses
+                          }}
+                          inputProps={{
+                            startAdornment: (
+                              <InputAdornment
+                                position="start"
+                                className={classes.inputAdornment}
+                              >
+                                <Icon className={classes.inputAdornmentIcon}>
+                                  lock_outline
+                                </Icon>
+                              </InputAdornment>
+                            ),
+                            placeholder: " Re-enter Password..."
                           }}
                         />
                         <FormControlLabel
@@ -215,34 +264,20 @@ export default function SignUpPage({ ...rest }) {
               <div className={classes.left}>
                 <List className={classes.list}>
                   <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="https://www.creative-tim.com/?ref=njsmkp-signup"
-                      target="_blank"
-                      className={classes.block}
-                    >
-                      Creative Tim
-                    </a>
+                    <Link href='/home' as="/home" >
+                      <a className={classes.block}>
+                        TAHIT
+                  </a>
+                    </Link>
+                  </ListItem>
+                  <ListItem className={classes.inlineBlock}>
+                    <Link href="/about-us" as="/about-us">
+                      <a className={classes.block}>About us</a>
+                    </Link>
                   </ListItem>
                   <ListItem className={classes.inlineBlock}>
                     <a
-                      href="https://www.creative-tim.com/presentation?ref=njsmkp-signup"
-                      target="_blank"
-                      className={classes.block}
-                    >
-                      About us
-                    </a>
-                  </ListItem>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="http://blog.creative-tim.com/?ref=njsmkp-signup"
-                      className={classes.block}
-                    >
-                      Blog
-                    </a>
-                  </ListItem>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="https://www.creative-tim.com/license?ref=njsmkp-signup"
+                      //href="https://www.creative-tim.com/license?ref=njsmkp-signup"
                       target="_blank"
                       className={classes.block}
                     >
@@ -252,15 +287,7 @@ export default function SignUpPage({ ...rest }) {
                 </List>
               </div>
               <div className={classes.right}>
-                &copy; {1900 + new Date().getYear()} , made with{" "}
-                <Favorite className={classes.icon} /> by{" "}
-                <a
-                  href="https://www.creative-tim.com?ref=njsmkp-signup"
-                  target="_blank"
-                >
-                  Creative Tim
-                </a>{" "}
-                for a better web.
+                Copyright &copy; {1900 + new Date().getYear()}{" "} TAHIT
               </div>
             </div>
           }

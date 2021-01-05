@@ -153,8 +153,10 @@ export default function SectionTeams({ ...rest }) {
 
 
                 <GridItem xs={12} sm={12} md={12}>
-                  <h4 className={classes.cardTitle} style={{ textAlign: "center" }}>{`${item.year} Texas Star Award Winners`}</h4>
-                  <br />
+                  <h3 className={classes.title} style={{ textAlign: "center" }}>{`${item.year} Texas Star Award Winners`}</h3>
+
+
+                  <br></br>
                 </GridItem>
                 <GridItem xs={12} sm={2} md={2}>
                 </GridItem>
@@ -176,7 +178,7 @@ export default function SectionTeams({ ...rest }) {
                       </CardAvatar>
 
                       <CardBody plain>
-                        <h3 className={classes.cardTitle}>Individual Winner</h3>
+                        <h3 className={classes.cardTitle}>Individual Award</h3>
                         <h4 className={classes.cardTitle}>{item.individualName}</h4>
                         <Muted>
                           <h6 className={classes.cardCategory}>{item.position}</h6>
@@ -203,7 +205,12 @@ export default function SectionTeams({ ...rest }) {
                   <Card profile raised>
                     <CardHeader image>
                       <a href="#pablo" onClick={e => e.preventDefault()}>
-                        <img src={item.organizationImg} alt="..." />
+                        <img
+                          src={item.organizationImg}
+                          alt="..."
+                        // width={260}
+                        // height={260}
+                        />
                       </a>
                       <div
                         className={classes.coloredShadow}
@@ -238,7 +245,13 @@ export default function SectionTeams({ ...rest }) {
                       </Button>
                     </CardFooter> */}
                   </Card>
+
                 </GridItem>
+
+                <GridItem xs={12} sm={12} md={12}>
+                  <hr></hr>
+                </GridItem>
+
               </>
               )
             })}
