@@ -15,6 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "next/app";
@@ -81,6 +82,11 @@ export default class MyApp extends App {
     return (
       <React.Fragment>
         <Head>
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
           <title>
             TAHIT
 Texas Association of Healthcare Interpreters & Translators</title>

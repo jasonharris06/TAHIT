@@ -184,6 +184,9 @@ export default function SectionTeams({ ...rest }) {
                           <h6 className={classes.cardCategory}>{item.position}</h6>
                         </Muted>
                         <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
                         {/* <p className={classes.description} style={{
 
                           width: "200px",

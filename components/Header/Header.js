@@ -124,7 +124,8 @@ Header.propTypes = {
     "white",
     "rose",
     "dark",
-    "gradient"
+    "gradient",
+    "login"
   ]),
   links: PropTypes.node,
   brand: PropTypes.string,
@@ -148,7 +149,8 @@ Header.propTypes = {
       "white",
       "rose",
       "dark",
-      "gradient"
+      "gradient",
+      "login"
     ]).isRequired
   })
 };

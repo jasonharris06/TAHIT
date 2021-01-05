@@ -145,21 +145,20 @@ export default function HeaderLinks(props) {
           dropdownList={[
             <Link href="/texas-star-award/past-recipients">
               <a className={classes.dropdownLink}>
+                <People className={classes.dropdownIcons} /> Past Awardees
+              </a>
+            </Link>,
+            <Link href="/texas-star-award/registration">
+              <a className={classes.dropdownLink}>
                 <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
-              </a>
+            </a>
             </Link>,
-            <Link href="/symposium/sponsorship">
-              <a className={classes.dropdownLink}>
-                <LocalPlayIcon className={classes.dropdownIcons} />
-                Sponsorship
-              </a>
-            </Link>,
-            <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
-              <a className={classes.dropdownLink}>
-                <StarOutlineIcon className={classes.dropdownIcons} />
-                 Past Symposia
-               </a>
-            </Link>
+            // <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
+            //   <a className={classes.dropdownLink}>
+            //     <StarOutlineIcon className={classes.dropdownIcons} />
+            //      Past Symposia
+            //    </a>
+            // </Link>
 
           ]}
         />
