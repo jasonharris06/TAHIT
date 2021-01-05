@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import Link from "next/link"
 
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -25,9 +26,11 @@ import SectionContact from "pages-sections/about-us/SectionContact.js";
 import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
 import SectionSymposiumCards from "pages-sections/sections-page/SectionPastSymposia.js"
 
-import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
+import errorPageStyle from "assets/jss/nextjs-material-kit-pro/pages/errorPageStyles.js";
 
-const useStyles = makeStyles(aboutUsStyle);
+import image from "assets/img/background-houstonSkyline.jpg"
+
+const useStyles = makeStyles(errorPageStyle);
 
 export default function AboutUsPage() {
   React.useEffect(() => {
@@ -47,35 +50,62 @@ export default function AboutUsPage() {
           color: "info"
         }}
       />
-      <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
-        <div className={classes.container}>
-          <GridContainer justify="center">
-            <GridItem
-              md={8}
-              sm={8}
-              className={classNames(
-                classes.mlAuto,
-                classes.mrAuto,
-                classes.textCenter
-              )}
-            >
-              <h1 className={classes.title}>Past TAHIT Symposia</h1>
-
+      <div
+        className={classes.pageHeader}
+        style={{
+          backgroundImage: "url(" + image + ")",
+          backgroundSize: "cover",
+          backgroundPosition: "top center"
+        }}
+      >
+        {/* <div className={classes.container}> */}
+        <div className={classes.contentCenter}>
+          <GridContainer>
+            <GridItem md={12}>
+              <h1 className={classes.title}>Soon!</h1>
+              <h2 className={classes.subTitle}>More info coming soon </h2>
+              <h4 className={classes.description}>
+                Come back later
+              </h4>
             </GridItem>
           </GridContainer>
         </div>
-      </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <div className={classes.container}>
-          {/* <SectionDescription /> */}
-          <SectionSymposiumCards />
-          {/* <SectionTeam /> */}
-          {/* <SectionServices />
-          <SectionOffice />
-          <SectionContact /> */}
-        </div>
+        {/* </div> */}
       </div>
-      <SectionFooter />
+      <Footer
+        content={
+          <div>
+            <div className={classes.left}>
+              <List className={classes.list}>
+                <ListItem className={classes.inlineBlock}>
+                  <Link href='/home' as="/home" >
+                    <a className={classes.block}>
+                      TAHIT
+                  </a>
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.inlineBlock}>
+                  <Link href="/about-us" as="/about-us">
+                    <a className={classes.block}>About us</a>
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.inlineBlock}>
+                  <a
+                    //href="https://www.creative-tim.com/license?ref=njsmkp-signup"
+                    target="_blank"
+                    className={classes.block}
+                  >
+                    Licenses
+                    </a>
+                </ListItem>
+              </List>
+            </div>
+            <div className={classes.right}>
+              Copyright &copy; {1900 + new Date().getYear()}{" "} TAHIT
+              </div>
+          </div>
+        }
+      />
     </div>
   );
 }

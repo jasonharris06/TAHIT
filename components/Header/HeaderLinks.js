@@ -148,9 +148,9 @@ export default function HeaderLinks(props) {
                 <People className={classes.dropdownIcons} /> Past Awardees
               </a>
             </Link>,
-            <Link href="/texas-star-award/registration">
+            <Link href="/texas-star-award/texas-star-nomination-form">
               <a className={classes.dropdownLink}>
-                <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
+                <InsertInvitationIcon className={classes.dropdownIcons} /> Texas Star Nomination Form
             </a>
             </Link>,
             // <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
