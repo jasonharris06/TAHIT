@@ -19,6 +19,7 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Footer from "components/Footer/Footer.js";
 
 
+
 import styles from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/footerStyle.js";
 
 const useStyles = makeStyles(styles);

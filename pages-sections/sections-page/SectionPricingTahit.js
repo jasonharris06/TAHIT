@@ -17,6 +17,7 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import Button from "components/CustomButtons/Button.js";
 import NavPills from "components/NavPills/NavPills.js";
+import Accordion from "components/Accordion/Accordion.js";
 import Success from "components/Typography/Success.js";
 import Danger from "components/Typography/Danger.js";
 
@@ -66,6 +67,7 @@ export default function SectionPricing({ ...rest }) {
                   tabButton: "Personal",
                   tabContent: (
                     <GridContainer>
+                      <GridItem xs={12} sm={2} md={2}></GridItem>
                       <GridItem xs={12} sm={4} md={4}
                         className={classes.cardCategory + " " + classes.mlAuto + " " + classes.mrAuto}>
                         <Card
@@ -79,7 +81,7 @@ export default function SectionPricing({ ...rest }) {
                                 classes.cardCategoryFullWhite
                               }
                             >
-                              Yearly Membership
+                              Personal Yearly Membership
                               </h6>
                             <div className={classes.iconWrapper}>
                               <People className={classes.iconInfo} />
@@ -89,10 +91,11 @@ export default function SectionPricing({ ...rest }) {
                                 classes.cardTitle + " " + classes.marginTop30
                               }
                             >
-                              $35
+                              $40
                             </h3>
                             <p className={classes.cardDescription}>
-                              Start enjoying the personal benefits of becoming a TAHIT member today.
+                              These memberships are intended for individuals who are stakeholders in providing language access for LEPs and the Deaf and Hard-of-Hearing.  Whether a provider, clinical staff, an administrator, a language professional, or just an ordinary person who cares about doing what is right, this is the best choice for most individuals.
+                            
                             </p>
                           </CardBody>
                           <CardFooter
@@ -117,6 +120,56 @@ export default function SectionPricing({ ...rest }) {
 
                         </Card>
                       </GridItem>
+                      <GridItem xs={12} sm={4} md={4}
+                        className={classes.cardCategory + " " + classes.mlAuto + " " + classes.mrAuto}>
+                        <Card pricing plain
+                        >
+                          <CardBody pricing plain>
+                            <h6
+                              className={
+                                classes.cardCategoryFullWhite
+                              }
+                            >
+                              Student Yearly Membership
+                              </h6>
+                            <div className={classes.iconWrapper}>
+                              <People className={classes.iconInfo} />
+                            </div>
+                            <h3
+                              className={
+                                classes.cardTitle + " " + classes.marginTop30
+                              }
+                            >
+                              $25
+                            </h3>
+                            <p className={classes.cardDescription}>
+                              It's expensive being a student, and TAHIT wants to lend a hand.  If you join as a student with your ".edu" email account, you are eligible for this student membership that costs a fraction of an individual membership.  You may have to survive on ramen, but you can also be connected to the profession.  Join today!.
+                            </p>
+                          </CardBody>
+                          <CardFooter
+                            pricing
+                            className={classes.justifyContentCenter}
+                          >
+                            <Button color="rose" round>
+                              BUY NOW
+                              </Button>
+                          </CardFooter>
+                          {/* <Button round color="info">
+                                Choose plan
+                            </Button> */}
+                          {/* <CardFooter
+                              pricing
+                              className={classes.justifyContentCenter}
+                            >
+                              <Button color="primary" round>
+                                FREE DOWNLOAD
+                              </Button>
+                            </CardFooter> */}
+
+                        </Card>
+                      </GridItem>
+                      <GridItem xs={12} sm={2} md={2}></GridItem>
+
 
                     </GridContainer>
                   )
@@ -129,13 +182,22 @@ export default function SectionPricing({ ...rest }) {
                       <GridItem xs={12} sm={4} md={4}>
                         <Card pricing plain>
                           <CardBody pricing plain>
-                            <h6 className={classes.cardCategory}>SMALL BUSINESS</h6>
+                            <h6 className={classes.cardCategory}>Department Level</h6>
                             <h1 className={classes.cardTitle}>
-                              <small>$</small>299 <small>/yr</small>
+                              <small>$</small>125 <small>/yr</small>
                             </h1>
+                            <Accordion
+                            active={1}
+                            collapses={[
+                              {
+                                title:"More Info",
+                                content:"This option allows the 5 selected individuals within your department to become members and be eligible for member discounts on events, merchandise, and webinars.  These movers and shakers on your team can keep a larger group in the loop with everything happening with TAHIT and in the industry."
+                              }
+                            ]}
+                            />
                             <ul>
                               <li>
-                                <b>20</b> Users
+                                <b>5</b> Users
                             </li>
                               <li>
                                 <b>Free</b> Inital User Upload
@@ -168,11 +230,22 @@ export default function SectionPricing({ ...rest }) {
                           <CardBody pricing background>
                             <h6 className={classes.cardCategoryWhite}>MEDIUM BUSINESS</h6>
                             <h1 className={classes.cardTitleWhite}>
-                              <small>$</small> 599 <small>/yr</small>
+                            
+                              <small>$</small> 500 <small>/yr</small>
                             </h1>
+                            <Accordion
+                            style={{ backgroundColor: "transparent !important"}}
+                            active={1}
+                            collapses={[
+                              {
+                                title:"More Info",
+                                content:"This is a 50% savings off the cost of an individual membership and these individuals will also be eligible for members-only discounts on TAHIT-sponsored events and webinars.  Make your whole team feel included in the industry!"
+                              }
+                            ]}
+                            />
                             <ul>
                               <li>
-                                <b>100</b> Users
+                                <b>25</b> Users
                             </li>
                               <li>
                                 <b>Free</b> Inital User Upload
@@ -200,8 +273,18 @@ export default function SectionPricing({ ...rest }) {
                           <CardBody pricing plain>
                             <h6 className={classes.cardCategory}>LARGE BUSINESS</h6>
                             <h1 className={classes.cardTitle}>
-                              <small>$</small> 999 <small>/yr</small>
+                          
+                              <small>$</small> 3,125 <small>/yr</small>
                             </h1>
+                            <Accordion
+                            active={1}
+                            collapses={[
+                              {
+                                title:"More Info",
+                                content:"Corporate Memberships are for large agencies and businesses with hundreds of Language Access Professionals.  You can provide an incredible access to the interpreting and translating professions to your staff, management, or contractors.  There is no better way to create an impact on connecting people and ideas in the industry!"
+                              }
+                            ]}
+                            />
                             <ul>
                               <li>
                                 <b>500</b> Users

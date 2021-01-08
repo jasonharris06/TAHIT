@@ -17,7 +17,8 @@ const accordionStyle = theme => ({
   expansionPanel: {
     boxShadow: "none",
     "&:before": {
-      display: "none !important"
+      display: "none !important",
+
     }
   },
   expansionPanelExpanded: {
