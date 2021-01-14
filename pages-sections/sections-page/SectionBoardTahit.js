@@ -117,7 +117,6 @@ export default function SectionTeams({ ...rest }) {
           <Button onClick={() => setModal(false)} color="secondary">
             Close
           </Button>
-          <Button color="primary">Save changes</Button>
         </DialogActions>
       </Dialog>
 

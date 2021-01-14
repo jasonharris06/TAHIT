@@ -35,6 +35,8 @@ import landingPageStyle from "assets/jss/nextjs-material-kit-pro/pages/landingPa
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import SectionFooter from "../pages-sections/components/SectionFooterTahit";
 
+import whiteLogo from "assets/img/logo-white.png"
+
 
 
 const useStyles = makeStyles(contactUsStyle);
@@ -71,12 +73,23 @@ export default function ContactUsPage({ ...rest }) {
     <div>
       <Header
         color="transparent"
-        brand={`TAHIT`}
+        brand={
+          <GridContainer>
+            <GridItem xs={6} sm={6} md={6}>
+              <img src={whiteLogo}
+                alt="Tahit Logo"
+                width={35}
+                height={35} /></GridItem>
+            <GridItem xs={6} sm={6} md={6}>
+              <h5>TAHIT</h5>
+            </GridItem>
+          </GridContainer>}
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         changeColorOnScroll={{
           height: 300,
-          color: "info"
+          color: "gradient",
+          filter: "dark"
         }}
         {...rest}
       />
@@ -103,10 +116,33 @@ export default function ContactUsPage({ ...rest }) {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.contactContent}>
+
+
           <div className={classes.container}>
-            <h2 className={classes.title} style={{ color: "black" }}>Send us a message</h2>
+
+
             <GridContainer>
-              <GridItem md={6} sm={6}>
+              <GridItem
+                xs={12}
+                sm={12}
+                md={12}
+                className={
+                  classes.mlAuto + " " + classes.mrAuto + " " + classes.textCenter
+                }
+              >
+                <h2 className={classes.title} style={{ color: "black" }}>Send us a message</h2>
+
+
+
+              </GridItem>
+
+
+
+            </GridContainer>
+            <GridContainer >
+              <GridItem md={2}></GridItem>
+              <GridItem md={8} sm={8}>
+
                 <p style={{ color: "black" }}>
                   {title.text}
                   <br />
@@ -170,7 +206,7 @@ export default function ContactUsPage({ ...rest }) {
                   </div>
                 </form>
               </GridItem>
-              <GridItem md={4} sm={4} className={classes.mlAuto}>
+              {/* <GridItem md={4} sm={4} className={classes.mlAuto}>
                 <InfoArea
                   className={classes.info}
                   title="Find us at the office"
@@ -207,7 +243,7 @@ export default function ContactUsPage({ ...rest }) {
                   icon={BusinessCenter}
                   iconColor="primary"
                 />
-              </GridItem>
+              </GridItem> */}
             </GridContainer>
           </div>
         </div>

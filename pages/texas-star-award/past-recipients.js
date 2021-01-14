@@ -26,6 +26,8 @@ import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
 
 import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
 
+import whiteLogo from "assets/img/logo-white.png"
+
 const useStyles = makeStyles(aboutUsStyle);
 
 export default function AboutUsPage() {
@@ -37,13 +39,24 @@ export default function AboutUsPage() {
   return (
     <div>
       <Header
-        brand="TAHIT"
+        brand={
+          <GridContainer>
+            <GridItem xs={6} sm={6} md={6}>
+              <img src={whiteLogo}
+                alt="Tahit Logo"
+                width={35}
+                height={35} /></GridItem>
+            <GridItem xs={6} sm={6} md={6}>
+              <h5>TAHIT</h5>
+            </GridItem>
+          </GridContainer>}
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         color="transparent"
         changeColorOnScroll={{
           height: 300,
-          color: "info"
+          color: "gradient",
+          filter: "dark"
         }}
       />
       <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>

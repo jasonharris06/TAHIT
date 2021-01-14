@@ -16,11 +16,14 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
+import SectionFooter from "../pages-sections/components/SectionFooterTahit";
 import Footer from "components/Footer/Footer.js";
 import SectionQuote from "pages-sections/sections-page/SectionQuote";
 // sections for this page
 
 import logo from "assets/img/favicon.png"
+
+import whiteLogo from "assets/img/logo-white.png"
 
 import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
 
@@ -35,13 +38,24 @@ export default function AboutUsPage() {
   return (
     <div>
       <Header
-        brand="TAHIT"
+        brand={
+          <GridContainer>
+            <GridItem xs={6} sm={6} md={6}>
+              <img src={whiteLogo}
+                alt="Tahit Logo"
+                width={35}
+                height={35} /></GridItem>
+            <GridItem xs={6} sm={6} md={6}>
+              <h5>TAHIT</h5>
+            </GridItem>
+          </GridContainer>}
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         color="transparent"
         changeColorOnScroll={{
           height: 300,
-          color: "info"
+          color: "gradient",
+          filter: "dark"
         }}
       />
       <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
@@ -66,8 +80,10 @@ export default function AboutUsPage() {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <br></br>
+          {/* <br></br>
           <SectionQuote />
+          <br></br> */}
+          <br></br>
           <br></br>
           <GridContainer>
             <GridItem sm={12} md={4}>
@@ -124,63 +140,7 @@ export default function AboutUsPage() {
 
         </div>
       </div>
-      <Footer
-        content={
-          <div>
-            <div className={classes.left}>
-              <List className={classes.list}>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Creative Tim
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="http://blog.creative-tim.com/?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Blog
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Licenses
-                  </a>
-                </ListItem>
-              </List>
-            </div>
-            <div className={classes.right}>
-              &copy; {1900 + new Date().getYear()} , made with{" "}
-              <Favorite className={classes.icon} /> by{" "}
-              <a
-                href="https://www.creative-tim.com?ref=njsmkp-about-us"
-                target="_blank"
-              >
-                Creative Tim
-              </a>{" "}
-              for a better web.
-            </div>
-          </div>
-        }
-      />
+      <SectionFooter />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 /*eslint-disable*/ import React from "react";
 import Image from 'next/image'
+import ReactPlayer from 'react-player/youtube'
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // nodejs library that concatenates classes
@@ -22,16 +23,21 @@ import Button from "components/CustomButtons/Button.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 import landingPageStyle from "assets/jss/nextjs-material-kit-pro/pages/landingPageStyle.js";
+
 import NavBar from "components/Header/navBar.js"
 import CustomInput from "components/CustomInput/CustomInput.js";
 
 import whiteLogo from "assets/img/logo-white.png"
+import Close from "@material-ui/icons/Close";
 // Sections for this page
 import SectionProduct from "pages-sections/landing-page/SectionProduct.js";
+import SectionModal from "pages-sections/landing-page/SectionModal.js"
 import SectionTeam from "pages-sections/landing-page/SectionTeam.js";
 import SectionWork from "pages-sections/landing-page/SectionWork.js";
 import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
 import SectionPricing from "pages-sections/sections-page/SectionPricingTahit.js"
+
+
 
 const useStyles = makeStyles(landingPageStyle);
 
@@ -40,10 +46,13 @@ export default function LandingPage({ ...rest }) {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
   });
+
   const classes = useStyles();
+
+
   return (
     <div>
-
+      {/* <SectionModal handleClick={handleClick} /> */}
       <Header
         color="transparent"
         brand={
@@ -99,8 +108,9 @@ export default function LandingPage({ ...rest }) {
               <Button
                 color="danger"
                 size="lg"
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
+                href="https://www.youtube.com/watch?v=89ny6vtP4gQ"
                 target="_blank"
+              // onClick={handleClick}
               >
                 <i className="fas fa-play" />
                 Watch video

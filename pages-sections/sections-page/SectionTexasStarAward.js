@@ -148,7 +148,7 @@ export default function SectionTeams({ ...rest }) {
 
           </GridContainer>
           <GridContainer>
-            {award && award.map((item, index) => {
+            {award && [...award].reverse().map((item, index) => {
               return (<>
 
 
