@@ -15,7 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import * as gtag from '../lib/gtag'
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "next/app";
@@ -29,6 +31,7 @@ import "assets/scss/nextjs-material-kit-pro.scss?v=1.1.0";
 import "assets/css/react-demo.css";
 
 import "animate.css/animate.min.css";
+import GoogleTagManager from '../components/Google/GoogleTagManager';
 
 Router.events.on("routeChangeStart", url => {
   console.log(`Loading: ${url}`);
@@ -47,7 +50,12 @@ Router.events.on("routeChangeError", () => {
   document.body.classList.remove("body-page-transition");
 });
 
+
+
 export default class MyApp extends App {
+
+
+
   componentDidMount() {
     let comment = document.createComment(`
 
@@ -76,23 +84,30 @@ export default class MyApp extends App {
 
     return { pageProps };
   }
+
+
   render() {
+
+
     const { Component, pageProps } = this.props;
 
+
     return (
-      <React.Fragment>
-        <Head>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <title>
-            TAHIT
+      <GoogleTagManager>
+        <React.Fragment>
+          <Head>
+            <meta charSet="utf-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            />
+            <title>
+              TAHIT
 Texas Association of Healthcare Interpreters & Translators</title>
-        </Head>
-        <Component {...pageProps} />
-      </React.Fragment>
+          </Head>
+          <Component {...pageProps} />
+        </React.Fragment>
+      </GoogleTagManager>
     );
   }
 }
