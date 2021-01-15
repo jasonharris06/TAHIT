@@ -93,8 +93,9 @@ export default class MyApp extends App {
 
 
     return (
-      <GoogleTagManager>
-        <React.Fragment>
+
+      <React.Fragment>
+        <GoogleTagManager>
           <Head>
             <meta charSet="utf-8" />
             <meta
@@ -106,8 +107,9 @@ export default class MyApp extends App {
 Texas Association of Healthcare Interpreters & Translators</title>
           </Head>
           <Component {...pageProps} />
-        </React.Fragment>
-      </GoogleTagManager>
+        </GoogleTagManager>
+      </React.Fragment>
+
     );
   }
 }
