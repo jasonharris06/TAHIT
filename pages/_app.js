@@ -59,31 +59,23 @@ export default class MyApp extends App {
   componentDidMount() {
     let comment = document.createComment(`
 
-=========================================================
-* NextJS Material Kit PRO v1.1.0 based on Material Kit PRO - v2.0.2 (Bootstrap 4.0.0 Final Edition) and Material Kit PRO React v1.8.0
-=========================================================
+  =========================================================
+  * NextJS Material Kit PRO v1.1.0 based on Material Kit PRO - v2.0.2 (Bootstrap 4.0.0 Final Edition) and Material Kit PRO React v1.8.0
+  =========================================================
 
-* Product Page: https://www.creative-tim.com/product/nextjs-material-kit-pro
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+  * Product Page: https://www.creative-tim.com/product/nextjs-material-kit-pro
+  * Copyright 2020 Creative Tim (https://www.creative-tim.com)
 
-* Coded by Creative Tim
+  * Coded by Creative Tim
 
-=========================================================
+  =========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-`);
+  `);
     document.insertBefore(comment, document.documentElement);
   }
-  static async getInitialProps({ Component, router, ctx }) {
-    let pageProps = {};
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps };
-  }
 
 
   render() {
