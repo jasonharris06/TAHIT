@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "tahit.org",
+  "Id": "586a2edc-dcec-40d4-9979-7ddd1100b4c0"
+}
