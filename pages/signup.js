@@ -1,8 +1,10 @@
 /*eslint-disable*/
 import React from "react";
+import { useState, useEffect } from 'react'
 import Link from "next/link"
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import Tooltip from "@material-ui/core/Tooltip";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -16,6 +18,7 @@ import Group from "@material-ui/icons/Group";
 import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
 import Check from "@material-ui/icons/Check";
+import PhoneIcon from '@material-ui/icons/Phone';
 import Favorite from "@material-ui/icons/Favorite";
 import whiteLogo from "assets/img/logo-white.png"
 // core components
@@ -38,6 +41,18 @@ const useStyles = makeStyles(signupPageStyle);
 
 export default function SignUpPage({ ...rest }) {
   const [checked, setChecked] = React.useState([1]);
+  const [errorMsg, setErrorMsg] = useState()
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    password: '',
+    rpassword: ''
+
+  })
+
+
   const handleToggle = value => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -48,6 +63,54 @@ export default function SignUpPage({ ...rest }) {
     }
     setChecked(newChecked);
   };
+
+  async function onSubmit(e) {
+    e.preventDefault()
+
+    const body = {
+      email: e.currentTarget.firstName.value,
+      password: e.currentTarget.password.value,
+    }
+    console.log(body)
+  }
+
+  async function handleChange(e) {
+    const clone = { ...form }
+    console.log(clone)
+    switch (e.currentTarget.name) {
+      case "firstName":
+        clone.firstName = e.currentTarget.value
+        setForm(clone)
+        console.log(form.firstName)
+        break;
+      case "lastName":
+        clone.lastName = e.currentTarget.value
+        setForm(clone)
+        break;
+      case "email":
+        clone.email = e.currentTarget.value
+        setForm(clone)
+        break;
+      case "phone":
+        clone.phone = e.currentTarget.value
+        setForm(clone)
+        break
+      case "password":
+        clone.password = e.currentTarget.value
+        setForm(clone)
+
+        break
+      case "rpassword":
+        clone.rpassword = e.currentTarget.value
+        setForm(clone)
+        break
+
+
+    }
+    console.log("I was clicked")
+    console.log(e.currentTarget.name)
+  }
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -129,14 +192,45 @@ export default function SignUpPage({ ...rest }) {
                         {` `}
                         <h4 className={classes.socialTitle}>or be classical</h4>
                       </div> */}
-                      <form className={classes.form}>
+                      {form && <form className={classes.form} onSubmit={onSubmit}>
                         <CustomInput
+                          labelText="First Name..."
+                          success={form.firstName.length != 0 ? true : false}
+
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
                           }}
                           inputProps={{
-                            startAdornment: (
+
+                            endAdornment: (
+                              <InputAdornment
+                                position="end"
+                                className={classes.inputAdornment}
+                              >
+                                <Face className={classes.inputAdornmentIcon} />
+                              </InputAdornment>
+                            ),
+
+                            onChange: handleChange,
+                            type: "text",
+                            name: "firstName",
+                            required: true,
+                            //value: form.firstName
+
+
+                          }}
+
+                        />
+                        <CustomInput
+                          labelText="Last Name..."
+                          success={form.lastName.length != 0 ? true : false}
+                          formControlProps={{
+                            fullWidth: true,
+                            className: classes.customFormControlClasses
+                          }}
+                          inputProps={{
+                            endAdornment: (
                               <InputAdornment
                                 position="start"
                                 className={classes.inputAdornment}
@@ -144,33 +238,25 @@ export default function SignUpPage({ ...rest }) {
                                 <Face className={classes.inputAdornmentIcon} />
                               </InputAdornment>
                             ),
-                            placeholder: "First Name..."
+                            onChange: handleChange,
+
+                            type: "text",
+                            name: "lastName",
+                            required: true,
+                            //value: form.lastName
+
                           }}
+
                         />
                         <CustomInput
+                          labelText="Email..."
+                          success={form.email.length != 0 ? true : false}
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
                           }}
                           inputProps={{
-                            startAdornment: (
-                              <InputAdornment
-                                position="start"
-                                className={classes.inputAdornment}
-                              >
-                                <Face className={classes.inputAdornmentIcon} />
-                              </InputAdornment>
-                            ),
-                            placeholder: "Last Name..."
-                          }}
-                        />
-                        <CustomInput
-                          formControlProps={{
-                            fullWidth: true,
-                            className: classes.customFormControlClasses
-                          }}
-                          inputProps={{
-                            startAdornment: (
+                            endAdornment: (
                               <InputAdornment
                                 position="start"
                                 className={classes.inputAdornment}
@@ -178,16 +264,46 @@ export default function SignUpPage({ ...rest }) {
                                 <Email className={classes.inputAdornmentIcon} />
                               </InputAdornment>
                             ),
-                            placeholder: "Email..."
+                            onChange: handleChange,
+                            type: "email",
+                            name: "email",
+                            required: true,
+
                           }}
                         />
+                        <CustomInput
+                          labelText="Phone..."
+
+                          formControlProps={{
+                            fullWidth: true,
+                            className: classes.customFormControlClasses
+                          }}
+                          inputProps={{
+                            endAdornment: (
+                              <InputAdornment
+                                position="start"
+                                className={classes.inputAdornment}
+                              >
+                                <PhoneIcon className={classes.inputAdornmentIcon} />
+                              </InputAdornment>
+                            ),
+                            onChange: handleChange,
+                            type: "number",
+                            name: "phone",
+                            required: true,
+                            maxlength: 10
+
+
+                          }}
+                        />
+
                         <CustomInput
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
                           }}
                           inputProps={{
-                            startAdornment: (
+                            endAdornment: (
                               <InputAdornment
                                 position="start"
                                 className={classes.inputAdornment}
@@ -197,16 +313,21 @@ export default function SignUpPage({ ...rest }) {
                                 </Icon>
                               </InputAdornment>
                             ),
+                            onChange: handleChange,
+                            type: "password",
+                            name: "password",
+                            required: true,
                             placeholder: "Password..."
                           }}
                         />
+
                         <CustomInput
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
                           }}
                           inputProps={{
-                            startAdornment: (
+                            endAdornment: (
                               <InputAdornment
                                 position="start"
                                 className={classes.inputAdornment}
@@ -216,6 +337,10 @@ export default function SignUpPage({ ...rest }) {
                                 </Icon>
                               </InputAdornment>
                             ),
+                            onChange: handleChange,
+                            type: "password",
+                            name: "rpassword",
+                            required: true,
                             placeholder: " Re-enter Password..."
                           }}
                         />
@@ -246,11 +371,11 @@ export default function SignUpPage({ ...rest }) {
                           }
                         />
                         <div className={classes.textCenter}>
-                          <Button round color="primary">
+                          <Button type="submit" round color="primary">
                             Get started
                           </Button>
                         </div>
-                      </form>
+                      </form>}
                     </GridItem>
                   </GridContainer>
                 </CardBody>
