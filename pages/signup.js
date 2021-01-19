@@ -32,6 +32,7 @@ import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import InfoArea from "components/InfoArea/InfoArea.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+import Muted from "components/Typography/Muted.js";
 
 import signupPageStyle from "assets/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
 
@@ -68,10 +69,34 @@ export default function SignUpPage({ ...rest }) {
     e.preventDefault()
 
     const body = {
-      email: e.currentTarget.firstName.value,
+
+      firstName: e.currentTarget.firstName.value,
+      lastName: e.currentTarget.lastName.value,
+      email: e.currentTarget.email.value,
+      phone: e.currentTarget.phone.value,
       password: e.currentTarget.password.value,
+      rpassword: e.currentTarget.rpassword.value,
+
     }
     console.log(body)
+    const res = await fetch('/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+
+
+    if (res.status === 409) {
+      const text = await res.text()
+      setErrorMsg(text)
+    }
+    if (res.status === 201) {
+      const userObj = await res.json()
+      // set user to useSWR state
+      mutate(userObj)
+    } else {
+      setErrorMsg(await res.text())
+    }
   }
 
   async function handleChange(e) {
@@ -92,7 +117,7 @@ export default function SignUpPage({ ...rest }) {
         setForm(clone)
         break;
       case "phone":
-        clone.phone = e.currentTarget.value
+        clone.phone = clone.phone.length < 11 ? e.currentTarget.value : clone.phone
         setForm(clone)
         break
       case "password":
@@ -216,7 +241,7 @@ export default function SignUpPage({ ...rest }) {
                             type: "text",
                             name: "firstName",
                             required: true,
-                            //value: form.firstName
+                            value: form.firstName
 
 
                           }}
@@ -243,14 +268,14 @@ export default function SignUpPage({ ...rest }) {
                             type: "text",
                             name: "lastName",
                             required: true,
-                            //value: form.lastName
+                            value: form.lastName
 
                           }}
 
                         />
                         <CustomInput
                           labelText="Email..."
-                          success={form.email.length != 0 ? true : false}
+                          success={(form.email.length != 0 && form.email.includes("@")) ? true : false}
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
@@ -273,7 +298,7 @@ export default function SignUpPage({ ...rest }) {
                         />
                         <CustomInput
                           labelText="Phone..."
-
+                          success={form.phone.length === 10 ? true : false}
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
@@ -291,13 +316,16 @@ export default function SignUpPage({ ...rest }) {
                             type: "number",
                             name: "phone",
                             required: true,
-                            maxlength: 10
+                            value: form.phone
+
 
 
                           }}
                         />
 
                         <CustomInput
+                          labelText="Password..."
+                          success={form.password.length >= 6 ? true : false}
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
@@ -317,12 +345,17 @@ export default function SignUpPage({ ...rest }) {
                             type: "password",
                             name: "password",
                             required: true,
-                            placeholder: "Password..."
+                            placeholder: "Password...",
+                            value: form.password
                           }}
                         />
 
                         <CustomInput
+                          labelText="Re-enter Password..."
+                          success={form.rpassword.length >= 6 && form.password === form.rpassword ? true : false}
                           formControlProps={{
+
+                            error: form.password != form.rpassword ? true : false,
                             fullWidth: true,
                             className: classes.customFormControlClasses
                           }}
@@ -341,9 +374,13 @@ export default function SignUpPage({ ...rest }) {
                             type: "password",
                             name: "rpassword",
                             required: true,
-                            placeholder: " Re-enter Password..."
+                            placeholder: " Re-enter Password...",
+                            value: form.rpassword
                           }}
                         />
+                        <Muted>
+                          <span>Password must be at least 6 characters long</span>
+                        </Muted>
                         <FormControlLabel
                           classes={{
                             label: classes.label
@@ -370,7 +407,9 @@ export default function SignUpPage({ ...rest }) {
                             </span>
                           }
                         />
+
                         <div className={classes.textCenter}>
+                          {errorMsg && <p className="error">{errorMsg}</p>}
                           <Button type="submit" round color="primary">
                             Get started
                           </Button>
