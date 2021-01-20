@@ -8,8 +8,6 @@ const handler = nextConnect();
 handler
   .use(auth)
   .get((req, res) => {
-    //console.log("I am the user " + req.user);
-
     // You do not generally want to return the whole user object
     // because it may contain sensitive field such as !!password!! Only return what needed
     //const { _id, email, modules, feelingThermometer, firstName } = req.user

@@ -1,6 +1,9 @@
 /*eslint-disable*/
 import React from "react";
 import Link from "next/link"
+import Router from "next/router";
+import { useUser } from '../lib/hooks'
+import { useState, useEffect } from 'react'
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -29,29 +32,55 @@ import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import InfoArea from "components/InfoArea/InfoArea.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+import Danger from "components/Typography/Danger.js";
 
 import signupPageStyle from "assets/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
 
 import image from "assets/img/background-gradient.jpg"
 
+
 const useStyles = makeStyles(signupPageStyle);
 
 export default function SignUpPage({ ...rest }) {
   const [checked, setChecked] = React.useState([1]);
-  const handleToggle = value => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
+  const [user, { mutate }] = useUser()
+  const [errorMsg, setErrorMsg] = useState()
+
+  async function onSubmit(e) {
+    e.preventDefault()
+
+    const body = {
+      email: e.currentTarget.email.value,
+      password: e.currentTarget.password.value,
     }
-    setChecked(newChecked);
-  };
+    console.log(body)
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+
+    if (res.status === 200) {
+      const userObj = await res.json()
+      console.log(userObj)
+      // set user to useSWR state
+      mutate(userObj)
+
+      // // redirect to home if user is authenticated
+
+      // if (user.patient) { Router.push('/patient/dashboard') }
+      // else { Router.push('/therapist/dashboard') }
+    } else {
+      setErrorMsg('Incorrect username or password.')
+    }
+  }
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-  });
+    if (user) { Router.push("/member/dashboard") }
+
+  }), [user];
   const classes = useStyles();
   return (
     <div>
@@ -89,6 +118,7 @@ export default function SignUpPage({ ...rest }) {
               <Card className={classes.cardSignup}>
                 <h2 className={classes.cardTitle}>Login</h2>
                 <CardBody>
+                  {errorMsg && <Danger><p className="error">{errorMsg}</p></Danger>}
                   <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={12}>
                       {/* <div className={classes.textCenter}>
@@ -108,9 +138,10 @@ export default function SignUpPage({ ...rest }) {
                         {` `}
                         <h4 className={classes.socialTitle}>or be classical</h4>
                       </div> */}
-                      <form className={classes.form}>
+                      <form className={classes.form} onSubmit={onSubmit}>
 
                         <CustomInput
+                          labelText="Email"
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
@@ -124,10 +155,12 @@ export default function SignUpPage({ ...rest }) {
                                 <Email className={classes.inputAdornmentIcon} />
                               </InputAdornment>
                             ),
-                            placeholder: "Email"
+                            name: "email",
+
                           }}
                         />
                         <CustomInput
+                          labelText="Password"
                           formControlProps={{
                             fullWidth: true,
                             className: classes.customFormControlClasses
@@ -143,12 +176,14 @@ export default function SignUpPage({ ...rest }) {
                                 </Icon>
                               </InputAdornment>
                             ),
-                            placeholder: "Password"
+                            type: "password",
+                            name: "password",
+
                           }}
                         />
 
                         <div className={classes.textCenter}>
-                          <Button round color="login">
+                          <Button type="submit" round color="login">
                             Get started
                           </Button>
                         </div>

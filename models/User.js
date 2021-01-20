@@ -31,7 +31,7 @@ const Social = {
 const Profile = {
   firstName: { type: String, trim: true },
   lastName: { type: String, trim: true },
-  salutations: [],
+  salutations: String,
   phoneNumber: String,
   workNumber: String,
   address: Address,
@@ -45,7 +45,8 @@ const Profile = {
   profilePic: {
     data: Buffer,
     contentType: String
-  }
+  },
+  completed: { type: Boolean, default: false },
 
 }
 
