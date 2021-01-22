@@ -7,12 +7,12 @@ const Notifications = {
 }
 
 const Address = {
-  street: { type: String, trim: true },
-  street2: { type: String, trim: true },
-  city: { type: String, trim: true },
-  state: { type: String, trim: true },
-  zip: { type: String, trim: true },
-  country: { type: String, trim: true },
+  street: { type: String, trim: true, default: "" },
+  street2: { type: String, trim: true, default: "" },
+  city: { type: String, trim: true, default: "" },
+  state: { type: String, trim: true, default: "" },
+  zip: { type: String, trim: true, default: "" },
+  country: { type: String, trim: true, default: "" },
 }
 
 const Certification = {
@@ -22,18 +22,18 @@ const Certification = {
 }
 
 const Social = {
-  facebook: { type: String, trim: true },
-  linkedIn: { type: String, trim: true },
-  twitter: { type: String, trim: true },
-  instagram: { type: String, trim: true }
+  facebook: { type: String, trim: true, default: "" },
+  linkedIn: { type: String, trim: true, default: "" },
+  twitter: { type: String, trim: true, default: "" },
+  instagram: { type: String, trim: true, default: "" }
 }
 
 const Profile = {
-  firstName: { type: String, trim: true },
-  lastName: { type: String, trim: true },
-  salutations: String,
-  phoneNumber: String,
-  workNumber: String,
+  firstName: { type: String, trim: true, default: "" },
+  lastName: { type: String, trim: true, default: "" },
+  salutations: { type: String, trim: true, default: "" },
+  phoneNumber: { type: String, trim: true, default: "" },
+  workNumber: { type: String, trim: true, default: "" },
   address: Address,
   language: Array,
   certifications: [Certification],

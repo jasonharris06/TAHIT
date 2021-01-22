@@ -1,5 +1,6 @@
 [
   {"languages": [
+    "American Sign Language (ASL)",
     "Mandarin",
 "Spanish",
 "English",
@@ -103,7 +104,7 @@
   ]
   },
   {"salutaions":["Ms","Mrs","Miss","Mr","Dr"]},
-  {"honorifics":[]},
+  {"certifications":["CHI","NBCMI","RID","BEI"]},
   {"profile":{
     "firstName": "",
     "lastName": "",

@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useUser } from '../../lib/hooks'
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import Chip from '@material-ui/core/Chip';
+import MaskedInput from 'react-text-mask';
 // @material-ui/icons
+
 
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
@@ -20,8 +25,73 @@ const dropDownJson = Data
 const useStyles = makeStyles(contactUsStyle);
 export default function SectionPricing({ ...rest }) {
   const [user, { mutate }] = useUser()
-  const [profile, setProfile] = useState(dropDownJson[3])
-  console.log(profile)
+  const [lang, setLang] = useState({
+    language: [],
+    certifications: []
+  })
+  const [userProfile, setProfile] = useState(dropDownJson[3])
+
+
+  function updateLang(value, usage) {
+    let copyLang = { ...lang }
+    if (usage === "cert") {
+      copyLang.certifications = value
+      setLang(copyLang)
+    } else {
+      copyLang.language = value
+      setLang(copyLang)
+    }
+
+
+    console.log(lang)
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault()
+
+    console.log(e.currentTarget.elements)
+    console.log(lang)
+    var inputs = document.getElementById("profile-form").elements;
+
+    var languages = document.getElementsByClassName("MuiAutocomplete-root").elements
+    var body = []
+    //console.log(languages)
+    let i;
+    for (i = 0; i < inputs.length; i++) {
+      if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].type === "tel") {
+        // Update text input
+
+        if (inputs[i].value !== '') {
+          console.log(inputs[i].name, inputs[i].value)
+          let ojb =
+            body.push({ [inputs[i].name]: inputs[i].value })
+          //console.log(inputs[i])
+          // inputs[i].value.toLocaleUpperCase();
+        }
+      }
+    }
+    console.log(body)
+    if (i == inputs.length) {
+      const res = await fetch('/api/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body,),
+      })
+    }
+  }
+
+
+
+  useEffect(() => {
+    setProfile({ firstName: user.profile.firstname })
+    //setProfile({ profile: { firstName: user.profile.firstname } })
+    // return () => {
+    //   cleanup
+    // }
+  }, [user])
+
+
+  console.log(userProfile)
   const classes = useStyles();
   return (
     <>
@@ -44,7 +114,7 @@ export default function SectionPricing({ ...rest }) {
 
       </GridContainer>
       <GridContainer >
-        <GridItem justify='center' xs={12} md={2} ><h5 className={classes.textCenter} style={{ color: "black" }}>Profile Picture</h5>
+        <GridItem xs={12} md={2} ><h5 className={classes.textCenter} style={{ color: "black" }}>Profile Picture</h5>
           <ImageUpload avatar />
         </GridItem>
         <GridItem xs={12} md={8} sm={12}>
@@ -72,19 +142,25 @@ export default function SectionPricing({ ...rest }) {
                   })}
 
                 /> */}
-          <form>
-            <CustomInput
-              labelText="Salutation"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
+          <form id="profile-form" onSubmit={onSubmit}>
+            <Autocomplete
+              options={dropDownJson[1].salutaions}
+              getOptionLabel={(option) => option}
+              id="select-on-focus"
+              selectOnFocus
+              renderInput={(params) => <TextField {...params} label="Salutation (Mrs, Ms, Mr...)" name="salutatoins" margin="normal" />}
             />
+
             <CustomInput
               labelText="First Name"
               id="float"
               formControlProps={{
                 fullWidth: true
+              }}
+              inputProps={{
+                readOnly: false,
+                defaultValue: `${!user.profile.firstName}` ? `${user.profile.firstName}` : '',
+                name: "firstName"
               }}
             />
             <CustomInput
@@ -93,12 +169,20 @@ export default function SectionPricing({ ...rest }) {
               formControlProps={{
                 fullWidth: true
               }}
+              inputProps={{
+                value: `${!user.profile.lastName}` ? `${user.profile.lastName}` : '',
+                name: "lastName"
+              }}
             />
             <CustomInput
               labelText="Honorifics (Ph.D, MA)"
               id="float"
               formControlProps={{
                 fullWidth: true
+              }}
+              inputProps={{
+                placeholder: `${user.profile.honorifics.length > 0}` ? `${user.profile.honorifics.join(", ")}` : '',
+                name: "honorifics"
               }}
             />
             <CustomInput
@@ -108,6 +192,12 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
+                type: "tel",
+
+                defaultValue: `${!user.profile.phoneNumber}` ? `${user.profile.phoneNumber.slice(2).replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}` : '',
+                //oninput: `${this.value = this.value.replace(/(?![0-9])./gmi, '')}`,
+                maxLength: "10",
+                name: "phoneNumber"
 
               }}
             />
@@ -118,6 +208,8 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
+                defaultValue: `${!user.profile.workNumber}` ? '' : `${user.profile.workNumber}`,
+                name: "workNumber"
 
               }}
             />
@@ -129,6 +221,8 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
+                defaultValue: `${!user.profile.address?.street}` ? '' : `${user.profile.address.street}`,
+                name: "street"
 
               }}
             />
@@ -139,7 +233,8 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-
+                defaultValue: `${!user.profile.address?.city}` ? "" : `${user.profile.address.city}`,
+                name: "city"
               }}
             />
             <CustomInput
@@ -149,6 +244,8 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
+                defaultValue: `${!user.profile.address?.state}` ? "" : `${user.profile.address.state}`,
+                name: "state"
 
               }}
             />
@@ -159,6 +256,8 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
+                defaultValue: `${!user.profile.address?.zip}` ? '' : `${user.profile.address.zip}`,
+                name: "zip"
 
               }}
             />
@@ -169,29 +268,54 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
+                defaultValue: `${!user.profile.address?.country}` ? '' : `${user.profile.address.country}`,
+                name: "country"
 
               }}
             />
-            <CustomInput
-              labelText="Languages"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
+            {/* Languages Section */}
+            <h5 className={classes.textLeft} style={{ color: "black" }}>Languages:</h5>
 
-              }}
+            <Autocomplete
+              multiple
+              id="tags-standard"
+              //clearOnEscape
+              onChange={(event, value) => updateLang(value, "language")}
+              options={dropDownJson[0].languages}
+              getOptionLabel={(option) => option}
+              renderTags={(value, getTagProps) =>
+                value.map((option, index) => (
+                  <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Select Languages"
+                  margin="normal"
+                />)}
             />
-            <CustomInput
-              labelText="Certifications"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
 
-              }}
+            <Autocomplete
+              multiple
+              id="tags-standard"
+              //clearOnEscape
+              onChange={(event, value) => updateLang(value, "cert")}
+              options={dropDownJson[2].certifications}
+              getOptionLabel={(option) => option}
+              renderTags={(value, getTagProps) =>
+                value.map((option, index) => (
+                  <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Certifications"
+                  margin="normal"
+                />)}
             />
+
             <CustomInput
               labelText="Employer"
               id="float"
@@ -199,7 +323,8 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-
+                defaultValue: `${!user.profile.employer}` ? "" : `${user.profile.employer}`,
+                name: "employer"
               }}
             />
             <CustomInput
@@ -209,6 +334,8 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
+                defaultValue: `${!user.profile.jobTitle}` ? '' : `${user.profile.jobTitle}`,
+                name: "jobTitle"
 
               }}
             />
@@ -219,6 +346,8 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
+                defaultValue: `${!user.profile.almaMater}` ? '' : `${user.profile.almaMater}`,
+                name: "almaMater"
 
               }}
             />
@@ -230,7 +359,10 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                placeholder: "Facebook Link..."
+                placeholder: "Facebook Link...",
+                defaultValue: `${!user.profile.social?.facebook}` ? '' : `${user.profile.social.facebook}`,
+                name: "facebook"
+
               }}
             />
             <CustomInput
@@ -240,7 +372,9 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                placeholder: "LinkedIn Link..."
+                placeholder: "LinkedIn Link...",
+                defaultValue: `${!user.profile.social?.linkedIn}` ? '' : `${user.profile.social.linkedIn}`,
+                name: "linkedIn"
               }}
             />
             <CustomInput
@@ -250,7 +384,9 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                placeholder: "Twitter Link..."
+                placeholder: "Twitter Link...",
+                defaultValue: `${!user.profile.social?.twitter}` ? '' : `${user.profile.social.twitter}`,
+                name: "twitter"
               }}
             />
             <CustomInput
@@ -260,11 +396,13 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                placeholder: "Instagram Link..."
+                placeholder: "Instagram Link...",
+                defaultValue: `${!user.profile.social?.instagram}` ? '' : `${user.profile.social.instagram}`,
+                name: "instagram"
               }}
             />
             <div className={classes.textCenter}>
-              <Button color="primary" round>
+              <Button type="submit" color="primary" round>
                 Contact us
                     </Button>
             </div>

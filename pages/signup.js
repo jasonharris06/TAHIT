@@ -38,6 +38,7 @@ import signupPageStyle from "assets/jss/nextjs-material-kit-pro/pages/signupPage
 
 import image from "assets/img/background-gradient.jpg"
 
+
 const useStyles = makeStyles(signupPageStyle);
 
 export default function SignUpPage({ ...rest }) {
