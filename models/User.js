@@ -7,40 +7,40 @@ const Notifications = {
 }
 
 const Address = {
-  street: { type: String, trim: true, default: "" },
-  street2: { type: String, trim: true, default: "" },
-  city: { type: String, trim: true, default: "" },
-  state: { type: String, trim: true, default: "" },
-  zip: { type: String, trim: true, default: "" },
-  country: { type: String, trim: true, default: "" },
+  street: { type: String, trim: true },
+  street2: { type: String, trim: true },
+  city: { type: String, trim: true },
+  state: { type: String, trim: true },
+  zip: { type: String, trim: true },
+  country: { type: String, trim: true },
 }
 
 const Certification = {
   title: { type: String, trim: true },
-  verified: Boolean,
+  verified: { type: Boolean, default: false },
   expireDate: Date
 }
 
 const Social = {
-  facebook: { type: String, trim: true, default: "" },
-  linkedIn: { type: String, trim: true, default: "" },
-  twitter: { type: String, trim: true, default: "" },
-  instagram: { type: String, trim: true, default: "" }
+  facebook: String,
+  linkedIn: { type: String, trim: true },
+  twitter: { type: String, trim: true },
+  instagram: { type: String, trim: true }
 }
 
 const Profile = {
-  firstName: { type: String, trim: true, default: "" },
-  lastName: { type: String, trim: true, default: "" },
-  salutations: { type: String, trim: true, default: "" },
-  phoneNumber: { type: String, trim: true, default: "" },
-  workNumber: { type: String, trim: true, default: "" },
+  firstName: { type: String, trim: true },
+  lastName: { type: String, trim: true },
+  salutations: { type: String, trim: true },
+  phoneNumber: { type: String, trim: true },
+  workNumber: { type: String, trim: true },
   address: Address,
   language: Array,
   certifications: [Certification],
   employer: { type: String, trim: true },
   jobTitle: { type: String, trim: true },
   almaMater: { type: String, trim: true },
-  honorifics: Array,
+  honorifics: { type: String, trim: true },
   socialMedia: Social,
   profilePic: {
     data: Buffer,

@@ -21,6 +21,7 @@ import ImageUpload from 'components/CustomUpload/ImageUpload.js';
 
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
 import Data from "../../data/profileDropdowns.json"
+import { AssignmentReturnedRounded, BorderStyleRounded } from "@material-ui/icons";
 const dropDownJson = Data
 const useStyles = makeStyles(contactUsStyle);
 export default function SectionPricing({ ...rest }) {
@@ -30,7 +31,8 @@ export default function SectionPricing({ ...rest }) {
     certifications: []
   })
   const [userProfile, setProfile] = useState(dropDownJson[3])
-
+  console.log(user.profile)
+  console.log(!user.profile.socialMedia.facebook)
 
   function updateLang(value, usage) {
     let copyLang = { ...lang }
@@ -42,14 +44,28 @@ export default function SectionPricing({ ...rest }) {
       setLang(copyLang)
     }
 
+  }
+  function checkCerts() {
+    console.log("I ran", user.profile.certifications.length < 0)
+    if (user.profile.certifications.length > 0) {
+      let certs = []
+      user.profile.certifications.forEach(item => {
+        certs.push(item.title)
+      })
+      return certs
+    }
+    return
+  }
 
-    console.log(lang)
+  function checkLang() {
+    if (user.profile.language.length > 0) return user.profile.language
+    return
   }
 
   async function onSubmit(e) {
     e.preventDefault()
-
-    console.log(e.currentTarget.elements)
+    const copyProfile = { ...userProfile }
+    console.log(copyProfile)
     console.log(lang)
     var inputs = document.getElementById("profile-form").elements;
 
@@ -62,6 +78,71 @@ export default function SectionPricing({ ...rest }) {
         // Update text input
 
         if (inputs[i].value !== '') {
+          switch (inputs[i].name) {
+            case "firstName":
+              copyProfile.profile.firstName = inputs[i].value
+              break;
+            case "lastName":
+              copyProfile.profile.lastName = inputs[i].value
+              break;
+            case "lastName":
+              copyProfile.profile.lastName = inputs[i].value
+              break;
+            case "salutations":
+              copyProfile.profile.salutations = inputs[i].value
+              break;
+            case "phoneNumber":
+              let cleanNumber = "+1" + inputs[i].value.replace(/(?![0-9])./gim, "")
+              copyProfile.profile.phoneNumber = cleanNumber
+              break;
+            case "workNumber":
+              let cleanWorkNumber = "+1" + inputs[i].value.replace(/(?![0-9])./gim, "")
+              copyProfile.profile.workNumber = cleanWorkNumber
+              break;
+            case "street":
+              copyProfile.profile.address.street = inputs[i].value
+              break;
+            case "city":
+              copyProfile.profile.address.city = inputs[i].value
+              break;
+            case "state":
+              copyProfile.profile.address.state = inputs[i].value
+              break;
+            case "zip":
+              copyProfile.profile.address.zip = inputs[i].value
+              break;
+            case "country":
+              copyProfile.profile.address.country = inputs[i].value
+              break;
+            case "employer":
+              copyProfile.profile.employer = inputs[i].value
+              break;
+            case "jobTitle":
+              copyProfile.profile.jobTitle = inputs[i].value
+              break;
+            case "almaMater":
+              copyProfile.profile.almaMater = inputs[i].value
+              break;
+            case "honorifics":
+              copyProfile.profile.honorifics = inputs[i].value
+              break;
+            case "facebook":
+              copyProfile.profile.socialMedia.facebook = inputs[i].value
+              break;
+            case "linkedIn":
+              copyProfile.profile.socialMedia.linkedIn = inputs[i].value
+              break;
+            case "twitter":
+              copyProfile.profile.socialMedia.twitter = inputs[i].value
+              break;
+            case "instagram":
+              copyProfile.profile.socialMedia.instagram = inputs[i].value
+              break;
+
+
+
+
+          }
           console.log(inputs[i].name, inputs[i].value)
           let ojb =
             body.push({ [inputs[i].name]: inputs[i].value })
@@ -72,10 +153,14 @@ export default function SectionPricing({ ...rest }) {
     }
     console.log(body)
     if (i == inputs.length) {
+      //add the Lang state hook date to fill in the language and Certifications. 
+      copyProfile.profile.language = lang.language.length == 0 ? user.profile.language : lang.language
+      copyProfile.profile.certifications = lang.certifications
+      console.log(copyProfile)
       const res = await fetch('/api/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body,),
+        body: JSON.stringify([copyProfile]),
       })
     }
   }
@@ -83,7 +168,7 @@ export default function SectionPricing({ ...rest }) {
 
 
   useEffect(() => {
-    setProfile({ firstName: user.profile.firstname })
+    // setProfile({ firstName: user.profile.firstname })
     //setProfile({ profile: { firstName: user.profile.firstname } })
     // return () => {
     //   cleanup
@@ -146,9 +231,10 @@ export default function SectionPricing({ ...rest }) {
             <Autocomplete
               options={dropDownJson[1].salutaions}
               getOptionLabel={(option) => option}
+
               id="select-on-focus"
               selectOnFocus
-              renderInput={(params) => <TextField {...params} label="Salutation (Mrs, Ms, Mr...)" name="salutatoins" margin="normal" />}
+              renderInput={(params) => <TextField {...params} label="Salutation (Mrs, Ms, Mr...)" name="salutations" margin="normal" />}
             />
 
             <CustomInput
@@ -170,7 +256,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                value: `${!user.profile.lastName}` ? `${user.profile.lastName}` : '',
+                defaultValue: `${!user.profile.lastName}` ? `${user.profile.lastName}` : '',
                 name: "lastName"
               }}
             />
@@ -181,7 +267,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                placeholder: `${user.profile.honorifics.length > 0}` ? `${user.profile.honorifics.join(", ")}` : '',
+                defaultValue: `${user.profile.honorifics}` ? `${user.profile.honorifics}` : '',
                 name: "honorifics"
               }}
             />
@@ -194,7 +280,7 @@ export default function SectionPricing({ ...rest }) {
               inputProps={{
                 type: "tel",
 
-                defaultValue: `${!user.profile.phoneNumber}` ? `${user.profile.phoneNumber.slice(2).replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}` : '',
+                defaultValue: `${user.profile.phoneNumber}` ? `${user.profile.phoneNumber?.slice(2).replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}` : '',
                 //oninput: `${this.value = this.value.replace(/(?![0-9])./gmi, '')}`,
                 maxLength: "10",
                 name: "phoneNumber"
@@ -221,7 +307,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.address?.street}` ? '' : `${user.profile.address.street}`,
+                defaultValue: !`${user.profile.address?.street}` ? "" : `${user.profile.address.street}`,
                 name: "street"
 
               }}
@@ -233,7 +319,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.address?.city}` ? "" : `${user.profile.address.city}`,
+                defaultValue: !`${user.profile.address?.city}` ? "" : `${user.profile.address.city}`,
                 name: "city"
               }}
             />
@@ -244,7 +330,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.address?.state}` ? "" : `${user.profile.address.state}`,
+                defaultValue: !`${user.profile.address?.state}` ? "" : `${user.profile.address.state}`,
                 name: "state"
 
               }}
@@ -256,7 +342,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.address?.zip}` ? '' : `${user.profile.address.zip}`,
+                defaultValue: !`${user.profile.address?.zip}` ? '' : `${user.profile.address.zip}`,
                 name: "zip"
 
               }}
@@ -268,7 +354,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.address?.country}` ? '' : `${user.profile.address.country}`,
+                defaultValue: !`${user.profile.address?.country}` ? '' : `${user.profile.address.country}`,
                 name: "country"
 
               }}
@@ -282,6 +368,7 @@ export default function SectionPricing({ ...rest }) {
               //clearOnEscape
               onChange={(event, value) => updateLang(value, "language")}
               options={dropDownJson[0].languages}
+              defaultValue={checkLang}
               getOptionLabel={(option) => option}
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
@@ -302,6 +389,7 @@ export default function SectionPricing({ ...rest }) {
               //clearOnEscape
               onChange={(event, value) => updateLang(value, "cert")}
               options={dropDownJson[2].certifications}
+              defaultValue={checkCerts}
               getOptionLabel={(option) => option}
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
@@ -323,7 +411,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.employer}` ? "" : `${user.profile.employer}`,
+                defaultValue: !`${user.profile.employer}` ? "" : `${user.profile.employer}`,
                 name: "employer"
               }}
             />
@@ -334,7 +422,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.jobTitle}` ? '' : `${user.profile.jobTitle}`,
+                defaultValue: !`${user.profile.jobTitle}` ? '' : `${user.profile.jobTitle}`,
                 name: "jobTitle"
 
               }}
@@ -346,7 +434,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.almaMater}` ? '' : `${user.profile.almaMater}`,
+                defaultValue: !`${user.profile.almaMater}` ? '' : `${user.profile.almaMater}`,
                 name: "almaMater"
 
               }}
@@ -360,7 +448,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Facebook Link...",
-                defaultValue: `${!user.profile.social?.facebook}` ? '' : `${user.profile.social.facebook}`,
+                defaultValue: !`${user.profile.socialMedia.facebook}` ? '' : `${user.profile.socialMedia.facebook}`,
                 name: "facebook"
 
               }}
@@ -373,7 +461,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "LinkedIn Link...",
-                defaultValue: `${!user.profile.social?.linkedIn}` ? '' : `${user.profile.social.linkedIn}`,
+                defaultValue: !`${user.profile.socialMedia.linkedIn}` ? '' : `${user.profile.socialMedia.linkedIn}`,
                 name: "linkedIn"
               }}
             />
@@ -385,7 +473,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Twitter Link...",
-                defaultValue: `${!user.profile.social?.twitter}` ? '' : `${user.profile.social.twitter}`,
+                defaultValue: !`${user.profile.socialMedia.twitter}` ? '' : `${user.profile.socialMedia.twitter}`,
                 name: "twitter"
               }}
             />
@@ -397,7 +485,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Instagram Link...",
-                defaultValue: `${!user.profile.social?.instagram}` ? '' : `${user.profile.social.instagram}`,
+                defaultValue: !`${user.profile.socialMedia.instagram}` ? '' : `${user.profile.socialMedia.instagram}`,
                 name: "instagram"
               }}
             />
