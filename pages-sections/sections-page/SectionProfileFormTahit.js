@@ -19,9 +19,12 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import ImageUpload from 'components/CustomUpload/ImageUpload.js';
 
+import defaultAvatar from "assets/img/placeholder.jpg";
+
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
 import Data from "../../data/profileDropdowns.json"
 import { AssignmentReturnedRounded, BorderStyleRounded } from "@material-ui/icons";
+import { User } from "react-feather";
 const dropDownJson = Data
 const useStyles = makeStyles(contactUsStyle);
 export default function SectionPricing({ ...rest }) {
@@ -31,8 +34,7 @@ export default function SectionPricing({ ...rest }) {
     certifications: []
   })
   const [userProfile, setProfile] = useState(dropDownJson[3])
-  console.log(user.profile)
-  console.log(!user.profile.socialMedia.facebook)
+
 
   function updateLang(value, usage) {
     let copyLang = { ...lang }
@@ -54,12 +56,12 @@ export default function SectionPricing({ ...rest }) {
       })
       return certs
     }
-    return
+    return []
   }
 
   function checkLang() {
     if (user.profile.language.length > 0) return user.profile.language
-    return
+    return []
   }
 
   async function onSubmit(e) {
@@ -200,7 +202,7 @@ export default function SectionPricing({ ...rest }) {
       </GridContainer>
       <GridContainer >
         <GridItem xs={12} md={2} ><h5 className={classes.textCenter} style={{ color: "black" }}>Profile Picture</h5>
-          <ImageUpload avatar />
+          <ImageUpload avatar={user.profile.profile ? `data:image/png;base64, ${user.profile.profilePic}` : defaultAvatar} />
         </GridItem>
         <GridItem xs={12} md={8} sm={12}>
 
@@ -227,6 +229,7 @@ export default function SectionPricing({ ...rest }) {
                   })}
 
                 /> */}
+          {/* <img src={`data:image/png;base64, ${user.profile.profilePic}`}></img> */}
           <form id="profile-form" onSubmit={onSubmit}>
             <Autocomplete
               options={dropDownJson[1].salutaions}
@@ -307,7 +310,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.street}` ? "" : `${user.profile.address.street}`,
+                defaultValue: !`${user.profile.address?.street}` || `${!user.profile.address?.street}` ? "" : `${user.profile.address.street}`,
                 name: "street"
 
               }}
@@ -319,7 +322,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.city}` ? "" : `${user.profile.address.city}`,
+                defaultValue: !`${user.profile.address?.city}` || `${!user.profile.address?.city}` ? "" : `${user.profile.address.city}`,
                 name: "city"
               }}
             />
@@ -330,7 +333,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.state}` ? "" : `${user.profile.address.state}`,
+                defaultValue: !`${user.profile.address?.state}` || `${!user.profile.address?.state}` ? "" : `${user.profile.address.state}`,
                 name: "state"
 
               }}
@@ -342,7 +345,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.zip}` ? '' : `${user.profile.address.zip}`,
+                defaultValue: !`${user.profile.address?.zip}` || `${!user.profile.address?.zip}` ? '' : `${user.profile.address.zip}`,
                 name: "zip"
 
               }}
@@ -354,7 +357,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.country}` ? '' : `${user.profile.address.country}`,
+                defaultValue: !`${user.profile.address?.country}` || `${!user.profile.address?.country}` ? '' : `${user.profile.address.country}`,
                 name: "country"
 
               }}
@@ -411,7 +414,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.employer}` ? "" : `${user.profile.employer}`,
+                defaultValue: `${!user.profile.employer}` ? "" : `${user.profile.employer}`,
                 name: "employer"
               }}
             />
@@ -422,7 +425,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.jobTitle}` ? '' : `${user.profile.jobTitle}`,
+                defaultValue: `${!user.profile.jobTitle}` ? '' : `${user.profile.jobTitle}`,
                 name: "jobTitle"
 
               }}
@@ -434,7 +437,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.almaMater}` ? '' : `${user.profile.almaMater}`,
+                defaultValue: `${!user.profile.almaMater}` ? '' : `${user.profile.almaMater}`,
                 name: "almaMater"
 
               }}
@@ -448,7 +451,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Facebook Link...",
-                defaultValue: !`${user.profile.socialMedia.facebook}` ? '' : `${user.profile.socialMedia.facebook}`,
+                defaultValue: !`${user.profile.socialMedia?.facebook}` || `${!user.profile.socialMedia?.facebook}` ? '' : `${user.profile.socialMedia.facebook}`,
                 name: "facebook"
 
               }}
@@ -461,7 +464,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "LinkedIn Link...",
-                defaultValue: !`${user.profile.socialMedia.linkedIn}` ? '' : `${user.profile.socialMedia.linkedIn}`,
+                defaultValue: !`${user.profile.socialMedia?.linkedIn}` || `${!user.profile.socialMedia?.linkedIn}` ? '' : `${user.profile.socialMedia.linkedIn}`,
                 name: "linkedIn"
               }}
             />
@@ -473,7 +476,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Twitter Link...",
-                defaultValue: !`${user.profile.socialMedia.twitter}` ? '' : `${user.profile.socialMedia.twitter}`,
+                defaultValue: !`${user.profile.socialMedia?.twitter}` || `${!user.profile.socialMedia?.twitter}` ? '' : `${user.profile.socialMedia.twitter}`,
                 name: "twitter"
               }}
             />
@@ -485,7 +488,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Instagram Link...",
-                defaultValue: !`${user.profile.socialMedia.instagram}` ? '' : `${user.profile.socialMedia.instagram}`,
+                defaultValue: !`${user.profile.socialMedia?.instagram}` || `${!user.profile.socialMedia?.instagram}` ? '' : `${user.profile.socialMedia.instagram}`,
                 name: "instagram"
               }}
             />
