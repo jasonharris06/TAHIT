@@ -6,6 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip';
 import MaskedInput from 'react-text-mask';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // @material-ui/icons
 
 
@@ -19,13 +21,20 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import ImageUpload from 'components/CustomUpload/ImageUpload.js';
 
-import defaultAvatar from "assets/img/placeholder.jpg";
+
 
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
 import Data from "../../data/profileDropdowns.json"
-import { AssignmentReturnedRounded, BorderStyleRounded } from "@material-ui/icons";
-import { User } from "react-feather";
+import { use } from "passport";
+
 const dropDownJson = Data
+
+const overlay = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
 const useStyles = makeStyles(contactUsStyle);
 export default function SectionPricing({ ...rest }) {
   const [user, { mutate }] = useUser()
@@ -34,6 +43,7 @@ export default function SectionPricing({ ...rest }) {
     certifications: []
   })
   const [userProfile, setProfile] = useState(dropDownJson[3])
+  const [open, setOpen] = useState(false)
 
 
   function updateLang(value, usage) {
@@ -67,13 +77,12 @@ export default function SectionPricing({ ...rest }) {
   async function onSubmit(e) {
     e.preventDefault()
     const copyProfile = { ...userProfile }
-    console.log(copyProfile)
-    console.log(lang)
+
     var inputs = document.getElementById("profile-form").elements;
 
-    var languages = document.getElementsByClassName("MuiAutocomplete-root").elements
+
     var body = []
-    //console.log(languages)
+
     let i;
     for (i = 0; i < inputs.length; i++) {
       if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].type === "tel") {
@@ -155,6 +164,7 @@ export default function SectionPricing({ ...rest }) {
     }
     console.log(body)
     if (i == inputs.length) {
+      setOpen(true)
       //add the Lang state hook date to fill in the language and Certifications. 
       copyProfile.profile.language = lang.language.length == 0 ? user.profile.language : lang.language
       copyProfile.profile.certifications = lang.certifications
@@ -164,6 +174,15 @@ export default function SectionPricing({ ...rest }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify([copyProfile]),
       })
+
+      if (res.status === 200) {
+        setOpen(false)
+        const userObj = await res.data
+        console.log(userObj)
+        mutate({ user: userObj })
+      } else {
+        setOpen(false)
+      }
     }
   }
 
@@ -180,8 +199,12 @@ export default function SectionPricing({ ...rest }) {
 
   console.log(userProfile)
   const classes = useStyles();
+  const overlayClasses = overlay()
   return (
     <>
+      <Backdrop className={overlayClasses.backdrop} open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <GridContainer>
         <GridItem
           xs={12}
@@ -202,7 +225,7 @@ export default function SectionPricing({ ...rest }) {
       </GridContainer>
       <GridContainer >
         <GridItem xs={12} md={2} ><h5 className={classes.textCenter} style={{ color: "black" }}>Profile Picture</h5>
-          <ImageUpload avatar={user.profile.profile ? `data:image/png;base64, ${user.profile.profilePic}` : defaultAvatar} />
+          <ImageUpload avatar />
         </GridItem>
         <GridItem xs={12} md={8} sm={12}>
 
@@ -297,7 +320,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.workNumber}` ? '' : `${user.profile.workNumber}`,
+                defaultValue: `${user.profile.workNumber}` ? `${user.profile.workNumber}` : "",
                 name: "workNumber"
 
               }}
@@ -310,7 +333,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.street}` || `${!user.profile.address?.street}` ? "" : `${user.profile.address.street}`,
+                defaultValue: `${user.profile.address.street}` ? `${user.profile.address.street}` : '',
                 name: "street"
 
               }}
@@ -322,7 +345,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.city}` || `${!user.profile.address?.city}` ? "" : `${user.profile.address.city}`,
+                defaultValue: `${user.profile.address.city}` ? `${user.profile.address.city}` : "",
                 name: "city"
               }}
             />
@@ -333,7 +356,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.state}` || `${!user.profile.address?.state}` ? "" : `${user.profile.address.state}`,
+                defaultValue: `${user.profile.address.state}` ? `${user.profile.address.state}` : "",
                 name: "state"
 
               }}
@@ -345,7 +368,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.zip}` || `${!user.profile.address?.zip}` ? '' : `${user.profile.address.zip}`,
+                defaultValue: `${user.profile.address.zip}` ? `${user.profile.address.zip}` : '',
                 name: "zip"
 
               }}
@@ -357,7 +380,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: !`${user.profile.address?.country}` || `${!user.profile.address?.country}` ? '' : `${user.profile.address.country}`,
+                defaultValue: `${user.profile.address.country}` ? `${user.profile.address.country}` : '',
                 name: "country"
 
               }}
@@ -414,7 +437,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.employer}` ? "" : `${user.profile.employer}`,
+                defaultValue: `${user.profile.employer}` ? `${user.profile.employer}` : "",
                 name: "employer"
               }}
             />
@@ -425,7 +448,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.jobTitle}` ? '' : `${user.profile.jobTitle}`,
+                defaultValue: `${user.profile.jobTitle}` ? `${user.profile.jobTitle}` : "",
                 name: "jobTitle"
 
               }}
@@ -437,7 +460,7 @@ export default function SectionPricing({ ...rest }) {
                 fullWidth: true
               }}
               inputProps={{
-                defaultValue: `${!user.profile.almaMater}` ? '' : `${user.profile.almaMater}`,
+                defaultValue: `${user.profile.almaMater}` ? `${user.profile.almaMater}` : "",
                 name: "almaMater"
 
               }}
@@ -451,7 +474,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Facebook Link...",
-                defaultValue: !`${user.profile.socialMedia?.facebook}` || `${!user.profile.socialMedia?.facebook}` ? '' : `${user.profile.socialMedia.facebook}`,
+                defaultValue: `${user.profile.socialMedia.facebook}` ? `${user.profile.socialMedia.facebook}` : "",
                 name: "facebook"
 
               }}
@@ -464,7 +487,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "LinkedIn Link...",
-                defaultValue: !`${user.profile.socialMedia?.linkedIn}` || `${!user.profile.socialMedia?.linkedIn}` ? '' : `${user.profile.socialMedia.linkedIn}`,
+                defaultValue: `${user.profile.socialMedia.linkedIn}` ? `${user.profile.socialMedia.linkedIn}` : "",
                 name: "linkedIn"
               }}
             />
@@ -476,7 +499,7 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Twitter Link...",
-                defaultValue: !`${user.profile.socialMedia?.twitter}` || `${!user.profile.socialMedia?.twitter}` ? '' : `${user.profile.socialMedia.twitter}`,
+                defaultValue: `${user.profile.socialMedia.twitter}` ? `${user.profile.socialMedia.twitter}` : "",
                 name: "twitter"
               }}
             />
@@ -488,13 +511,13 @@ export default function SectionPricing({ ...rest }) {
               }}
               inputProps={{
                 placeholder: "Instagram Link...",
-                defaultValue: !`${user.profile.socialMedia?.instagram}` || `${!user.profile.socialMedia?.instagram}` ? '' : `${user.profile.socialMedia.instagram}`,
+                defaultValue: `${user.profile.socialMedia.instagram}` ? `${user.profile.socialMedia.instagram}` : "",
                 name: "instagram"
               }}
             />
             <div className={classes.textCenter}>
               <Button type="submit" color="primary" round>
-                Contact us
+                Save Changes
                     </Button>
             </div>
           </form>

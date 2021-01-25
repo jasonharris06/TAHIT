@@ -8,15 +8,10 @@ import path from "path";
 import multer from "multer";
 
 import User from "../../models/User";
+import { container } from "webpack";
+import { AddCircleTwoTone } from "@material-ui/icons";
 
 
-export const config = {
-  api: {
-    bodyParser: false
-
-
-  },
-}
 //let upload = multer({ dest: "upload/" });
 const handler = nextConnect();
 // const storage = multer.diskStorage({
@@ -30,97 +25,73 @@ const handler = nextConnect();
 //   storage: storage,
 //   limits: { fileSize: 1000000 },
 // }).single("avatar");
-let upload = multer({ dest: "upload/" });
+
 
 handler
-  .use(auth).post(upload.single('avatar'), async (req, res) => {
-    console.log("i posted")
-    const id = req.user._id
-    console.log(req.file)
-    console.log(process.cwd())
-    console.log(path.join(process.cwd(), `./upload/${req.file.filename}`),)
-    const buffer = await sharp(
-      path.join(process.cwd(), `./upload/${req.file.filename}`),
-    ).png().toBuffer();
+  .use(auth).post(async (req, res) => {
 
-    const user = await User.findByIdAndUpdate({ _id: id }, { $set: { "profile.profilePic": buffer } })
-    console.log(user)
+  }).get((req, res) => {
 
-
-    // var form = new formidable.IncomingForm()
-    // form.uploadDir = "./";
-    // form.keepExtensions = true;
-    // form.parse(req, (err, fields, files) => {
-    //   for (const file of Object.entries(files)) {
-    //     //       console.log(file)
-    //     //       resolve(User.findByIdAndUpdate({ _id: id }, { $set: { "profile.profilePic": file } }, function (err, item) { console.log(item) }))
-    //     //     }
-    //     console.log(err, fields, file);
-    //   }
-    // });
-
-    // console.log(form)
-    // var videoFile = await new Promise(function (resolve, reject) {
-    //   form.parse(req, (err, fields, files) => {
-    //     console.log(files)
-    //     if (err) {
-    //       console.error('Error', err)
-    //       reject(err)
-    //     }
-    //     for (const file of Object.entries(files)) {
-    //       console.log(file)
-    //       resolve(User.findByIdAndUpdate({ _id: id }, { $set: { "profile.profilePic": file } }, function (err, item) { console.log(item) }))
-    //     }
-    //   })
-    // })
-    // if (videoFile) {
-
-    //   return res.status(200).end()
-    // }
-    // return res.status(404).end()
-  })
-  .get((req, res) => {
-
-  })
-  .put((req, res) => {
+  }).put(async (req, res) => {
     const id = req.user._id
     const user = req.user.profile
-    console.log(id)
+    //console.log("ln " + id)
+    //console.log(req.body)
     const profile = req.body[0].profile
-    console.log(profile)
-    for (const property in profile) {
-      const item = `profile.${property}`
-      const value = profile[property]
 
-      if (
-        property == "address"
-        || property == "socialMedia") {
-        console.log(`${property}: ${profile[property]}`)
-        User.findOneAndUpdate({ _id: id },
-          { $set: { [item]: value } }, { upsert: true }, function (err, item) { })
-      } else if (property == "certifications") {
-        if (profile[property].length === 0) return
-
-        //Checks if the user removed a certification and deletes from DB
-        if (profile[property].length < user.certifications.length) {
-          let certs = profile[property]
-          user.certifications.forEach(item => {
-            if (certs.includes(item.title)) return
-            console.log(item)
-            User.findOneAndUpdate({ _id: id }, { $pull: { "profile.certifications": { _id: item._id } } }, function (err, item) { console.log(item) })
-          })
-        }
-        profile[property].forEach(item => {
-          if (_.find(user.certifications, { title: item })) return
-          User.findOneAndUpdate({ _id: id }, { $push: { "profile.certifications": { title: item } } }, function (err, item) { console.log(item) })
-        })
-      } else {
-        User.findOneAndUpdate({ _id: id },
-          { $set: { [item]: value } }, { upsert: true }, function (err, item) { })
-      }
+    //console.log(profile)
+    const completed = await updateProfile()
+    if (completed) {
+      const user = await User.findById({ _id: id }).exec()
+      res.status(200).json(user)
     }
-    // User.findByIdAndUpdate({ _id: id },
-    //   { $set: { profile.firstName } })
+
+    async function updateProfile() {
+      for (const property in profile) {
+        const item = `profile.${property}`
+        const value = profile[property]
+
+        if (
+          property == "address"
+          || property == "socialMedia") {
+          //console.log(`${property}: ${profile[property]}`)
+          User.findOneAndUpdate({ _id: id },
+            { $set: { [item]: value } }, { upsert: true }, function (err, item) { })
+        } else if (property == "certifications") {
+          if (profile[property].length === 0 && user.certifications.length > 0) {
+            await User.findOneAndUpdate({ _id: id }, { "profile.certifications": [] }, { upsert: true }).exec()
+          }
+          if (profile[property].length === 0) continue
+          //Checks if the user removed a certification and deletes from DB
+          if (profile[property].length < user.certifications.length) {
+            let certs = profile[property]
+            console.log(user.certifications)
+
+            await removeCert()
+            async function removeCert() {
+              for (const item of user.certifications) {
+                if (certs.includes(item.title)) { continue }
+                await User.findOneAndUpdate({ _id: id }, { $pull: { "profile.certifications": { _id: item._id } } }, function (err, item) { console.log(item) })
+
+              }
+            }
+          }
+          await addCert()
+
+          async function addCert() {
+            for (const item of profile[property]) {
+              if (_.find(user.certifications, { title: item })) { continue }
+
+              await User.findOneAndUpdate({ _id: id }, { $push: { "profile.certifications": { title: item } } }, { upsert: true }).exec()
+            }
+          }
+        } else {
+          User.findOneAndUpdate({ _id: id },
+            { $set: { [item]: value } }, { upsert: true }, function (err, item) { })
+        }
+      }
+      return true
+    }
   })
   .delete((req, res) => {
 
