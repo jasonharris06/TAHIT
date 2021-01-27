@@ -35,8 +35,12 @@ export default function ImageUpload(props) {
   const [successMsg, setSuccessMsg] = useState("")
   const [open, setOpen] = useState(false)
   const [imagePreviewUrl, setImagePreviewUrl] = React.useState(
-    user.profile.profilePic ? `data:image/png;base64, ${user.profile.profilePic}` : defaultAvatar
+    defaultAvatar
   );
+
+  useEffect(() => {
+    setImagePreviewUrl(`data:image/png;base64, ${user.profile.profilePic}`)
+  }, [user]);
 
   let fileInput = React.createRef();
   const handleImageChange = e => {

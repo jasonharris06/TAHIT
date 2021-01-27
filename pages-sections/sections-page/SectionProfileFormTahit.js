@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from '../../lib/hooks'
+import Router from "next/router";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip';
-import MaskedInput from 'react-text-mask';
+
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // @material-ui/icons
 
 
 // core components
+import InputMask from 'react-input-mask';
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
+import CardHeader from "components/Card/CardHeader.js";
+import Danger from "components/Typography/Danger.js";
+import Success from "components/Typography/Success.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
@@ -36,7 +41,7 @@ const overlay = makeStyles((theme) => ({
   },
 }));
 const useStyles = makeStyles(contactUsStyle);
-export default function SectionPricing({ ...rest }) {
+export default function SectionProfile({ ...rest }) {
   const [user, { mutate }] = useUser()
   const [lang, setLang] = useState({
     language: [],
@@ -44,6 +49,8 @@ export default function SectionPricing({ ...rest }) {
   })
   const [userProfile, setProfile] = useState(dropDownJson[3])
   const [open, setOpen] = useState(false)
+  const [successMsg, setSuccessMsg] = useState("")
+  const [errorMsg, setErrorMsg] = useState("")
 
 
   function updateLang(value, usage) {
@@ -179,7 +186,12 @@ export default function SectionPricing({ ...rest }) {
         setOpen(false)
         const userObj = await res.data
         console.log(userObj)
+        setOpen(false)
         mutate({ user: userObj })
+        setSuccessMsg("Saved")
+
+        setTimeout(function () { setSuccessMsg('') }, 3000)
+
       } else {
         setOpen(false)
       }
@@ -189,6 +201,8 @@ export default function SectionPricing({ ...rest }) {
 
 
   useEffect(() => {
+
+    if (!user) Router.push("/login");
     // setProfile({ firstName: user.profile.firstname })
     //setProfile({ profile: { firstName: user.profile.firstname } })
     // return () => {
@@ -224,8 +238,8 @@ export default function SectionPricing({ ...rest }) {
 
       </GridContainer>
       <GridContainer >
-        <GridItem xs={12} md={2} ><h5 className={classes.textCenter} style={{ color: "black" }}>Profile Picture</h5>
-          <ImageUpload avatar />
+        <GridItem xs={12} md={3} align="center"><h5 className={classes.textCenter} style={{ color: "black" }}>Profile Picture</h5>
+          <ImageUpload />
         </GridItem>
         <GridItem xs={12} md={8} sm={12}>
 
@@ -254,267 +268,301 @@ export default function SectionPricing({ ...rest }) {
                 /> */}
           {/* <img src={`data:image/png;base64, ${user.profile.profilePic}`}></img> */}
           <form id="profile-form" onSubmit={onSubmit}>
-            <Autocomplete
-              options={dropDownJson[1].salutaions}
-              getOptionLabel={(option) => option}
+            <Card className={classes.textCenter}>
+              <CardHeader color="danger">Personal information</CardHeader>
+              <CardBody>
+                <Autocomplete
+                  options={dropDownJson[1].salutaions}
+                  getOptionLabel={(option) => option}
 
-              id="select-on-focus"
-              selectOnFocus
-              renderInput={(params) => <TextField {...params} label="Salutation (Mrs, Ms, Mr...)" name="salutations" margin="normal" />}
-            />
+                  id="select-on-focus"
+                  selectOnFocus
+                  renderInput={(params) => <TextField {...params} label="Salutation (Mrs, Ms, Mr...)" name="salutations" margin="normal" />}
+                />
 
-            <CustomInput
-              labelText="First Name"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                readOnly: false,
-                defaultValue: `${!user.profile.firstName}` ? `${user.profile.firstName}` : '',
-                name: "firstName"
-              }}
-            />
-            <CustomInput
-              labelText="Last Name"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${!user.profile.lastName}` ? `${user.profile.lastName}` : '',
-                name: "lastName"
-              }}
-            />
-            <CustomInput
-              labelText="Honorifics (Ph.D, MA)"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.honorifics}` ? `${user.profile.honorifics}` : '',
-                name: "honorifics"
-              }}
-            />
-            <CustomInput
-              labelText="Cell Number"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                type: "tel",
+                <CustomInput
+                  labelText="First Name"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    readOnly: false,
+                    defaultValue: `${!user.profile.firstName}` ? `${user.profile.firstName}` : '',
+                    name: "firstName"
+                  }}
+                />
+                <CustomInput
+                  labelText="Last Name"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${!user.profile.lastName}` ? `${user.profile.lastName}` : '',
+                    name: "lastName"
+                  }}
+                />
+                <CustomInput
+                  labelText="Honorifics (Ph.D, MA)"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.honorifics}` ? `${user.profile.honorifics}` : '',
+                    name: "honorifics"
+                  }}
+                />
 
-                defaultValue: `${user.profile.phoneNumber}` ? `${user.profile.phoneNumber?.slice(2).replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}` : '',
-                //oninput: `${this.value = this.value.replace(/(?![0-9])./gmi, '')}`,
-                maxLength: "10",
-                name: "phoneNumber"
+                <CustomInput
+                  labelText="Cell Number"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    type: "tel",
 
-              }}
-            />
-            <CustomInput
-              labelText="Work Number"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.workNumber}` ? `${user.profile.workNumber}` : "",
-                name: "workNumber"
+                    defaultValue: `${user.profile.phoneNumber}` ? `${user.profile.phoneNumber?.slice(2).replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}` : '',
+                    //oninput: `${this.value = this.value.replace(/(?![0-9])./gmi, '')}`,
+                    maxLength: "10",
+                    name: "phoneNumber"
 
-              }}
-            />
-            <h5 className={classes.textLeft} style={{ color: "black" }}>Address:</h5>
-            <CustomInput
-              labelText="Street"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.address.street}` ? `${user.profile.address.street}` : '',
-                name: "street"
+                  }}
+                />
+                <CustomInput
+                  labelText="Work Number"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.workNumber}` ? `${user.profile.workNumber}` : "",
+                    name: "workNumber"
 
-              }}
-            />
-            <CustomInput
-              labelText="City"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.address.city}` ? `${user.profile.address.city}` : "",
-                name: "city"
-              }}
-            />
-            <CustomInput
-              labelText="State"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.address.state}` ? `${user.profile.address.state}` : "",
-                name: "state"
+                  }}
+                />  </CardBody>
+            </Card>
+            <br></br>
 
-              }}
-            />
-            <CustomInput
-              labelText="Zip Code"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.address.zip}` ? `${user.profile.address.zip}` : '',
-                name: "zip"
 
-              }}
-            />
-            <CustomInput
-              labelText="Country"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.address.country}` ? `${user.profile.address.country}` : '',
-                name: "country"
 
-              }}
-            />
+            <Card className={classes.textCenter}>
+              <CardHeader color="danger">Address</CardHeader>
+              <CardBody>
+                <CustomInput
+                  labelText="Street"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.address.street}` ? `${user.profile.address.street}` : '',
+                    name: "street"
+
+                  }}
+                />
+                <CustomInput
+                  labelText="City"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.address.city}` ? `${user.profile.address.city}` : "",
+                    name: "city"
+                  }}
+                />
+                <CustomInput
+                  labelText="State"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.address.state}` ? `${user.profile.address.state}` : "",
+                    name: "state"
+
+                  }}
+                />
+                <CustomInput
+                  labelText="Zip Code"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.address.zip}` ? `${user.profile.address.zip}` : '',
+                    name: "zip"
+
+                  }}
+                />
+                <CustomInput
+                  labelText="Country"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.address.country}` ? `${user.profile.address.country}` : '',
+                    name: "country"
+
+                  }}
+                />
+
+              </CardBody>
+              {/* <CardFooter className={classes.textMuted}>2 days ago</CardFooter> */}
+            </Card>
+
+
             {/* Languages Section */}
-            <h5 className={classes.textLeft} style={{ color: "black" }}>Languages:</h5>
+            <br></br>
+            <Card className={classes.textCenter}>
+              <CardHeader color="danger">Languages and Certifications</CardHeader>
+              <CardBody>
+                <Autocomplete
+                  multiple
+                  id="tags-standard"
+                  //clearOnEscape
+                  onChange={(event, value) => updateLang(value, "language")}
+                  options={dropDownJson[0].languages}
+                  defaultValue={checkLang}
+                  getOptionLabel={(option) => option}
+                  renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Select Languages"
+                      margin="normal"
+                    />)}
+                />
 
-            <Autocomplete
-              multiple
-              id="tags-standard"
-              //clearOnEscape
-              onChange={(event, value) => updateLang(value, "language")}
-              options={dropDownJson[0].languages}
-              defaultValue={checkLang}
-              getOptionLabel={(option) => option}
-              renderTags={(value, getTagProps) =>
-                value.map((option, index) => (
-                  <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-                ))
-              }
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Select Languages"
-                  margin="normal"
-                />)}
-            />
+                <Autocomplete
+                  multiple
+                  id="tags-standard"
+                  //clearOnEscape
+                  onChange={(event, value) => updateLang(value, "cert")}
+                  options={dropDownJson[2].certifications}
+                  defaultValue={checkCerts}
+                  getOptionLabel={(option) => option}
+                  renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Certifications"
+                      margin="normal"
+                    />)}
+                />
+              </CardBody>
+            </Card>
+            <br></br>
 
-            <Autocomplete
-              multiple
-              id="tags-standard"
-              //clearOnEscape
-              onChange={(event, value) => updateLang(value, "cert")}
-              options={dropDownJson[2].certifications}
-              defaultValue={checkCerts}
-              getOptionLabel={(option) => option}
-              renderTags={(value, getTagProps) =>
-                value.map((option, index) => (
-                  <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-                ))
-              }
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Certifications"
-                  margin="normal"
-                />)}
-            />
+            {/* Employer and Schooling Section */}
+            <Card className={classes.textCenter}>
+              <CardHeader color="danger">Employment and Schooling</CardHeader>
+              <CardBody>
+                <CustomInput
+                  labelText="Employer"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.employer}` ? `${user.profile.employer}` : "",
+                    name: "employer"
+                  }}
+                />
+                <CustomInput
+                  labelText="Job Title"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.jobTitle}` ? `${user.profile.jobTitle}` : "",
+                    name: "jobTitle"
 
-            <CustomInput
-              labelText="Employer"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.employer}` ? `${user.profile.employer}` : "",
-                name: "employer"
-              }}
-            />
-            <CustomInput
-              labelText="Job Title"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.jobTitle}` ? `${user.profile.jobTitle}` : "",
-                name: "jobTitle"
+                  }}
+                />
+                <CustomInput
+                  labelText="Schooling"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${user.profile.almaMater}` ? `${user.profile.almaMater}` : "",
+                    name: "almaMater"
 
-              }}
-            />
-            <CustomInput
-              labelText="Schooling"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                defaultValue: `${user.profile.almaMater}` ? `${user.profile.almaMater}` : "",
-                name: "almaMater"
+                  }}
+                />
+              </CardBody>
+            </Card>
+            <br></br>
 
-              }}
-            />
-            <h5 className={classes.textLeft} style={{ color: "black" }}>Social Media:</h5>
-            <CustomInput
-              labelText="Facebook"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                placeholder: "Facebook Link...",
-                defaultValue: `${user.profile.socialMedia.facebook}` ? `${user.profile.socialMedia.facebook}` : "",
-                name: "facebook"
+            <Card className={classes.textCenter}>
+              <CardHeader color="danger">Social Media</CardHeader>
+              <CardBody>  <CustomInput
+                labelText="Facebook"
+                id="float"
+                formControlProps={{
+                  fullWidth: true
+                }}
+                inputProps={{
+                  placeholder: "Facebook Link...",
+                  defaultValue: `${user.profile.socialMedia.facebook}` ? `${user.profile.socialMedia.facebook}` : "",
+                  name: "facebook"
 
-              }}
-            />
-            <CustomInput
-              labelText="LinkedIn"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                placeholder: "LinkedIn Link...",
-                defaultValue: `${user.profile.socialMedia.linkedIn}` ? `${user.profile.socialMedia.linkedIn}` : "",
-                name: "linkedIn"
-              }}
-            />
-            <CustomInput
-              labelText="Twitter"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                placeholder: "Twitter Link...",
-                defaultValue: `${user.profile.socialMedia.twitter}` ? `${user.profile.socialMedia.twitter}` : "",
-                name: "twitter"
-              }}
-            />
-            <CustomInput
-              labelText="Instagram"
-              id="float"
-              formControlProps={{
-                fullWidth: true
-              }}
-              inputProps={{
-                placeholder: "Instagram Link...",
-                defaultValue: `${user.profile.socialMedia.instagram}` ? `${user.profile.socialMedia.instagram}` : "",
-                name: "instagram"
-              }}
-            />
+                }}
+              />
+                <CustomInput
+                  labelText="LinkedIn"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: "LinkedIn Link...",
+                    defaultValue: `${user.profile.socialMedia.linkedIn}` ? `${user.profile.socialMedia.linkedIn}` : "",
+                    name: "linkedIn"
+                  }}
+                />
+                <CustomInput
+                  labelText="Twitter"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: "Twitter Link...",
+                    defaultValue: `${user.profile.socialMedia.twitter}` ? `${user.profile.socialMedia.twitter}` : "",
+                    name: "twitter"
+                  }}
+                />
+                <CustomInput
+                  labelText="Instagram"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: "Instagram Link...",
+                    defaultValue: `${user.profile.socialMedia.instagram}` ? `${user.profile.socialMedia.instagram}` : "",
+                    name: "instagram"
+                  }}
+                /></CardBody>
+            </Card>
+            {errorMsg && <Danger>{errorMsg}</Danger>}
+            {successMsg && <Success>{successMsg}</Success>}
             <div className={classes.textCenter}>
               <Button type="submit" color="primary" round>
                 Save Changes

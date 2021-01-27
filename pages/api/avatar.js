@@ -32,7 +32,15 @@ handler
       { $set: { "profile.profilePic": buffer } })
 
     if (user) {
+      let video = path.join(process.cwd(), `./upload/${req.file.filename}`)
+      fs.unlink(video, (err) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+        console.log("removed")
 
+      })
       return res.status(200).end()
     } else {
       return res.status(404).end()

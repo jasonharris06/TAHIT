@@ -13,6 +13,7 @@ handler
     //const { _id, email, modules, feelingThermometer, firstName } = req.user
     //console.log(_id, email, modules, feelingThermometer)
     //res.json({ user: { _id, email, modules, feelingThermometer, firstName } });
+
     res.json({ user: req.user });
   })
   .use((req, res, next) => {

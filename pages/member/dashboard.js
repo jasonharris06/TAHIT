@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+
+import { useUser } from '../../lib/hooks'
 // @material-ui/icons
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import Favorite from "@material-ui/icons/Favorite";
@@ -23,14 +25,16 @@ import SectionComments from "pages-sections/blog-post/SectionComments.js";
 import SectionSimilarStories from "pages-sections/blog-post/SectionSimilarStories.js";
 
 import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
+import User from "../../models/User";
 
 const useStyles = makeStyles(blogPostPageStyle);
 
 export default function BlogPostPage() {
+  const [user, { mutate }] = useUser()
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-  });
+  }, [user]);
   const classes = useStyles();
   return (
     <div>

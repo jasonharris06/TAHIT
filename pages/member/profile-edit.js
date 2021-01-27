@@ -36,6 +36,7 @@ const useStyles = makeStyles(contactUsStyle);
 const dropDownJson = Data
 export default function ProfileEdit({ ...rest }) {
   const [user, { mutate }] = useUser()
+  console.log(user)
 
   const [title, setTitle] = useState({ email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.`, dropdownText: "" })
 

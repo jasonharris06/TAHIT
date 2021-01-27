@@ -35,7 +35,7 @@ export default function SectionProduct() {
         <GridContainer>
           <GridItem xs={12} sm={4} md={4}>
             <InfoArea
-              title="Added to the Membership Registery"
+              title="Added to the Membership Registry"
               description="Insert perks of being on the Registery"
               icon={GroupIcon}
               iconColor="info"
