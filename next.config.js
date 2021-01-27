@@ -12,7 +12,7 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS]], {
     return config;
   },
   env: {
-    DATABASE_URL: process.env.DATABASE_URL,
+    NEXT_PUBLIC_DATABASE_URL: process.env.DATABASE_URL,
     GOOGLE_TRACKING_ID: process.env.GOOGLE_TRACKING_ID
   }
 });
