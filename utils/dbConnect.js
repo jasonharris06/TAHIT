@@ -9,7 +9,7 @@ export async function dbConnect(req, res, next) {
   }
 
   /* connecting to our database */
-  const db = await mongoose.connect(process.env.NEXT_PUBLIC_DATABASE_URL, {
+  const db = await mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true,
