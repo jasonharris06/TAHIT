@@ -5,6 +5,8 @@ const withCSS = require("@zeit/next-css");
 const webpack = require("webpack");
 const path = require("path");
 
+require('dotenv').config();
+
 module.exports = withPlugins([[withSass], [withImages], [withCSS]], {
   webpack(config, options) {
     config.resolve.modules.push(path.resolve("./"));
