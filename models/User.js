@@ -42,7 +42,10 @@ const Profile = {
   almaMater: { type: String, trim: true },
   honorifics: { type: String, trim: true },
   socialMedia: Social,
-  profilePic: Buffer,
+  profilePic: {
+    data: Buffer,
+    contentType: String
+  },
   completed: { type: Boolean, default: false },
 
 }
