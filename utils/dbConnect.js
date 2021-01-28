@@ -3,6 +3,7 @@ import mongoose, { connect } from "mongoose";
 const connection = {}; /* creating connection oject*/
 
 export async function dbConnect(req, res, next) {
+
   if (connection.isConnected) {
     console.log(connection);
     return;
