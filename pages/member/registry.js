@@ -21,16 +21,17 @@ import SectionText from "pages-sections/blog-post/SectionText.js";
 import SectionBlogInfo from "pages-sections/blog-post/SectionBlogInfo.js";
 import SectionComments from "pages-sections/blog-post/SectionComments.js";
 import SectionSimilarStories from "pages-sections/blog-post/SectionSimilarStories.js";
+import SectionRegistryTahit from "pages-sections/sections-page/SectionRegistryTahit.js"
 
 import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
 
 const useStyles = makeStyles(blogPostPageStyle);
 
 export default function BlogPostPage() {
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
+  // React.useEffect(() => {
+  //   window.scrollTo(0, 0);
+  //   document.body.scrollTop = 0;
+  // });
   const classes = useStyles();
   return (
     <div>
@@ -68,6 +69,7 @@ export default function BlogPostPage() {
           <SectionText />
           <SectionBlogInfo />
           <SectionComments />
+          <SectionRegistryTahit />
         </div>
       </div>
       <SectionSimilarStories />
