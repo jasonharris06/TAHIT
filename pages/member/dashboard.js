@@ -34,7 +34,7 @@ export default function BlogPostPage() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-  }, [user]);
+  }, []);
   const classes = useStyles();
   return (
     <div>

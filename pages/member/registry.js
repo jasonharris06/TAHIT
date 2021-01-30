@@ -66,13 +66,13 @@ export default function BlogPostPage() {
       </Parallax>
       <div className={classes.main}>
         <div className={classes.container}>
-          <SectionText />
+          {/* <SectionText />
           <SectionBlogInfo />
-          <SectionComments />
+          <SectionComments /> */}
           <SectionRegistryTahit />
         </div>
       </div>
-      <SectionSimilarStories />
+      {/* <SectionSimilarStories /> */}
       <Footer
         content={
           <div>

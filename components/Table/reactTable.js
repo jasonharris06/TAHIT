@@ -1,39 +1,36 @@
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
 // A great library for fuzzy filtering/sorting items
 import { matchSorter } from 'match-sorter'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import MaUTable from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 
 // import makeData from './makeData'
 
 
 
-// const Styles = styled.div`
-//   padding: 1rem;
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
-//   table {
-//     border-spacing: 0;
-//     border: 1px solid black;
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
 
-//     tr {
-//       :last-child {
-//         td {
-//           border-bottom: 0;
-//         }
-//       }
-//     }
-
-//     th,
-//     td {
-//       margin: 0;
-//       padding: 0.5rem;
-//       border-bottom: 1px solid black;
-//       border-right: 1px solid black;
-
-//       :last-child {
-//         border-right: 0;
-//       }
-//     }
-//   }
-// `
 
 // Define a default UI for filtering
 function GlobalFilter({
@@ -269,47 +266,36 @@ export default function Table({ columns, data }) {
 
   return (
     <>
-      <table {...getTableProps()}>
-        <thead>
+      <MaUTable {...getTableProps()}>
+        <TableHead>
           {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>
+                <StyledTableCell {...column.getHeaderProps()}>
                   {column.render('Header')}
-                  {/* Render the columns filter UI */}
                   <div>{column.canFilter ? column.render('Filter') : null}</div>
-                </th>
+                </StyledTableCell>
               ))}
-            </tr>
+            </TableRow>
           ))}
-          <tr>
-            <th
-              colSpan={visibleColumns.length}
-              style={{
-                textAlign: 'left',
-              }}
-            >
-              <GlobalFilter
-                preGlobalFilteredRows={preGlobalFilteredRows}
-                globalFilter={state.globalFilter}
-                setGlobalFilter={setGlobalFilter}
-              />
-            </th>
-          </tr>
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {firstPageRows.map((row, i) => {
+        </TableHead>
+        <TableBody>
+          {rows.map((row, i) => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()}>
+              <StyledTableRow {...row.getRowProps()}>
                 {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  return (
+                    <StyledTableCell {...cell.getCellProps()}>
+                      {cell.render('Cell')}
+                    </StyledTableCell>
+                  )
                 })}
-              </tr>
+              </StyledTableRow>
             )
           })}
-        </tbody>
-      </table>
+        </TableBody>
+      </MaUTable>
       <br />
       <div>Showing the first 20 results of {rows.length} rows</div>
       <div>

@@ -5,7 +5,7 @@ import User from "../../models/User";
 import { dbConnect } from "../../utils/dbConnect"
 const handler = nextConnect();
 
-handler.get(async (req, res) => {
+handler.use(dbConnect).get(async (req, res) => {
 
   console.log(" ln 10 I ran")
   const registry = []
@@ -16,11 +16,12 @@ handler.get(async (req, res) => {
     registry.push({
       id: users[i]._id,
       profile: users[i].profile
+      // firstName: users[i].profile.firstName,
+      // lastName: users[i].profile.lastName
     })
   }
   console.log(registry)
-  res.json({ registry }
-  );
+  res.json(registry);
 
 }).put(async (req, res) => {
 
