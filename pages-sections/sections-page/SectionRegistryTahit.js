@@ -6,6 +6,8 @@ import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-t
 // A great library for fuzzy filtering/sorting items
 import { matchSorter } from 'match-sorter'
 import Table from "../../components/Table/reactTable"
+import InfoIcon from '@material-ui/icons/Info';
+import Button from 'components/CustomButtons/Button.js';
 
 // import makeData from './makeData'
 
@@ -95,11 +97,20 @@ function SelectColumnFilter({
 }) {
   // Calculate the options for filtering
   // using the preFilteredRows
+  console.log(preFilteredRows)
   const options = React.useMemo(() => {
     const options = new Set()
     preFilteredRows.forEach(row => {
+
       options.add(row.values[id])
+      // if (row.originalSubRows.length > 0) {
+      //   row.subRows.forEach(subRow => {
+      //     options.add(subRow.values["certificate.title"])
+      //   })
+      // }
+
     })
+    console.log(preFilteredRows)
     return [...options.values()]
   }, [id, preFilteredRows])
 
@@ -235,11 +246,38 @@ export default function Registry() {
   const [registryData, { mutateData }] = useRegistry()
   console.log(registryData)
   console.log("sectionRegistryTahit")
+
+  function handleClick(e) {
+    e.preventDefault()
+    console.log(e.currentTarget.id)
+  }
   const columns = React.useMemo(
     () => [
       {
+        Header: '+',
+        columns: [
+          {
+            Header: 'More',
+            accessor: 'id',
+            disableFilters: true,
+            style: {
+              cursor: "pointer",
+            },
+            Cell: (props) => (
+
+              <Button id={`${props.value}`} onClick={handleClick} justIcon round color="root">
+                <InfoIcon />
+              </Button>
+
+            ),
+          },
+
+        ],
+      },
+      {
         Header: 'Name',
         columns: [
+
           {
             Header: 'First Name',
             accessor: 'profile.firstName',
@@ -248,7 +286,7 @@ export default function Registry() {
             Header: 'Last Name',
             accessor: 'profile.lastName',
             // Use our custom `fuzzyText` filter on this column
-            filter: 'fuzzyText',
+            //filter: 'fuzzyText',
           },
         ],
       },
@@ -256,29 +294,55 @@ export default function Registry() {
         Header: 'Info',
         columns: [
           {
+            // Build our expander column
+            id: 'expander', // Make sure it has an ID
+            Header: ({ getToggleAllRowsExpandedProps, isAllRowsExpanded }) => (
+              <span {...getToggleAllRowsExpandedProps()}>
+                {isAllRowsExpanded ? '👇' : '👉'}
+              </span>
+            ),
+            Cell: ({ row }) =>
+              // Use the row.canExpand and row.getToggleRowExpandedProps prop getter
+              // to build the toggle for expanding a row
+              row.canExpand ? (
+                <span
+                  {...row.getToggleRowExpandedProps({
+                    style: {
+                      // We can even use the row.depth property
+                      // and paddingLeft to indicate the depth
+                      // of the row
+                      paddingLeft: `${row.depth * 2}rem`,
+                    },
+                  })}
+                >
+                  {row.isExpanded ? '👇' : '👉'}
+                </span>
+              ) : null,
+          },
+          {
             Header: 'Certifications',
-            accessor: 'profile.certific',
-            Filter: SliderColumnFilter,
-            filter: 'equals',
-          },
-          {
-            Header: 'Visits',
-            accessor: 'visits',
-            Filter: NumberRangeColumnFilter,
-            filter: 'between',
-          },
-          {
-            Header: 'Status',
-            accessor: 'status',
+            accessor: 'certificate.title',
+            filter: 'filterRowsWithSubrows',
             Filter: SelectColumnFilter,
-            filter: 'includes',
           },
           {
-            Header: 'Profile Progress',
-            accessor: 'progress',
-            Filter: SliderColumnFilter,
-            filter: filterGreaterThan,
+            Header: 'Verified',
+            accessor: 'certificate.verified',
+            Cell: (props) => (
+
+              (`${props.value}` === "true") ? "Yes" : "No"),
+            disableFilters: true,
+            //Filter: NumberRangeColumnFilter,
+            // filter: 'between',
           },
+          {
+            Header: 'EPIQ Certified',
+            accessor: 'status',
+            disableFilters: true,
+            //Filter: SelectColumnFilter,
+            // filter: 'includes',
+          },
+
         ],
       },
     ],
@@ -290,7 +354,7 @@ export default function Registry() {
   return (
     <>
       <h1>work</h1>
-      {registryData && <><h2>in table</h2> <Table columns={columns} data={registryData} /></>}
+      {registryData && <><Table columns={columns} data={registryData} /></>}
 
     </>
   )

@@ -1,4 +1,4 @@
-import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
+import { useTable, useExpanded, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
 // A great library for fuzzy filtering/sorting items
 import { matchSorter } from 'match-sorter'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -215,6 +215,15 @@ export default function Table({ columns, data }) {
     () => ({
       // Add a new fuzzyTextFilterFn filter type.
       fuzzyText: fuzzyTextFilterFn,
+      filterRowsWithSubrows: (rows, id, filterValue) => {
+        return rows.filter((row) => {
+
+          const rowValue = row.values[id];
+          console.log(rowValue)
+          return rowValue ? String(rowValue).toLowerCase() === String(filterValue).toLowerCase() : true;
+        });
+      },
+
       // Or, override the default text filter to use
       // "startWith"
       text: (rows, id, filterValue) => {
@@ -245,7 +254,7 @@ export default function Table({ columns, data }) {
     headerGroups,
     rows,
     prepareRow,
-    state,
+    state: { expanded },
     visibleColumns,
     preGlobalFilteredRows,
     setGlobalFilter,
@@ -255,9 +264,11 @@ export default function Table({ columns, data }) {
       data,
       defaultColumn, // Be sure to pass the defaultColumn option
       filterTypes,
+
     },
     useFilters, // useFilters!
-    useGlobalFilter // useGlobalFilter!
+    useGlobalFilter, // useGlobalFilter!
+    useExpanded
   )
 
   // We don't want to render all of the rows for this example, so cap
@@ -279,7 +290,7 @@ export default function Table({ columns, data }) {
             </TableRow>
           ))}
         </TableHead>
-        <TableBody>
+        <TableBody {...getTableBodyProps()}>
           {rows.map((row, i) => {
             prepareRow(row)
             return (
@@ -300,7 +311,7 @@ export default function Table({ columns, data }) {
       <div>Showing the first 20 results of {rows.length} rows</div>
       <div>
         <pre>
-          <code>{JSON.stringify(state.filters, null, 2)}</code>
+          <code>{JSON.stringify({ expanded: expanded }, null, 2)}</code>
         </pre>
       </div>
     </>
