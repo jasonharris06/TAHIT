@@ -41,6 +41,7 @@ const Profile = {
   jobTitle: { type: String, trim: true },
   almaMater: { type: String, trim: true },
   honorifics: { type: String, trim: true },
+  epiqCertified: { type: Boolean, default: false },
   socialMedia: Social,
   profilePic: {
     data: Buffer,

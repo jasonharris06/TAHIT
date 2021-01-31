@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 //import styled from 'styled-components'
 import { useUser, useRegistry } from '../../lib/hooks'
@@ -8,6 +8,21 @@ import { matchSorter } from 'match-sorter'
 import Table from "../../components/Table/reactTable"
 import InfoIcon from '@material-ui/icons/Info';
 import Button from 'components/CustomButtons/Button.js';
+import AddIcon from '@material-ui/icons/Add';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import SectionRegistryModal from "pages-sections/sections-page/SectionRegistryModal.js"
+import { makeStyles } from "@material-ui/core/styles";
+import Slide from "@material-ui/core/Slide";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+// @material-ui/icons
+import Close from "@material-ui/icons/Close";
+
+import style from "assets/jss/nextjs-material-kit-pro/modalStyle.js";
+
 
 // import makeData from './makeData'
 
@@ -241,14 +256,23 @@ function filterGreaterThan(rows, id, filterValue) {
 // check, but here, we want to remove the filter if it's not a number
 filterGreaterThan.autoRemove = val => typeof val !== 'number'
 
-export default function Registry() {
+const useStyles = makeStyles(style);
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="down" ref={ref} {...props} />;
+});
+
+export default function Registry({ ...rest }) {
   // const [user, { mutate }] = useUser()
   const [registryData, { mutateData }] = useRegistry()
+  const [modal, setModal] = useState(false)
   console.log(registryData)
   console.log("sectionRegistryTahit")
+  const classes = useStyles();
 
   function handleClick(e) {
     e.preventDefault()
+    setModal(true)
     console.log(e.currentTarget.id)
   }
   const columns = React.useMemo(
@@ -298,7 +322,7 @@ export default function Registry() {
             id: 'expander', // Make sure it has an ID
             Header: ({ getToggleAllRowsExpandedProps, isAllRowsExpanded }) => (
               <span {...getToggleAllRowsExpandedProps()}>
-                {isAllRowsExpanded ? '👇' : '👉'}
+                {isAllRowsExpanded ? <ArrowDropDownIcon /> : <ArrowRightIcon />}
               </span>
             ),
             Cell: ({ row }) =>
@@ -315,7 +339,7 @@ export default function Registry() {
                     },
                   })}
                 >
-                  {row.isExpanded ? '👇' : '👉'}
+                  {row.isExpanded ? <ArrowDropDownIcon /> : <ArrowRightIcon />}
                 </span>
               ) : null,
           },
@@ -349,12 +373,63 @@ export default function Registry() {
     []
   )
 
-  const data = React.useMemo(() => registryData, [])
+  const data = React.useMemo(() => registryData)
   console.log(data)
   return (
     <>
       <h1>work</h1>
-      {registryData && <><Table columns={columns} data={registryData} /></>}
+
+      <div className="cd-section"  {...rest}>
+
+        <Dialog
+          classes={{
+            root: classes.modalRoot,
+            paper: classes.modal
+          }}
+          open={modal}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={() => setModal(false)}
+          aria-labelledby="classic-modal-slide-title"
+          aria-describedby="classic-modal-slide-description"
+        >
+          <DialogTitle
+            id="classic-modal-slide-title"
+            disableTypography
+            className={classes.modalHeader}
+          >
+            <Button
+              simple
+              className={classes.modalCloseButton}
+              key="close"
+              aria-label="Close"
+              onClick={() => setModal(false)}
+            >
+              {" "}
+              <Close className={classes.modalClose} />
+            </Button>
+            <h4 className={classes.modalTitle}></h4>
+          </DialogTitle>
+          <DialogContent
+            id="classic-modal-slide-description"
+            className={classes.modalBody}
+          >
+
+            {/* <img src={modalInfo.image} alt="..." /> */}
+            {/* <h2>{modalInfo.name}</h2>
+            <p>{modalInfo.description}</p> */}
+          </DialogContent>
+          <DialogActions className={classes.modalFooter}>
+            <Button onClick={() => setModal(false)} color="secondary">
+              Close
+    </Button>
+          </DialogActions>
+        </Dialog>
+
+
+      </div>
+
+      {registryData && <><Table columns={columns} data={data} /></>}
 
     </>
   )

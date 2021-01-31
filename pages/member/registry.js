@@ -22,8 +22,11 @@ import SectionBlogInfo from "pages-sections/blog-post/SectionBlogInfo.js";
 import SectionComments from "pages-sections/blog-post/SectionComments.js";
 import SectionSimilarStories from "pages-sections/blog-post/SectionSimilarStories.js";
 import SectionRegistryTahit from "pages-sections/sections-page/SectionRegistryTahit.js"
+import SectionRegistryModal from "pages-sections/sections-page/SectionRegistryModal.js"
 
 import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
+
+import whiteLogo from "assets/img/logo-white.png"
 
 const useStyles = makeStyles(blogPostPageStyle);
 
@@ -36,7 +39,16 @@ export default function BlogPostPage() {
   return (
     <div>
       <Header
-        brand="NextJS Material Kit PRO"
+        brand={<GridContainer>
+          <GridItem xs={6} sm={6} md={6}>
+            <img src={whiteLogo}
+              alt="Tahit Logo"
+              width={35}
+              height={35} /></GridItem>
+          <GridItem xs={6} sm={6} md={6}>
+            <h5>TAHIT</h5>
+          </GridItem>
+        </GridContainer>}
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         color="transparent"
@@ -45,21 +57,19 @@ export default function BlogPostPage() {
           color: "info"
         }}
       />
-      <Parallax image={require("assets/img/bg5.jpg")} filter="dark">
+      <Parallax image={require("assets/img/bg5.jpg")} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem md={8} className={classes.textCenter}>
               <h1 className={classes.title}>
-                How We Built the Most Successful Castle Ever
+                TAHIT Registry
               </h1>
-              <h4 className={classes.subtitle}>
+              {/* <h4 className={classes.subtitle}>
                 The last 48 hours of my life were total madness. This is what I
                 did.
-              </h4>
-              <br />
-              <Button color="rose" size="lg" round>
-                <FormatAlignLeft /> Read Article
-              </Button>
+              </h4> */}
+
+
             </GridItem>
           </GridContainer>
         </div>
@@ -69,6 +79,7 @@ export default function BlogPostPage() {
           {/* <SectionText />
           <SectionBlogInfo />
           <SectionComments /> */}
+          <SectionRegistryModal />
           <SectionRegistryTahit />
         </div>
       </div>
