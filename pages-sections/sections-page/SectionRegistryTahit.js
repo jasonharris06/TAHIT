@@ -24,6 +24,7 @@ import Close from "@material-ui/icons/Close";
 import defaultImage from "../../assets/img/image_placeholder.jpg";
 
 import style from "assets/jss/nextjs-material-kit-pro/modalStyle.js";
+import _ from "lodash"
 
 
 // import makeData from './makeData'
@@ -399,13 +400,14 @@ export default function Registry({ ...rest }) {
       const name = `${obj.salutations ? `${obj.salutations} ` : ""}
       ${obj.firstName} ${obj.lastName} 
       ${obj.honorifics ? `${obj.honorifics}` : ""}`
+      const img =
 
-      console.log(obj.profilePic === undefined)
+        console.log(_.isEmpty(obj.profilePic))
       setModalInfo(
         {
           name: name,
-          image: obj.profilePic ? `data:image/png;base64, ${obj.profilePic}` : defaultImage,
-          languages: obj.certifications,
+          image: _.isEmpty(obj.profilePic) ? defaultImage : `data:image/png;base64, ${obj.profilePic}`,
+          languages: obj.language.join(", "),
 
         })
       setModal(true)
@@ -460,10 +462,10 @@ export default function Registry({ ...rest }) {
             className={classes.modalBody}
           >
 
-            <Image src={modalInfo.image} alt="..." width={500}
-              height={500} />
-            <h2>{modalInfo.name}</h2>
-            {/* <p>{modalInfo.description}</p> */}
+            <Image src={modalInfo.image} alt="..." layout="intrinsic" width={250}
+              height={250} />
+            <h4>{modalInfo.name} - {modalInfo.languages}</h4>
+
           </DialogContent>
           <DialogActions className={classes.modalFooter}>
             <Button onClick={() => setModal(false)} color="secondary">
