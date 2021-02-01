@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Image from "next/image"
 //import styled from 'styled-components'
 import { useUser, useRegistry } from '../../lib/hooks'
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
@@ -20,6 +21,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 // @material-ui/icons
 import Close from "@material-ui/icons/Close";
+import defaultImage from "../../assets/img/image_placeholder.jpg";
 
 import style from "assets/jss/nextjs-material-kit-pro/modalStyle.js";
 
@@ -265,16 +267,23 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function Registry({ ...rest }) {
   // const [user, { mutate }] = useUser()
   const [registryData, { mutateData }] = useRegistry()
+  const [registry, setRegistry] = useState()
   const [modal, setModal] = useState(false)
+  const [modalInfo, setModalInfo] = useState({
+    name: "",
+    image: defaultImage,
+    languages: "",
+    certifications: "",
+    proAffiliations: "",
+    id: ""
+  })
+  useEffect(() => {
+    setRegistry(registryData)
+  }, [registryData])
   console.log(registryData)
   console.log("sectionRegistryTahit")
   const classes = useStyles();
 
-  function handleClick(e) {
-    e.preventDefault()
-    setModal(true)
-    console.log(e.currentTarget.id)
-  }
   const columns = React.useMemo(
     () => [
       {
@@ -354,7 +363,7 @@ export default function Registry({ ...rest }) {
             accessor: 'certificate.verified',
             Cell: (props) => (
 
-              (`${props.value}` === "true") ? "Yes" : "No"),
+              `${props.value}` === "true" ? "Yes" : "No"),
             disableFilters: true,
             //Filter: NumberRangeColumnFilter,
             // filter: 'between',
@@ -373,13 +382,49 @@ export default function Registry({ ...rest }) {
     []
   )
 
+
+  async function handleClick(e) {
+    console.log(registry)
+    e.preventDefault()
+
+    const res = await fetch(`/api/userRegistry?id=${e.currentTarget.id}&modal=true`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+
+    })
+
+    if (res.status === 200) {
+      let obj = await res.json()
+      console.log(obj)
+      const name = `${obj.salutations ? `${obj.salutations} ` : ""}
+      ${obj.firstName} ${obj.lastName} 
+      ${obj.honorifics ? `${obj.honorifics}` : ""}`
+
+      console.log(obj.profilePic === undefined)
+      setModalInfo(
+        {
+          name: name,
+          image: obj.profilePic ? `data:image/png;base64, ${obj.profilePic}` : defaultImage,
+          languages: obj.certifications,
+
+        })
+      setModal(true)
+    }
+
+    // const obj = registryData.find(({ id }) => id === e.currentTarget.id)
+
+
+
+
+  }
+
   const data = React.useMemo(() => registryData)
   console.log(data)
   return (
     <>
       <h1>work</h1>
 
-      <div className="cd-section"  {...rest}>
+      {registryData && <div className="cd-section"  {...rest}>
 
         <Dialog
           classes={{
@@ -415,9 +460,10 @@ export default function Registry({ ...rest }) {
             className={classes.modalBody}
           >
 
-            {/* <img src={modalInfo.image} alt="..." /> */}
-            {/* <h2>{modalInfo.name}</h2>
-            <p>{modalInfo.description}</p> */}
+            <Image src={modalInfo.image} alt="..." width={500}
+              height={500} />
+            <h2>{modalInfo.name}</h2>
+            {/* <p>{modalInfo.description}</p> */}
           </DialogContent>
           <DialogActions className={classes.modalFooter}>
             <Button onClick={() => setModal(false)} color="secondary">
@@ -427,7 +473,7 @@ export default function Registry({ ...rest }) {
         </Dialog>
 
 
-      </div>
+      </div>}
 
       {registryData && <><Table columns={columns} data={data} /></>}
 

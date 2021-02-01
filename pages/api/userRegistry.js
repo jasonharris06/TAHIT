@@ -7,25 +7,33 @@ const handler = nextConnect();
 
 handler.use(dbConnect).get(async (req, res) => {
 
-  console.log(" ln 10 I ran")
-  const registry = []
-  const users = await User.find({}).exec()
-  var certs = []
-  for (var i = 0; users.length > i; i++) {
-    certs = [...users[i].profile.certifications]
-    //console.log(certs[0])
-    registry.push({
-      id: users[i]._id,
-      profile: users[i].profile,
-      certificate: users[i].profile.certifications[0] ? users[i].profile.certifications[0] : { title: "NONE" },
-      subRows: certs.length > 1 ? certs.slice(1).map(item => { return { certificate: item } }) : []
+  if (req.query.modal === "true") {
 
-      // firstName: users[i].profile.firstName,
-      // lastName: users[i].profile.lastName
-    })
+    const user = await User.findById({ _id: req.query.id }).exec()
+
+    res.send(user.profile)
+  } else {
+
+    console.log(" ln 10 I ran")
+    const registry = []
+    const users = await User.find({}).exec()
+    var certs = []
+    for (var i = 0; users.length > i; i++) {
+      certs = [...users[i].profile.certifications]
+      //console.log(certs[0])
+      registry.push({
+        id: users[i]._id,
+        profile: users[i].profile,
+        certificate: users[i].profile.certifications[0] ? users[i].profile.certifications[0] : { title: "NONE" },
+        subRows: certs.length > 1 ? certs.slice(1).map(item => { return { certificate: item } }) : []
+
+        // firstName: users[i].profile.firstName,
+        // lastName: users[i].profile.lastName
+      })
+    }
+
+    res.json(registry);
   }
-  console.log(registry)
-  res.json(registry);
 
 }).put(async (req, res) => {
 
