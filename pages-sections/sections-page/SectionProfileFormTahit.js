@@ -43,15 +43,26 @@ const overlay = makeStyles((theme) => ({
 const useStyles = makeStyles(contactUsStyle);
 export default function SectionProfile({ ...rest }) {
   const [user, { mutate }] = useUser()
+  const [homeState, setHomeState] = useState(false)
   const [lang, setLang] = useState({
     language: [],
     certifications: []
   })
-  const [userProfile, setProfile] = useState(dropDownJson[3])
+  const [userProfile, setProfile] = useState(dropDownJson[5])
   const [open, setOpen] = useState(false)
+
   const [successMsg, setSuccessMsg] = useState("")
   const [errorMsg, setErrorMsg] = useState("")
 
+  function statePick(e, values) {
+    e.preventDefault()
+    if (values === "TX") {
+      setHomeState(true)
+    } else {
+      setHomeState(false)
+    }
+
+  }
 
   function updateLang(value, usage) {
     let copyLang = { ...lang }
@@ -132,6 +143,9 @@ export default function SectionProfile({ ...rest }) {
             case "country":
               copyProfile.profile.address.country = inputs[i].value
               break;
+            case 'workCity':
+              copyProfile.profile.workCity = inputs[i].value
+              break
             case "employer":
               copyProfile.profile.employer = inputs[i].value
               break;
@@ -203,6 +217,10 @@ export default function SectionProfile({ ...rest }) {
   useEffect(() => {
 
     if (!user) Router.push("/login");
+
+    if (user.profile.address.state === "TX") {
+      setHomeState(true)
+    }
     // setProfile({ firstName: user.profile.firstname })
     //setProfile({ profile: { firstName: user.profile.firstname } })
     // return () => {
@@ -272,12 +290,12 @@ export default function SectionProfile({ ...rest }) {
               <CardHeader color="danger">Personal information</CardHeader>
               <CardBody>
                 <Autocomplete
-                  options={dropDownJson[1].salutaions}
+                  options={dropDownJson[1].salutations}
                   getOptionLabel={(option) => option}
-
+                  defaultValue={`${!user.profile.salutations}` ? `${user.profile.salutations}` : ""}
                   id="select-on-focus"
                   selectOnFocus
-                  renderInput={(params) => <TextField {...params} label="Salutation (Mrs, Ms, Mr...)" name="salutations" margin="normal" />}
+                  renderInput={(params) => <TextField {...params} label="Mrs, Ms, Mr..." name="salutations" margin="normal" />}
                 />
 
                 <CustomInput
@@ -374,7 +392,17 @@ export default function SectionProfile({ ...rest }) {
                     name: "city"
                   }}
                 />
-                <CustomInput
+                <Autocomplete
+                  options={dropDownJson[4].state}
+                  getOptionLabel={(option) => option}
+                  defaultValue={`${user.profile.address.state}` ? `${user.profile.address.state}` : ""}
+                  onChange={statePick}
+                  id="select-on-focus"
+                  selectOnFocus
+                  renderInput={(params) => <TextField {...params} label="State" name="state" margin="normal" />}
+                />
+
+                {/* <CustomInput
                   labelText="State"
                   id="float"
                   formControlProps={{
@@ -385,7 +413,7 @@ export default function SectionProfile({ ...rest }) {
                     name: "state"
 
                   }}
-                />
+                /> */}
                 <CustomInput
                   labelText="Zip Code"
                   id="float"
@@ -414,6 +442,31 @@ export default function SectionProfile({ ...rest }) {
               </CardBody>
               {/* <CardFooter className={classes.textMuted}>2 days ago</CardFooter> */}
             </Card>
+            <br></br>
+
+            {/* Work City */}
+
+            {homeState && <Card className={classes.textCenter}>
+              <CardHeader color="danger">Work Proximity</CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>Choose a major metropolitan area </h4>
+                <p>
+                  The city you choose will be the closest major city you are willing to work, or currently working in.
+          </p>
+
+
+                <Autocomplete
+                  options={dropDownJson[3].workCities}
+                  getOptionLabel={(option) => option}
+                  defaultValue={`${user.profile.workCity}` ? `${user.profile.workCity}` : ""}
+                  id="select-on-focus"
+                  selectOnFocus
+                  renderInput={(params) => <TextField {...params} label="City" name="workCity" margin="normal" />}
+                />
+
+              </CardBody>
+            </Card>}
+
 
 
             {/* Languages Section */}

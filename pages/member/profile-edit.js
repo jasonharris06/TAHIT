@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React, { useState } from "react";
 import { useUser } from '../../lib/hooks'
+import Router from "next/router";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react components used to create a google map
@@ -63,6 +64,7 @@ export default function ProfileEdit({ ...rest }) {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
+    //if (!user) { Router.push("/login") }
   }, [user]);
   const classes = useStyles();
 

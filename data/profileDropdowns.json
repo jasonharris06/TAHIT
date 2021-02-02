@@ -103,8 +103,10 @@
 "Konka"
   ]
   },
-  {"salutaions":["Ms","Mrs","Miss","Mr","Dr"]},
+  {"salutations":["Ms","Mrs","Miss","Mr","Dr"]},
   {"certifications":["CHI","NBCMI","RID","BEI"]},
+  {"workCities":["Abilene","Amarillo","Austin","Beaumont","Brownsville","College Station","Corpus Christi","Dallas-Fort Worth","Dallas-Plano-Irving","Fort Worth-Arlington","El Paso","Houston","Killeen","Laredo","Longview","Lubbock","McAllen","Midland","Odessa","San Angelo","San Antonio","Sherman","Texarkana","Tyler","Victoria","Waco","Wichita Falls"]},
+  {"state":["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]},
   {"profile":{
     "firstName": "",
     "lastName": "",
@@ -118,6 +120,7 @@
       "state": "",
       "zip": "",
       "country": ""},
+    "workCity":"",
     "language": [],
     "certifications":[],
     "employer":"",

@@ -20,6 +20,11 @@ const Certification = {
   verified: { type: Boolean, default: false },
   expireDate: Date
 }
+const Preferences = {
+  email: { type: Boolean, default: false },
+  text: { type: Boolean, default: false }
+
+}
 
 const Social = {
   facebook: String,
@@ -35,6 +40,7 @@ const Profile = {
   phoneNumber: { type: String, trim: true },
   workNumber: { type: String, trim: true },
   address: Address,
+  workCity: { type: String, trim: true },
   language: Array,
   certifications: [Certification],
   employer: { type: String, trim: true },
@@ -42,6 +48,7 @@ const Profile = {
   almaMater: { type: String, trim: true },
   honorifics: { type: String, trim: true },
   epiqCertified: { type: Boolean, default: false },
+  contactPreferences: Preferences,
   socialMedia: Social,
   profilePic: {
     data: Buffer,
