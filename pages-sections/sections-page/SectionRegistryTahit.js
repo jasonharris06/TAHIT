@@ -297,7 +297,7 @@ export default function Registry({ ...rest }) {
             Header: 'More',
             accessor: 'id',
             disableFilters: true,
-            expandSubRows: false,
+
             style: {
               cursor: "pointer",
             },
