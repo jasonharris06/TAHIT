@@ -39,7 +39,7 @@ export default function ImageUpload(props) {
   );
 
   useEffect(() => {
-    setImagePreviewUrl(`data:image/png;base64, ${user.profile.profilePic}`)
+    setImagePreviewUrl(user.profile.profilePic ? `data:image/png;base64, ${user.profile.profilePic}` : defaultImage)
   }, [user]);
 
   let fileInput = React.createRef();

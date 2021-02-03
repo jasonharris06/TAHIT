@@ -27,6 +27,9 @@ import SectionSimilarStories from "pages-sections/blog-post/SectionSimilarStorie
 import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
 import User from "../../models/User";
 
+import whiteLogo from "assets/img/logo-white.png"
+import background from "assets/img/greenblue-background.jpg"
+
 const useStyles = makeStyles(blogPostPageStyle);
 
 export default function BlogPostPage() {
@@ -39,7 +42,17 @@ export default function BlogPostPage() {
   return (
     <div>
       <Header
-        brand="NextJS Material Kit PRO"
+        brand={
+          <GridContainer>
+            <GridItem xs={6} sm={6} md={6}>
+              <img src={whiteLogo}
+                alt="Tahit Logo"
+                width={35}
+                height={35} /></GridItem>
+            <GridItem xs={6} sm={6} md={6}>
+              <h5>TAHIT</h5>
+            </GridItem>
+          </GridContainer>}
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         color="transparent"
@@ -48,7 +61,9 @@ export default function BlogPostPage() {
           color: "info"
         }}
       />
-      <Parallax image={require("assets/img/bg5.jpg")} filter="dark">
+
+
+      <Parallax image={background} filter="dark">
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem md={8} className={classes.textCenter}>
@@ -132,6 +147,6 @@ export default function BlogPostPage() {
           </div>
         }
       />
-    </div>
+    </div >
   );
 }

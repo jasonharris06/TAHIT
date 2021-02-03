@@ -18,7 +18,10 @@ const Address = {
 const Certification = {
   title: { type: String, trim: true },
   verified: { type: Boolean, default: false },
-  expireDate: Date
+  expireDate: {
+    type: Date,
+    default: () => new Date(+new Date() + 157788000000)
+  },
 }
 const Preferences = {
   email: { type: Boolean, default: false },
@@ -42,6 +45,7 @@ const Profile = {
   address: Address,
   workCity: { type: String, trim: true },
   language: Array,
+  proAffiliations: Array,
   certifications: [Certification],
   employer: { type: String, trim: true },
   jobTitle: { type: String, trim: true },

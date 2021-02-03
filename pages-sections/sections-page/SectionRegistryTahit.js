@@ -7,9 +7,12 @@ import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-t
 // A great library for fuzzy filtering/sorting items
 import { matchSorter } from 'match-sorter'
 import Table from "../../components/Table/reactTable"
+import ModalTable from "components/Table/Table.js";
 import InfoIcon from '@material-ui/icons/Info';
 import Button from 'components/CustomButtons/Button.js';
+import Icon from "@material-ui/core/Icon";
 import AddIcon from '@material-ui/icons/Add';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import SectionRegistryModal from "pages-sections/sections-page/SectionRegistryModal.js"
@@ -115,7 +118,7 @@ function SelectColumnFilter({
 }) {
   // Calculate the options for filtering
   // using the preFilteredRows
-  console.log(preFilteredRows)
+
   const options = React.useMemo(() => {
     const options = new Set()
     preFilteredRows.forEach(row => {
@@ -128,7 +131,7 @@ function SelectColumnFilter({
       // }
 
     })
-    console.log(preFilteredRows)
+
     return [...options.values()]
   }, [id, preFilteredRows])
 
@@ -274,7 +277,7 @@ export default function Registry({ ...rest }) {
     name: "",
     image: defaultImage,
     languages: "",
-    certifications: "",
+    certifications: [],
     proAffiliations: "",
     id: ""
   })
@@ -294,6 +297,7 @@ export default function Registry({ ...rest }) {
             Header: 'More',
             accessor: 'id',
             disableFilters: true,
+            expandSubRows: false,
             style: {
               cursor: "pointer",
             },
@@ -358,6 +362,7 @@ export default function Registry({ ...rest }) {
             accessor: 'certificate.title',
             filter: 'filterRowsWithSubrows',
             Filter: SelectColumnFilter,
+            //autoResetFilters: true
           },
           {
             Header: 'Verified',
@@ -372,8 +377,14 @@ export default function Registry({ ...rest }) {
           {
             Header: 'EPIQ Certified',
             accessor: 'status',
-            disableFilters: true,
             //Filter: SelectColumnFilter,
+            // filter: 'includes',
+          },
+          {
+            Header: 'Location',
+            accessor: 'profile.workCity',
+
+            Filter: SelectColumnFilter,
             // filter: 'includes',
           },
 
@@ -385,9 +396,9 @@ export default function Registry({ ...rest }) {
 
 
   async function handleClick(e) {
-    console.log(registry)
+    console.log(e.currentTarget.id)
     e.preventDefault()
-
+    console.log()
     const res = await fetch(`/api/userRegistry?id=${e.currentTarget.id}&modal=true`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -400,14 +411,15 @@ export default function Registry({ ...rest }) {
       const name = `${obj.salutations ? `${obj.salutations} ` : ""}
       ${obj.firstName} ${obj.lastName} 
       ${obj.honorifics ? `${obj.honorifics}` : ""}`
-      const img =
 
-        console.log(_.isEmpty(obj.profilePic))
+
+      console.log(_.isEmpty(obj.profilePic))
       setModalInfo(
         {
           name: name,
           image: _.isEmpty(obj.profilePic) ? defaultImage : `data:image/png;base64, ${obj.profilePic}`,
           languages: obj.language.join(", "),
+          certifications: obj.certifications
 
         })
       setModal(true)
@@ -424,8 +436,9 @@ export default function Registry({ ...rest }) {
   console.log(data)
   return (
     <>
-      <h1>work</h1>
 
+      <br></br>
+      <br></br>
       {registryData && <div className="cd-section"  {...rest}>
 
         <Dialog
@@ -465,6 +478,22 @@ export default function Registry({ ...rest }) {
             <Image src={modalInfo.image} alt="..." layout="intrinsic" width={250}
               height={250} />
             <h4>{modalInfo.name} - {modalInfo.languages}</h4>
+            <hr></hr>
+            <br></br>
+            <h5 className={classes.title}>Certifications:</h5>
+            <ModalTable
+              tableHead={["Certification", "Verified"]}
+              tableData={modalInfo.certifications.map(item => {
+                if (item.verified) return ([item.title, <Button justIcon round color="success"><VerifiedUserIcon /></Button>])
+                return ([item.title, <Button justIcon round color="danger"><VerifiedUserIcon /></Button>])
+              }
+              )}
+            />
+            <hr></hr>
+            <br></br>
+            <h5 className={classes.title}>Professional Affiliation:</h5>
+            <h6>{modalInfo.proAffiliations ? modalInfo.proAffiliations.join(", ") : 'TAHIT'}</h6>
+
 
           </DialogContent>
           <DialogActions className={classes.modalFooter}>

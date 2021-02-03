@@ -288,7 +288,13 @@ export default function Table({ columns, data }) {
                 </StyledTableCell>
               ))}
             </TableRow>
+
           ))}
+          {/* <GlobalFilter
+            preGlobalFilteredRows={preGlobalFilteredRows}
+
+            setGlobalFilter={setGlobalFilter}
+          /> */}
         </TableHead>
         <TableBody {...getTableBodyProps()}>
           {rows.map((row, i) => {

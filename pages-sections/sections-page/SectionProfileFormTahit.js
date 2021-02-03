@@ -46,7 +46,8 @@ export default function SectionProfile({ ...rest }) {
   const [homeState, setHomeState] = useState(false)
   const [lang, setLang] = useState({
     language: [],
-    certifications: []
+    certifications: [],
+    proAffiliations: []
   })
   const [userProfile, setProfile] = useState(dropDownJson[5])
   const [open, setOpen] = useState(false)
@@ -69,12 +70,16 @@ export default function SectionProfile({ ...rest }) {
     if (usage === "cert") {
       copyLang.certifications = value
       setLang(copyLang)
+    } else if (usage === "affiliation") {
+      copyLang.proAffiliations = value
+      setLang(copyLang)
     } else {
       copyLang.language = value
       setLang(copyLang)
     }
 
   }
+  //Function checks certifications
   function checkCerts() {
     console.log("I ran", user.profile.certifications.length < 0)
     if (user.profile.certifications.length > 0) {
@@ -90,6 +95,11 @@ export default function SectionProfile({ ...rest }) {
   function checkLang() {
     if (user.profile.language.length > 0) return user.profile.language
     return []
+  }
+
+  function checAffiliation() {
+    if (user.profile.proAffiliations.length > 0) return user.profile.proAffiliations
+    return ["TAHIT"]
   }
 
   async function onSubmit(e) {
@@ -512,6 +522,26 @@ export default function SectionProfile({ ...rest }) {
                     <TextField
                       {...params}
                       label="Certifications"
+                      margin="normal"
+                    />)}
+                />
+                <Autocomplete
+                  multiple
+                  id="tags-standard"
+                  //clearOnEscape
+                  onChange={(event, value) => updateLang(value, "affiliation")}
+                  options={dropDownJson[6].proAffiliation}
+                  defaultValue={checAffiliation}
+                  getOptionLabel={(option) => option}
+                  renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Select Affiliation"
                       margin="normal"
                     />)}
                 />
