@@ -25,6 +25,7 @@ import SectionRegistryTahit from "pages-sections/sections-page/SectionRegistryTa
 import SectionRegistryModal from "pages-sections/sections-page/SectionRegistryModal.js"
 
 import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
+import background from "assets/img/greenblue-background.jpg"
 
 import whiteLogo from "assets/img/logo-white.png"
 
@@ -57,7 +58,7 @@ export default function BlogPostPage() {
           color: "info"
         }}
       />
-      <Parallax image={require("assets/img/bg5.jpg")} filter="dark" small>
+      <Parallax image={background} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem md={8} className={classes.textCenter}>

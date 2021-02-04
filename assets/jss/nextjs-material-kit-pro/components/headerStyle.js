@@ -172,6 +172,12 @@ const headerStyle = theme => ({
     height: 55,
     padding: '0 30px',
   },
+  memberNav: {
+    background: ' linear-gradient(75deg, rgba(0,84,66,1) 0%, rgba(0,31,67,1) 60%, rgba(0,0,69,1) 100%);',
+    color: 'white',
+    height: 55,
+    padding: '0 30px',
+  },
   drawerPaper: {
     border: "none",
     bottom: "0",

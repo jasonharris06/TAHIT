@@ -64,7 +64,7 @@ export default function ProfileEdit({ ...rest }) {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-    //if (!user) { Router.push("/login") }
+    if (!user) { Router.push("/login") }
   }, [user]);
   const classes = useStyles();
 

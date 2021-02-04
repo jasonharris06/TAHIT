@@ -1,10 +1,15 @@
-/*eslint-disable*/ import React from "react";
+/*eslint-disable*/ import React, { useEffect, useState } from "react";
+import Image from "next/image"
+
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+import Backdrop from '@material-ui/core/Backdrop';
 
 import { useUser } from '../../lib/hooks'
 // @material-ui/icons
@@ -30,123 +35,139 @@ import User from "../../models/User";
 import whiteLogo from "assets/img/logo-white.png"
 import background from "assets/img/greenblue-background.jpg"
 
-const useStyles = makeStyles(blogPostPageStyle);
+const useStyles = makeStyles((blogPostPageStyle));
 
-export default function BlogPostPage() {
+const newStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}))
+
+
+
+export default function MemberDashboard() {
   const [user, { mutate }] = useUser()
+  const [open, setOpen] = useState(true)
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
+    if (!user) { Router.push("/login") }
+    if (user) {
+      setOpen(false)
+    }
   }, []);
   const classes = useStyles();
+  const newClasses = newStyles()
   return (
-    <div>
-      <Header
-        brand={
-          <GridContainer>
-            <GridItem xs={6} sm={6} md={6}>
-              <img src={whiteLogo}
-                alt="Tahit Logo"
-                width={35}
-                height={35} /></GridItem>
-            <GridItem xs={6} sm={6} md={6}>
-              <h5>TAHIT</h5>
-            </GridItem>
-          </GridContainer>}
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        color="transparent"
-        changeColorOnScroll={{
-          height: 300,
-          color: "info"
-        }}
-      />
+    <>
+      <Backdrop className={newClasses.backdrop} open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      {user && <div>
+        <Header
+          brand={
+            <GridContainer>
+              <GridItem xs={6} sm={6} md={6}>
+                <Image src={whiteLogo}
+                  alt="Tahit Logo"
+                  width={40}
+                  height={40} /></GridItem>
+              <GridItem xs={6} sm={6} md={6}>
+                <h5>{`Hello, ${user.profile.salutations ? `${user.profile.salutations} ` : ""}
+      ${user.profile.firstName} ${user.profile.lastName} 
+      ${user.profile.honorifics ? `${user.profile.honorifics}` : ""}`}</h5>
+              </GridItem>
+            </GridContainer>}
+          links={<HeaderLinks dropdownHoverColor="info" />}
+          fixed
+          color="transparent"
+          changeColorOnScroll={{
+            height: 300,
+            color: "memberNav"
+          }}
+        />
 
 
-      <Parallax image={background} filter="dark">
-        <div className={classes.container}>
-          <GridContainer justify="center">
-            <GridItem md={8} className={classes.textCenter}>
-              <h1 className={classes.title}>
-                How We Built the Most Successful Castle Ever
+        <Parallax image={background} filter="dark" small>
+          <div className={classes.container}>
+            <GridContainer justify="center">
+              <GridItem md={8} className={classes.textCenter}>
+                <h1 className={classes.title}>
+                  Dashboard
               </h1>
-              <h4 className={classes.subtitle}>
-                The last 48 hours of my life were total madness. This is what I
-                did.
-              </h4>
-              <br />
-              <Button color="rose" size="lg" round>
-                <FormatAlignLeft /> Read Article
-              </Button>
-            </GridItem>
-          </GridContainer>
+
+
+              </GridItem>
+            </GridContainer>
+          </div>
+        </Parallax>
+        <div className={classes.main}>
+          <div className={classes.container}>
+            <SectionText />
+            <SectionBlogInfo />
+            <SectionComments />
+          </div>
         </div>
-      </Parallax>
-      <div className={classes.main}>
-        <div className={classes.container}>
-          <SectionText />
-          <SectionBlogInfo />
-          <SectionComments />
-        </div>
-      </div>
-      <SectionSimilarStories />
-      <Footer
-        content={
-          <div>
-            <div className={classes.left}>
-              <List className={classes.list}>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/?ref=njsmkp-blog-post"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Creative Tim
+        <SectionSimilarStories />
+        <Footer
+          content={
+            <div>
+              <div className={classes.left}>
+                <List className={classes.list}>
+                  <ListItem className={classes.inlineBlock}>
+                    <a
+                      href="https://www.creative-tim.com/?ref=njsmkp-blog-post"
+                      target="_blank"
+                      className={classes.block}
+                    >
+                      Creative Tim
                   </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-blog-post"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    About us
+                  </ListItem>
+                  <ListItem className={classes.inlineBlock}>
+                    <a
+                      href="https://www.creative-tim.com/presentation?ref=njsmkp-blog-post"
+                      target="_blank"
+                      className={classes.block}
+                    >
+                      About us
                   </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://blog.creative-tim.com/?ref=njsmkp-blog-post"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Blog
+                  </ListItem>
+                  <ListItem className={classes.inlineBlock}>
+                    <a
+                      href="https://blog.creative-tim.com/?ref=njsmkp-blog-post"
+                      target="_blank"
+                      className={classes.block}
+                    >
+                      Blog
                   </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=njsmkp-blog-post"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Licenses
+                  </ListItem>
+                  <ListItem className={classes.inlineBlock}>
+                    <a
+                      href="https://www.creative-tim.com/license?ref=njsmkp-blog-post"
+                      target="_blank"
+                      className={classes.block}
+                    >
+                      Licenses
                   </a>
-                </ListItem>
-              </List>
-            </div>
-            <div className={classes.right}>
-              &copy; {1900 + new Date().getYear()} , made with{" "}
-              <Favorite className={classes.icon} /> by{" "}
-              <a
-                href="https://www.creative-tim.com?ref=njsmkp-blog-post"
-                target="_blank"
-              >
-                Creative Tim
+                  </ListItem>
+                </List>
+              </div>
+              <div className={classes.right}>
+                &copy; {1900 + new Date().getYear()} , made with{" "}
+                <Favorite className={classes.icon} /> by{" "}
+                <a
+                  href="https://www.creative-tim.com?ref=njsmkp-blog-post"
+                  target="_blank"
+                >
+                  Creative Tim
               </a>{" "}
               for a better web.
             </div>
-          </div>
-        }
-      />
-    </div >
+            </div>
+          }
+        />
+      </div >}
+    </>
   );
 }
