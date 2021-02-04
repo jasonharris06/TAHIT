@@ -1,6 +1,7 @@
 /*eslint-disable*/
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useUser } from '../../lib/hooks'
+import { useRouter } from 'next/router'
 import Router from "next/router";
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -37,7 +38,14 @@ const useStyles = makeStyles(contactUsStyle);
 const dropDownJson = Data
 export default function ProfileEdit({ ...rest }) {
   const [user, { mutate }] = useUser()
+  const router = useRouter()
   //console.log(user)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    console.log(!user)
+    if (!user) { router.push("/login") }
+  }, [user]);
 
   const [title, setTitle] = useState({ email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.`, dropdownText: "" })
 
@@ -61,11 +69,7 @@ export default function ProfileEdit({ ...rest }) {
       dropdownText: e.currentTarget.getAttribute("data-dropdown")
     })
   }
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-    if (!user) { Router.push("/login") }
-  }, [user]);
+
   const classes = useStyles();
 
   return (

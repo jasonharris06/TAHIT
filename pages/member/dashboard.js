@@ -1,5 +1,7 @@
 /*eslint-disable*/ import React, { useEffect, useState } from "react";
 import Image from "next/image"
+import { useRouter } from 'next/router'
+import Router from "next/router";
 
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
@@ -49,14 +51,15 @@ const newStyles = makeStyles((theme) => ({
 export default function MemberDashboard() {
   const [user, { mutate }] = useUser()
   const [open, setOpen] = useState(true)
-  React.useEffect(() => {
+  const router = useRouter()
+  useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
     if (!user) { Router.push("/login") }
     if (user) {
       setOpen(false)
     }
-  }, []);
+  }, [user]);
   const classes = useStyles();
   const newClasses = newStyles()
   return (

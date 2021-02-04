@@ -30,7 +30,7 @@ import ImageUpload from 'components/CustomUpload/ImageUpload.js';
 
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
 import Data from "../../data/profileDropdowns.json"
-import { use } from "passport";
+
 
 const dropDownJson = Data
 
@@ -226,7 +226,7 @@ export default function SectionProfile({ ...rest }) {
 
   useEffect(() => {
 
-    if (!user) Router.push("/login");
+
 
     if (user.profile.address.state === "TX") {
       setHomeState(true)
