@@ -325,7 +325,18 @@ export default function HeaderLinks(props) {
       </ListItem> */}
 
       <ListItem className={classes.listItem}>
-        <Hidden mdDown>
+        <Link href="/signup" as="/signup">
+          <Button
+
+            color={"white"}
+            target="_blank"
+            className={classes.navButton}
+            round
+          >
+            <ShoppingCart className={classes.icons} />become a member
+          </Button>
+        </Link>
+        {/* <Hidden mdDown>
           <Link href="/signup" as="/signup">
             <Button
 
@@ -350,7 +361,7 @@ export default function HeaderLinks(props) {
               <ShoppingCart className={classes.icons} /> become a member
           </Button>
           </Link>
-        </Hidden>
+        </Hidden> */}
       </ListItem>
       <ListItem className={classes.listItem}>
         <Link href="/login" as="/login">

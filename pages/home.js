@@ -99,11 +99,10 @@ export default function LandingPage({ ...rest }) {
             </GridItem> */}
           </GridContainer>
           <GridContainer>
-            <GridItem xs={12} sm={8} md={8}>
+            <GridItem xs={12} sm={12} md={12}>
               <h2 className={classes.title}>Our Mission:</h2>
               <h4>
-                To promote language access within healthcare by facilitating training, education, and communication between government, providers, interpreters, translators, and individual stakeholders.  We pursue our mission with a commitment to improving health equity, clinical outcomes, and patient safety for people with limited English proficiency
-                .
+                To promote language access within healthcare by facilitating training, education, and communication between government, providers, interpreters, translators, and individual stakeholders.  We pursue our mission with a commitment to improving health equity, clinical outcomes, and patient safety for people with limited English proficiency.
               </h4>
               <br />
               <Button

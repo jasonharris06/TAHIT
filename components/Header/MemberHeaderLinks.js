@@ -1,9 +1,12 @@
 /* eslint-disable */
 import React from "react";
+
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // react components for routing our app without refresh
 import Link from "next/link";
+import Router from "next/router";
+import { useUser } from '../../lib/hooks'
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -55,6 +58,7 @@ import styles from "assets/jss/nextjs-material-kit-pro/components/headerLinksSty
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
+  const [user, { mutate }] = useUser();
   const easeInOutQuad = (t, b, c, d) => {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
@@ -96,6 +100,15 @@ export default function HeaderLinks(props) {
 
   const { dropdownHoverColor } = props;
   const classes = useStyles();
+
+  async function handleLogout() {
+    const res = await fetch("/api/logout");
+    mutate({ user: null });
+
+    if (res.status === 204) {
+      Router.push("/login");
+    }
+  }
   return (
     <List className={classes.list + " " + classes.mlAuto}>
       <ListItem className={classes.listItem}>
@@ -324,45 +337,18 @@ export default function HeaderLinks(props) {
         />
       </ListItem> */}
 
+
       <ListItem className={classes.listItem}>
-        <Hidden mdDown>
-          <Link href="/signup" as="/signup">
-            <Button
+        <Button
 
-              color={"white"}
-              target="_blank"
-              className={classes.navButton}
-              round
-            >
-              <ShoppingCart className={classes.icons} />become a member
-          </Button>
-          </Link>
-        </Hidden>
-        <Hidden mdUp>
-          <Link href="/signup" as="/signup">
-            <Button
-
-              color={"info"}
-              target="_blank"
-              className={classes.navButton}
-              round
-            >
-              <ShoppingCart className={classes.icons} /> become a member
-          </Button>
-          </Link>
-        </Hidden>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Link href="/login" as="/login">
-          <Button
-
-            color={"login"}
-            target="_blank"
-            className={classes.navButton}
-            round
-          ><Icon.LogIn className={classes.icons} />Log In
+          color={"login"}
+          target="_blank"
+          className={classes.navButton}
+          round
+          onClick={handleLogout}
+        ><Icon.LogOut className={classes.icons} />Logout
         </Button>
-        </Link>
+
       </ListItem>
     </List>
   );

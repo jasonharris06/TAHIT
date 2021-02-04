@@ -164,7 +164,7 @@ export default function SignUpPage({ ...rest }) {
       <div
         className={classes.page}
         style={{
-          backgroundImage: "url(" + image + ")",
+          background: 'linear-gradient(45deg, rgba(69,73,198,1) 20%, rgba(202,74,73,1) 60%, rgba(252,176,69,1) 100%);',
           backgroundSize: "cover",
           backgroundPosition: "top center",
 
