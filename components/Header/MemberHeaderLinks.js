@@ -368,6 +368,7 @@ HeaderLinks.propTypes = {
     "warning",
     "danger",
     "rose",
-    "memberNav"
+    "memberNav",
+    "login"
   ])
 };
