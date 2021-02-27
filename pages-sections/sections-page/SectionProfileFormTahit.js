@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { useUser } from '../../lib/hooks'
 import Router from "next/router";
 // @material-ui/core components
@@ -30,9 +30,10 @@ import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import ImageUpload from 'components/CustomUpload/ImageUpload.js';
+import Table from "components/Table/Table.js";
 
 
-
+import tableStyle from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/contentAreas.js";
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
 import { cardTitle } from "assets/jss/nextjs-material-kit-pro.js";
 
@@ -44,7 +45,7 @@ const style = {
   contactUsStyle, cardTitle,
   textCenter: {
     textAlign: "center"
-  }
+  }, tableStyle
 }
 const overlay = makeStyles((theme) => ({
   backdrop: {
@@ -67,6 +68,64 @@ export default function SectionProfile({ ...rest }) {
 
   const [successMsg, setSuccessMsg] = useState("")
   const [errorMsg, setErrorMsg] = useState("")
+  const tableData = getTableData()
+  const [state, dispatch] = useReducer(reducer, getTableData())
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "addRow":
+
+        return [...state, addRow()]
+      case 'deleteRow':
+        const originalArr = [...state]
+        return originalArr.slice(0, originalArr.length - 1)
+      default:
+        throw new Error()
+    }
+  }
+
+  function getTableData() {
+    if (!user) return
+    if (user.profile.languagePair.length > 0) {
+      return [
+        [<Autocomplete
+          options={dropDownJson[0].languages}
+          getOptionLabel={(option) => option}
+          defaultValue={"English"}
+          id="select-on-focus"
+          selectOnFocus
+          renderInput={(params) => <TextField {...params} name="languagePair1" margin="normal" />}
+        />,
+        <Autocomplete
+          options={dropDownJson[0].languages}
+          getOptionLabel={(option) => option}
+
+          id="select-on-focus"
+          selectOnFocus
+          renderInput={(params) => <TextField {...params} name="languagePair2" margin="normal" />}
+        />]
+      ]
+    }
+  }
+
+  function addRow() {
+    return [<Autocomplete
+      options={dropDownJson[0].languages}
+      getOptionLabel={(option) => option}
+      defaultValue={"English"}
+      id="select-on-focus"
+      selectOnFocus
+      renderInput={(params) => <TextField {...params} name="languagePair1" margin="normal" />}
+    />,
+    <Autocomplete
+      options={dropDownJson[0].languages}
+      getOptionLabel={(option) => option}
+
+      id="select-on-focus"
+      selectOnFocus
+      renderInput={(params) => <TextField {...params} name="languagePair2" margin="normal" />}
+    />]
+  }
 
   function statePick(e, values) {
     e.preventDefault()
@@ -102,12 +161,12 @@ export default function SectionProfile({ ...rest }) {
       })
       return certs
     }
-    return []
+    return
   }
 
   function checkLang() {
     if (user.profile.language.length > 0) return user.profile.language
-    return []
+    return
   }
 
   function checAffiliation() {
@@ -580,6 +639,29 @@ export default function SectionProfile({ ...rest }) {
                     <FormControlLabel value="both" control={<Radio />} label="Both" />
                   </RadioGroup>
                 </FormControl>
+
+                <Table
+                  tableHead={["From", "To"]}
+                  tableData={state}
+                  customCellClasses={[
+                    classes.textCenter,
+                    classes.textRight,
+                    classes.textRight
+                  ]}
+                  customClassesForCells={[0, 4, 5]}
+                  customHeadCellClasses={[
+                    classes.textCenter,
+                    classes.textRight,
+                    classes.textRight
+                  ]}
+                  customHeadClassesForCells={[0, 4, 5]}
+                />
+                <Button color="success" onClick={() => dispatch({ type: 'addRow' })} round>
+                  Add More
+                    </Button>
+                <Button color="danger" onClick={() => dispatch({ type: 'deleteRow' })} disabled={state.length === 1 ? true : false} round>
+                  Delete Last
+                    </Button>
 
 
 
