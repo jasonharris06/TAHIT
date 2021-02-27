@@ -110,6 +110,7 @@
   {"profile":{
     "firstName": "",
     "lastName": "",
+    "middleName": "",
     "salutations": "",
     "phoneNumber":"",
     "workNumber": "",
@@ -123,10 +124,12 @@
     "workCity":"",
     "language": [],
     "certifications":[],
+    "languagePair": [],
     "employer":"",
     "jobTitle": "",
     "almaMater": "",
     "honorifics":"",
+    "serviceType": "",
     "socialMedia": {
       "facebook": "",
       "linkedIn": "",

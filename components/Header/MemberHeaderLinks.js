@@ -336,8 +336,22 @@ export default function HeaderLinks(props) {
           ]}
         />
       </ListItem> */}
+      <ListItem className={classes.listItem}>
+        <Link href="/member/profile-edit">
+          <Button
 
+            color={"login"}
+            target="_blank"
+            className={classes.navButton}
+            round
 
+          ><Icon.LogOut className={classes.icons} />
+          </Button>
+        </Link>
+
+      </ListItem>
+
+      <br></br>
       <ListItem className={classes.listItem}>
         <Button
 

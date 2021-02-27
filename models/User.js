@@ -39,6 +39,8 @@ const Social = {
 const Profile = {
   firstName: { type: String, trim: true },
   lastName: { type: String, trim: true },
+  middleName: { type: String, trim: true },
+  serviceType: { type: String, trim: true },
   salutations: { type: String, trim: true },
   phoneNumber: { type: String, trim: true },
   workNumber: { type: String, trim: true },
@@ -46,7 +48,9 @@ const Profile = {
   workCity: { type: String, trim: true },
   language: Array,
   proAffiliations: Array,
+  languagePair: Array,
   certifications: [Certification],
+  serviceType: { type: String, trim: true },
   employer: { type: String, trim: true },
   jobTitle: { type: String, trim: true },
   almaMater: { type: String, trim: true },

@@ -6,6 +6,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -29,20 +34,28 @@ import ImageUpload from 'components/CustomUpload/ImageUpload.js';
 
 
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
+import { cardTitle } from "assets/jss/nextjs-material-kit-pro.js";
+
 import Data from "../../data/profileDropdowns.json"
 
 
 const dropDownJson = Data
-
+const style = {
+  contactUsStyle, cardTitle,
+  textCenter: {
+    textAlign: "center"
+  }
+}
 const overlay = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
 }));
-const useStyles = makeStyles(contactUsStyle);
+const useStyles = makeStyles(style);
 export default function SectionProfile({ ...rest }) {
   const [user, { mutate }] = useUser()
+  const [serviceValue, setServiceValue] = useState('interpreter');
   const [homeState, setHomeState] = useState(false)
   const [lang, setLang] = useState({
     language: [],
@@ -321,6 +334,17 @@ export default function SectionProfile({ ...rest }) {
                   }}
                 />
                 <CustomInput
+                  labelText="Middle Name"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    defaultValue: `${!user.profile.middleName}` ? `${user.profile.middleName}` : '',
+                    name: "middleName"
+                  }}
+                />
+                <CustomInput
                   labelText="Last Name"
                   id="float"
                   formControlProps={{
@@ -331,6 +355,7 @@ export default function SectionProfile({ ...rest }) {
                     name: "lastName"
                   }}
                 />
+
                 <CustomInput
                   labelText="Honorifics (Ph.D, MA)"
                   id="float"
@@ -458,7 +483,7 @@ export default function SectionProfile({ ...rest }) {
 
             {homeState && <Card className={classes.textCenter}>
               <CardHeader color="danger">Work Proximity</CardHeader>
-              <CardBody>
+              <CardBody className={classes.textCenter}>
                 <h4 className={classes.cardTitle}>Choose a major metropolitan area </h4>
                 <p>
                   The city you choose will be the closest major city you are willing to work, or currently working in.
@@ -545,6 +570,19 @@ export default function SectionProfile({ ...rest }) {
                       margin="normal"
                     />)}
                 />
+                <br></br>
+                <h5 className={classes.cardTitle}>Which service would you like to provide?</h5>
+                <FormControl component="fieldset">
+
+                  <RadioGroup row aria-label="service" name="service" value={serviceValue} onChange={(e) => setServiceValue(e.target.value)}>
+                    <FormControlLabel value="interpreter" control={<Radio />} label="Interpreter" />
+                    <FormControlLabel value="translator" control={<Radio />} label="Translator" />
+                    <FormControlLabel value="both" control={<Radio />} label="Both" />
+                  </RadioGroup>
+                </FormControl>
+
+
+
               </CardBody>
             </Card>
             <br></br>
