@@ -8,6 +8,11 @@ import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import Favorite from "@material-ui/icons/Favorite";
+import Face from "@material-ui/icons/Face";
+import Chat from "@material-ui/icons/Chat";
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Build from "@material-ui/icons/Build";
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 // core components
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
@@ -21,14 +26,20 @@ import SectionText from "pages-sections/blog-post/SectionText.js";
 import SectionBlogInfo from "pages-sections/blog-post/SectionBlogInfo.js";
 import SectionComments from "pages-sections/blog-post/SectionComments.js";
 import SectionSimilarStories from "pages-sections/blog-post/SectionSimilarStories.js";
+import SectionInterpreterRegistry from "pages-sections/sections-page/SectionInterpreterRegistryTahit.js"
+import SectionTranslatorRegistry from "pages-sections/sections-page/SectionTranslatorRegistryTahit.js"
+
 import SectionRegistryTahit from "pages-sections/sections-page/SectionRegistryTahit.js"
 import SectionRegistryModal from "pages-sections/sections-page/SectionRegistryModal.js"
 
 import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
+import CustomTabs from "components/CustomTabs/CustomTabs.js";
 import background from "assets/img/greenblue-background.jpg"
 
 import whiteLogo from "assets/img/logo-white.png"
-
+const style = {
+  blogPostPageStyle
+}
 const useStyles = makeStyles(blogPostPageStyle);
 
 export default function BlogPostPage() {
@@ -76,13 +87,32 @@ export default function BlogPostPage() {
         </div>
       </Parallax>
       <div className={classes.main}>
-        <div className={classes.container}>
-          {/* <SectionText />
+
+        <CustomTabs
+          headerColor="primary"
+          tabs={[
+            {
+              tabName: "Translator Registry",
+              tabIcon: RecordVoiceOverIcon,
+              tabContent: (
+                <SectionTranslatorRegistry />
+              )
+            },
+            {
+              tabName: "Interpreter Registry",
+              tabIcon: MenuBookIcon,
+              tabContent: (
+                <SectionInterpreterRegistry />
+              )
+            }
+          ]}
+        />
+        {/* <SectionText />
           <SectionBlogInfo />
           <SectionComments /> */}
-          <SectionRegistryModal />
-          <SectionRegistryTahit />
-        </div>
+        <SectionRegistryModal />
+
+
       </div>
       {/* <SectionSimilarStories /> */}
       <Footer
