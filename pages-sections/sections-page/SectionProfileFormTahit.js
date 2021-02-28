@@ -11,10 +11,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // @material-ui/icons
+import Check from "@material-ui/icons/Check";
 
 
 // core components
@@ -31,6 +34,7 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import ImageUpload from 'components/CustomUpload/ImageUpload.js';
 import Table from "components/Table/Table.js";
+import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 
 
 import tableStyle from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/contentAreas.js";
@@ -39,7 +43,9 @@ import { cardTitle } from "assets/jss/nextjs-material-kit-pro.js";
 
 import Data from "../../data/profileDropdowns.json"
 
-
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const dropDownJson = Data
 const style = {
   contactUsStyle, cardTitle,
@@ -65,11 +71,14 @@ export default function SectionProfile({ ...rest }) {
   })
   const [userProfile, setProfile] = useState(dropDownJson[5])
   const [open, setOpen] = useState(false)
-
-  const [successMsg, setSuccessMsg] = useState("")
+  const [openAlert, setOpenAlert] = useState(false)
+  const [alert, setAlert] = useState({
+    alert: "",
+    msg: ""
+  })
   const [errorMsg, setErrorMsg] = useState("")
   const tableData = getTableData()
-  const [state, dispatch] = useReducer(reducer, getTableData())
+  const [state, dispatch] = useReducer(reducer, tableData)
 
   function reducer(state, action) {
     switch (action.type) {
@@ -85,13 +94,14 @@ export default function SectionProfile({ ...rest }) {
   }
 
   function getTableData() {
+    console.log("")
     if (!user) return
     if (user.profile.languagePair.length > 0) {
-      return [
-        [<Autocomplete
+      return user.profile.languagePair.map(item => {
+        return [<Autocomplete
           options={dropDownJson[0].languages}
           getOptionLabel={(option) => option}
-          defaultValue={"English"}
+          defaultValue={item[0]}
           id="select-on-focus"
           selectOnFocus
           renderInput={(params) => <TextField {...params} name="languagePair1" margin="normal" />}
@@ -99,14 +109,26 @@ export default function SectionProfile({ ...rest }) {
         <Autocomplete
           options={dropDownJson[0].languages}
           getOptionLabel={(option) => option}
-
+          defaultValue={item[1]}
           id="select-on-focus"
           selectOnFocus
           renderInput={(params) => <TextField {...params} name="languagePair2" margin="normal" />}
         />]
-      ]
+      })
+
+
+    } else {
+      return [addRow()]
     }
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenAlert(false);
+  };
 
   function addRow() {
     return [<Autocomplete
@@ -155,18 +177,21 @@ export default function SectionProfile({ ...rest }) {
   function checkCerts() {
     console.log("I ran", user.profile.certifications.length < 0)
     if (user.profile.certifications.length > 0) {
+      let copyLang = { ...lang }
       let certs = []
       user.profile.certifications.forEach(item => {
+        copyLang.certifications.push(item.title)
+        setLang(copyLang)
         certs.push(item.title)
       })
       return certs
     }
-    return
+    return []
   }
 
   function checkLang() {
     if (user.profile.language.length > 0) return user.profile.language
-    return
+    return []
   }
 
   function checAffiliation() {
@@ -177,24 +202,27 @@ export default function SectionProfile({ ...rest }) {
   async function onSubmit(e) {
     e.preventDefault()
     const copyProfile = { ...userProfile }
-
     var inputs = document.getElementById("profile-form").elements;
-
-
-    var body = []
-
+    var languagePairArray = []
     let i;
+
     for (i = 0; i < inputs.length; i++) {
       if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].type === "tel") {
         // Update text input
+        if (inputs[i].name === "languagePair1" && inputs[i].value !== '') {
+          languagePairArray.push([inputs[i].value])
+        }
+        if (inputs[i].name === "languagePair2" && inputs[i].value !== '') {
+          languagePairArray[languagePairArray.length - 1].push(inputs[i].value)
+        }
 
         if (inputs[i].value !== '') {
           switch (inputs[i].name) {
             case "firstName":
               copyProfile.profile.firstName = inputs[i].value
               break;
-            case "lastName":
-              copyProfile.profile.lastName = inputs[i].value
+            case "middleName":
+              copyProfile.profile.middleName = inputs[i].value
               break;
             case "lastName":
               copyProfile.profile.lastName = inputs[i].value
@@ -253,25 +281,26 @@ export default function SectionProfile({ ...rest }) {
               copyProfile.profile.socialMedia.instagram = inputs[i].value
               break;
 
-
-
-
           }
-          console.log(inputs[i].name, inputs[i].value)
-          let ojb =
-            body.push({ [inputs[i].name]: inputs[i].value })
-          //console.log(inputs[i])
-          // inputs[i].value.toLocaleUpperCase();
         }
       }
     }
-    console.log(body)
+
     if (i == inputs.length) {
       setOpen(true)
+
+      let scubbedLanguageArray = languagePairArray.filter(item => item.length == 2)
+
       //add the Lang state hook date to fill in the language and Certifications. 
       copyProfile.profile.language = lang.language.length == 0 ? user.profile.language : lang.language
       copyProfile.profile.certifications = lang.certifications
+
+
+      //
+      copyProfile.profile.serviceType = serviceValue
+      copyProfile.profile.languagePair = scubbedLanguageArray
       console.log(copyProfile)
+
       const res = await fetch('/api/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -279,17 +308,26 @@ export default function SectionProfile({ ...rest }) {
       })
 
       if (res.status === 200) {
-        setOpen(false)
-        const userObj = await res.data
-        console.log(userObj)
-        setOpen(false)
-        mutate({ user: userObj })
-        setSuccessMsg("Saved")
 
-        setTimeout(function () { setSuccessMsg('') }, 3000)
+        setOpen(false)
+        setAlert(
+          {
+            alert: "success",
+            msg: "Success! Your profile has been saved"
+          })
+        setOpenAlert(true)
+
+
 
       } else {
         setOpen(false)
+        setAlert(
+          {
+            alert: "error",
+            msg: "Oops! Somthing went wrong. Try again later"
+          })
+        setOpenAlert(true)
+
       }
     }
   }
@@ -299,9 +337,14 @@ export default function SectionProfile({ ...rest }) {
   useEffect(() => {
 
 
-
-    if (user.profile.address.state === "TX") {
-      setHomeState(true)
+    if (user) {
+      if (user.profile.address.state === "TX") {
+        setHomeState(true)
+      }
+      if (user.profile.serviceType !== "interpreter") {
+        setServiceValue(user.profile.serviceType)
+      }
+      getTableData()
     }
     // setProfile({ firstName: user.profile.firstname })
     //setProfile({ profile: { firstName: user.profile.firstname } })
@@ -316,6 +359,11 @@ export default function SectionProfile({ ...rest }) {
   const overlayClasses = overlay()
   return (
     <>
+      <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={alert.alert}>
+          {alert.msg}
+        </Alert>
+      </Snackbar>
       <Backdrop className={overlayClasses.backdrop} open={open}>
         <CircularProgress color="inherit" />
       </Backdrop>
@@ -337,7 +385,7 @@ export default function SectionProfile({ ...rest }) {
 
 
       </GridContainer>
-      <GridContainer >
+      {user && <GridContainer >
         <GridItem xs={12} md={3} align="center"><h5 className={classes.textCenter} style={{ color: "black" }}>Profile Picture</h5>
           <ImageUpload />
         </GridItem>
@@ -568,103 +616,93 @@ export default function SectionProfile({ ...rest }) {
             <Card className={classes.textCenter}>
               <CardHeader color="danger">Languages and Certifications</CardHeader>
               <CardBody>
-                <Autocomplete
-                  multiple
-                  id="tags-standard"
-                  //clearOnEscape
-                  onChange={(event, value) => updateLang(value, "language")}
-                  options={dropDownJson[0].languages}
-                  defaultValue={checkLang}
-                  getOptionLabel={(option) => option}
-                  renderTags={(value, getTagProps) =>
-                    value.map((option, index) => (
-                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-                    ))
-                  }
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Select Languages"
-                      margin="normal"
-                    />)}
-                />
+                <>
+                  <Autocomplete
+                    multiple
+                    id="tags-standard"
+                    //clearOnEscape
+                    onChange={(event, value) => updateLang(value, "language")}
+                    options={dropDownJson[0].languages}
+                    defaultValue={checkLang}
+                    getOptionLabel={(option) => option}
+                    renderTags={(value, getTagProps) =>
+                      value.map((option, index) => (
+                        <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                      ))
+                    }
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Select Languages"
+                        margin="normal"
+                      />)}
+                  />
 
-                <Autocomplete
-                  multiple
-                  id="tags-standard"
-                  //clearOnEscape
-                  onChange={(event, value) => updateLang(value, "cert")}
-                  options={dropDownJson[2].certifications}
-                  defaultValue={checkCerts}
-                  getOptionLabel={(option) => option}
-                  renderTags={(value, getTagProps) =>
-                    value.map((option, index) => (
-                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-                    ))
-                  }
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Certifications"
-                      margin="normal"
-                    />)}
-                />
-                <Autocomplete
-                  multiple
-                  id="tags-standard"
-                  //clearOnEscape
-                  onChange={(event, value) => updateLang(value, "affiliation")}
-                  options={dropDownJson[6].proAffiliation}
-                  defaultValue={checAffiliation}
-                  getOptionLabel={(option) => option}
-                  renderTags={(value, getTagProps) =>
-                    value.map((option, index) => (
-                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-                    ))
-                  }
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Select Affiliation"
-                      margin="normal"
-                    />)}
-                />
-                <br></br>
-                <h5 className={classes.cardTitle}>Which service would you like to provide?</h5>
-                <FormControl component="fieldset">
+                  <Autocomplete
+                    multiple
+                    id="tags-standard"
+                    clearOnEscape
+                    onChange={(event, value) => updateLang(value, "cert")}
+                    options={dropDownJson[2].certifications}
+                    defaultValue={checkCerts}
+                    getOptionLabel={(option) => option}
+                    renderTags={(value, getTagProps) =>
+                      value.map((option, index) => (
+                        <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                      ))
+                    }
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Certifications"
+                        margin="normal"
+                      />)}
+                  />
+                  <Autocomplete
+                    multiple
+                    id="tags-standard"
+                    //clearOnEscape
+                    onChange={(event, value) => updateLang(value, "affiliation")}
+                    options={dropDownJson[6].proAffiliation}
+                    defaultValue={checAffiliation}
+                    getOptionLabel={(option) => option}
+                    renderTags={(value, getTagProps) =>
+                      value.map((option, index) => (
+                        <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                      ))
+                    }
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Select Affiliation"
+                        margin="normal"
+                      />)}
+                  />
+                  <br></br>
+                  <h5 className={classes.cardTitle}>Which service would you like to provide?</h5>
+                  <FormControl component="fieldset">
 
-                  <RadioGroup row aria-label="service" name="service" value={serviceValue} onChange={(e) => setServiceValue(e.target.value)}>
-                    <FormControlLabel value="interpreter" control={<Radio />} label="Interpreter" />
-                    <FormControlLabel value="translator" control={<Radio />} label="Translator" />
-                    <FormControlLabel value="both" control={<Radio />} label="Both" />
-                  </RadioGroup>
-                </FormControl>
+                    <RadioGroup row aria-label="service" name="service" value={serviceValue} onChange={(e) => setServiceValue(e.target.value)}>
+                      <FormControlLabel value="interpreter" control={<Radio />} label="Interpreter" />
+                      <FormControlLabel value="translator" control={<Radio />} label="Translator" />
+                      <FormControlLabel value="both" control={<Radio />} label="Both" />
+                    </RadioGroup>
+                  </FormControl>
+                  <br></br>
 
-                <Table
-                  tableHead={["From", "To"]}
-                  tableData={state}
-                  customCellClasses={[
-                    classes.textCenter,
-                    classes.textRight,
-                    classes.textRight
-                  ]}
-                  customClassesForCells={[0, 4, 5]}
-                  customHeadCellClasses={[
-                    classes.textCenter,
-                    classes.textRight,
-                    classes.textRight
-                  ]}
-                  customHeadClassesForCells={[0, 4, 5]}
-                />
-                <Button color="success" onClick={() => dispatch({ type: 'addRow' })} round>
-                  Add More
-                    </Button>
-                <Button color="danger" onClick={() => dispatch({ type: 'deleteRow' })} disabled={state.length === 1 ? true : false} round>
-                  Delete Last
-                    </Button>
+                  {serviceValue !== "interpreter" && <Table
+                    tableHead={["From", "To"]}
+                    tableData={state}
 
+                  />}
 
-
+                  {serviceValue !== "interpreter" && <Button color="success" onClick={() => dispatch({ type: 'addRow' })} round>
+                    Add More
+                    </Button>}
+                  {serviceValue !== "interpreter" && <Button color="danger" onClick={() => dispatch({ type: 'deleteRow' })} disabled={state?.length === 1 ? true : false} round>
+                    Delete Last
+                    </Button>}
+                </>
               </CardBody>
             </Card>
             <br></br>
@@ -764,8 +802,8 @@ export default function SectionProfile({ ...rest }) {
                   }}
                 /></CardBody>
             </Card>
-            {errorMsg && <Danger>{errorMsg}</Danger>}
-            {successMsg && <Success>{successMsg}</Success>}
+
+
             <div className={classes.textCenter}>
               <Button type="submit" color="primary" round>
                 Save Changes
@@ -773,7 +811,7 @@ export default function SectionProfile({ ...rest }) {
             </div>
           </form>
         </GridItem>
-      </GridContainer>
+      </GridContainer>}
     </>
   )
 }
