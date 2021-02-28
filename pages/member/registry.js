@@ -1,6 +1,7 @@
 /*eslint-disable*/ import React from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
+import { useRegistry } from '../../lib/hooks'
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -42,7 +43,8 @@ const style = {
 }
 const useStyles = makeStyles(blogPostPageStyle);
 
-export default function BlogPostPage() {
+export default function RegistryPage() {
+  const [registryData, { mutateData }] = useRegistry()
   // React.useEffect(() => {
   //   window.scrollTo(0, 0);
   //   document.body.scrollTop = 0;
@@ -95,7 +97,9 @@ export default function BlogPostPage() {
               tabName: "Translator Registry",
               tabIcon: RecordVoiceOverIcon,
               tabContent: (
-                <SectionTranslatorRegistry />
+                <>
+                  {registryData && <SectionTranslatorRegistry />}
+                </>
               )
             },
             {

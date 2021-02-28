@@ -281,11 +281,11 @@ export default function Registry({ ...rest }) {
     proAffiliations: "",
     id: ""
   })
-  useEffect(() => {
-    setRegistry(registryData)
-  }, [registryData])
-  console.log(registryData)
-  console.log("sectionRegistryTahit")
+  // useEffect(() => {
+  //   setRegistry(registryData)
+  // }, [registryData])
+  // console.log(registryData)
+  // console.log("sectionRegistryTahit")
   const classes = useStyles();
 
   const columns = React.useMemo(
@@ -317,79 +317,65 @@ export default function Registry({ ...rest }) {
         columns: [
 
           {
-            Header: 'First Name',
-            accessor: 'profile.firstName',
+            Header: 'First Middle',
+            accessor: 'firstMiddleName',
           },
           {
-            Header: 'Last Name',
-            accessor: 'profile.lastName',
+            Header: 'Last',
+            accessor: 'lastName',
             // Use our custom `fuzzyText` filter on this column
             //filter: 'fuzzyText',
           },
         ],
       },
       {
-        Header: 'Info',
+        Header: 'Languages',
         columns: [
+
           {
-            // Build our expander column
-            id: 'expander', // Make sure it has an ID
-            Header: ({ getToggleAllRowsExpandedProps, isAllRowsExpanded }) => (
-              <span {...getToggleAllRowsExpandedProps()}>
-                {isAllRowsExpanded ? <ArrowDropDownIcon /> : <ArrowRightIcon />}
-              </span>
-            ),
-            Cell: ({ row }) =>
-              // Use the row.canExpand and row.getToggleRowExpandedProps prop getter
-              // to build the toggle for expanding a row
-              row.canExpand ? (
-                <span
-                  {...row.getToggleRowExpandedProps({
-                    style: {
-                      // We can even use the row.depth property
-                      // and paddingLeft to indicate the depth
-                      // of the row
-                      paddingLeft: `${row.depth * 2}rem`,
-                    },
-                  })}
-                >
-                  {row.isExpanded ? <ArrowDropDownIcon /> : <ArrowRightIcon />}
-                </span>
-              ) : null,
-          },
-          {
-            Header: 'Certifications',
-            accessor: 'certificate.title',
-            filter: 'filterRowsWithSubrows',
-            Filter: SelectColumnFilter,
+            Header: 'Language',
+            accessor: 'language',
+
+
             //autoResetFilters: true
           },
+        ]
+      },
+      {
+        Header: 'Certification and Qualifications',
+        columns: [
           {
             Header: 'Verified',
-            accessor: 'certificate.verified',
-            Cell: (props) => (
+            accessor: 'verified',
 
-              `${props.value}` === "true" ? "Yes" : "No"),
-            disableFilters: true,
+            Filter: SelectColumnFilter
             //Filter: NumberRangeColumnFilter,
             // filter: 'between',
           },
           {
-            Header: 'EPIQ Certified',
-            accessor: 'status',
-            //Filter: SelectColumnFilter,
-            // filter: 'includes',
+            Header: 'EPIQ Qualified',
+            accessor: 'epicQualified',
+            Filter: SelectColumnFilter
+            //Filter: NumberRangeColumnFilter,
+            // filter: 'between',
           },
+
+        ]
+      },
+      {
+        Header: 'Location',
+        columns: [
           {
-            Header: 'Location',
-            accessor: 'profile.workCity',
+            Header: 'Work Proximity',
+            accessor: 'workCity',
 
             Filter: SelectColumnFilter,
             // filter: 'includes',
-          },
-
-        ],
+          }
+        ]
       },
+
+
     ],
     []
   )
@@ -432,7 +418,7 @@ export default function Registry({ ...rest }) {
 
   }
 
-  const data = React.useMemo(() => registryData)
+  const data = React.useMemo(() => registryData[0])
   console.log(data)
   return (
     <>

@@ -210,7 +210,7 @@ fuzzyTextFilterFn.autoRemove = val => !val
 
 // Our table component
 export default function Table({ columns, data }) {
-  console.log(data)
+
   const filterTypes = React.useMemo(
     () => ({
       // Add a new fuzzyTextFilterFn filter type.
@@ -219,7 +219,7 @@ export default function Table({ columns, data }) {
         return rows.filter((row) => {
 
           const rowValue = row.values[id];
-          console.log(rowValue)
+
           return rowValue ? String(rowValue).toLowerCase() === String(filterValue).toLowerCase() : true;
         });
       },

@@ -16,9 +16,27 @@ handler.use(dbConnect).get(async (req, res) => {
 
     console.log(" ln 10 I ran")
     const registry = []
+    const interpreterReg = []
+    const translatorReg = []
     const users = await User.find({}).exec()
     var certs = []
     for (var i = 0; users.length > i; i++) {
+      let user = users[i].profile
+      let id = users[i]._id
+      switch (user.serviceType) {
+        case "translator":
+          buildTranslator(user, id)
+          break;
+        case "interpreter":
+          buildInterpreter(user, id)
+          break;
+        case "both":
+          buildInterpreter(user, id)
+          buildTranslator(user, id)
+          break;
+        default:
+          break;
+      }
       certs = [...users[i].profile.certifications]
       //console.log(certs[0])
       registry.push({
@@ -32,7 +50,40 @@ handler.use(dbConnect).get(async (req, res) => {
       })
     }
 
-    res.json(registry);
+    function buildInterpreter(user, id) {
+      let certObj = (cert) => cert.verified === true
+
+      if (user.language.length === 0) return
+      user.language.forEach(item => {
+        interpreterReg.push({
+          id,
+          firstMiddleName: `${user.firstName} ${user.middleName}`.trimEnd(),
+          lastName: `${user.lastName}`.trimEnd(),
+          language: item,
+          verified: user.certifications.some(certObj) ? "Yes" : "No",
+          epicQualified: user.epicQualified ? "Yes" : "No",
+          workCity: user.workCity ? user.workCity : "N/A"
+        })
+      });
+    }
+
+    function buildTranslator(user, id) {
+      let certObj = (cert) => cert.verified === true
+      user.languagePair.forEach(item => {
+        translatorReg.push({
+          id,
+          firstMiddleName: `${user.firstName} ${user.middleName}`.trimEnd(),
+          lastName: `${user.lastName}`.trimEnd(),
+          languageFrom: item[0],
+          languageTo: item[1],
+          verified: user.certifications.some(certObj) ? "Yes" : "No",
+          workCity: user.workCity ? user.workCity : "N/A"
+        })
+      });
+
+    }
+
+    res.json([interpreterReg, translatorReg]);
   }
 
 }).put(async (req, res) => {
