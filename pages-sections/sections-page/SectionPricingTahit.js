@@ -55,11 +55,67 @@ const WhiteRadio = withStyles({
 const useStyles = makeStyles(pricingStyle);
 
 export default function SectionPricing({ ...rest }) {
-  const [selectedValue, setSelectedValue] = React.useState("oneTime");
+  const [personalValue, setPersonalValue] = React.useState("oneTime");
+  const [studentValue, setStudentValue] = React.useState("oneTime");
+  const [orgValue, setOrgValue] = React.useState("oneTime");
+  const [medOrgValue, setMedOrgValue] = React.useState("oneTime");
+  const [largeOrgValue, setLargeOrgValue] = React.useState("oneTime");
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const handleChange = (event, membership) => {
+    switch(membership){
+      case "personal":
+        setPersonalValue(event.target.value);
+        break;
+      case "student":
+        setStudentValue(event.target.value);
+        break;
+      case "org":
+        setOrgValue(event.target.value);
+        break;
+      case "medOrg":
+        setMedOrgValue(event.target.value);
+        break;
+      case 'largeOrg':
+        setLargeOrgValue(event.target.value);
+        break;
+      
+    }
   };
+
+  function onSubmit (e){
+    e.preventDefault()
+    const membership = e.currentTarget.id
+    switch(membership){
+      case "personal":
+        personalValue === "oneTime" ? createStripeSession("price_1ITY1JCqdiCf2o8JDjS41D6Z","payment"): createStripeSession("personal_recur","subscription");
+        break;
+      case "student":
+        studentValue === "oneTime" ? createStripeSession("price_1ITY5QCqdiCf2o8JKN4Lyxlu","payment"): createStripeSession("price_1ITa2iCqdiCf2o8JN2YzyFp4","subscription");
+        break;
+      case "org":
+        orgValue === "oneTime" ? createStripeSession("price_1ITY6DCqdiCf2o8JKIvTWjok","payment"): createStripeSession("department_recu","subscription");
+        break;
+      case "medOrg":
+        medOrgValue === "oneTime" ? createStripeSession("price_1ITY6vCqdiCf2o8Ju7CzMLCi","payment"): createStripeSession("med_org_recur","subscription");
+        break;
+      case 'largeOrg':
+        largeOrgValue === "oneTime" ? createStripeSession("price_1ITY7YCqdiCf2o8Jfkt2laJA","payment"): createStripeSession("LargeOrg_Rec","subscription");
+        break;
+      
+    }
+    async function createStripeSession(price, mode){
+        const res = await fetch('api/create-checkout-session',{
+          method: 'POST',
+          headers: {'Content-Type': "application/json"},
+          body: JSON.stringify({price,mode})
+        })
+        console.log(res)
+
+        
+    }
+  
+  }
+
   const classes = useStyles();
   return (
     <div className="cd-section" {...rest}>
@@ -132,18 +188,18 @@ export default function SectionPricing({ ...rest }) {
                           <CardFooter
                             pricing
                             className={classes.justifyContentCenter}
-                          > <form >
+                          > <form onSubmit={onSubmit}  id="personal" >
                              <FormLabel component="legend" style={{color: "white"}}>Type of Subscription</FormLabel>
                         
-                          <RadioGroup row aria-label="Type of Subscription" name="gender1" value={selectedValue} onChange={handleChange}>
+                          <RadioGroup row aria-label="Type of Subscription" name="subscription" value={personalValue} onChange={(e) => handleChange(e, "personal")}>
                             <FormControlLabel value="oneTime" control={<WhiteRadio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
                             <FormControlLabel value="recurring" control={<WhiteRadio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
                           </RadioGroup>
                          
 
-                            <Button color="rose" round>
+                            <Button color="rose" round type="submit">
                               BUY NOW
-                              </Button>
+                              </Button >
                               </form>
                           </CardFooter>
                           {/* <Button round color="info">
@@ -194,7 +250,7 @@ export default function SectionPricing({ ...rest }) {
                            <form >
                              <FormLabel component="legend" style={{color: "black"}}>Type of Subscription</FormLabel>
                         
-                          <RadioGroup row aria-label="Type of Subscription" name="gender1" value={selectedValue} onChange={handleChange}>
+                          <RadioGroup row aria-label="Type of Subscription" name="subscription" value={studentValue} onChange={(e) => handleChange(e, "student")}>
                             <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
                             <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
                           </RadioGroup>
@@ -265,9 +321,19 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
+                          <form >
+                             <FormLabel component="legend" style={{color: "black"}}>Type of Subscription</FormLabel>
+                        
+                          <RadioGroup row aria-label="Type of Subscription" name="subscription" value={orgValue} onChange={(e) => handleChange(e, "org")}>
+                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                          </RadioGroup>
+                         
+
                             <Button color="rose" round>
-                              Get Started
-                          </Button>
+                              BUY NOW
+                              </Button>
+                              </form>
                           </CardFooter>
                         </Card>
                       </GridItem>
@@ -313,9 +379,19 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
-                            <Button color="white" round>
-                              Get Started
-                          </Button>
+                          <form >
+                             <FormLabel component="legend" style={{color: "white"}}>Type of Subscription</FormLabel>
+                        
+                          <RadioGroup row aria-label="Type of Subscription" name="subscription" value={medOrgValue} onChange={(e) => handleChange(e, "medOrg")}>
+                            <FormControlLabel value="oneTime" control={<WhiteRadio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<WhiteRadio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                          </RadioGroup>
+                         
+
+                            <Button color="rose" round>
+                              BUY NOW
+                              </Button>
+                              </form>
                           </CardFooter>
                         </Card>
                       </GridItem>
@@ -355,9 +431,19 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
+                          <form >
+                             <FormLabel component="legend" style={{color: "black"}}>Type of Subscription</FormLabel>
+                        
+                          <RadioGroup row aria-label="Type of Subscription" name="subscription" value={largeOrgValue} onChange={(e) => handleChange(e, "largeOrg")}>
+                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                          </RadioGroup>
+                         
+
                             <Button color="rose" round>
-                              Get Started
-                          </Button>
+                              BUY NOW
+                              </Button>
+                              </form>
                           </CardFooter>
                         </Card>
                       </GridItem>
