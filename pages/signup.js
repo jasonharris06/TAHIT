@@ -37,9 +37,21 @@ import Muted from "components/Typography/Muted.js";
 import signupPageStyle from "assets/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
 
 import image from "assets/img/background-gradient.jpg"
+import Stripe from "stripe";
 
 
 const useStyles = makeStyles(signupPageStyle);
+
+export async function getServerSideProps() {
+  const stripe = new Stripe('sk_test_ekaNcygzrDO5HaiufY05xPAw')
+
+  const paymentIntent = await stripe.paymentIntents.create({
+
+  })
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+}
 
 export default function SignUpPage({ ...rest }) {
   const [checked, setChecked] = React.useState([1]);

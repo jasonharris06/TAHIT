@@ -1,6 +1,13 @@
 import React from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import { withStyles } from '@material-ui/core/styles';
+import { white, grey } from '@material-ui/core/colors';
 // @material-ui/icons
 import Weekend from "@material-ui/icons/Weekend";
 import Home from "@material-ui/icons/Home";
@@ -9,6 +16,8 @@ import AccountBalance from "@material-ui/icons/AccountBalance";
 import Check from "@material-ui/icons/Check";
 import Close from "@material-ui/icons/Close";
 import People from "@material-ui/icons/People";
+import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
+
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -22,14 +31,35 @@ import Success from "components/Typography/Success.js";
 import Danger from "components/Typography/Danger.js";
 
 import pricingStyle from "assets/jss/nextjs-material-kit-pro/pages/sectionsSections/pricingStyle.js";
+import radioSwitchStyle from "assets/jss/nextjs-material-kit-pro/customCheckboxRadioSwitchStyle.js";
+import { cardTitle } from "assets/jss/nextjs-material-kit-pro.js";
 
+const styles = {
+  pricingStyle,
+
+}
 import bg11 from "assets/img/bg11.jpg";
 import city from "assets/img/examples/city.jpg";
 import cardBlog3 from "assets/img/background-texture.jpg";
 
+const WhiteRadio = withStyles({
+  root: {
+    color: grey[50],
+    '&$checked': {
+      color: grey[100],
+    },
+  },
+  checked: {},
+})((props) => <Radio color="default" {...props} />);
+
 const useStyles = makeStyles(pricingStyle);
 
 export default function SectionPricing({ ...rest }) {
+  const [selectedValue, setSelectedValue] = React.useState("oneTime");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
   const classes = useStyles();
   return (
     <div className="cd-section" {...rest}>
@@ -98,13 +128,23 @@ export default function SectionPricing({ ...rest }) {
                             
                             </p>
                           </CardBody>
+                          <hr></hr>
                           <CardFooter
                             pricing
                             className={classes.justifyContentCenter}
-                          >
+                          > <form >
+                             <FormLabel component="legend" style={{color: "white"}}>Type of Subscription</FormLabel>
+                        
+                          <RadioGroup row aria-label="Type of Subscription" name="gender1" value={selectedValue} onChange={handleChange}>
+                            <FormControlLabel value="oneTime" control={<WhiteRadio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<WhiteRadio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                          </RadioGroup>
+                         
+
                             <Button color="rose" round>
                               BUY NOW
                               </Button>
+                              </form>
                           </CardFooter>
                           {/* <Button round color="info">
                                 Choose plan
@@ -146,13 +186,24 @@ export default function SectionPricing({ ...rest }) {
                               It's expensive being a student, and TAHIT wants to lend a hand.  If you join as a student with your ".edu" email account, you are eligible for this student membership that costs a fraction of an individual membership.  You may have to survive on ramen, but you can also be connected to the profession.  Join today!.
                             </p>
                           </CardBody>
+                          <hr></hr>
                           <CardFooter
                             pricing
                             className={classes.justifyContentCenter}
                           >
+                           <form >
+                             <FormLabel component="legend" style={{color: "black"}}>Type of Subscription</FormLabel>
+                        
+                          <RadioGroup row aria-label="Type of Subscription" name="gender1" value={selectedValue} onChange={handleChange}>
+                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                          </RadioGroup>
+                         
+
                             <Button color="rose" round>
                               BUY NOW
                               </Button>
+                              </form>
                           </CardFooter>
                           {/* <Button round color="info">
                                 Choose plan
