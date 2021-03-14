@@ -66,6 +66,12 @@ const Profile = {
 
 }
 
+const Org = {
+  name: { type: String, trim: true },
+  admin: { type: Boolean, default: false },
+
+}
+
 //User Schema
 const UserSchema = new mongoose.Schema(
   {
@@ -78,18 +84,20 @@ const UserSchema = new mongoose.Schema(
     },
     profile: Profile,
     memberType: { type: String, trim: true },
+    stripeCustomerNumber: { type: String, trim: true },
     password: String,
     tahitPasswordToken: String,
     tahitPasswordExpires: Date,
     acctActive: Boolean,
     paidThrough: Date,
-    org: { type: String, trim: true },
+    subscription: { type: Boolean, default: false },
+    org: { Org },
     notifications: Notifications,
     PremiumAccount: { type: Boolean, default: false },
     following: Array,
     followers: Array,
     likedThread: Array,
-    orgAdmin: Boolean,
+
     createDate: {
       type: Date,
       default: Date.now,
