@@ -42,18 +42,33 @@ import Stripe from "stripe";
 
 const useStyles = makeStyles(signupPageStyle);
 
-export async function getServerSideProps() {
-  const stripe = new Stripe('sk_test_ekaNcygzrDO5HaiufY05xPAw')
+export async function getServerSideProps(context) {
+  const id = context.query.id
+  const url = ((process.env.NODE_ENV || '').trim() === 'production') ? `https://tahit.org/api/checkout-session?id=${id}` : `http://localhost:3000/api/checkout-session?id=${id}`
+  const res = await fetch(url)
 
-  const paymentIntent = await stripe.paymentIntents.create({
+  const data = await res.json()
+  console.log(data)
 
-  })
-  return {
-    props: {}, // will be passed to the page component as props
+  if (!data) {
+    return {
+      notFound: true,
+    }
   }
+
+  return { props: { data } }
+
+  // const stripe = new Stripe('sk_test_ekaNcygzrDO5HaiufY05xPAw')
+
+  // const paymentIntent = await stripe.paymentIntents.create({
+
+  // })
+  // return {
+  //   props: {}, // will be passed to the page component as props
+  // }
 }
 
-export default function SignUpPage({ ...rest }) {
+export default function SignUpPage({ data }) {
   const [checked, setChecked] = React.useState([1]);
   const [errorMsg, setErrorMsg] = useState()
   const [form, setForm] = useState({
@@ -171,7 +186,7 @@ export default function SignUpPage({ ...rest }) {
             </GridItem>
           </GridContainer>}
 
-        {...rest}
+
       />
       <div
         className={classes.page}
@@ -190,6 +205,7 @@ export default function SignUpPage({ ...rest }) {
                 <CardBody>
                   <GridContainer justify="center">
                     <GridItem xs={12} sm={5} md={5}>
+                      <pre>{`${JSON.stringify(data, null, 2)}`}</pre>
                       {/* <InfoArea
                         className={classes.infoArea}
                         title="Marketing"

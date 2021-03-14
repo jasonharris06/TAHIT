@@ -10,7 +10,7 @@ handler.post(async (req, res) => {
     console.log(stripe.checkout.sessions.create)
     console.log(req.body.price)
     const session = await stripe.checkout.sessions.create({
-        success_url: "http://localhost:3000/home?id={CHECKOUT_SESSION_ID}",
+        success_url: "http://localhost:3000/signup?id={CHECKOUT_SESSION_ID}",
         cancel_url: 'http://localhost:3000',
         payment_method_types: ['card'],
         line_items: [{

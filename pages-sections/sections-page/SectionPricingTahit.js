@@ -1,4 +1,6 @@
 import React from "react";
+import {loadStripe} from '@stripe/stripe-js';
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
@@ -51,7 +53,7 @@ const WhiteRadio = withStyles({
   },
   checked: {},
 })((props) => <Radio color="default" {...props} />);
-
+const stripePromise = loadStripe("pk_test_XDfza0ePYwHU9RKNfqy6FSDJ")
 const useStyles = makeStyles(pricingStyle);
 
 export default function SectionPricing({ ...rest }) {
@@ -104,12 +106,22 @@ export default function SectionPricing({ ...rest }) {
       
     }
     async function createStripeSession(price, mode){
+      const stripe = await stripePromise;
+
         const res = await fetch('api/create-checkout-session',{
           method: 'POST',
           headers: {'Content-Type': "application/json"},
           body: JSON.stringify({price,mode})
         })
-        console.log(res)
+
+        const session = await res.json();
+
+        const result = await stripe.redirectToCheckout({sessionId: session.id,})
+        if (result.error) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, display the localized error message to your customer
+          // using `result.error.message`.
+        }
 
         
     }
@@ -192,8 +204,8 @@ export default function SectionPricing({ ...rest }) {
                              <FormLabel component="legend" style={{color: "white"}}>Type of Subscription</FormLabel>
                         
                           <RadioGroup row aria-label="Type of Subscription" name="subscription" value={personalValue} onChange={(e) => handleChange(e, "personal")}>
-                            <FormControlLabel value="oneTime" control={<WhiteRadio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
-                            <FormControlLabel value="recurring" control={<WhiteRadio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                            <FormControlLabel value="oneTime" control={<WhiteRadio />} label="One Time" inputprops={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<WhiteRadio />} label="Recurring" inputprops={{ 'aria-label': 'Recurring' }} />
                           </RadioGroup>
                          
 
@@ -247,16 +259,16 @@ export default function SectionPricing({ ...rest }) {
                             pricing
                             className={classes.justifyContentCenter}
                           >
-                           <form >
+                           <form onSubmit={onSubmit}  id="student" >
                              <FormLabel component="legend" style={{color: "black"}}>Type of Subscription</FormLabel>
                         
                           <RadioGroup row aria-label="Type of Subscription" name="subscription" value={studentValue} onChange={(e) => handleChange(e, "student")}>
-                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
-                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputprops={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputprops={{ 'aria-label': 'Recurring' }} />
                           </RadioGroup>
                          
 
-                            <Button color="rose" round>
+                            <Button color="rose" round type="submit">
                               BUY NOW
                               </Button>
                               </form>
@@ -321,16 +333,16 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
-                          <form >
+                          <form onSubmit={onSubmit}  id="org" >
                              <FormLabel component="legend" style={{color: "black"}}>Type of Subscription</FormLabel>
                         
                           <RadioGroup row aria-label="Type of Subscription" name="subscription" value={orgValue} onChange={(e) => handleChange(e, "org")}>
-                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
-                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputprops={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputprops={{ 'aria-label': 'Recurring' }} />
                           </RadioGroup>
                          
 
-                            <Button color="rose" round>
+                            <Button color="rose" round type="submit">
                               BUY NOW
                               </Button>
                               </form>
@@ -379,16 +391,16 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
-                          <form >
+                          <form onSubmit={onSubmit}  id="medOrg" >
                              <FormLabel component="legend" style={{color: "white"}}>Type of Subscription</FormLabel>
                         
                           <RadioGroup row aria-label="Type of Subscription" name="subscription" value={medOrgValue} onChange={(e) => handleChange(e, "medOrg")}>
-                            <FormControlLabel value="oneTime" control={<WhiteRadio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
-                            <FormControlLabel value="recurring" control={<WhiteRadio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                            <FormControlLabel value="oneTime" control={<WhiteRadio />} label="One Time" inputprops={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<WhiteRadio />} label="Recurring" inputprops={{ 'aria-label': 'Recurring' }} />
                           </RadioGroup>
                          
 
-                            <Button color="rose" round>
+                            <Button color="rose" round type="submit">
                               BUY NOW
                               </Button>
                               </form>
@@ -431,16 +443,16 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
-                          <form >
+                          <form onSubmit={onSubmit}  id="largeOrg" >
                              <FormLabel component="legend" style={{color: "black"}}>Type of Subscription</FormLabel>
                         
                           <RadioGroup row aria-label="Type of Subscription" name="subscription" value={largeOrgValue} onChange={(e) => handleChange(e, "largeOrg")}>
-                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputProps={{ 'aria-label': 'One Time' }}/>
-                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputProps={{ 'aria-label': 'Recurring' }} />
+                            <FormControlLabel value="oneTime" control={<Radio />} label="One Time" inputprops={{ 'aria-label': 'One Time' }}/>
+                            <FormControlLabel value="recurring" control={<Radio />} label="Recurring" inputprops={{ 'aria-label': 'Recurring' }} />
                           </RadioGroup>
                          
 
-                            <Button color="rose" round>
+                            <Button color="rose" round type="submit">
                               BUY NOW
                               </Button>
                               </form>
