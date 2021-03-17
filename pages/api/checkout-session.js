@@ -4,6 +4,7 @@ import Stripe from 'stripe'
 import { dbConnect } from '../../utils/dbConnect'
 
 import User from "../../models/User";
+import { ContactSupportOutlined } from '@material-ui/icons';
 
 
 const stripe = Stripe("sk_test_ekaNcygzrDO5HaiufY05xPAw")
@@ -13,7 +14,7 @@ const handler = nextConnect()
 handler.use(dbConnect).get(async (req, res) => {
   console.log(req.query.id)
 
-  const session = await stripe.checkout.sessions.retrieve(req.query.id);
+  const session = await stripe.checkout.sessions.retrieve(req.query.id, { expand: ['line_items'] });
   console.log(session.customer_details.email.toLowerCase())
   const exists = await User.exists({ email: session.customer_details.email.toLowerCase() })
   if (!exists && session.payment_status === "paid") {
@@ -58,10 +59,22 @@ handler.use(dbConnect).get(async (req, res) => {
       },
 
     });
+    const user = await newUser.save()
+      .then((user) => {
+        console.log(user);
+        // Object.assign(user, update)
+        return user
+        //req.session.users.push(user);
+      })
+      .catch((err) => console.log(err));
+    console.log(newUser)
+    res.json({ session, user })
+  } else {
+    res.json(session)
   }
   console.log(exists)
   console.log(session)
-  res.json(session)
+
 
 })
 

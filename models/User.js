@@ -91,7 +91,7 @@ const UserSchema = new mongoose.Schema(
     acctActive: Boolean,
     paidThrough: Date,
     subscription: { type: Boolean, default: false },
-    org: { Org },
+    org: Org,
     notifications: Notifications,
     PremiumAccount: { type: Boolean, default: false },
     following: Array,

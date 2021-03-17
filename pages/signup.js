@@ -1,7 +1,9 @@
 /*eslint-disable*/
 import React from "react";
 import { useState, useEffect } from 'react'
+import { useUser } from '../lib/hooks'
 import Link from "next/link"
+import Router from "next/router";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -48,7 +50,7 @@ export async function getServerSideProps(context) {
   const res = await fetch(url)
 
   const data = await res.json()
-  console.log(data)
+  console.log(data.customer_details)
 
   if (!data) {
     return {
@@ -69,12 +71,13 @@ export async function getServerSideProps(context) {
 }
 
 export default function SignUpPage({ data }) {
+  const [user, { mutate }] = useUser()
   const [checked, setChecked] = React.useState([1]);
   const [errorMsg, setErrorMsg] = useState()
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
-    email: '',
+    email: data.customer_details.email,
     phone: '',
     password: '',
     rpassword: ''
@@ -104,6 +107,7 @@ export default function SignUpPage({ data }) {
       phone: e.currentTarget.phone.value,
       password: e.currentTarget.password.value,
       rpassword: e.currentTarget.rpassword.value,
+      stripeCustomerId: data.customer
 
     }
     console.log(body)
@@ -167,7 +171,9 @@ export default function SignUpPage({ data }) {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-  });
+    if (user) { Router.push("/member/dashboard") }
+
+  }), [user];
   const classes = useStyles();
   return (
     <div>
@@ -201,11 +207,16 @@ export default function SignUpPage({ data }) {
           <GridContainer justify="center">
             <GridItem xs={12} sm={10} md={10}>
               <Card className={classes.cardSignup}>
-                <h2 className={classes.cardTitle}>Register</h2>
+                <h2 className={classes.cardTitle}>{`Congratulations on your ${data.line_items.data[0].description} purchase`}</h2>
                 <CardBody>
+
                   <GridContainer justify="center">
                     <GridItem xs={12} sm={5} md={5}>
+                      <p>{`Congratulations on your ${data.line_items.data[0].description} `}</p>
+                      <p>Fill out the form below to log into your account</p>
+
                       <pre>{`${JSON.stringify(data, null, 2)}`}</pre>
+                      <pre>{data.customer_details.email}</pre>
                       {/* <InfoArea
                         className={classes.infoArea}
                         title="Marketing"
@@ -322,6 +333,7 @@ export default function SignUpPage({ data }) {
                             type: "email",
                             name: "email",
                             required: true,
+                            value: form.email
 
                           }}
                         />
