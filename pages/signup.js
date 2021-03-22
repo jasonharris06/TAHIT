@@ -207,39 +207,20 @@ export default function SignUpPage({ data }) {
           <GridContainer justify="center">
             <GridItem xs={12} sm={10} md={10}>
               <Card className={classes.cardSignup}>
-                <h2 className={classes.cardTitle}>{`Congratulations on your ${data.line_items.data[0].description} purchase`}</h2>
+                <h2 className={classes.cardTitle}>{`Congratulations`} </h2>
+                <h3 className={classes.textCenter}>{<>on your <b>{data.line_items.data[0].description}</b> purchase</>}</h3>
+
                 <CardBody>
 
                   <GridContainer justify="center">
-                    <GridItem xs={12} sm={5} md={5}>
-                      <p>{`Congratulations on your ${data.line_items.data[0].description} `}</p>
-                      <p>Fill out the form below to log into your account</p>
+                    <GridItem xs={12} sm={12} md={6}>
 
-                      <pre>{`${JSON.stringify(data, null, 2)}`}</pre>
-                      <pre>{data.customer_details.email}</pre>
-                      {/* <InfoArea
-                        className={classes.infoArea}
-                        title="Marketing"
-                        description="We've created the marketing campaign of the website. It was a very interesting collaboration."
-                        icon={Timeline}
-                        iconColor="rose"
-                      />
-                      <InfoArea
-                        className={classes.infoArea}
-                        title="Fully Coded in HTML5"
-                        description="We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub."
-                        icon={Code}
-                        iconColor="primary"
-                      />
-                      <InfoArea
-                        className={classes.infoArea}
-                        title="Built Audience"
-                        description="There is also a Fully Customizable CMS Admin Dashboard for this product."
-                        icon={Group}
-                        iconColor="info"
-                      /> */}
                     </GridItem>
-                    <GridItem xs={12} sm={5} md={5}>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <p>Fill out the form below to log into your account</p>
+                      {/* 
+                      <pre>{`${JSON.stringify(data, null, 2)}`}</pre>
+                      <pre>{data.customer_details.email}</pre> */}
                       {/* <div className={classes.textCenter}>
                         <Button justIcon round color="twitter">
                           <i className={classes.socials + " fab fa-twitter"} />
@@ -422,6 +403,7 @@ export default function SignUpPage({ data }) {
                         <Muted>
                           <span>Password must be at least 6 characters long</span>
                         </Muted>
+                        <br></br>
                         <FormControlLabel
                           classes={{
                             label: classes.label

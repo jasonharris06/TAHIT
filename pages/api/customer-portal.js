@@ -1,0 +1,23 @@
+import nextConnect from 'next-connect'
+import auth from '../../../middleware/auth'
+import Stripe from 'stripe'
+import { dbConnect } from '../../../utils/dbConnect'
+
+const stripe = Stripe("sk_test_ekaNcygzrDO5HaiufY05xPAw")
+
+const handler = nextConnect()
+
+handler.use(auth).post(async (req, res) => {
+    console.log(req.user.stripeCustomerNumber)
+
+    const session = await stripe.billingPortal.sessions.create({
+        customer: req.user.stripeCustomerNumber,
+        return_url: 'http://localhost:3000/member/dashboard'
+
+    })
+    console.log(session)
+    res.redirect(session.url)
+
+})
+
+export default handler

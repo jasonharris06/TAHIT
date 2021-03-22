@@ -109,6 +109,16 @@ export default function HeaderLinks(props) {
       Router.push("/login");
     }
   }
+
+  async function openStipeCustomerPortal(e) {
+    e.preventDefault()
+    console.log("I was")
+    const res = await fetch("/api/customer-protal", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: {}
+    })
+  }
   return (
     <List className={classes.list + " " + classes.mlAuto}>
       <ListItem className={classes.listItem}>
@@ -337,6 +347,21 @@ export default function HeaderLinks(props) {
         />
       </ListItem> */}
       <ListItem className={classes.listItem}>
+
+        <Button
+
+          onClick={openStipeCustomerPortal}
+          color={"login"}
+
+          className={classes.navButton}
+          round
+
+        ><Icon.LogOut className={classes.icons} />
+        </Button>
+
+
+      </ListItem>
+      <ListItem className={classes.listItem}>
         <Link href="/member/profile-edit">
           <Button
 
@@ -354,6 +379,7 @@ export default function HeaderLinks(props) {
       <br></br>
       <ListItem className={classes.listItem}>
         <Button
+
 
           color={"login"}
           target="_blank"
