@@ -27,18 +27,18 @@ handler.use(auth).post(async (req, res) => {
     // Security-wise, you must hash the password before saving it
     //console.log(password, email)
 
-    const user = await createUser(req, email, hashedPass);
+    // const user = await createUser(req, email, hashedPass);
 
-    if (!user) {
-      res.status(400).send('Your account was not able to be setup at this time.  Please try again later')
-    }
-    req.logIn(user, (err) => {
-      if (err) throw err;
-      // Log the signed up user in
-      res.status(201).json({
-        user,
-      });
-    });
+    // if (!user) {
+    //   res.status(400).send('Your account was not able to be setup at this time.  Please try again later')
+    // }
+    // req.logIn(user, (err) => {
+    //   if (err) throw err;
+    //   // Log the signed up user in
+    //   res.status(201).json({
+    //     user,
+    //   });
+    // });
   } else if (usernameExisted == true) {
     const user = await updatePaidUser(req, email, hashedPass)
     req.logIn(user, (err) => {

@@ -8,7 +8,7 @@ const stripe = Stripe("sk_test_ekaNcygzrDO5HaiufY05xPAw")
 const handler = nextConnect()
 
 handler.use(auth).post(async (req, res) => {
-    console.log(req.user.stripeCustomerNumber)
+    console.log(req.user)
 
     const session = await stripe.billingPortal.sessions.create({
         customer: req.user.stripeCustomerNumber,

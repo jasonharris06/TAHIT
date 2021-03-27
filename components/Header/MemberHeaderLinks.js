@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from "react";
-
+import axios from 'axios'
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // react components for routing our app without refresh
@@ -347,18 +347,19 @@ export default function HeaderLinks(props) {
         />
       </ListItem> */}
       <ListItem className={classes.listItem}>
+        <form method="POST" action="/api/stripe/customer-portal">
+          <Button
+            type="submit"
+            target="_blank"
+            //onClick={openStipeCustomerPortal}
+            color={"login"}
 
-        <Button
+            className={classes.navButton}
+            round
 
-          onClick={openStipeCustomerPortal}
-          color={"login"}
-
-          className={classes.navButton}
-          round
-
-        ><Icon.LogOut className={classes.icons} />
-        </Button>
-
+          ><Icon.LogOut className={classes.icons} />
+          </Button>
+        </form>
 
       </ListItem>
       <ListItem className={classes.listItem}>
