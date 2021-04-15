@@ -113,11 +113,16 @@ export default function HeaderLinks(props) {
   async function openStipeCustomerPortal(e) {
     e.preventDefault()
     console.log("I was")
-    const res = await fetch("/api/customer-protal", {
+    const res = await fetch("/api/stripe/customer-portal", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
-      body: {}
+
     })
+    if (res.status === 200) {
+      let data = await res.json()
+      window.open(data.url, '_blank').focus()
+    }
+
   }
   return (
     <List className={classes.list + " " + classes.mlAuto}>
@@ -347,19 +352,19 @@ export default function HeaderLinks(props) {
         />
       </ListItem> */}
       <ListItem className={classes.listItem}>
-        <form method="POST" action="/api/stripe/customer-portal">
-          <Button
-            type="submit"
-            target="_blank"
-            //onClick={openStipeCustomerPortal}
-            color={"login"}
 
-            className={classes.navButton}
-            round
+        <Button
+          type="submit"
+          target="_blank"
+          onClick={openStipeCustomerPortal}
+          color={"login"}
 
-          ><Icon.LogOut className={classes.icons} />
-          </Button>
-        </form>
+          className={classes.navButton}
+          round
+
+        ><Icon.LogOut className={classes.icons} />
+        </Button>
+
 
       </ListItem>
       <ListItem className={classes.listItem}>

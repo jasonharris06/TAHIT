@@ -422,7 +422,7 @@ export default function SectionProfile({ ...rest }) {
                 <Autocomplete
                   options={dropDownJson[1].salutations}
                   getOptionLabel={(option) => option}
-                  defaultValue={`${!user.profile.salutations}` ? `${user.profile.salutations}` : ""}
+                  defaultValue={`${user.profile.salutations}` ? `${user.profile.salutations}` : ""}
                   id="select-on-focus"
                   selectOnFocus
                   renderInput={(params) => <TextField {...params} label="Mrs, Ms, Mr..." name="salutations" margin="normal" />}

@@ -16,7 +16,8 @@ handler.use(auth).post(async (req, res) => {
 
     })
     console.log(session)
-    res.redirect(session.url)
+
+    res.status(200).send(session)
 
 })
 
