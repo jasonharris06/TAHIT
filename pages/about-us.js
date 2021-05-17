@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import { API_URL } from '@/config/index'
 
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -26,9 +27,21 @@ import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
 
 import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
 
+export async function getServerSideProps() {
+
+  const res = await fetch(`${API_URL}/board-members`)
+  const boardMembers = await res.json()
+
+  return {
+    props: {
+      members: boardMembers
+    }
+  }
+}
+
 const useStyles = makeStyles(aboutUsStyle);
 
-export default function AboutUsPage() {
+export default function AboutUsPage({ members }) {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -70,7 +83,7 @@ export default function AboutUsPage() {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           {/* <SectionDescription /> */}
-          <SectionTeam />
+          <SectionTeam members={members} />
           {/* <SectionServices />
           <SectionOffice />
           <SectionContact /> */}

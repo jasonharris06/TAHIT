@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React, { useState } from "react";
 // nodejs library that concatenates classes
+import ReCAPTCHA from "react-google-recaptcha";
 import classNames from "classnames";
 // react components used to create a google map
 import {
@@ -13,11 +14,13 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import Checkbox from "@material-ui/core/Checkbox";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 import PinDrop from "@material-ui/icons/PinDrop";
 import Phone from "@material-ui/icons/Phone";
 import BusinessCenter from "@material-ui/icons/BusinessCenter";
+import Check from "@material-ui/icons/Check";
 // core components
 import Parallax from "components/Parallax/Parallax.js";
 import Header from "components/Header/Header.js";
@@ -31,20 +34,28 @@ import Footer from "components/Footer/Footer.js";
 import Accordion from "components/Accordion/AccordionClick.js";
 
 import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
+import contactsStyle from "assets/jss/nextjs-material-kit-pro/pages/sectionsSections/contactsStyle.js";
+
 import landingPageStyle from "assets/jss/nextjs-material-kit-pro/pages/landingPageStyle.js";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import SectionFooter from "../pages-sections/components/SectionFooterTahit";
+import CardFooter from "components/Card/CardFooter.js";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 import whiteLogo from "assets/img/logo-white.png"
 
 
 
-const useStyles = makeStyles(contactUsStyle);
 
+const useStyles = makeStyles(contactUsStyle);
+const siteKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA
 export default function ContactUsPage({ ...rest }) {
+  const recaptchaRef = React.useRef();
+  const [checked, setChecked] = useState([24, 22]);
   const [title, setTitle] = useState({ email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.`, dropdownText: "" })
 
   const dropDown = [
+    { email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.`, dropdownText: "General Info" },
     { email: "membership@tahit.org", text: "Ask the Membership Chair a Question...", dropdownText: "Membership" },
     { email: "perfessional.development@tahit.org", text: "Ask the Professional Development Chair a Question...", dropdownText: "Professional Development" },
     { email: "outreach@tahit.org", text: "Ask the Outreach Chair a Question...", dropdownText: "Community Outreach" },
@@ -55,8 +66,19 @@ export default function ContactUsPage({ ...rest }) {
     { email: "secretary@tahit.org", text: "Ask the Secretary a Question...", dropdownText: "Tahit History or Records" },
     { email: "president@tahit.org", text: "Ask the President a Question...", dropdownText: "Other questions" },
 
-
   ]
+
+  const handleToggle = value => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    setChecked(newChecked);
+  };
   function handleOnclick(e) {
     setTitle({
       email: e.currentTarget.getAttribute("data-email"),
@@ -64,10 +86,19 @@ export default function ContactUsPage({ ...rest }) {
       dropdownText: e.currentTarget.getAttribute("data-dropdown")
     })
   }
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
+
+  const onSubmitWithReCAPTCHA = async (e) => {
+    e.preventDefault()
+    const token = await recaptchaRef.current.executeAsync();
+    console.log(token)
+    // apply to form data
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log("I was Clicked")
+  }
+
   const classes = useStyles();
   return (
     <div>
@@ -166,7 +197,7 @@ export default function ContactUsPage({ ...rest }) {
                   })}
 
                 />
-                <form>
+                <form onSubmit={onSubmitWithReCAPTCHA}>
                   <CustomInput
                     labelText="Your Name"
                     id="float"
@@ -181,13 +212,13 @@ export default function ContactUsPage({ ...rest }) {
                       fullWidth: true
                     }}
                   />
-                  <CustomInput
+                  {/* <CustomInput
                     labelText="Phone"
                     id="float"
                     formControlProps={{
                       fullWidth: true
                     }}
-                  />
+                  /> */}
                   <CustomInput
                     labelText="Your message"
                     id="float"
@@ -199,8 +230,14 @@ export default function ContactUsPage({ ...rest }) {
                       rows: 6
                     }}
                   />
+
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    size="invisible"
+                    sitekey='6LciDtgaAAAAAISH3EKjjMKcnjGs3xobcRT6jkYF'
+                  />
                   <div className={classes.textCenter}>
-                    <Button color="primary" round>
+                    <Button color="primary" type="submit" round>
                       Contact us
                     </Button>
                   </div>

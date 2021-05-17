@@ -11,8 +11,13 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS]], {
     config.resolve.modules.push(path.resolve("./"));
     return config;
   },
+  images: {
+    domains: ["res.cloudinary.com"]
+  },
   env: {
     DATABASE_URL: process.env.DATABASE_URL,
     GOOGLE_TRACKING_ID: process.env.GOOGLE_TRACKING_ID
   }
 });
+
+

@@ -1,11 +1,11 @@
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_ID ?? process.env.STRIPE_SECRET)
-import {
-    upsertProductRecord,
-    upsertPriceRecord,
-    manageSubscriptionStatusChange
-} from '@/utils/useDatabase';
+// import {
+//     upsertProductRecord,
+//     upsertPriceRecord,
+//     manageSubscriptionStatusChange
+// } from '@/utils/useDatabase';
 
 // Stripe requires the raw body to construct the event.
 export const config = {
@@ -36,6 +36,7 @@ const relevantEvents = new Set([
 ]);
 
 const webhookHandler = async (req, res) => {
+    console.log(req.method)
     if (req.method === 'POST') {
         const buf = await buffer(req);
         const sig = req.headers['stripe-signature'];
@@ -46,13 +47,15 @@ const webhookHandler = async (req, res) => {
 
         try {
             event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
+            console.log(event)
         } catch (err) {
             console.log(`❌ Error message: ${err.message}`);
             return res.status(400).send(`Webhook Error: ${err.message}`);
         }
-
+        console.log(event.type)
         if (relevantEvents.has(event.type)) {
             try {
+                console.log(event.type)
                 switch (event.type) {
                     case 'product.created':
                     case 'product.updated':
@@ -64,6 +67,7 @@ const webhookHandler = async (req, res) => {
                         break;
                     case 'customer.subscription.created':
                     case 'customer.subscription.updated':
+                        console.log(event.type)
                     case 'customer.subscription.deleted':
                         // await manageSubscriptionStatusChange(
                         //     event.data.object.id,

@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image"
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 //board assets
-import Data from "data/boardData.json"
+
 // @material-ui/icons
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 // import  from "@material-ui/icons/";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
@@ -43,13 +45,15 @@ import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
 import cardProfile4Square from "assets/img/faces/card-profile4-square.jpg";
 import cardProfile6Square from "assets/img/faces/card-profile6-square.jpg";
 
+
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
 const useStyles = makeStyles(teamsStyle);
-const board = Data
-export default function SectionTeams({ ...rest }) {
+
+export default function SectionTeams({ members, ...rest }) {
   const [modal, setModal] = React.useState(false);
   const [modalInfo, setModalInfo] = React.useState({
     name: "",
@@ -63,10 +67,10 @@ export default function SectionTeams({ ...rest }) {
     e.preventDefault()
     let index = e.currentTarget.id
     setModalInfo({
-      name: board[index].name,
-      image: board[index].image,
-      position: board[index].position,
-      description: board[index].description
+      name: members[index].name,
+      image: members[index].profilePic.url,
+      position: members[index].role,
+      description: members[index].biography
     })
 
     setModal(true)
@@ -147,7 +151,8 @@ export default function SectionTeams({ ...rest }) {
 
           </GridContainer>
           <GridContainer>
-            {board && board.map((item, index) => {
+            {members && members.map((item, index) => {
+
               return (
 
                 <GridItem xs={12} sm={4} md={4}>
@@ -158,9 +163,9 @@ export default function SectionTeams({ ...rest }) {
 
                       <CardAvatar profile background
                       >
-                        <a href="#pablo" onClick={e => e.preventDefault()}>
-                          <img src={item.image} alt="..." />
-                        </a>
+
+                        <img src={item.profilePic ? item.profilePic.formats?.thumbnail.url : '/img/board/vacant.png'} />
+
 
                         {/* <div
                             className={classes.coloredShadow}
@@ -174,7 +179,7 @@ export default function SectionTeams({ ...rest }) {
                       <CardBody plain>
                         <h4 className={classes.cardTitle}>{item.name}</h4>
                         <Muted>
-                          <h6 className={classes.cardCategory}>{item.position}</h6>
+                          <h6 className={classes.cardCategory}>{item.role}</h6>
                         </Muted>
                         <br></br>
                         {/* <p className={classes.description} style={{
@@ -191,12 +196,18 @@ export default function SectionTeams({ ...rest }) {
                         </Button>
                       </CardBody>
                       <CardFooter profile plain className={classes.justifyContent}>
-                        <Button justIcon round color="twitter">
+                        {item.linkedin && <Button justIcon round color="linkedin">
+                          <i className="fab fa-linkedin" />
+                        </Button>}
+                        {item.twitter && <Button justIcon round color="twitter">
                           <i className="fab fa-twitter" />
-                        </Button>
-                        <Button justIcon round color="facebook">
+                        </Button>}
+                        {item.email && <Button justIcon round color="linkedin">
+                          <MailOutlineIcon />
+                        </Button>}
+                        {item.facebook && <Button justIcon round color="facebook">
                           <i className="fab fa-facebook-square" />
-                        </Button>
+                        </Button>}
 
                       </CardFooter>
                     </Card>
