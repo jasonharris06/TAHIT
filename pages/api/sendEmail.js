@@ -11,13 +11,13 @@ handler.post(async (req, res) => {
   // passport.authenticate('local')
 
 
-  var { email, name, message, captcha } = req.body;
+  var { email, name, message, captcha, sendTo, subject } = req.body;
   if (!email || !captcha) {
     return res.status(422).json({ message: "Unproccesable request, please provide the required fields" })
   }
 
   try {
-    console.log("i got to the try")
+
     const response = await axios({
       method: "POST",
       url: `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.GOOGLE_RECAPTCHA_SECRET}&response=${captcha}`,
@@ -29,7 +29,7 @@ handler.post(async (req, res) => {
     console.log(captchaValidation)
 
     if (captchaValidation.success) {
-      sendSupportEmail()
+      await sendSupportEmail()
     }
     return res.status(422).json({
       message: "Unproccesable request, Invalid captcha code",
@@ -40,7 +40,7 @@ handler.post(async (req, res) => {
   }
 
   //;
-  function sendSupportEmail() {
+  async function sendSupportEmail() {
     var smtpTransport = nodemailer.createTransport({
       service: 'SendGrid',
       auth: {
@@ -49,33 +49,30 @@ handler.post(async (req, res) => {
       }
     });
     var mailOptions = {
-      to: 'tlc@utah.edu',
-      from: user.email,
-      subject: 'Support Requested from TLC User ' + user.email,
+      to: sendTo,
+      from: email,
+      subject: subject,
 
       text:
-        "User's Full Name: " +
-        submitForm[0].value +
-        `\nPreferred Communication: ` +
-        submitForm[1].value +
-        `\nContact Info: ` +
-        submitForm[2].value +
-        `\nUser's concern: ` +
-        submitForm[3].value
+        "Message From: " +
+        name +
+        `\nMessage: ` +
+        message
     };
 
-    // smtpTransport.sendMail(mailOptions, function (err, json) {
-    //     //console.log(username);
-    //     if (err) {
-    //         res.status(404);
-    //     } else {
-    //         req.flash('success_msg', 'Your e-mail has been sent.');
-    //         res.send({
-    //             success_msg: 'Your e-mail has been sent.'
-    //         });
-    //         console.log(json);
-    //     }
-    // });
+    smtpTransport.sendMail(mailOptions, function (err, json) {
+      //console.log(username);
+      if (err) {
+        res.status(404).json({ message: "Email didn't send, Please try again" });
+      } else {
+
+        res.status(200).json({
+          message: 'Your e-mail has been sent.'
+        });
+        console.log(json);
+
+      }
+    });
 
   }
 })

@@ -44,6 +44,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 import whiteLogo from "assets/img/logo-white.png"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -98,7 +101,9 @@ export default function ContactUsPage({ ...rest }) {
       captcha,
       email,
       message,
-      name
+      name,
+      sentTo: title.email,
+      subject: title.dropdownText
     }
     console.log(form)
 
@@ -110,9 +115,10 @@ export default function ContactUsPage({ ...rest }) {
       })
       const data = await res.json()
       console.log(data)
+      toast.success(data.message)
       // apply to form data
     } catch (error) {
-
+      toast.error(data.message)
     } finally {
       recaptchaRef.current.reset()
     }
@@ -145,6 +151,7 @@ export default function ContactUsPage({ ...rest }) {
       />
       <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
         <div className={classes.container}>
+          <ToastContainer />
           <GridContainer justify="center">
             <GridItem
               md={8}

@@ -49,6 +49,7 @@
     "react-table": "^7.6.3",
     "react-tagsinput": "3.19.0",
     "react-text-mask": "^5.4.3",
+    "react-toastify": "^7.0.4",
     "sharp": "^0.27.0",
     "stripe": "^8.137.0",
     "swr": "^0.4.0",
