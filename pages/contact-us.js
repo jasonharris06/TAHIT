@@ -48,10 +48,13 @@ import whiteLogo from "assets/img/logo-white.png"
 
 
 const useStyles = makeStyles(contactUsStyle);
-const siteKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA
+
 export default function ContactUsPage({ ...rest }) {
   const recaptchaRef = React.useRef();
   const [checked, setChecked] = useState([24, 22]);
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState('')
   const [title, setTitle] = useState({ email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.`, dropdownText: "" })
 
   const dropDown = [
@@ -89,14 +92,30 @@ export default function ContactUsPage({ ...rest }) {
 
   const onSubmitWithReCAPTCHA = async (e) => {
     e.preventDefault()
-    const token = await recaptchaRef.current.executeAsync();
-    console.log(token)
-    // apply to form data
-  }
+    const captcha = await recaptchaRef.current.executeAsync();
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    console.log("I was Clicked")
+    const form = {
+      captcha,
+      email,
+      message,
+      name
+    }
+    console.log(form)
+
+    try {
+      const res = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json()
+      console.log(data)
+      // apply to form data
+    } catch (error) {
+
+    } finally {
+      recaptchaRef.current.reset()
+    }
   }
 
   const classes = useStyles();
@@ -202,7 +221,13 @@ export default function ContactUsPage({ ...rest }) {
                     labelText="Your Name"
                     id="float"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
+                    }}
+                    inputProps={{
+                      required: true,
+                      name: "name",
+                      value: name,
+                      onChange: (e) => setName(e.target.value)
                     }}
                   />
                   <CustomInput
@@ -210,6 +235,13 @@ export default function ContactUsPage({ ...rest }) {
                     id="float"
                     formControlProps={{
                       fullWidth: true
+                    }}
+                    inputProps={{
+                      required: true,
+                      type: "email",
+                      name: "email",
+                      value: email,
+                      onChange: (e) => setEmail(e.target.value)
                     }}
                   />
                   {/* <CustomInput
@@ -227,14 +259,18 @@ export default function ContactUsPage({ ...rest }) {
                     }}
                     inputProps={{
                       multiline: true,
-                      rows: 6
+                      rows: 6,
+                      required: true,
+                      name: "message",
+                      value: message,
+                      onChange: (e) => setMessage(e.target.value)
                     }}
                   />
 
                   <ReCAPTCHA
                     ref={recaptchaRef}
                     size="invisible"
-                    sitekey='6LciDtgaAAAAAISH3EKjjMKcnjGs3xobcRT6jkYF'
+                    sitekey={process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA}
                   />
                   <div className={classes.textCenter}>
                     <Button color="primary" type="submit" round>
