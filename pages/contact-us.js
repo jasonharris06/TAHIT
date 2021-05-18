@@ -54,7 +54,6 @@ const useStyles = makeStyles(contactUsStyle);
 
 export default function ContactUsPage({ ...rest }) {
   const recaptchaRef = React.useRef();
-  const [checked, setChecked] = useState([24, 22]);
   const [name, setName] = useState('')
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState('')
@@ -62,29 +61,19 @@ export default function ContactUsPage({ ...rest }) {
 
   const dropDown = [
     { email: "info@tahit.org", text: `You can contact us with anything related to TAHIT. We'll get in touch with you as soon as possible.`, dropdownText: "General Info" },
-    { email: "membership@tahit.org", text: "Ask the Membership Chair a Question...", dropdownText: "Membership" },
-    { email: "perfessional.development@tahit.org", text: "Ask the Professional Development Chair a Question...", dropdownText: "Professional Development" },
+    { email: "memberships@tahit.org", text: "Ask the Membership Chair a Question...", dropdownText: "Membership" },
+    { email: "professionaldevelopment@tahit.org", text: "Ask the Professional Development Chair a Question...", dropdownText: "Professional Development" },
     { email: "outreach@tahit.org", text: "Ask the Outreach Chair a Question...", dropdownText: "Community Outreach" },
-    { email: "media@tahit.org", text: "Ask the Social Media Chair a Question...", dropdownText: "Social Media" },
+    { email: "socialmedia@tahit.org", text: "Ask the Social Media Chair a Question...", dropdownText: "Social Media" },
     { email: "treasurer@tahit.org", text: "Ask the Treasurer a Question...", dropdownText: "Payment or Refund" },
-    { email: "VP@tahit.org", text: "Ask the Vice President a Question...", dropdownText: "Tahit Events" },
-    { email: "evidence-practices@tahit.org", text: "Ask the Chair of Evidence-based Practices a Question...", dropdownText: "Evidence-based Practices" },
+    { email: "vicepresident@tahit.org", text: "Ask the Vice President a Question...", dropdownText: "Tahit Events" },
+    { email: "evidencepractices@tahit.org", text: "Ask the Chair of Evidence-based Practices a Question...", dropdownText: "Evidence-based Practices" },
     { email: "secretary@tahit.org", text: "Ask the Secretary a Question...", dropdownText: "Tahit History or Records" },
     { email: "president@tahit.org", text: "Ask the President a Question...", dropdownText: "Other questions" },
 
   ]
 
-  const handleToggle = value => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-    setChecked(newChecked);
-  };
   function handleOnclick(e) {
     setTitle({
       email: e.currentTarget.getAttribute("data-email"),
@@ -115,10 +104,41 @@ export default function ContactUsPage({ ...rest }) {
       })
       const data = await res.json()
       console.log(data)
-      toast.success(data.message)
+      if (data.status === 404 || data.status === 404) {
+        toast.error(data.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      } else {
+        setEmail('')
+        setMessage("")
+        setName("")
+        toast.success(data.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+      }
       // apply to form data
     } catch (error) {
-      toast.error(data.message)
+      toast.error(data.message, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     } finally {
       recaptchaRef.current.reset()
     }
@@ -151,7 +171,7 @@ export default function ContactUsPage({ ...rest }) {
       />
       <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
         <div className={classes.container}>
-          <ToastContainer />
+
           <GridContainer justify="center">
             <GridItem
               md={8}
@@ -223,6 +243,7 @@ export default function ContactUsPage({ ...rest }) {
                   })}
 
                 />
+                <ToastContainer />
                 <form onSubmit={onSubmitWithReCAPTCHA}>
                   <CustomInput
                     labelText="Your Name"
