@@ -107,8 +107,8 @@ export default function SectionFooter() {
                     <a href="#pablo">Sponsorship</a>
                   </li>
                   <li>
-                    <Link href="/past-symposia" as="/past-symposia">
-                      <a href="/past-symposia">Past Symposia</a>
+                    <Link href="symposium/past-symposia" as="symposium/past-symposia">
+                      <a href="symposium/past-symposia">Past Symposia</a>
                     </Link>
                   </li>
                 </ul>

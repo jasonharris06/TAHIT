@@ -71,6 +71,16 @@ export default function SectionCards(props) {
   const [activeRotate8, setActiveRotate8] = React.useState("");
   const [activeRotate9, setActiveRotate9] = React.useState("");
   const [activeRotate10, setActiveRotate10] = React.useState("");
+  const [activeRotate11, setActiveRotate11] = React.useState("");
+  const [activeRotate12, setActiveRotate12] = React.useState("");
+  const [activeRotate13, setActiveRotate13] = React.useState("");
+  const [activeRotate14, setActiveRotate14] = React.useState("");
+  const [activeRotate15, setActiveRotate15] = React.useState("");
+  const [activeRotate16, setActiveRotate16] = React.useState("");
+  const [activeRotate17, setActiveRotate17] = React.useState("");
+  const [activeRotate18, setActiveRotate18] = React.useState("");
+  const [activeRotate19, setActiveRotate19] = React.useState("");
+  const [activeRotate20, setActiveRotate20] = React.useState("");
 
 
   function hook(active) {
@@ -95,6 +105,24 @@ export default function SectionCards(props) {
         return activeRotate9
       case "activeRotate10":
         return activeRotate10
+      case "activeRotate11":
+        return activeRotate11
+      case "activeRotate12":
+        return activeRotate12
+      case "activeRotate13":
+        return activeRotate13
+      case "activeRotate14":
+        return activeRotate14
+      case "activeRotate15":
+        return activeRotate15
+      case "activeRotate16":
+        return activeRotate16
+      case "activeRotate17":
+        return activeRotate17
+      case "activeRotate18":
+        return activeRotate18
+      case "activeRotate19":
+        return activeRotate19
       default:
         return activeRotate1
     }
@@ -133,6 +161,36 @@ export default function SectionCards(props) {
         break;
       case "activeRotate10":
         (activeRotate10 === "" ? setActiveRotate10(classes.activateRotate) : setActiveRotate10(""))
+        break;
+      case "activeRotate11":
+        (activeRotate11 === "" ? setActiveRotate11(classes.activateRotate) : setActiveRotate11(""))
+        break;
+      case "activeRotate12":
+        (activeRotate12 === "" ? setActiveRotate12(classes.activateRotate) : setActiveRotate12(""))
+        break;
+      case "activeRotate13":
+        (activeRotate13 === "" ? setActiveRotate13(classes.activateRotate) : setActiveRotate13(""))
+        break;
+      case "activeRotate14":
+        (activeRotate14 === "" ? setActiveRotate14(classes.activateRotate) : setActiveRotate14(""))
+        break;
+      case "activeRotate15":
+        (activeRotate15 === "" ? setActiveRotate15(classes.activateRotate) : setActiveRotate15(""))
+        break;
+      case "activeRotate16":
+        (activeRotate16 === "" ? setActiveRotate16(classes.activateRotate) : setActiveRotate16(""))
+        break;
+      case "activeRotate17":
+        (activeRotate17 === "" ? setActiveRotate17(classes.activateRotate) : setActiveRotate17(""))
+        break;
+      case "activeRotate18":
+        (activeRotate18 === "" ? setActiveRotate18(classes.activateRotate) : setActiveRotate18(""))
+        break;
+      case "activeRotate19":
+        (activeRotate19 === "" ? setActiveRotate19(classes.activateRotate) : setActiveRotate19(""))
+        break;
+      case "activeRotate20":
+        (activeRotate20 === "" ? setActiveRotate20(classes.activateRotate) : setActiveRotate20(""))
         break;
       default:
         break

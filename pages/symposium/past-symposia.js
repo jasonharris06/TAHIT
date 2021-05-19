@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import Image from "next/image"
 
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -15,7 +16,7 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
-import Footer from "components/Footer/Footer.js";
+
 // sections for this page
 import SectionDescription from "pages-sections/about-us/SectionDescription.js";
 import SectionTeam from "pages-sections/sections-page/SectionBoardTahit.js";
@@ -27,9 +28,11 @@ import SectionSymposiumCards from "pages-sections/sections-page/SectionPastSympo
 
 import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
 
+import whiteLogo from "assets/img/logo-white.png"
+
 const useStyles = makeStyles(aboutUsStyle);
 
-export default function AboutUsPage() {
+export default function AboutUsPage({ ...rest }) {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -38,14 +41,26 @@ export default function AboutUsPage() {
   return (
     <div>
       <Header
-        brand="TAHIT"
+        color="transparent"
+        brand={
+          <GridContainer>
+            <GridItem xs={6} sm={6} md={6}>
+              <Image src={whiteLogo}
+                alt="Tahit Logo"
+                width={35}
+                height={35} /></GridItem>
+            <GridItem xs={6} sm={6} md={6}>
+              <h5>TAHIT</h5>
+            </GridItem>
+          </GridContainer>}
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
-        color="transparent"
         changeColorOnScroll={{
           height: 300,
-          color: "info"
+          color: "gradient",
+          filter: "dark"
         }}
+        {...rest}
       />
       <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
         <div className={classes.container}>
