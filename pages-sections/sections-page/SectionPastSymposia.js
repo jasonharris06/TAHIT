@@ -32,7 +32,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const useStyles = makeStyles(teamsStyle);
 const board = Data
-export default function SectionTeams({ ...rest }) {
+export default function SectionTeams({ symposia, ...rest }) {
   const [modal, setModal] = React.useState(false);
 
   const classes = useStyles();
@@ -42,7 +42,7 @@ export default function SectionTeams({ ...rest }) {
   }
 
   return (
-    <div className="cd-section"  {...rest}>
+    <div className="cd-section" {...rest} >
 
       <Dialog
         classes={{
@@ -115,7 +115,7 @@ export default function SectionTeams({ ...rest }) {
 
           </GridContainer> */}
 
-          <SymposiumCard onclick={picture} />
+          <SymposiumCard onclick={picture} symposia={symposia} />
 
         </div>
       </div>

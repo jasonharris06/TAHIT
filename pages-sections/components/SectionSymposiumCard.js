@@ -58,8 +58,9 @@ import color2 from "assets/img/examples/color2.jpg";
 import color3 from "assets/img/examples/color3.jpg";
 
 const useStyles = makeStyles(styles);
-const symposia = Data
-export default function SectionCards(props) {
+//const symposia = Data
+export default function SectionCards({ symposia, ...props }) {
+
 
   const [activeRotate1, setActiveRotate1] = React.useState("");
   const [activeRotate2, setActiveRotate2] = React.useState("");
@@ -247,8 +248,8 @@ export default function SectionCards(props) {
               let active = `activeRotate${index + 1}`
 
               return (
-                <GridItem xs={12} sm={6} md={6} lg={4}>
-                  <div key={index}
+                <GridItem key={item.id} xs={12} sm={6} md={6} lg={4}>
+                  <div
                     className={
                       classes.rotatingCardContainer +
                       " " +
@@ -262,13 +263,13 @@ export default function SectionCards(props) {
                         className={
                           classes.front + " " + classes.wrapperBackground
                         }
-                        style={{ backgroundImage: `url(${item.image})` }}
+                        style={{ backgroundImage: `url(${item.cardBackground.formats?.small?.url})` }}
                       >
                         <CardBody background className={classes.cardBodyRotate}>
 
                           <a href="#pablo" onClick={e => e.preventDefault()}>
                             <h3 className={classes.cardTitleWhite}>
-                              {item.symposium}
+                              {item.symposiumNumber}
                             </h3>
                           </a>
                           <p className={classes.cardDescriptionWhite}>
@@ -288,10 +289,10 @@ export default function SectionCards(props) {
                       </div>
                       <div
                         className={classes.back + " " + classes.wrapperBackground}
-                        style={{ backgroundImage: `url(${item.image})` }}
+                        style={{ backgroundImage: `url(${item.cardBackground.formats?.small?.url})` }}
                       >
                         <CardBody background className={classes.cardBodyRotate} >
-                          <h5 className={classes.cardTitleWhite}>{`Information from the ${item.symposium}`}</h5>
+                          <h5 className={classes.cardTitleWhite}>{`Information from the ${item.symposiumNumber}`}</h5>
                           <br></br>
                           <p className={classes.cardDescriptionWhite} style={{ textAlign: "left" }} >
                             <b>Host:</b> {item.host} <br />
@@ -300,17 +301,9 @@ export default function SectionCards(props) {
                             <b>Dates:</b> {item.dates} <br />
                           </p>
                           <div className={classes.textCenter}>
-                            {index == 8 && <Button round justIcon color="info" onClick={props.onclick}>
+                            {item.eventPictures.length !== 0 && <Button round justIcon color="info" onClick={props.onclick}>
                               <PhotoAlbumIcon />
                             </Button>}
-                            {/* <Button round justIcon color="success">
-                              <Icon>mode_edit</Icon>
-                            </Button>
-                            <Button round justIcon color="danger">
-                              <Delete />
-                            </Button> */}
-
-
                             <br />
                             <Button
                               round

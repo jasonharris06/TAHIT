@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React from "react";
 import Image from "next/image"
+import { API_URL } from '@/config/index'
 
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -30,13 +31,26 @@ import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.
 
 import whiteLogo from "assets/img/logo-white.png"
 
+export async function getServerSideProps() {
+
+  const res = await fetch(`${API_URL}/past-symposia`)
+  const symposia = await res.json()
+
+  return {
+    props: {
+      symposia
+    }
+  }
+}
+
 const useStyles = makeStyles(aboutUsStyle);
 
-export default function AboutUsPage({ ...rest }) {
+export default function AboutUsPage({ symposia }) {
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
   });
+  console.log(symposia)
   const classes = useStyles();
   return (
     <div>
@@ -60,7 +74,7 @@ export default function AboutUsPage({ ...rest }) {
           color: "gradient",
           filter: "dark"
         }}
-        {...rest}
+
       />
       <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
         <div className={classes.container}>
@@ -83,7 +97,7 @@ export default function AboutUsPage({ ...rest }) {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           {/* <SectionDescription /> */}
-          <SectionSymposiumCards />
+          <SectionSymposiumCards symposia={symposia} />
           {/* <SectionTeam /> */}
           {/* <SectionServices />
           <SectionOffice />
