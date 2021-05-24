@@ -1,6 +1,7 @@
 import nextConnect from "next-connect";
 import auth from "../../middleware/auth";
 import sharp from "sharp";
+import cloudinary from 'cloudinary'
 import fs from "fs"
 import path from "path";
 import formidable from 'formidable'
@@ -15,6 +16,13 @@ export const config = {
   },
 }
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET
+})
+
+
 
 const handler = nextConnect();
 
@@ -25,7 +33,7 @@ handler
     const id = req.user._id
 
     var form = new formidable.IncomingForm()
-    console.log(form)
+    //console.log(form)
     var videoFile = await new Promise(function (resolve, reject) {
       form.parse(req, (err, fields, files) => {
         if (err) {
@@ -33,7 +41,7 @@ handler
           reject(err)
         }
         for (const file of Object.entries(files)) {
-          console.log(file)
+          //console.log(file)
           resolve(file)
 
 
@@ -43,17 +51,38 @@ handler
     })
 
     if (videoFile) {
+      const { firstName, lastName } = req.user.profile
       console.log(videoFile[1].path)
-      const buffer = await sharp(videoFile[1].path).resize(200, 200).png().toBuffer();
+      // const photo = await cloudinary.v2.uploader.upload(videoFile[1].path, {
+      //   resource_type: "image",
+      //   tags: "avatar",
+      //   public_id: videoFile[1].path,
+      //   secure: true,
+      //   transformation: [{ width: 150, height: 150, gravity: "face", crop: "thumb" }],
+      //   overwrite: true
+      // })
+      console.log(firstName, lastName)
+      // sharp(videoFile[1].path).resize(200, 200).png().toFile(`videoFile[1].path/${firstName}_${lastName}.png`).then((img) => {
+      //   console.log(videoFile[1].path)
+
+      //   //cloudinary.uploader.upload(videoFile[1].path, function (error, result) { console.log(result, error); })
+      // });
+
+      const imageURL = await cloudinary.uploader.upload(videoFile[1].path, function (error, result) {
+        if (error) res.status(404).send(error)
+        return result
+      })
+      console.log(imageURL)
+      // const buffer = await sharp(videoFile[1].path).resize(200, 200).png().toBuffer();
 
 
-      const user = await User.findByIdAndUpdate({ _id: id },
-        { $set: { "profile.profilePic": buffer } })
-
+      const user = await User.findByIdAndUpdate({ _id: id }, { $set: { "profile.profilePic": imageURL } }, { upsert: true }).exec()
+      console.log(user)
       if (user) {
-        return res.status(200).end()
+        console.log("I Made it")
+        res.send({ message: "Uploaded" })
       } else {
-        return res.status(404).end()
+        res.send({ message: "There was an error uploading your profile picture" })
       }
     }
 

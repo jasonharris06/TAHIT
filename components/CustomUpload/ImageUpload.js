@@ -20,6 +20,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 //overlay
 import { makeStyles } from '@material-ui/core/styles';
+import { ContactsOutlined, ContactSupportOutlined } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -40,7 +41,7 @@ export default function ImageUpload(props) {
 
   useEffect(() => {
     if (user) {
-      setImagePreviewUrl(`data:image/png;base64, ${user.profile.profilePic}`)
+      setImagePreviewUrl(user.profile.profilePic.url)
     }
   }, [user]);
 
@@ -69,8 +70,8 @@ export default function ImageUpload(props) {
     console.log(data)
     axios.post("/api/avatar", data, { headers: { "Content-Type": "multipart/form-data" } })
       .then(function (res) {
-
-        if (res.status === 200) {
+        console.log(res)
+        if (res.data.status === 200) {
           setSuccessMsg("Saved")
           setOpen(false)
           setTimeout(function () { setSuccessMsg('') }, 3000)
@@ -80,8 +81,8 @@ export default function ImageUpload(props) {
           setOpen(false)
         }
 
-      })
-      .catch(function (error) {
+      }).catch(function (error) {
+        console.log("I am an error")
         console.log(error);
       });
     // file is the file/image uploaded
@@ -133,29 +134,28 @@ export default function ImageUpload(props) {
             {avatar ? "Add Photo" : "Select image"}
           </Button>
         ) : (
-            <span>
-              <form
-                onSubmit={handleSubmit}
-                method="post"
-                encType="multipart/form-data"
-              >
-                <input type="file" name="avatar" />
+          <span>
+            <form
+              onSubmit={handleSubmit}
 
-                <Button {...changeButtonProps} type="submit">
-                  Save Image
-            </Button>
-              </form>
+            >
+              <input type="file" name="avatar" />
 
-              <Button {...changeButtonProps} onClick={() => handleClick()}>
-                Change
+              <Button {...changeButtonProps} type="submit">
+                Save Image
+            </Button>
+            </form>
+
+            <Button {...changeButtonProps} onClick={() => handleClick()}>
+              Change
             </Button>
 
-              {avatar ? <br /> : null}
-              <Button {...removeButtonProps} onClick={() => handleRemove()}>
-                <i className="fas fa-times" /> Remove
+            {avatar ? <br /> : null}
+            <Button {...removeButtonProps} onClick={() => handleRemove()}>
+              <i className="fas fa-times" /> Remove
             </Button>
-            </span>
-          )}
+          </span>
+        )}
       </div>
     </div >
   );

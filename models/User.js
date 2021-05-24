@@ -58,10 +58,11 @@ const Profile = {
   epiqQualified: { type: Boolean, default: false },
   contactPreferences: Preferences,
   socialMedia: Social,
-  profilePic: {
-    data: Buffer,
-    contentType: String
-  },
+  // profilePic: {
+  //   data: Buffer,
+  //   contentType: String
+  // },
+  profilePic: Object,
   completed: { type: Boolean, default: false },
 
 }
