@@ -53,14 +53,14 @@ handler.use(auth).post(async (req, res) => {
     //   overwrite: true
     // })
     console.log(firstName, lastName);
-    const public_id = `${firstName}_${lastName}`;
+    const public_id = `avatar/${firstName}_${lastName}`;
     // sharp(videoFile[1].path).resize(200, 200).png().toFile(`videoFile[1].path/${firstName}_${lastName}.png`).then((img) => {
     //   console.log(videoFile[1].path)
 
     //   //cloudinary.uploader.upload(videoFile[1].path, function (error, result) { console.log(result, error); })
     // });
 
-    const imageURL = await cloudinary.uploader.upload(
+    const imageURL = await cloudinary.v2.uploader.upload(
       videoFile[1].path,
       { public_id },
       function (error, result) {
