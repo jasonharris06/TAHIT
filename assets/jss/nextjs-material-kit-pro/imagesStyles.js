@@ -1,6 +1,12 @@
+
 import { blackColor, hexToRgb } from "assets/jss/nextjs-material-kit-pro.js";
 
 const imagesStyles = {
+  imgZindex: {
+    position: "absolute",
+    zIndex: "99"
+
+  },
   imgFluid: {
     maxWidth: "100%",
     height: "auto"
@@ -17,7 +23,8 @@ const imagesStyles = {
       hexToRgb(blackColor) +
       ", 0.24), 0 8px 10px -5px rgba(" +
       hexToRgb(blackColor) +
-      ", 0.2)"
+      ", 0.2)",
+
   },
   imgGallery: {
     width: "100%",

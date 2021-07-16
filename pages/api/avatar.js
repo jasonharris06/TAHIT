@@ -62,7 +62,7 @@ handler.use(auth).post(async (req, res) => {
 
     const imageURL = await cloudinary.v2.uploader.upload(
       videoFile[1].path,
-      { public_id },
+      { public_id, gravity: "faces", height: 100, width: 100, crop: "thumb" },
       function (error, result) {
         //if (error) res.status(404).send(error);
         return result;

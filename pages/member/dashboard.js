@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Router from "next/router";
 
 // nodejs library to set properties for components
-import PropTypes from "prop-types";
+import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -34,6 +34,8 @@ import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
 
 import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
 import User from "../../models/User";
+
+import profilePageStyle from "assets/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
 
 import whiteLogo from "assets/img/logo-white.png"
 import background from "assets/img/greenblue-background.jpg"
@@ -99,7 +101,7 @@ export default function MemberDashboard() {
               <GridItem md={8} className={classes.textCenter}>
                 <h1 className={classes.title}>
                   Dashboard
-              </h1>
+                </h1>
 
 
               </GridItem>
