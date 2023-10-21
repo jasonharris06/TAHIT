@@ -15,15 +15,15 @@ import Cached from "@material-ui/icons/Cached";
 import Subject from "@material-ui/icons/Subject";
 import Check from "@material-ui/icons/Check";
 // core components
-import Accordion from "components/Accordion/Accordion.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import Button from "components/CustomButtons/Button.js";
-import Clearfix from "components/Clearfix/Clearfix.js";
+import Accordion from "../components/Accordion/Accordion.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Card from "../components/Card/Card.js";
+import CardHeader from "../components/Card/CardHeader.js";
+import CardBody from "../components/Card/CardBody.js";
+import CardFooter from "../components/Card/CardFooter.js";
+import Button from "../components/CustomButtons/Button.js";
+import Clearfix from "../components/Clearfix/Clearfix.js";
 
 import suit1 from "assets/img/examples/suit-1.jpg";
 import suit2 from "assets/img/examples/suit-2.jpg";
@@ -37,7 +37,7 @@ import color2 from "assets/img/examples/color2.jpg";
 import dg3 from "assets/img/dg3.jpg";
 import dg1 from "assets/img/dg1.jpg";
 
-import styles from "assets/jss/nextjs-material-kit-pro/pages/ecommerceSections/productsStyle.js";
+import styles from "/styles/jss/nextjs-material-kit-pro/pages/ecommerceSections/productsStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -55,11 +55,11 @@ export default function SectionProducts() {
         connect: true,
         range: { min: 30, max: 900 },
         step: 1
-      }).on("update", function(values) {
+      }).on("update", function (values) {
         setPriceRange([Math.round(values[0]), Math.round(values[1])]);
       });
     }
-    return function cleanup() {};
+    return function cleanup() { };
   });
   const handleToggle = value => {
     const currentIndex = checked.indexOf(value);

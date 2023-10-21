@@ -1,4 +1,4 @@
-import useSWR, {mutate} from "swr";
+import useSWR from "swr";
 
 export const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -12,10 +12,9 @@ export function useUser() {
 }
 
 export function useRegistry() {
-
   const { data, mutate } = useSWR("/api/userRegistry", fetcher);
   // if data is not defined, the query has not completed
-  console.log(data)
+  console.log(data);
   const loading = !data;
   const registryData = data;
 

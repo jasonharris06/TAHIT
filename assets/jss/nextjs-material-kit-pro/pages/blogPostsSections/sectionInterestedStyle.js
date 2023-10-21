@@ -3,7 +3,7 @@ import {
   cardTitle,
   coloredShadow,
   grayColor
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
 const sectionInterestedStyle = {
   title,

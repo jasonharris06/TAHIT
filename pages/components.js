@@ -9,26 +9,26 @@ import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Parallax from "components/Parallax/Parallax.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
+import Header from "../components/Header/Header.js";
+import Footer from "../components/Footer/Footer.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Parallax from "../components/Parallax/Parallax.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
 // sections for this page
-import SectionBasics from "pages-sections/components/SectionBasics.js";
-import SectionNavbars from "pages-sections/components/SectionNavbars.js";
-import SectionTabs from "pages-sections/components/SectionTabs.js";
-import SectionPills from "pages-sections/components/SectionPills.js";
-import SectionNotifications from "pages-sections/components/SectionNotifications.js";
-import SectionPreFooter from "pages-sections/components/SectionPreFooter.js";
-import SectionFooter from "pages-sections/components/SectionFooter.js";
-import SectionTypography from "pages-sections/components/SectionTypography.js";
-import SectionCards from "pages-sections/components/SectionCards.js";
-import SectionJavascript from "pages-sections/components/SectionJavascript.js";
-import SectionCarousel from "pages-sections/components/SectionCarousel.js";
+import SectionBasics from "../pages-sections/components/SectionBasics.js";
+import SectionNavbars from "../pages-sections/components/SectionNavbars.js";
+import SectionTabs from "../pages-sections/components/SectionTabs.js";
+import SectionPills from "../pages-sections/components/SectionPills.js";
+import SectionNotifications from "../pages-sections/components/SectionNotifications.js";
+import SectionPreFooter from "../pages-sections/components/SectionPreFooter.js";
+import SectionFooter from "../pages-sections/components/SectionFooter.js";
+import SectionTypography from "../pages-sections/components/SectionTypography.js";
+import SectionCards from "../pages-sections/components/SectionCards.js";
+import SectionJavascript from "../pages-sections/components/SectionJavascript.js";
+import SectionCarousel from "../pages-sections/components/SectionCarousel.js";
 
-import componentsStyle from "assets/jss/nextjs-material-kit-pro/pages/componentsStyle.js";
+import componentsStyle from "/styles/jss/nextjs-material-kit-pro/pages/componentsStyle.js";
 
 const useStyles = makeStyles(componentsStyle);
 
@@ -63,14 +63,14 @@ export default function Components() {
         parseInt(navigationItems[i].getAttribute("data-number"), 10) - 1;
       if (
         contentSections[i].offsetTop -
-          window.innerHeight / 2 +
-          document.getElementById("main-panel").offsetTop <
-          window.pageYOffset &&
+        window.innerHeight / 2 +
+        document.getElementById("main-panel").offsetTop <
+        window.pageYOffset &&
         contentSections[i].offsetTop +
-          contentSections[i].scrollHeight -
-          window.innerHeight / 2 +
-          document.getElementById("main-panel").offsetTop >
-          window.pageYOffset
+        contentSections[i].scrollHeight -
+        window.innerHeight / 2 +
+        document.getElementById("main-panel").offsetTop >
+        window.pageYOffset
       ) {
         navigationItems[activeSection].classList.add("is-selected");
       } else {
@@ -88,7 +88,7 @@ export default function Components() {
       currentTime = 0,
       increment = 20;
 
-    var animateScroll = function() {
+    var animateScroll = function () {
       currentTime += increment;
       var val = easeInOutQuad(currentTime, start, change, duration);
       element.scrollTop = val;

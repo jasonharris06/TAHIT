@@ -1,4 +1,4 @@
-import { blackColor, hexToRgb } from "assets/jss/nextjs-material-kit-pro.js";
+import { blackColor, hexToRgb } from "/styles/jss/nextjs-material-kit-pro.js";
 
 const imagesStyles = {
   imgFluid: {

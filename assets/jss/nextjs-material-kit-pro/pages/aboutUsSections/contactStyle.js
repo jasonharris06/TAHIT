@@ -3,8 +3,8 @@ import {
   description,
   mrAuto,
   mlAuto
-} from "assets/jss/nextjs-material-kit-pro.js";
-import customSelectStyle from "assets/jss/nextjs-material-kit-pro/customSelectStyle.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
+import customSelectStyle from "/styles/jss/nextjs-material-kit-pro/customSelectStyle.js";
 
 const contactStyle = {
   title,

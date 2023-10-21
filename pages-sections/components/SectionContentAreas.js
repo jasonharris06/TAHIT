@@ -15,23 +15,23 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Reply from "@material-ui/icons/Reply";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Table from "components/Table/Table.js";
-import Button from "components/CustomButtons/Button.js";
-import Media from "components/Media/Media.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Paginations from "components/Pagination/Pagination.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Table from "../../components/Table/Table.js";
+import Button from "../../components/CustomButtons/Button.js";
+import Media from "../../components/Media/Media.js";
+import CustomInput from "../../components/CustomInput/CustomInput.js";
+import Paginations from "../../components/Pagination/Pagination.js";
 
-import style from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/contentAreas.js";
+import style from "/styles/jss/nextjs-material-kit-pro/pages/componentsSections/contentAreas.js";
 
-import avatar from "assets/img/faces/avatar.jpg";
-import kendall from "assets/img/faces/kendall.jpg";
-import marc from "assets/img/faces/marc.jpg";
-import placeholder from "assets/img/placeholder.jpg";
-import product1 from "assets/img/product1.jpg";
-import product2 from "assets/img/product2.jpg";
-import product3 from "assets/img/product3.jpg";
+import avatar from "../../assets/img/faces/avatar.jpg";
+import kendall from "../../assets/img/faces/kendall.jpg";
+import marc from "../../assets/img/faces/marc.jpg";
+import placeholder from "../../assets/img/placeholder.jpg";
+import product1 from "../../assets/img/product1.jpg";
+import product2 from "../../assets/img/product2.jpg";
+import product3 from "../../assets/img/product3.jpg";
 
 const useStyles = makeStyles(style);
 

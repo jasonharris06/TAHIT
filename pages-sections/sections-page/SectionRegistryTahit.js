@@ -7,7 +7,7 @@ import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-t
 // A great library for fuzzy filtering/sorting items
 import { matchSorter } from 'match-sorter'
 import Table from "../../components/Table/reactTable"
-import ModalTable from "components/Table/Table.js";
+import ModalTable from "../components/Table/Table.js";
 import InfoIcon from '@material-ui/icons/Info';
 import Button from 'components/CustomButtons/Button.js';
 import Icon from "@material-ui/core/Icon";
@@ -26,7 +26,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Close from "@material-ui/icons/Close";
 import defaultImage from "../../assets/img/image_placeholder.jpg";
 
-import style from "assets/jss/nextjs-material-kit-pro/modalStyle.js";
+import style from "/styles/jss/nextjs-material-kit-pro/modalStyle.js";
 import _ from "lodash"
 
 
@@ -499,7 +499,7 @@ export default function Registry({ ...rest }) {
           <DialogActions className={classes.modalFooter}>
             <Button onClick={() => setModal(false)} color="secondary">
               Close
-    </Button>
+            </Button>
           </DialogActions>
         </Dialog>
 

@@ -4,7 +4,7 @@ import {
   cardTitle,
   grayColor,
   coloredShadow
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
 const sectionSimilarStoriesStyle = {
   container,

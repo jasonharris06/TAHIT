@@ -33,23 +33,23 @@ import Check from "@material-ui/icons/Check";
 import AttachFile from "@material-ui/icons/AttachFile";
 import Layers from "@material-ui/icons/Layers";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import Instruction from "components/Instruction/Instruction.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardBody from "components/Card/CardBody.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import CustomFileInput from "components/CustomFileInput/CustomFileInput.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
-import Accordion from "components/Accordion/Accordion.js";
-import ImageUpload from "components/CustomUpload/ImageUpload.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Button from "../../components/CustomButtons/Button.js";
+import Instruction from "../../components/Instruction/Instruction.js";
+import Card from "../../components/Card/Card.js";
+import CardHeader from "../../components/Card/CardHeader.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CustomInput from "../../components/CustomInput/CustomInput.js";
+import CustomFileInput from "../../components/CustomFileInput/CustomFileInput.js";
+import InfoArea from "../../components/InfoArea/InfoArea.js";
+import Accordion from "../../components/Accordion/Accordion.js";
+import ImageUpload from "../../components/CustomUpload/ImageUpload.js";
 
-import javascriptStyles from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/javascriptStyles.js";
+import javascriptStyles from "/styles/jss/nextjs-material-kit-pro/pages/componentsSections/javascriptStyles.js";
 
-import dg1 from "assets/img/dg1.jpg";
-import dg2 from "assets/img/dg2.jpg";
+import dg1 from "../../assets/img/dg1.jpg";
+import dg2 from "../../assets/img/dg2.jpg";
 
 const useStyles = makeStyles(javascriptStyles);
 

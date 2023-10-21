@@ -1,7 +1,6 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/styles";
-import { GA_TRACKING_ID } from '../lib/gtag'
 
 class MyDocument extends Document {
   render() {
@@ -33,11 +32,11 @@ class MyDocument extends Document {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           /> */}
           <meta name="theme-color" content="#000000" />
-          <link rel="shortcut icon" href={require("assets/img/favicon.png")} />
+          <link rel="shortcut icon" href={"/img/favicon.png"} />
           <link
             rel="apple-touch-icon"
             sizes="76x76"
-            href={require("assets/img/apple-icon.png")}
+            href={"/img/apple-icon.png"}
           />
           {/* Fonts and icons */}
           <link

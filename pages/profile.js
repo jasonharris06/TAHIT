@@ -14,20 +14,20 @@ import People from "@material-ui/icons/People";
 import Add from "@material-ui/icons/Add";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavPills from "components/NavPills/NavPills.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardHeader from "components/Card/CardHeader.js";
-import Badge from "components/Badge/Badge.js";
-import Muted from "components/Typography/Muted.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Clearfix from "components/Clearfix/Clearfix.js";
-import Button from "components/CustomButtons/Button.js";
+import Header from "../components/Header/Header.js";
+import Footer from "../components/Footer/Footer.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import NavPills from "../components/NavPills/NavPills.js";
+import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+import CardHeader from "../components/Card/CardHeader.js";
+import Badge from "../components/Badge/Badge.js";
+import Muted from "../components/Typography/Muted.js";
+import Parallax from "../components/Parallax/Parallax.js";
+import Clearfix from "../components/Clearfix/Clearfix.js";
+import Button from "../components/CustomButtons/Button.js";
 
 import christian from "assets/img/faces/christian.jpg";
 import oluEletu from "assets/img/examples/olu-eletu.jpg";
@@ -41,7 +41,7 @@ import marc from "assets/img/faces/marc.jpg";
 import kendall from "assets/img/faces/kendall.jpg";
 import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
 
-import profilePageStyle from "assets/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
+import profilePageStyle from "/styles/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
 
 const useStyles = makeStyles(profilePageStyle);
 

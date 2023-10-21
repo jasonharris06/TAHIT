@@ -6,18 +6,16 @@ import PropTypes from "prop-types";
 
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Check from "@material-ui/icons/Check";
-import SnackbarContent from "components/Snackbar/SnackbarContent.js";
-import Clearfix from "components/Clearfix/Clearfix.js";
-// core components
-import Button from "components/CustomButtons/Button.js";
-import Danger from "components/Typography/Danger.js";
-import Success from "components/Typography/Success.js";
-import defaultImage from "assets/img/image_placeholder.jpg";
-import defaultAvatar from "assets/img/placeholder.jpg";
 
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+// core components
+import Button from "../../components/CustomButtons/Button.js";
+import Danger from "../../components/Typography/Danger.js";
+import Success from "../../components/Typography/Success.js";
+import defaultImage from "../../assets/img/image_placeholder.jpg";
+import defaultAvatar from "../../assets/img/placeholder.jpg";
+
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
 //overlay
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ImageUpload(props) {
   const classes = useStyles();
-  const [user, { mutate }] = useUser()
+  const [user] = useUser()
   const [file, setFile] = React.useState(null);
   const [errorMsg, setErrorMsg] = useState("")
   const [successMsg, setSuccessMsg] = useState("")
@@ -131,29 +129,29 @@ export default function ImageUpload(props) {
             {avatar ? "Add Photo" : "Select image"}
           </Button>
         ) : (
-            <span>
-              <form
-                onSubmit={handleSubmit}
-                method="post"
-                encType="multipart/form-data"
-              >
-                <input type="file" name="avatar" />
+          <span>
+            <form
+              onSubmit={handleSubmit}
+              method="post"
+              encType="multipart/form-data"
+            >
+              <input type="file" name="avatar" />
 
-                <Button {...changeButtonProps} type="submit">
-                  Save Image
-            </Button>
-              </form>
+              <Button {...changeButtonProps} type="submit">
+                Save Image
+              </Button>
+            </form>
 
-              <Button {...changeButtonProps} onClick={() => handleClick()}>
-                Change
+            <Button {...changeButtonProps} onClick={() => handleClick()}>
+              Change
             </Button>
 
-              {avatar ? <br /> : null}
-              <Button {...removeButtonProps} onClick={() => handleRemove()}>
-                <i className="fas fa-times" /> Remove
+            {avatar ? <br /> : null}
+            <Button {...removeButtonProps} onClick={() => handleRemove()}>
+              <i className="fas fa-times" /> Remove
             </Button>
-            </span>
-          )}
+          </span>
+        )}
       </div>
     </div >
   );

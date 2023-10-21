@@ -11,24 +11,18 @@ import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Footer from "components/Footer/Footer.js";
+import Header from "../../components/Header/Header.js";
+import HeaderLinks from "../../components/Header/HeaderLinks.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Parallax from "../../components/Parallax/Parallax.js";
+import Footer from "../../components/Footer/Footer.js";
 // sections for this page
-import SectionDescription from "pages-sections/about-us/SectionDescription.js";
-import SectionTeam from "pages-sections/sections-page/SectionBoardTahit.js";
-import SectionServices from "pages-sections/about-us/SectionServices.js";
-import SectionOffice from "pages-sections/about-us/SectionOffice.js";
-import SectionContact from "pages-sections/about-us/SectionContact.js";
-import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
-import SectionSymposiumCards from "pages-sections/sections-page/SectionPastSymposia.js"
 
-import errorPageStyle from "assets/jss/nextjs-material-kit-pro/pages/errorPageStyles.js";
 
-import image from "assets/img/background-houstonSkyline.jpg"
+import errorPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/errorPageStyles.js";
+
+import image from "../../public/img/background-houstonSkyline.jpg"
 
 const useStyles = makeStyles(errorPageStyle);
 
@@ -81,7 +75,7 @@ export default function AboutUsPage() {
                   <Link href='/home' as="/home" >
                     <a className={classes.block}>
                       TAHIT
-                  </a>
+                    </a>
                   </Link>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
@@ -96,13 +90,13 @@ export default function AboutUsPage() {
                     className={classes.block}
                   >
                     Licenses
-                    </a>
+                  </a>
                 </ListItem>
               </List>
             </div>
             <div className={classes.right}>
               Copyright &copy; {1900 + new Date().getYear()}{" "} TAHIT
-              </div>
+            </div>
           </div>
         }
       />

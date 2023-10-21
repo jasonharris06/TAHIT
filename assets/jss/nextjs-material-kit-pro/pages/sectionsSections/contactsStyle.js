@@ -9,9 +9,9 @@ import {
   blackColor,
   whiteColor,
   hexToRgb
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
-import customCheckboxRadioSwitch from "assets/jss/nextjs-material-kit-pro/customCheckboxRadioSwitchStyle.js";
+import customCheckboxRadioSwitch from "/styles/jss/nextjs-material-kit-pro/customCheckboxRadioSwitchStyle.js";
 
 const contactsSection = {
   ...customCheckboxRadioSwitch,

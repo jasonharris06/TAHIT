@@ -1,10 +1,7 @@
 import nextConnect from "next-connect";
 import auth from "../../middleware/auth";
 import sharp from "sharp";
-import fs from "fs"
-import path from "path";
 import formidable from 'formidable'
-import multer from "multer";
 
 import User from "../../models/User";
 

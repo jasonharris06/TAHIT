@@ -1,4 +1,4 @@
-import headerLinksStyle from "assets/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
+import headerLinksStyle from "/styles/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
 import {
   container,
   mrAuto,
@@ -6,7 +6,7 @@ import {
   blackColor,
   whiteColor,
   hexToRgb
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
 const headersSection = theme => ({
   ...headerLinksStyle(theme),

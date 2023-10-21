@@ -11,21 +11,19 @@ import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Parallax from "components/Parallax/Parallax.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Parallax from "../components/Parallax/Parallax.js";
 import SectionFooter from "../pages-sections/components/SectionFooterTahit";
-import Footer from "components/Footer/Footer.js";
-import SectionQuote from "pages-sections/sections-page/SectionQuote";
 // sections for this page
 
-import logo from "assets/img/favicon.png"
+import logo from "../assets/img/favicon.png"
 
-import whiteLogo from "assets/img/logo-white.png"
+import whiteLogo from "../assets/img/logo-white.png"
 
-import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
+import aboutUsStyle from "/styles/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
 
 const useStyles = makeStyles(aboutUsStyle);
 
@@ -58,7 +56,7 @@ export default function AboutUsPage() {
           filter: "dark"
         }}
       />
-      <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
+      <Parallax image={require("../assets/img/background-gradient.jpg")} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem
@@ -104,14 +102,14 @@ export default function AboutUsPage() {
           <GridContainer justify="left">
             <GridItem sm={12} md={12}>
               The bylaws were approved and the following officers were appointed:
-                <ul>
+              <ul>
                 <li><b>Co-Presidents:</b> Evelyn Ferrer and Patricia Yacovone</li>
                 <li><b>Treasurer:</b> Edgardo Garcia</li>
                 <li><b>Directors:</b> Doug Green, Liliana McKean, and Esther Diaz</li>
                 <li><b>Secretary:</b> Maureen Scharton</li>
               </ul>
               Participants at this first meeting were:
-                <ul>
+              <ul>
                 <li>Agnes Czornor – Memorial Hermann Hospital (Houston)</li>
                 <li>Esther Diaz – AATIA (Austin)</li>
                 <li>Evelyn Ferrer – Driscoll Children’s Hospital (Corpus Christi)</li>

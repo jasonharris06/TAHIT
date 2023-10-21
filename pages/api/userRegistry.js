@@ -1,5 +1,5 @@
+/* eslint-disable */
 import nextConnect from "next-connect";
-import auth from "../../middleware/auth";
 import User from "../../models/User";
 
 import { dbConnect } from "../../utils/dbConnect"

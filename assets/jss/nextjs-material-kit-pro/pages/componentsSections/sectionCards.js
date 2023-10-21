@@ -10,11 +10,11 @@ import {
   roseColor,
   grayColor,
   hexToRgb
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
-import imageStyles from "assets/jss/nextjs-material-kit-pro/imagesStyles.js";
+import imageStyles from "/styles/jss/nextjs-material-kit-pro/imagesStyles.js";
 
-import rotatingCards from "assets/jss/nextjs-material-kit-pro/rotatingCards.js";
+import rotatingCards from "/styles/jss/nextjs-material-kit-pro/rotatingCards.js";
 
 const styles = {
   container,

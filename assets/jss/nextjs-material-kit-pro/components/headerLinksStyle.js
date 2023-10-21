@@ -3,9 +3,9 @@ import {
   whiteColor,
   mlAuto,
   hexToRgb
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
-import tooltip from "assets/jss/nextjs-material-kit-pro/tooltipsStyle.js";
+import tooltip from "/styles/jss/nextjs-material-kit-pro/tooltipsStyle.js";
 
 const headerLinksStyle = theme => ({
   list: {

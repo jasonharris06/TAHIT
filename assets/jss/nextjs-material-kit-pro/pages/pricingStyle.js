@@ -6,7 +6,7 @@ import {
   whiteColor,
   mrAuto,
   mlAuto
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
 const pricingStyle = {
   main,

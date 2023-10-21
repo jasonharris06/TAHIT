@@ -7,13 +7,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import Parallax from "../components/Parallax/Parallax.js";
+import Footer from "../components/Footer/Footer.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Button from "../components/CustomButtons/Button.js";
 // sections for this page
 import SectionDescription from "pages-sections/presentation-page/SectionDescription.js";
 import SectionComponents from "pages-sections/presentation-page/SectionComponents.js";
@@ -25,7 +25,7 @@ import SectionFreeDemo from "pages-sections/presentation-page/SectionFreeDemo.js
 import SectionOverview from "pages-sections/presentation-page/SectionOverview.js";
 import SectionPricing from "pages-sections/presentation-page/SectionPricing.js";
 
-import presentationStyle from "assets/jss/nextjs-material-kit-pro/pages/presentationStyle.js";
+import presentationStyle from "/styles/jss/nextjs-material-kit-pro/pages/presentationStyle.js";
 
 const useStyles = makeStyles(presentationStyle);
 

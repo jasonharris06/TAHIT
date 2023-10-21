@@ -8,11 +8,11 @@ import {
   whiteColor,
   mainRaised,
   grayColor
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
-import imagesStyle from "assets/jss/nextjs-material-kit-pro/imagesStyles.js";
+import imagesStyle from "/styles/jss/nextjs-material-kit-pro/imagesStyles.js";
 
-import tooltipsStyle from "assets/jss/nextjs-material-kit-pro/tooltipsStyle.js";
+import tooltipsStyle from "/styles/jss/nextjs-material-kit-pro/tooltipsStyle.js";
 
 const profilePageStyle = {
   container,

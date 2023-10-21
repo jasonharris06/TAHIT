@@ -8,7 +8,7 @@ import {
   whiteColor,
   description,
   hexToRgb
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
 const examplesStyle = {
   section: {

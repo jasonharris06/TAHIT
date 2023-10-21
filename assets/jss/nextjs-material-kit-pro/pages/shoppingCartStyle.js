@@ -8,10 +8,10 @@ import {
   whiteColor,
   grayColor,
   mlAuto
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
-import buttonGroup from "assets/jss/nextjs-material-kit-pro/buttonGroupStyle.js";
-import tooltips from "assets/jss/nextjs-material-kit-pro/tooltipsStyle.js";
+import buttonGroup from "/styles/jss/nextjs-material-kit-pro/buttonGroupStyle.js";
+import tooltips from "/styles/jss/nextjs-material-kit-pro/tooltipsStyle.js";
 
 const styles = {
   main,

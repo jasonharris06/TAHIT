@@ -18,20 +18,20 @@ import { useUser } from '../../lib/hooks'
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/MemberHeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/MemberHeaderLinks.js";
+import Parallax from "../components/Parallax/Parallax.js";
+import Footer from "../components/Footer/Footer.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Button from "../components/CustomButtons/Button.js";
 // sections for this page
 import SectionText from "pages-sections/blog-post/SectionText.js";
 import SectionBlogInfo from "pages-sections/blog-post/SectionBlogInfo.js";
 import SectionComments from "pages-sections/blog-post/SectionComments.js";
 import SectionSimilarStories from "pages-sections/blog-post/SectionSimilarStories.js";
 
-import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
+import blogPostPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
 import User from "../../models/User";
 
 import whiteLogo from "assets/img/logo-white.png"
@@ -98,7 +98,7 @@ export default function MemberDashboard() {
               <GridItem md={8} className={classes.textCenter}>
                 <h1 className={classes.title}>
                   Dashboard
-              </h1>
+                </h1>
 
 
               </GridItem>
@@ -125,7 +125,7 @@ export default function MemberDashboard() {
                       className={classes.block}
                     >
                       Creative Tim
-                  </a>
+                    </a>
                   </ListItem>
                   <ListItem className={classes.inlineBlock}>
                     <a
@@ -134,7 +134,7 @@ export default function MemberDashboard() {
                       className={classes.block}
                     >
                       About us
-                  </a>
+                    </a>
                   </ListItem>
                   <ListItem className={classes.inlineBlock}>
                     <a
@@ -143,7 +143,7 @@ export default function MemberDashboard() {
                       className={classes.block}
                     >
                       Blog
-                  </a>
+                    </a>
                   </ListItem>
                   <ListItem className={classes.inlineBlock}>
                     <a
@@ -152,7 +152,7 @@ export default function MemberDashboard() {
                       className={classes.block}
                     >
                       Licenses
-                  </a>
+                    </a>
                   </ListItem>
                 </List>
               </div>
@@ -164,9 +164,9 @@ export default function MemberDashboard() {
                   target="_blank"
                 >
                   Creative Tim
-              </a>{" "}
-              for a better web.
-            </div>
+                </a>{" "}
+                for a better web.
+              </div>
             </div>
           }
         />

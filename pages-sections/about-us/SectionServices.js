@@ -7,11 +7,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Gesture from "@material-ui/icons/Gesture";
 import Build from "@material-ui/icons/Build";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import InfoArea from "../components/InfoArea/InfoArea.js";
 
-import servicesStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsSections/servicesStyle.js";
+import servicesStyle from "/styles/jss/nextjs-material-kit-pro/pages/aboutUsSections/servicesStyle.js";
 
 const useStyles = makeStyles(servicesStyle);
 

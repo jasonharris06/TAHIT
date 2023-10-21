@@ -2,9 +2,9 @@ import {
   grayColor,
   container,
   title
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
-import imagesStyles from "assets/jss/nextjs-material-kit-pro/imagesStyles.js";
+import imagesStyles from "/styles/jss/nextjs-material-kit-pro/imagesStyles.js";
 
 const sectionTextStyle = {
   container,

@@ -9,13 +9,13 @@ import ListItem from "@material-ui/core/ListItem";
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import Parallax from "../components/Parallax/Parallax.js";
+import Footer from "../components/Footer/Footer.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Button from "../components/CustomButtons/Button.js";
 // sections for this page
 import SectionText from "pages-sections/blog-post/SectionText.js";
 import SectionBlogInfo from "pages-sections/blog-post/SectionBlogInfo.js";
@@ -24,7 +24,7 @@ import SectionSimilarStories from "pages-sections/blog-post/SectionSimilarStorie
 import SectionRegistryTahit from "pages-sections/sections-page/SectionRegistryTahit.js"
 import SectionRegistryModal from "pages-sections/sections-page/SectionRegistryModal.js"
 
-import blogPostPageStyle from "assets/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
+import blogPostPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
 import background from "assets/img/greenblue-background.jpg"
 
 import whiteLogo from "assets/img/logo-white.png"

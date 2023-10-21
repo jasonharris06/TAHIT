@@ -9,17 +9,17 @@ import AccountBalance from "@material-ui/icons/AccountBalance";
 import Check from "@material-ui/icons/Check";
 import Close from "@material-ui/icons/Close";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import Button from "components/CustomButtons/Button.js";
-import NavPills from "components/NavPills/NavPills.js";
-import Success from "components/Typography/Success.js";
-import Danger from "components/Typography/Danger.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+import CardFooter from "../components/Card/CardFooter.js";
+import Button from "../components/CustomButtons/Button.js";
+import NavPills from "../components/NavPills/NavPills.js";
+import Success from "../components/Typography/Success.js";
+import Danger from "../components/Typography/Danger.js";
 
-import pricingStyle from "assets/jss/nextjs-material-kit-pro/pages/sectionsSections/pricingStyle.js";
+import pricingStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSections/pricingStyle.js";
 
 import bg11 from "assets/img/bg11.jpg";
 import city from "assets/img/examples/city.jpg";

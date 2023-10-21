@@ -7,11 +7,11 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import Button from "components/CustomButtons/Button.js";
+import Button from "../components/CustomButtons/Button.js";
 // @material-ui/icons
 import Close from "@material-ui/icons/Close";
 
-import style from "assets/jss/nextjs-material-kit-pro/modalStyle.js";
+import style from "/styles/jss/nextjs-material-kit-pro/modalStyle.js";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;

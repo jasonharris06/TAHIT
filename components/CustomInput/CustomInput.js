@@ -14,7 +14,7 @@ import Clear from "@material-ui/icons/Clear";
 import Check from "@material-ui/icons/Check";
 // core components
 
-import styles from "assets/jss/nextjs-material-kit-pro/components/customInputStyle.js";
+import styles from "/styles/jss/nextjs-material-kit-pro/components/customInputStyle.js";
 
 const useStyles = makeStyles(styles);
 

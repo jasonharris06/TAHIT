@@ -10,22 +10,21 @@ import Check from "@material-ui/icons/Check";
 import Close from "@material-ui/icons/Close";
 import People from "@material-ui/icons/People";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import Button from "components/CustomButtons/Button.js";
-import NavPills from "components/NavPills/NavPills.js";
-import Accordion from "components/Accordion/Accordion.js";
-import Success from "components/Typography/Success.js";
-import Danger from "components/Typography/Danger.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Card from "../../components/Card/Card.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CardFooter from "../../components/Card/CardFooter.js";
+import Button from "../../components/CustomButtons/Button.js";
+import NavPills from "../../components/NavPills/NavPills.js";
+import Accordion from "../../components/Accordion/Accordion.js";
+import Success from "../../components/Typography/Success.js";
+import Danger from "../../components/Typography/Danger.js";
 
-import pricingStyle from "assets/jss/nextjs-material-kit-pro/pages/sectionsSections/pricingStyle.js";
+import pricingStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSections/pricingStyle.js";
 
-import bg11 from "assets/img/bg11.jpg";
-import city from "assets/img/examples/city.jpg";
-import cardBlog3 from "assets/img/background-texture.jpg";
+
+import cardBlog3 from "../../assets/img/background-texture.jpg";
 
 const useStyles = makeStyles(pricingStyle);
 
@@ -46,10 +45,10 @@ export default function SectionPricing({ ...rest }) {
           >
             <h2 className={classes.title}>
               Membership Pricing
-              </h2>
+            </h2>
             <p className={classes.description}>
               If you need a personal membership, or an organization membership we have the right plan for you.
-              </p>
+            </p>
           </GridItem>
         </GridContainer>
         <GridContainer>
@@ -82,7 +81,7 @@ export default function SectionPricing({ ...rest }) {
                               }
                             >
                               Personal Yearly Membership
-                              </h6>
+                            </h6>
                             <div className={classes.iconWrapper}>
                               <People className={classes.iconInfo} />
                             </div>
@@ -95,7 +94,7 @@ export default function SectionPricing({ ...rest }) {
                             </h3>
                             <p className={classes.cardDescription}>
                               These memberships are intended for individuals who are stakeholders in providing language access for LEPs and the Deaf and Hard-of-Hearing.  Whether a provider, clinical staff, an administrator, a language professional, or just an ordinary person who cares about doing what is right, this is the best choice for most individuals.
-                            
+
                             </p>
                           </CardBody>
                           <CardFooter
@@ -104,7 +103,7 @@ export default function SectionPricing({ ...rest }) {
                           >
                             <Button color="rose" round>
                               BUY NOW
-                              </Button>
+                            </Button>
                           </CardFooter>
                           {/* <Button round color="info">
                                 Choose plan
@@ -131,7 +130,7 @@ export default function SectionPricing({ ...rest }) {
                               }
                             >
                               Student Yearly Membership
-                              </h6>
+                            </h6>
                             <div className={classes.iconWrapper}>
                               <People className={classes.iconInfo} />
                             </div>
@@ -152,7 +151,7 @@ export default function SectionPricing({ ...rest }) {
                           >
                             <Button color="rose" round>
                               BUY NOW
-                              </Button>
+                            </Button>
                           </CardFooter>
                           {/* <Button round color="info">
                                 Choose plan
@@ -187,36 +186,36 @@ export default function SectionPricing({ ...rest }) {
                               <small>$</small>125 <small>/yr</small>
                             </h1>
                             <Accordion
-                            active={1}
-                            collapses={[
-                              {
-                                title:"More Info",
-                                content:"This option allows the 5 selected individuals within your department to become members and be eligible for member discounts on events, merchandise, and webinars.  These movers and shakers on your team can keep a larger group in the loop with everything happening with TAHIT and in the industry."
-                              }
-                            ]}
+                              active={1}
+                              collapses={[
+                                {
+                                  title: "More Info",
+                                  content: "This option allows the 5 selected individuals within your department to become members and be eligible for member discounts on events, merchandise, and webinars.  These movers and shakers on your team can keep a larger group in the loop with everything happening with TAHIT and in the industry."
+                                }
+                              ]}
                             />
                             <ul>
                               <li>
                                 <b>5</b> Users
-                            </li>
+                              </li>
                               <li>
                                 <b>Free</b> Inital User Upload
-                            </li>
+                              </li>
                               <li>
                                 <b>Discount</b> on Yearly TAHIT Symposium
-                            </li>
+                              </li>
                               <li>
                                 <b>1</b> Admin Account
                                 <p className={classes.cardDescription}>
                                   Dashboard of organization users with the ability to add/remove users
-                            </p>
+                                </p>
                               </li>
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
                             <Button color="rose" round>
                               Get Started
-                          </Button>
+                            </Button>
                           </CardFooter>
                         </Card>
                       </GridItem>
@@ -230,41 +229,41 @@ export default function SectionPricing({ ...rest }) {
                           <CardBody pricing background>
                             <h6 className={classes.cardCategoryWhite}>MEDIUM BUSINESS</h6>
                             <h1 className={classes.cardTitleWhite}>
-                            
+
                               <small>$</small> 500 <small>/yr</small>
                             </h1>
                             <Accordion
-                            style={{ backgroundColor: "transparent !important"}}
-                            active={1}
-                            collapses={[
-                              {
-                                title:"More Info",
-                                content:"This is a 50% savings off the cost of an individual membership and these individuals will also be eligible for members-only discounts on TAHIT-sponsored events and webinars.  Make your whole team feel included in the industry!"
-                              }
-                            ]}
+                              style={{ backgroundColor: "transparent !important" }}
+                              active={1}
+                              collapses={[
+                                {
+                                  title: "More Info",
+                                  content: "This is a 50% savings off the cost of an individual membership and these individuals will also be eligible for members-only discounts on TAHIT-sponsored events and webinars.  Make your whole team feel included in the industry!"
+                                }
+                              ]}
                             />
                             <ul>
                               <li>
                                 <b>25</b> Users
-                            </li>
+                              </li>
                               <li>
                                 <b>Free</b> Inital User Upload
-                            </li>
+                              </li>
                               <li>
                                 <b>Discount</b> on Yearly TAHIT Symposium
-                            </li>
+                              </li>
                               <li>
                                 <b>1</b> Admin Account
                                 <p className={classes.cardDescription}>
                                   Dashboard of organization users with the ability to add/remove users
-                            </p>
+                                </p>
                               </li>
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
                             <Button color="white" round>
                               Get Started
-                          </Button>
+                            </Button>
                           </CardFooter>
                         </Card>
                       </GridItem>
@@ -273,40 +272,40 @@ export default function SectionPricing({ ...rest }) {
                           <CardBody pricing plain>
                             <h6 className={classes.cardCategory}>LARGE BUSINESS</h6>
                             <h1 className={classes.cardTitle}>
-                          
+
                               <small>$</small> 3,125 <small>/yr</small>
                             </h1>
                             <Accordion
-                            active={1}
-                            collapses={[
-                              {
-                                title:"More Info",
-                                content:"Corporate Memberships are for large agencies and businesses with hundreds of Language Access Professionals.  You can provide an incredible access to the interpreting and translating professions to your staff, management, or contractors.  There is no better way to create an impact on connecting people and ideas in the industry!"
-                              }
-                            ]}
+                              active={1}
+                              collapses={[
+                                {
+                                  title: "More Info",
+                                  content: "Corporate Memberships are for large agencies and businesses with hundreds of Language Access Professionals.  You can provide an incredible access to the interpreting and translating professions to your staff, management, or contractors.  There is no better way to create an impact on connecting people and ideas in the industry!"
+                                }
+                              ]}
                             />
                             <ul>
                               <li>
                                 <b>500</b> Users
-                            </li>
+                              </li>
                               <li>
                                 <b>Free</b> Inital User Upload
-                            </li>
+                              </li>
                               <li>
                                 <b>Discount</b> on Yearly TAHIT Symposium
-                            </li>
+                              </li>
                               <li>
                                 <b>1</b> Admin Account
                                 <p className={classes.cardDescription}>
                                   Dashboard of organization users with the ability to add/remove users
-                            </p>
+                                </p>
                               </li>
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
                             <Button color="rose" round>
                               Get Started
-                          </Button>
+                            </Button>
                           </CardFooter>
                         </Card>
                       </GridItem>

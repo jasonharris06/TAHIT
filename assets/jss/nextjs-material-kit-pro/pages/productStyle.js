@@ -8,11 +8,11 @@ import {
   cardTitle,
   grayColor,
   roseColor
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
-import tooltipsStyle from "assets/jss/nextjs-material-kit-pro/tooltipsStyle.js";
-import imagesStyles from "assets/jss/nextjs-material-kit-pro/imagesStyles.js";
-import customSelectStyle from "assets/jss/nextjs-material-kit-pro/customSelectStyle.js";
+import tooltipsStyle from "/styles/jss/nextjs-material-kit-pro/tooltipsStyle.js";
+import imagesStyles from "/styles/jss/nextjs-material-kit-pro/imagesStyles.js";
+import customSelectStyle from "/styles/jss/nextjs-material-kit-pro/customSelectStyle.js";
 
 const productStyle = {
   mlAuto,

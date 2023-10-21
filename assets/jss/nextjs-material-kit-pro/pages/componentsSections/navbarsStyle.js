@@ -2,8 +2,8 @@ import {
   container,
   title,
   grayColor
-} from "assets/jss/nextjs-material-kit-pro.js";
-import headerLinksStyle from "assets/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
+import headerLinksStyle from "/styles/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
 
 const navbarsStyle = theme => ({
   container,

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -8,7 +9,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import styles from "assets/jss/nextjs-material-kit-pro/components/buttonStyle.js";
+import styles from "/styles/jss/nextjs-material-kit-pro/components/buttonStyle.js";
 
 const useStyles = makeStyles(styles);
 

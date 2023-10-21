@@ -10,16 +10,16 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui icons
 import Mail from "@material-ui/icons/Mail";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Footer from "components/Footer/Footer.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Parallax from "../components/Parallax/Parallax.js";
+import Button from "../components/CustomButtons/Button.js";
+import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+import CustomInput from "../components/CustomInput/CustomInput.js";
+import Footer from "../components/Footer/Footer.js";
 // sections for this page
 import SectionLatestOffers from "pages-sections/ecommerce/SectionLatestOffers.js";
 import SectionProducts from "pages-sections/ecommerce/SectionProducts.js";
@@ -35,7 +35,7 @@ import face6 from "assets/img/faces/kendall.jpg";
 import face7 from "assets/img/faces/card-profile5-square.jpg";
 import face8 from "assets/img/faces/card-profile2-square.jpg";
 
-import styles from "assets/jss/nextjs-material-kit-pro/pages/ecommerceStyle.js";
+import styles from "/styles/jss/nextjs-material-kit-pro/pages/ecommerceStyle.js";
 
 const useStyles = makeStyles(styles);
 

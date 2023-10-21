@@ -3,11 +3,11 @@ import {
   mrAuto,
   mlAuto,
   grayColor
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
-import checkboxes from "assets/jss/nextjs-material-kit-pro/customCheckboxRadioSwitchStyle.js";
-import buttonGroup from "assets/jss/nextjs-material-kit-pro/buttonGroupStyle.js";
-import tooltips from "assets/jss/nextjs-material-kit-pro/tooltipsStyle.js";
+import checkboxes from "/styles/jss/nextjs-material-kit-pro/customCheckboxRadioSwitchStyle.js";
+import buttonGroup from "/styles/jss/nextjs-material-kit-pro/buttonGroupStyle.js";
+import tooltips from "/styles/jss/nextjs-material-kit-pro/tooltipsStyle.js";
 
 const contentAreas = {
   title,

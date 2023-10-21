@@ -2,12 +2,12 @@ import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardBody from "components/Card/CardBody.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import InfoArea from "../components/InfoArea/InfoArea.js";
+import Card from "../components/Card/Card.js";
+import CardHeader from "../components/Card/CardHeader.js";
+import CardBody from "../components/Card/CardBody.js";
 // @material-ui icons
 import Grid from "@material-ui/icons/GridOn";
 import PhoneLink from "@material-ui/icons/Phonelink";
@@ -25,7 +25,7 @@ import profilePic1 from "assets/img/assets-for-demo/test1.jpg";
 import profilePic2 from "assets/img/assets-for-demo/test2.jpg";
 import profilePic3 from "assets/img/assets-for-demo/test3.jpg";
 
-import overviewStyle from "assets/jss/nextjs-material-kit-pro/pages/presentationSections/overviewStyle.js";
+import overviewStyle from "/styles/jss/nextjs-material-kit-pro/pages/presentationSections/overviewStyle.js";
 
 const useStyles = makeStyles(overviewStyle);
 

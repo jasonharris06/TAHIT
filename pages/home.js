@@ -15,27 +15,24 @@ import Favorite from "@material-ui/icons/Favorite";
 import Email from "@material-ui/icons/Email";
 import Mail from "@material-ui/icons/Mail";
 // core components
-import Header from "components/Header/Header.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
-import landingPageStyle from "assets/jss/nextjs-material-kit-pro/pages/landingPageStyle.js";
+import Header from "../components/Header/Header.js";
+import Footer from "../components/Footer/Footer.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Button from "../components/CustomButtons/Button.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import Parallax from "../components/Parallax/Parallax.js";
+import landingPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/landingPageStyle.js";
 
-import NavBar from "components/Header/navBar.js"
-import CustomInput from "components/CustomInput/CustomInput.js";
+import NavBar from "../components/Header/navBar.js"
+import CustomInput from "../components/CustomInput/CustomInput.js";
 
-import whiteLogo from "assets/img/logo-white.png"
+import whiteLogo from "../assets/img/logo-white.png"
 import Close from "@material-ui/icons/Close";
 // Sections for this page
-import SectionProduct from "pages-sections/landing-page/SectionProduct.js";
-import SectionModal from "pages-sections/landing-page/SectionModal.js"
-import SectionTeam from "pages-sections/landing-page/SectionTeam.js";
-import SectionWork from "pages-sections/landing-page/SectionWork.js";
-import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
-import SectionPricing from "pages-sections/sections-page/SectionPricingTahit.js"
+import SectionProduct from "../pages-sections/landing-page/SectionProduct.js";
+import SectionFooter from "../pages-sections/components/SectionFooterTahit.js";
+import SectionPricing from "../pages-sections/sections-page/SectionPricingTahit.js"
 
 
 
@@ -76,7 +73,7 @@ export default function LandingPage({ ...rest }) {
         {...rest}
       />
 
-      <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark">
+      <Parallax image={require("../public/img/background-gradient.jpg")} filter="dark">
         <div className={classes.container}>
           <GridContainer>
             <Hidden xsDown>

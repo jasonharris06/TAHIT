@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from '../../lib/hooks'
-import Router from "next/router";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
@@ -13,22 +12,20 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 // core components
-import InputMask from 'react-input-mask';
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import CardHeader from "components/Card/CardHeader.js";
-import Danger from "components/Typography/Danger.js";
-import Success from "components/Typography/Success.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
-import ImageUpload from 'components/CustomUpload/ImageUpload.js';
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import CardHeader from "../../components/Card/CardHeader.js";
+import Danger from "../../components/Typography/Danger.js";
+import Success from "../../components/Typography/Success.js";
+import Card from "../../components/Card/Card.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CustomInput from "../../components/CustomInput/CustomInput.js";
+import Button from "../../components/CustomButtons/Button.js";
+import ImageUpload from '../../components/CustomUpload/ImageUpload.js';
 
 
 
-import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
+import contactUsStyle from "/styles/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
 import Data from "../../data/profileDropdowns.json"
 
 
@@ -462,7 +459,7 @@ export default function SectionProfile({ ...rest }) {
                 <h4 className={classes.cardTitle}>Choose a major metropolitan area </h4>
                 <p>
                   The city you choose will be the closest major city you are willing to work, or currently working in.
-          </p>
+                </p>
 
 
                 <Autocomplete
@@ -649,7 +646,7 @@ export default function SectionProfile({ ...rest }) {
             <div className={classes.textCenter}>
               <Button type="submit" color="primary" round>
                 Save Changes
-                    </Button>
+              </Button>
             </div>
           </form>
         </GridItem>

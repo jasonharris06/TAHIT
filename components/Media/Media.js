@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
 
-import styles from "assets/jss/nextjs-material-kit-pro/components/mediaStyle.js";
+import styles from "/styles/jss/nextjs-material-kit-pro/components/mediaStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -37,8 +37,8 @@ export default function Media(props) {
         <div className={classes.mediaFooter}>{footer}</div>
         {innerMedias !== undefined
           ? innerMedias.map(prop => {
-              return prop;
-            })
+            return prop;
+          })
           : null}
       </div>
     </div>

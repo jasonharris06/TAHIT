@@ -18,11 +18,11 @@ import ViewCarousel from "@material-ui/icons/ViewCarousel";
 import AccessTime from "@material-ui/icons/AccessTime";
 import AttachMoney from "@material-ui/icons/AttachMoney";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import InfoArea from "../components/InfoArea/InfoArea.js";
 
-import featuresStyle from "assets/jss/nextjs-material-kit-pro/pages/sectionsSections/featuresStyle.js";
+import featuresStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSections/featuresStyle.js";
 
 import iphone from "assets/img/sections/iphone.png";
 import iphone2 from "assets/img/sections/iphone2.png";

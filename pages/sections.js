@@ -3,8 +3,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
 // sections of this Page
 import SectionHeaders from "pages-sections/sections-page/SectionHeaders.js";
 import SectionFeatures from "pages-sections/sections-page/SectionFeatures.js";
@@ -15,7 +15,7 @@ import SectionPricing from "pages-sections/sections-page/SectionPricing.js";
 import SectionTestimonials from "pages-sections/sections-page/SectionTestimonials.js";
 import SectionContacts from "pages-sections/sections-page/SectionContacts.js";
 
-import sectionsPageStyle from "assets/jss/nextjs-material-kit-pro/pages/sectionsPageStyle.js";
+import sectionsPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsPageStyle.js";
 
 const useStyles = makeStyles(sectionsPageStyle);
 
@@ -44,11 +44,11 @@ export default function SectionsPage() {
         parseInt(navigationItems[i].getAttribute("data-number"), 10) - 1;
       if (
         contentSections[i].offsetTop - window.innerHeight / 2 <
-          window.pageYOffset &&
+        window.pageYOffset &&
         contentSections[i].offsetTop +
-          contentSections[i].scrollHeight -
-          window.innerHeight / 2 >
-          window.pageYOffset
+        contentSections[i].scrollHeight -
+        window.innerHeight / 2 >
+        window.pageYOffset
       ) {
         navigationItems[activeSection].classList.add("is-selected");
       } else {
@@ -72,7 +72,7 @@ export default function SectionsPage() {
       currentTime = 0,
       increment = 20;
 
-    var animateScroll = function() {
+    var animateScroll = function () {
       currentTime += increment;
       var val = easeInOutQuad(currentTime, start, change, duration);
       element.scrollTop = val;

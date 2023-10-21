@@ -10,22 +10,17 @@ import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Footer from "components/Footer/Footer.js";
+import Header from "../../components/Header/Header.js";
+import HeaderLinks from "../../components/Header/HeaderLinks.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Parallax from "../../components/Parallax/Parallax.js";
 // sections for this page
-import SectionDescription from "pages-sections/about-us/SectionDescription.js";
-import SectionTeam from "pages-sections/sections-page/SectionBoardTahit.js";
-import SectionServices from "pages-sections/about-us/SectionServices.js";
-import SectionOffice from "pages-sections/about-us/SectionOffice.js";
-import SectionContact from "pages-sections/about-us/SectionContact.js";
-import SectionFooter from "pages-sections/components/SectionFooterTahit.js";
-import SectionSymposiumCards from "pages-sections/sections-page/SectionPastSymposia.js"
 
-import aboutUsStyle from "assets/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
+import SectionFooter from "../../pages-sections/components/SectionFooterTahit.js";
+import SectionSymposiumCards from "../../pages-sections/sections-page/SectionPastSymposia.js"
+
+import aboutUsStyle from "/styles/jss/nextjs-material-kit-pro/pages/aboutUsStyle.js";
 
 const useStyles = makeStyles(aboutUsStyle);
 
@@ -47,7 +42,7 @@ export default function AboutUsPage() {
           color: "info"
         }}
       />
-      <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
+      <Parallax image={require("../../assets/img/background-gradient.jpg")} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem

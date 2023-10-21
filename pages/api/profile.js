@@ -1,15 +1,11 @@
+/* eslint-disable */
 import nextConnect from "next-connect";
 import auth from "../../middleware/auth";
 import _ from "lodash"
-import formidable from 'formidable'
-import sharp from "sharp";
-import fs from "fs"
-import path from "path";
-import multer from "multer";
+
 
 import User from "../../models/User";
-import { container } from "webpack";
-import { AddCircleTwoTone } from "@material-ui/icons";
+
 
 
 //let upload = multer({ dest: "upload/" });

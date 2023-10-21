@@ -47,10 +47,10 @@ import Error from "@material-ui/icons/Error";
 import * as Icon from 'react-feather';
 
 // core components
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
-import Button from "components/CustomButtons/Button.js";
+import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
+import Button from "../../components/CustomButtons/Button.js";
 
-import styles from "assets/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
+import styles from "/styles/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -124,8 +124,8 @@ export default function HeaderLinks(props) {
             <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
               <a className={classes.dropdownLink}>
                 <StarOutlineIcon className={classes.dropdownIcons} />
-                 Past Symposia
-               </a>
+                Past Symposia
+              </a>
             </Link>
 
           ]}
@@ -151,7 +151,7 @@ export default function HeaderLinks(props) {
             <Link href="/texas-star-award/texas-star-nomination-form">
               <a className={classes.dropdownLink}>
                 <InsertInvitationIcon className={classes.dropdownIcons} /> Texas Star Nomination Form
-            </a>
+              </a>
             </Link>,
             // <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
             //   <a className={classes.dropdownLink}>
@@ -363,7 +363,7 @@ export default function HeaderLinks(props) {
           </Link>
         </Hidden> */}
       </ListItem>
-      <ListItem className={classes.listItem}>
+      {/* <ListItem className={classes.listItem}>
         <Link href="/login" as="/login">
           <Button
 
@@ -372,9 +372,9 @@ export default function HeaderLinks(props) {
             className={classes.navButton}
             round
           ><Icon.LogIn className={classes.icons} />Log In
-        </Button>
+          </Button>
         </Link>
-      </ListItem>
+      </ListItem> */}
     </List>
   );
 }

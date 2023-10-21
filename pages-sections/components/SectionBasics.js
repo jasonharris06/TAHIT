@@ -21,16 +21,16 @@ import People from "@material-ui/icons/People";
 import Check from "@material-ui/icons/Check";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.js";
-import Paginations from "components/Pagination/Pagination.js";
-import Badge from "components/Badge/Badge.js";
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Button from "../../components/CustomButtons/Button.js";
+import CustomInput from "../../components/CustomInput/CustomInput.js";
+import CustomLinearProgress from "../../components/CustomLinearProgress/CustomLinearProgress.js";
+import Paginations from "../../components/Pagination/Pagination.js";
+import Badge from "../../components/Badge/Badge.js";
+import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
 
-import basicsStyle from "assets/jss/nextjs-material-kit-pro/pages/componentsSections/basicsStyle.js";
+import basicsStyle from "/styles/jss/nextjs-material-kit-pro/pages/componentsSections/basicsStyle.js";
 
 const useStyles = makeStyles(basicsStyle);
 
@@ -70,7 +70,7 @@ export default function SectionBasics() {
         range: { min: 0, max: 100 }
       });
     }
-    return function cleanup() {};
+    return function cleanup() { };
   });
   const handleToggle = value => {
     const currentIndex = checked.indexOf(value);

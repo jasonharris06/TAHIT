@@ -2,16 +2,16 @@ import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import NavPills from "components/NavPills/NavPills.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import Button from "components/CustomButtons/Button.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import NavPills from "../components/NavPills/NavPills.js";
+import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+import Button from "../components/CustomButtons/Button.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-import pricingStyle from "assets/jss/nextjs-material-kit-pro/pages/pricingSections/pricingStyle.js";
+import pricingStyle from "/styles/jss/nextjs-material-kit-pro/pages/pricingSections/pricingStyle.js";
 
 const useStyles = makeStyles(pricingStyle);
 

@@ -14,9 +14,8 @@ import Grow from "@material-ui/core/Grow";
 import Divider from "@material-ui/core/Divider";
 import Popper from "@material-ui/core/Popper";
 // core components
-import Button from "components/CustomButtons/Button.js";
-
-import styles from "assets/jss/nextjs-material-kit-pro/components/customDropdownStyle.js";
+import Button from "/components/CustomButtons/Button.js"
+import styles from "/styles/jss/nextjs-material-kit-pro/components/customDropdownStyle.js";
 
 const useStyles = makeStyles(styles);
 

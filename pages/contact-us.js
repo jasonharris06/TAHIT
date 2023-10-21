@@ -19,20 +19,20 @@ import PinDrop from "@material-ui/icons/PinDrop";
 import Phone from "@material-ui/icons/Phone";
 import BusinessCenter from "@material-ui/icons/BusinessCenter";
 // core components
-import Parallax from "components/Parallax/Parallax.js";
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
-import Footer from "components/Footer/Footer.js";
-import Accordion from "components/Accordion/AccordionClick.js";
+import Parallax from "../components/Parallax/Parallax.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import InfoArea from "../components/InfoArea/InfoArea.js";
+import CustomInput from "../components/CustomInput/CustomInput.js";
+import Button from "../components/CustomButtons/Button.js";
+import Footer from "../components/Footer/Footer.js";
+import Accordion from "../components/Accordion/AccordionClick.js";
 
-import contactUsStyle from "assets/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
-import landingPageStyle from "assets/jss/nextjs-material-kit-pro/pages/landingPageStyle.js";
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
+import contactUsStyle from "/styles/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
+import landingPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/landingPageStyle.js";
+import CustomDropdown from "../components/CustomDropdown/CustomDropdown.js";
 import SectionFooter from "../pages-sections/components/SectionFooterTahit";
 
 import whiteLogo from "assets/img/logo-white.png"

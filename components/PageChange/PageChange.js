@@ -9,7 +9,7 @@ import {
   infoColor,
   whiteColor,
   title
-} from "assets/jss/nextjs-material-kit-pro.js";
+} from "/styles/jss/nextjs-material-kit-pro.js";
 
 const useStyles = makeStyles({
   progress: {
@@ -35,6 +35,8 @@ const useStyles = makeStyles({
   }
 });
 
+import PropTypes from 'prop-types';
+
 export default function PageChange(props) {
   const classes = useStyles();
   return (
@@ -50,3 +52,7 @@ export default function PageChange(props) {
     </div>
   );
 }
+
+PageChange.propTypes = {
+  path: PropTypes.string.isRequired,
+};

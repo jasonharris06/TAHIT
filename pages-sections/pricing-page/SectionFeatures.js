@@ -1,8 +1,8 @@
 import React from "react";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import InfoArea from "../components/InfoArea/InfoArea.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui icons
@@ -11,7 +11,7 @@ import CardGiftCard from "@material-ui/icons/CardGiftcard";
 import AttachMoney from "@material-ui/icons/AttachMoney";
 import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
 
-import featuresStyle from "assets/jss/nextjs-material-kit-pro/pages/pricingSections/featuresStyle.js";
+import featuresStyle from "/styles/jss/nextjs-material-kit-pro/pages/pricingSections/featuresStyle.js";
 
 const useStyles = makeStyles(featuresStyle);
 

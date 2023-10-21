@@ -5,16 +5,15 @@ import ImageGallery from "react-image-gallery";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 //board assets
-import Data from "data/boardData.json"
+import Data from "../../data/boardData.json"
 
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
 
-import Button from "components/CustomButtons/Button.js";
 
-import SymposiumCard from "pages-sections/components/SectionSymposiumCard.js"
+import Button from "../../components/CustomButtons/Button.js";
 
-import teamsStyle from "assets/jss/nextjs-material-kit-pro/pages/sectionsSections/teamsStyle.js";
+import SymposiumCard from "../../pages-sections/components/SectionSymposiumCard.js"
+
+import teamsStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSections/teamsStyle.js";
 
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
@@ -24,7 +23,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 // @material-ui/icons
 import Close from "@material-ui/icons/Close";
 
-import images from "data/symposiumPhotoGallery.json"
+import images from "../../data/symposiumPhotoGallery.json"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;

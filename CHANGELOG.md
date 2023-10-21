@@ -9,8 +9,8 @@
 - https://github.com/creativetimofficial/ct-nextjs-material-kit-pro/issues/2
 ### Major style changes
 - `assets/scss/plugins/_plugin-react-image-gallery.scss`
-- `assets/jss/nextjs-material-kit-pro/pages/productStyle.js`
-- `assets/jss/nextjs-material-kit-pro/components/customDropdownStyle.js`
+- `/styles/jss/nextjs-material-kit-pro/pages/productStyle.js`
+- `/styles/jss/nextjs-material-kit-pro/components/customDropdownStyle.js`
 ### Deleted components
 ### Added components
 - Add `pages/404.js` to stop NextJS warning of not having a 404 page

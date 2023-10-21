@@ -22,19 +22,19 @@ import Check from "@material-ui/icons/Check";
 import Favorite from "@material-ui/icons/Favorite";
 import whiteLogo from "assets/img/logo-white.png"
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Danger from "components/Typography/Danger.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import Footer from "../components/Footer/Footer.js";
+import GridContainer from "../components/Grid/GridContainer.js";
+import GridItem from "../components/Grid/GridItem.js";
+import Button from "../components/CustomButtons/Button.js";
+import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+import InfoArea from "../components/InfoArea/InfoArea.js";
+import CustomInput from "../components/CustomInput/CustomInput.js";
+import Danger from "../components/Typography/Danger.js";
 
-import signupPageStyle from "assets/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
+import signupPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
 
 import image from "assets/img/background-gradient.jpg"
 
@@ -191,7 +191,7 @@ export default function SignUpPage({ ...rest }) {
                       <Link href="login/password-reset" as="/login/password-reset">
                         <a >
                           Password Reset
-                          </a>
+                        </a>
                       </Link>
                     </GridItem>
                   </GridContainer>
@@ -209,7 +209,7 @@ export default function SignUpPage({ ...rest }) {
                     <Link href='/home' as="/home" >
                       <a className={classes.block}>
                         TAHIT
-                  </a>
+                      </a>
                     </Link>
                   </ListItem>
                   <ListItem className={classes.inlineBlock}>

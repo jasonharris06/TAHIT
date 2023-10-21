@@ -1,6 +1,6 @@
 import nextConnect from "next-connect";
 import auth from "../../middleware/auth";
-import { getAllUsers, createUser, findUserByEmail } from "../../lib/db";
+import { createUser, findUserByEmail } from "../../lib/db";
 import argon2 from "argon2";
 
 const handler = nextConnect();
@@ -8,7 +8,7 @@ const handler = nextConnect();
 handler.use(auth).post(async (req, res) => {
   // console.log(req.body)
 
-  const { password, email, firstName, lastName, phone } = req.body;
+  const { password, email } = req.body;
 
   if (!password || !email) {
     return res.status(400).send("Missing fields");

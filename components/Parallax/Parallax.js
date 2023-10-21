@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
 // core components
-import styles from "assets/jss/nextjs-material-kit-pro/components/parallaxStyle.js";
+import styles from "/styles/jss/nextjs-material-kit-pro/components/parallaxStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -31,6 +31,7 @@ export default function Parallax(props) {
     setTransform("translate3d(0," + windowScrollTop + "px,0)");
   };
   const { filter, className, children, style, image, small } = props;
+  console.log("image", image)
   const classes = useStyles();
   const parallaxClasses = classNames({
     [classes.parallax]: true,

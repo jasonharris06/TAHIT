@@ -10,7 +10,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 // @material-ui/icons
 import ExpandMore from "@material-ui/icons/ExpandMore";
 
-import styles from "assets/jss/nextjs-material-kit-pro/components/accordionStyle.js";
+import styles from "/styles/jss/nextjs-material-kit-pro/components/accordionStyle.js";
 
 const useStyles = makeStyles(styles);
 
