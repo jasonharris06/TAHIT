@@ -13,21 +13,17 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import Parallax from "../components/Parallax/Parallax.js";
-import Header from "../components/Header/Header.js";
-import HeaderLinks from "../components/Header/HeaderLinks.js";
-import GridContainer from "../components/Grid/GridContainer.js";
-import GridItem from "../components/Grid/GridItem.js";
+import Parallax from "../../components/Parallax/Parallax.js";
+import Header from "../../components/Header/Header.js";
+import HeaderLinks from "../../components/Header/HeaderLinks.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
 import SectionProfileForm from "../../pages-sections/sections-page/SectionProfileFormTahit"
-import CustomInput from "../components/CustomInput/CustomInput.js";
-import Button from "../components/CustomButtons/Button.js";
 
-import ImageUpload from 'components/CustomUpload/ImageUpload.js';
 import contactUsStyle from "/styles/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
-import CustomDropdown from "../components/CustomDropdown/CustomDropdown.js";
 import SectionFooter from "../../pages-sections/components/SectionFooterTahit";
 
-import whiteLogo from "assets/img/logo-white.png"
+import whiteLogo from "../../assets/img/logo-white.png"
 import Data from "../../data/profileDropdowns.json"
 
 
@@ -96,7 +92,7 @@ export default function ProfileEdit({ ...rest }) {
         }}
         {...rest}
       />
-      <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
+      <Parallax image="../../assets/img/background-gradient.jpg" filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem

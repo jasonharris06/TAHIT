@@ -15,7 +15,7 @@ import GridItem from "../components/Grid/GridItem.js";
 
 import errorPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/errorPageStyles.js";
 
-import image from "assets/img/clint-mckoy.jpg";
+import image from "../assets/img/clint-mckoy.jpg";
 
 const useStyles = makeStyles(errorPageStyle);
 

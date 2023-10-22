@@ -4,31 +4,31 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 // import  from "@material-ui/icons/";
 // core components
-import GridContainer from "../components/Grid/GridContainer.js";
-import GridItem from "../components/Grid/GridItem.js";
-import Card from "../components/Card/Card.js";
-import CardAvatar from "../components/Card/CardAvatar.js";
-import CardHeader from "../components/Card/CardHeader.js";
-import CardBody from "../components/Card/CardBody.js";
-import CardFooter from "../components/Card/CardFooter.js";
-import Button from "../components/CustomButtons/Button.js";
-import Muted from "../components/Typography/Muted.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Card from "../../components/Card/Card.js";
+import CardAvatar from "../../components/Card/CardAvatar.js";
+import CardHeader from "../../components/Card/CardHeader.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CardFooter from "../../components/Card/CardFooter.js";
+import Button from "../../components/CustomButtons/Button.js";
+import Muted from "../../components/Typography/Muted.js";
 
 import teamsStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSections/teamsStyle.js";
 
-import bg7 from "assets/img/bg7.jpg";
-import city from "assets/img/examples/city.jpg";
-import marc from "assets/img/faces/marc.jpg";
-import christian from "assets/img/faces/christian.jpg";
-import kendall from "assets/img/faces/kendall.jpg";
-import avatar from "assets/img/faces/avatar.jpg";
-import cardProfile1 from "assets/img/examples/card-profile1.jpg";
-import cardProfile2 from "assets/img/examples/card-profile2.jpg";
-import cardProfile4 from "assets/img/examples/card-profile4.jpg";
-import cardProfile1Square from "assets/img/faces/card-profile1-square.jpg";
-import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
-import cardProfile4Square from "assets/img/faces/card-profile4-square.jpg";
-import cardProfile6Square from "assets/img/faces/card-profile6-square.jpg";
+import bg7 from "../../assets/img/bg7.jpg";
+import city from "../../assets/img/examples/city.jpg";
+import marc from "../../assets/img/faces/marc.jpg";
+import christian from "../../assets/img/faces/christian.jpg";
+import kendall from "../../assets/img/faces/kendall.jpg";
+import avatar from "../../assets/img/faces/avatar.jpg";
+import cardProfile1 from "../../assets/img/examples/card-profile1.jpg";
+import cardProfile2 from "../../assets/img/examples/card-profile2.jpg";
+import cardProfile4 from "../../assets/img/examples/card-profile4.jpg";
+import cardProfile1Square from "../../assets/img/faces/card-profile1-square.jpg";
+import cardProfile2Square from "../../assets/img/faces/card-profile2-square.jpg";
+import cardProfile4Square from "../../assets/img/faces/card-profile4-square.jpg";
+import cardProfile6Square from "../../assets/img/faces/card-profile6-square.jpg";
 
 const useStyles = makeStyles(teamsStyle);
 

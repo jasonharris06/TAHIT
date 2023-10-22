@@ -15,19 +15,19 @@ import PinDrop from "@material-ui/icons/PinDrop";
 import Phone from "@material-ui/icons/Phone";
 import Check from "@material-ui/icons/Check";
 // core components
-import GridContainer from "../components/Grid/GridContainer.js";
-import GridItem from "../components/Grid/GridItem.js";
-import InfoArea from "../components/InfoArea/InfoArea.js";
-import Card from "../components/Card/Card.js";
-import CardHeader from "../components/Card/CardHeader.js";
-import CardBody from "../components/Card/CardBody.js";
-import CardFooter from "../components/Card/CardFooter.js";
-import CustomInput from "../components/CustomInput/CustomInput.js";
-import Button from "../components/CustomButtons/Button.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import InfoArea from "../../components/InfoArea/InfoArea.js";
+import Card from "../../components/Card/Card.js";
+import CardHeader from "../../components/Card/CardHeader.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CardFooter from "../../components/Card/CardFooter.js";
+import CustomInput from "../../components/CustomInput/CustomInput.js";
+import Button from "../../components/CustomButtons/Button.js";
 
 import contactsStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSections/contactsStyle.js";
 
-import city from "assets/img/examples/city.jpg";
+import city from "../../assets/img/examples/city.jpg";
 
 const useStyles = makeStyles(contactsStyle);
 

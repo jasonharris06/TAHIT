@@ -18,24 +18,26 @@ import { useUser } from '../../lib/hooks'
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "../components/Header/Header.js";
-import HeaderLinks from "../components/Header/MemberHeaderLinks.js";
-import Parallax from "../components/Parallax/Parallax.js";
-import Footer from "../components/Footer/Footer.js";
-import GridContainer from "../components/Grid/GridContainer.js";
-import GridItem from "../components/Grid/GridItem.js";
-import Button from "../components/CustomButtons/Button.js";
+import Header from "../../components/Header/Header.js";
+import HeaderLinks from "../../components/Header/MemberHeaderLinks.js";
+import Parallax from "../../components/Parallax/Parallax.js";
+import Footer from "../../components/Footer/Footer.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Button from "../../components/CustomButtons/Button.js";
 // sections for this page
-import SectionText from "pages-sections/blog-post/SectionText.js";
-import SectionBlogInfo from "pages-sections/blog-post/SectionBlogInfo.js";
-import SectionComments from "pages-sections/blog-post/SectionComments.js";
-import SectionSimilarStories from "pages-sections/blog-post/SectionSimilarStories.js";
+
+// import SelectText from "../../pages-sections/"
+// import SectionText from "/pages-sections/blog-post/SectionText.js";
+// import SectionBlogInfo from "/pages-sections/blog-post/SectionBlogInfo.js";
+// import SectionComments from "/pages-sections/blog-post/SectionComments.js";
+// import SectionSimilarStories from "/pages-sections/blog-post/SectionSimilarStories.js";
 
 import blogPostPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
 import User from "../../models/User";
 
-import whiteLogo from "assets/img/logo-white.png"
-import background from "assets/img/greenblue-background.jpg"
+import whiteLogo from "../../assets/img/logo-white.png"
+import background from "../../assets/img/greenblue-background.jpg"
 
 const useStyles = makeStyles((blogPostPageStyle));
 
@@ -105,13 +107,13 @@ export default function MemberDashboard() {
             </GridContainer>
           </div>
         </Parallax>
-        <div className={classes.main}>
+        {/* <div className={classes.main}>
           <div className={classes.container}>
             <SectionText />
             <SectionBlogInfo />
             <SectionComments />
           </div>
-        </div>
+        </div> */}
         <SectionSimilarStories />
         <Footer
           content={

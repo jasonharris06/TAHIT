@@ -35,7 +35,7 @@ import landingPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/landingP
 import CustomDropdown from "../components/CustomDropdown/CustomDropdown.js";
 import SectionFooter from "../pages-sections/components/SectionFooterTahit";
 
-import whiteLogo from "assets/img/logo-white.png"
+import whiteLogo from "../assets/img/logo-white.png"
 
 
 
@@ -93,7 +93,7 @@ export default function ContactUsPage({ ...rest }) {
         }}
         {...rest}
       />
-      <Parallax image={require("assets/img/background-gradient.jpg")} filter="dark" small>
+      <Parallax image="assets/img/background-gradient.jpg" filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem

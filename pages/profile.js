@@ -29,17 +29,17 @@ import Parallax from "../components/Parallax/Parallax.js";
 import Clearfix from "../components/Clearfix/Clearfix.js";
 import Button from "../components/CustomButtons/Button.js";
 
-import christian from "assets/img/faces/christian.jpg";
-import oluEletu from "assets/img/examples/olu-eletu.jpg";
-import clemOnojeghuo from "assets/img/examples/clem-onojeghuo.jpg";
-import cynthiaDelRio from "assets/img/examples/cynthia-del-rio.jpg";
-import mariyaGeorgieva from "assets/img/examples/mariya-georgieva.jpg";
-import clemOnojegaw from "assets/img/examples/clem-onojegaw.jpg";
-import darrenColeshill from "assets/img/examples/darren-coleshill.jpg";
-import avatar from "assets/img/faces/avatar.jpg";
-import marc from "assets/img/faces/marc.jpg";
-import kendall from "assets/img/faces/kendall.jpg";
-import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
+import christian from "../assets/img/faces/christian.jpg";
+import oluEletu from "../assets/img/examples/olu-eletu.jpg";
+import clemOnojeghuo from "../assets/img/examples/clem-onojeghuo.jpg";
+import cynthiaDelRio from "../assets/img/examples/cynthia-del-rio.jpg";
+import mariyaGeorgieva from "../assets/img/examples/mariya-georgieva.jpg";
+import clemOnojegaw from "../assets/img/examples/clem-onojegaw.jpg";
+import darrenColeshill from "../assets/img/examples/darren-coleshill.jpg";
+import avatar from "../assets/img/faces/avatar.jpg";
+import marc from "../assets/img/faces/marc.jpg";
+import kendall from "../assets/img/faces/kendall.jpg";
+import cardProfile2Square from "../assets/img/faces/card-profile2-square.jpg";
 
 import profilePageStyle from "/styles/jss/nextjs-material-kit-pro/pages/profilePageStyle.js";
 
@@ -71,7 +71,7 @@ export default function ProfilePage({ ...rest }) {
         {...rest}
       />
       <Parallax
-        image={require("assets/img/examples/city.jpg")}
+        image="../assets/img/examples/city.jpg"
         filter="dark"
         className={classes.parallax}
       />

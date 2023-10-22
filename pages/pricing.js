@@ -16,8 +16,8 @@ import GridContainer from "../components/Grid/GridContainer.js";
 import GridItem from "../components/Grid/GridItem.js";
 import Footer from "../components/Footer/Footer.js";
 // sections for this page
-import SectionPricing from "pages-sections/pricing-page/SectionPricing.js";
-import SectionFeatures from "pages-sections/pricing-page/SectionFeatures.js";
+import SectionPricing from "../pages-sections/pricing-page/SectionPricing.js";
+import SectionFeatures from "../pages-sections/pricing-page/SectionFeatures.js";
 
 import pricingStyle from "/styles/jss/nextjs-material-kit-pro/pages/pricingStyle.js";
 
@@ -42,7 +42,7 @@ export default function PricingPage() {
         }}
       />
 
-      <Parallax image={require("assets/img/bg2.jpg")} filter="dark" small>
+      <Parallax image="assets/img/bg2.jpg" filter="dark" small>
         <div className={classes.container}>
           <GridContainer>
             <GridItem

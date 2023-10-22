@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from "next/image"
@@ -7,15 +8,15 @@ import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-t
 // A great library for fuzzy filtering/sorting items
 import { matchSorter } from 'match-sorter'
 import Table from "../../components/Table/reactTable"
-import ModalTable from "../components/Table/Table.js";
+import ModalTable from "../../components/Table/Table.js";
 import InfoIcon from '@material-ui/icons/Info';
-import Button from 'components/CustomButtons/Button.js';
+import Button from '../../components/CustomButtons/Button.js';
 import Icon from "@material-ui/core/Icon";
 import AddIcon from '@material-ui/icons/Add';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import SectionRegistryModal from "pages-sections/sections-page/SectionRegistryModal.js"
+import SectionRegistryModal from "../../pages-sections/sections-page/SectionRegistryModal.js"
 import { makeStyles } from "@material-ui/core/styles";
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";

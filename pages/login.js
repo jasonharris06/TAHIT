@@ -20,7 +20,7 @@ import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
 import Check from "@material-ui/icons/Check";
 import Favorite from "@material-ui/icons/Favorite";
-import whiteLogo from "assets/img/logo-white.png"
+import whiteLogo from "../assets/img/logo-white.png"
 // core components
 import Header from "../components/Header/Header.js";
 import HeaderLinks from "../components/Header/HeaderLinks.js";
@@ -36,7 +36,7 @@ import Danger from "../components/Typography/Danger.js";
 
 import signupPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/signupPageStyle.js";
 
-import image from "assets/img/background-gradient.jpg"
+import image from "../assets/img/background-gradient.jpg"
 
 
 const useStyles = makeStyles(signupPageStyle);

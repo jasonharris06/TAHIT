@@ -50,8 +50,8 @@ import Error from "@material-ui/icons/Error";
 import * as Icon from 'react-feather';
 
 // core components
-import CustomDropdown from "../components/CustomDropdown/CustomDropdown.js";
-import Button from "../components/CustomButtons/Button.js";
+import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
+import Button from "../../components/CustomButtons/Button.js";
 
 import styles from "/styles/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
 

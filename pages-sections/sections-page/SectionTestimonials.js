@@ -7,24 +7,24 @@ import { makeStyles } from "@material-ui/core/styles";
 import FormatQuote from "@material-ui/icons/FormatQuote";
 import Star from "@material-ui/icons/Star";
 // core components
-import GridContainer from "../components/Grid/GridContainer.js";
-import GridItem from "../components/Grid/GridItem.js";
-import Card from "../components/Card/Card.js";
-import CardBody from "../components/Card/CardBody.js";
-import CardFooter from "../components/Card/CardFooter.js";
-import CardAvatar from "../components/Card/CardAvatar.js";
-import Muted from "../components/Typography/Muted.js";
-import Warning from "../components/Typography/Warning.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Card from "../../components/Card/Card.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CardFooter from "../../components/Card/CardFooter.js";
+import CardAvatar from "../../components/Card/CardAvatar.js";
+import Muted from "../../components/Typography/Muted.js";
+import Warning from "../../components/Typography/Warning.js";
 
 import testimonialsStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSections/testimonialsStyle.js";
 
-import dg2 from "assets/img/dg2.jpg";
-import cardProfile1Square from "assets/img/faces/card-profile1-square.jpg";
-import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
-import cardProfile4Square from "assets/img/faces/card-profile4-square.jpg";
-import cardProfile6Square from "assets/img/faces/card-profile6-square.jpg";
-import kendall from "assets/img/faces/kendall.jpg";
-import christian from "assets/img/faces/christian.jpg";
+import dg2 from "../../assets/img/dg2.jpg";
+import cardProfile1Square from "../../assets/img/faces/card-profile1-square.jpg";
+import cardProfile2Square from "../../assets/img/faces/card-profile2-square.jpg";
+import cardProfile4Square from "../../assets/img/faces/card-profile4-square.jpg";
+import cardProfile6Square from "../../assets/img/faces/card-profile6-square.jpg";
+import kendall from "../../assets/img/faces/kendall.jpg";
+import christian from "../../assets/img/faces/christian.jpg";
 
 const useStyles = makeStyles(testimonialsStyle);
 

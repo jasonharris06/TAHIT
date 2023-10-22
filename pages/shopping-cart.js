@@ -27,9 +27,9 @@ import CardBody from "../components/Card/CardBody.js";
 
 import shoppingCartStyle from "/styles/jss/nextjs-material-kit-pro/pages/shoppingCartStyle.js";
 
-import product1 from "assets/img/product1.jpg";
-import product2 from "assets/img/product2.jpg";
-import product3 from "assets/img/product3.jpg";
+import product1 from "../assets/img/product1.jpg";
+import product2 from "../assets/img/product2.jpg";
+import product3 from "../assets/img/product3.jpg";
 
 const useStyles = makeStyles(shoppingCartStyle);
 
@@ -53,7 +53,7 @@ export default function ShoppingCartPage() {
       />
 
       <Parallax
-        image={require("assets/img/examples/bg2.jpg")}
+        image="assets/img/examples/bg2.jpg"
         filter="dark"
         small
       >

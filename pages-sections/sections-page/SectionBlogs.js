@@ -4,25 +4,25 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import TrendingUp from "@material-ui/icons/TrendingUp";
 // core components
-import GridContainer from "../components/Grid/GridContainer.js";
-import GridItem from "../components/Grid/GridItem.js";
-import Card from "../components/Card/Card.js";
-import CardBody from "../components/Card/CardBody.js";
-import CardHeader from "../components/Card/CardHeader.js";
-import Info from "../components/Typography/Info.js";
-import Danger from "../components/Typography/Danger.js";
-import Success from "../components/Typography/Success.js";
-import Button from "../components/CustomButtons/Button.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Card from "../../components/Card/Card.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CardHeader from "../../components/Card/CardHeader.js";
+import Info from "../../components/Typography/Info.js";
+import Danger from "../../components/Typography/Danger.js";
+import Success from "../../components/Typography/Success.js";
+import Button from "../../components/CustomButtons/Button.js";
 
 import blogsStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSections/blogsStyle.js";
 
-import cardBlog4 from "assets/img/examples/card-blog4.jpg";
-import office2 from "assets/img/office2.jpg";
-import blog5 from "assets/img/examples/blog5.jpg";
-import blog6 from "assets/img/examples/blog6.jpg";
-import blog7 from "assets/img/examples/blog7.jpg";
-import blog8 from "assets/img/examples/blog8.jpg";
-import bg5 from "assets/img/bg5.jpg";
+import cardBlog4 from "../../assets/img/examples/card-blog4.jpg";
+import office2 from "../../assets/img/office2.jpg";
+import blog5 from "../../assets/img/examples/blog5.jpg";
+import blog6 from "../../assets/img/examples/blog6.jpg";
+import blog7 from "../../assets/img/examples/blog7.jpg";
+import blog8 from "../../assets/img/examples/blog8.jpg";
+import bg5 from "../../assets/img/bg5.jpg";
 
 const useStyles = makeStyles(blogsStyle);
 
