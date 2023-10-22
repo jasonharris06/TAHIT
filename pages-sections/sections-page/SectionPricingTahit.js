@@ -101,7 +101,7 @@ export default function SectionPricing({ ...rest }) {
                             pricing
                             className={classes.justifyContentCenter}
                           >
-                            <Button color="rose" round>
+                            <Button href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA" color="rose" round>
                               BUY NOW
                             </Button>
                           </CardFooter>
@@ -149,7 +149,7 @@ export default function SectionPricing({ ...rest }) {
                             pricing
                             className={classes.justifyContentCenter}
                           >
-                            <Button color="rose" round>
+                            <Button href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA" color="rose" round>
                               BUY NOW
                             </Button>
                           </CardFooter>
@@ -213,7 +213,7 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
-                            <Button color="rose" round>
+                            <Button href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA" color="rose" round>
                               Get Started
                             </Button>
                           </CardFooter>
@@ -261,7 +261,7 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
-                            <Button color="white" round>
+                            <Button href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA" color="white" round>
                               Get Started
                             </Button>
                           </CardFooter>
@@ -303,7 +303,7 @@ export default function SectionPricing({ ...rest }) {
                             </ul>
                           </CardBody>
                           <CardFooter pricing className={classes.justifyContentCenter}>
-                            <Button color="rose" round>
+                            <Button href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA" color="rose" round>
                               Get Started
                             </Button>
                           </CardFooter>

@@ -34,15 +34,15 @@ export default function AboutUsPage() {
     <div>
       <Header
         brand="TAHIT"
-        links={<HeaderLinks dropdownHoverColor="info" />}
+        links={<HeaderLinks dropdownHoverColor="dark" />}
         fixed
         color="transparent"
         changeColorOnScroll={{
           height: 300,
-          color: "info"
+          color: "dark"
         }}
       />
-      <Parallax image={"../assets/img/background-gradient.jpg"} filter="dark" small>
+      <Parallax image={"img/background-gradient.jpg"} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem

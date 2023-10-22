@@ -30,9 +30,11 @@ import CustomInput from "../components/CustomInput/CustomInput.js";
 import whiteLogo from "../assets/img/logo-white.png"
 import Close from "@material-ui/icons/Close";
 // Sections for this page/
+import SectionHomeInfo from "../pages-sections/sections-page/SectionHomeInfo.js";
 import SectionProduct from "../pages-sections/landing-page/SectionProduct.js";
 import SectionFooter from "../pages-sections/components/SectionFooterTahit.js";
 import SectionPricing from "../pages-sections/sections-page/SectionPricingTahit.js"
+import SectionTestimonials from "../pages-sections/sections-page/SectionTestimonials.js";
 
 
 
@@ -95,7 +97,7 @@ export default function LandingPage({ ...rest }) {
               <></>
             </GridItem> */}
           </GridContainer>
-          <GridContainer>
+          {/* <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
               <h2 className={classes.title}>Our Mission:</h2>
               <h4>
@@ -114,12 +116,13 @@ export default function LandingPage({ ...rest }) {
               </Button>
             </GridItem>
 
-          </GridContainer>
+          </GridContainer> */}
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <SectionProduct />
+          <SectionHomeInfo />
+          {/* <SectionProduct /> */}
           <hr />
           <SectionPricing />
           <hr />

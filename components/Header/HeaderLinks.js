@@ -13,6 +13,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Hidden from "@material-ui/core/Hidden";
 
 // @material-ui/icons
+import InfoIcon from '@material-ui/icons/Info';
 import Apps from "@material-ui/icons/Apps";
 import StarIcon from '@material-ui/icons/Star';
 import StarOutlineIcon from '@material-ui/icons/StarBorder';
@@ -99,6 +100,21 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list + " " + classes.mlAuto}>
       <ListItem className={classes.listItem}>
+        <Link href="/about-us" as="/about-us">
+          <Button
+            color={"transparent"}
+            target="_blank"
+            className={classes.navButton}
+
+          >
+            <InfoIcon className={classes.icons} />About Us
+            {/* <ShoppingCart className={classes.icons} />About Us */}
+            {/* About Us */}
+          </Button>
+        </Link>
+
+      </ListItem>
+      <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
           navDropdown
@@ -110,7 +126,7 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={InsertInvitationIcon}
           dropdownList={[
-            <Link href="/symposium/registration">
+            <Link href="https://www.eventbrite.com/e/2023-tahit-regional-las-conference-tickets-727560431837?aff=oddtdtcreator&fbclid=IwAR3pROy9Tcaoy09ezHlRxNdgNDbqzTJR2OBzJ4BYcU-foZOeRYHO7oPOveE" target="_blank">
               <a className={classes.dropdownLink}>
                 <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
               </a>
