@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 
 // @material-ui/core components
-import { makeStyles } from "@material-ui/corse/styles";
+import { makeStyles } from "@material-ui/core/styles";
+
 
 // core components
 import GridContainer from "../../components/Grid/GridContainer.js";

@@ -310,7 +310,7 @@ export default function HeaderLinks(props) {
                 <AccountCircle className={classes.dropdownIcons} /> Profile Page
               </a>
             </Link>,
-            <Link href="/signup">
+            <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA">
               <a className={classes.dropdownLink}>
                 <PersonAdd className={classes.dropdownIcons} /> Signup Page
               </a>
@@ -325,7 +325,7 @@ export default function HeaderLinks(props) {
       </ListItem> */}
 
       <ListItem className={classes.listItem}>
-        <Link href="/signup" as="/signup">
+        <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA" as="/signup">
           <Button
 
             color={"white"}
@@ -337,7 +337,7 @@ export default function HeaderLinks(props) {
           </Button>
         </Link>
         {/* <Hidden mdDown>
-          <Link href="/signup" as="/signup">
+          <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA" as="/signup">
             <Button
 
               color={"white"}
@@ -350,7 +350,7 @@ export default function HeaderLinks(props) {
           </Link>
         </Hidden>
         <Hidden mdUp>
-          <Link href="/signup" as="/signup">
+          <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?fbclid=IwAR1VCyRJIWYWwHXhikcKzgyYQeNwnRpTor3UkbDTNd-bsF8Hp5OSoDpzdUA" as="/signup">
             <Button
 
               color={"info"}

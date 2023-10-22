@@ -29,7 +29,7 @@ import CustomInput from "../components/CustomInput/CustomInput.js";
 
 import whiteLogo from "../assets/img/logo-white.png"
 import Close from "@material-ui/icons/Close";
-// Sections for this page
+// Sections for this page/
 import SectionProduct from "../pages-sections/landing-page/SectionProduct.js";
 import SectionFooter from "../pages-sections/components/SectionFooterTahit.js";
 import SectionPricing from "../pages-sections/sections-page/SectionPricingTahit.js"
@@ -55,7 +55,7 @@ export default function LandingPage({ ...rest }) {
         brand={
           <GridContainer>
             <GridItem xs={6} sm={6} md={6}>
-              <img src={whiteLogo}
+              <Image src={whiteLogo}
                 alt="Tahit Logo"
                 width={35}
                 height={35} /></GridItem>
@@ -73,7 +73,7 @@ export default function LandingPage({ ...rest }) {
         {...rest}
       />
 
-      <Parallax image={require("../public/img/background-gradient.jpg")} filter="dark">
+      <Parallax image="/img/background-gradient.jpg" filter="dark">
         <div className={classes.container}>
           <GridContainer>
             <Hidden xsDown>
