@@ -97,7 +97,7 @@ export default function SectionTeams({ ...rest }) {
           className={classes.modalBody}
         >
 
-          <img src={modalInfo.image} alt="..." />
+          <Image src={modalInfo.image} height={100} width={75} layout="responsive" alt="..." />
           <h2>{modalInfo.name}</h2>
           <p>{modalInfo.description}</p>
         </DialogContent>
