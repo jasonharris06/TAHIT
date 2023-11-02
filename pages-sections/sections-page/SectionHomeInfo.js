@@ -18,6 +18,7 @@ import pricingStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSect
 
 
 import cardBlog3 from "../../assets/img/background-texture.jpg";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(pricingStyle);
 
@@ -30,6 +31,19 @@ export default function SectionHomeInfo({ ...rest }) {
       <div className={classes.pricingSection}>
         {/* <div className={classes.container}> */}
         <GridContainer>
+          <GridItem xs={12} sm={12} md={12}>
+            <h2 className={classes.title}>2023 Tahit Symposium:</h2>
+            <h4 className={classes.description}>
+              Make sure you download or view the symposium booklet            </h4>
+            <br />
+            <Button color="danger" size="lg" href="/symposium/symposium-2023" style={{ marginRight: '10px' }}>
+              View Booklet
+            </Button>
+            <Button color="info" size="lg" href="https://symposium2023.blob.core.windows.net/symposium/Geometric Shapes Business Company Profile Booklet Cover (1).pdf" style={{ marginRight: '10px' }}>
+              <i className="fas fa-download" />
+              Download
+            </Button>
+          </GridItem>
           <GridItem xs={12} sm={12} md={12}>
             <h2 className={classes.title}>Our Mission:</h2>
             <h4 className={classes.description}>
@@ -46,7 +60,9 @@ export default function SectionHomeInfo({ ...rest }) {
               <i className="fas fa-play" />
               Watch video
             </Button>
+
           </GridItem>
+
 
         </GridContainer>
 

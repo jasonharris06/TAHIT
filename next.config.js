@@ -34,7 +34,16 @@
 
 // /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'symposium2023.blob.core.windows.net',
+
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
