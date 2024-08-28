@@ -125,11 +125,12 @@ export default function SectionTeams({ ...rest }) {
               }
             >
               <h2 className={classes.title}>TAHIT Board Members</h2>
-              <h5 className={classes.description}>
+              <br />
+              {/* <h5 className={classes.description}>
                 This is the paragraph where you can write more details about
                 your team. Keep you user engaged by providing meaningful
                 information.
-              </h5>
+              </h5> */}
             </GridItem>
 
 
@@ -178,7 +179,7 @@ export default function SectionTeams({ ...rest }) {
                           Read More...
                         </Button>
                       </CardBody>
-                      <CardFooter profile plain className={classes.justifyContent}>
+                      {/* <CardFooter profile plain className={classes.justifyContent}>
                         <Button justIcon round color="twitter">
                           <i className="fab fa-twitter" />
                         </Button>
@@ -186,7 +187,7 @@ export default function SectionTeams({ ...rest }) {
                           <i className="fab fa-facebook-square" />
                         </Button>
 
-                      </CardFooter>
+                      </CardFooter> */}
                     </Card>
                   </div>
                 </GridItem>
