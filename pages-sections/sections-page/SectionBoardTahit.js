@@ -29,6 +29,14 @@ import Close from "@material-ui/icons/Close";
 // core components
 
 
+const SplitText = ({ text }) => {
+  return text.split('\n').map((str, index) => (
+    <React.Fragment key={index}>
+      {str}
+      <br />
+    </React.Fragment>
+  ));
+};
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -99,7 +107,7 @@ export default function SectionTeams({ ...rest }) {
 
           <Image src={modalInfo.image} height={100} width={75} layout="responsive" alt="..." />
           <h2>{modalInfo.name}</h2>
-          <p>{modalInfo.description}</p>
+          <p><SplitText text={modalInfo.description} /></p>
         </DialogContent>
         <DialogActions className={classes.modalFooter}>
           <Button onClick={() => setModal(false)} color="secondary">

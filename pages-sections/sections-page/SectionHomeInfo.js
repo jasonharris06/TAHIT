@@ -50,7 +50,7 @@ export default function SectionHomeInfo({ ...rest }) {
               To promote language access within healthcare by facilitating training, education, and communication between government, providers, interpreters, translators, and individual stakeholders.  We pursue our mission with a commitment to improving health equity, clinical outcomes, and patient safety for people with limited English proficiency.
             </h4>
             <br />
-            <Button
+            {/* <Button
               color="danger"
               size="lg"
               href="https://www.youtube.com/watch?v=89ny6vtP4gQ"
@@ -59,8 +59,12 @@ export default function SectionHomeInfo({ ...rest }) {
             >
               <i className="fas fa-play" />
               Watch video
-            </Button>
-
+            </Button> */}
+            <GridItem xs={12} sm={8} md={8} >
+              <div style={{ marginTop: '12px', paddingTop: "12px", justifyContent: 'center' }}>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/89ny6vtP4gQ" title="TAHIT Public Service Announcment" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </GridItem>
           </GridItem>
 
 

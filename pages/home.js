@@ -93,9 +93,9 @@ export default function LandingPage({ ...rest }) {
             <GridItem xs={12} sm={8} md={8}>
               <h1 className={classes.title}>Texas Association of Healthcare Interpreters & Translators</h1>
             </GridItem>
-            {/* <GridItem xs={12} sm={4} md={4}>
-              <></>
-            </GridItem> */}
+
+
+
           </GridContainer>
           {/* <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
