@@ -295,11 +295,7 @@ export default function HeaderLinks(props) {
                 <ViewDay className={classes.dropdownIcons} /> Landing Page
               </a>
             </Link>,
-            <Link href="/login">
-              <a className={classes.dropdownLink}>
-                <Fingerprint className={classes.dropdownIcons} /> Login Page
-              </a>
-            </Link>,
+       
             <Link href="/pricing">
               <a className={classes.dropdownLink}>
                 <AttachMoney className={classes.dropdownIcons} /> Pricing Page
