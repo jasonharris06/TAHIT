@@ -32,14 +32,14 @@ export default function SectionHomeInfo({ ...rest }) {
         {/* <div className={classes.container}> */}
         <GridContainer>
           <GridItem xs={12} sm={12} md={12}>
-            <h2 className={classes.title}>2023 Tahit Symposium:</h2>
+            <h2 className={classes.title}>2024 Tahit Symposium:</h2>
             <h4 className={classes.description}>
               Make sure you download or view the symposium booklet            </h4>
             <br />
             <Button color="danger" size="lg" href="/symposium/symposium-2023" style={{ marginRight: '10px' }}>
               View Booklet
             </Button>
-            <Button color="info" size="lg" href="https://symposium2023.blob.core.windows.net/symposium/Geometric Shapes Business Company Profile Booklet Cover (1).pdf" style={{ marginRight: '10px' }}>
+            <Button color="info" size="lg" href="https://symposium2023.blob.core.windows.net/symposium/Geometric Shapes Business Company Profile Booklet Cover (4).pdf" style={{ marginRight: '10px' }}>
               <i className="fas fa-download" />
               Download
             </Button>
