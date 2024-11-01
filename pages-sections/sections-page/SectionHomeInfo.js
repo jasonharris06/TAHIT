@@ -45,6 +45,19 @@ export default function SectionHomeInfo({ ...rest }) {
             </Button>
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
+
+            <h4 className={classes.description}>
+              ISpeak Cards Download</h4>
+            <br />
+            {/* <Button color="danger" size="lg" href="/symposium/symposium-2023" style={{ marginRight: '10px' }}>
+              View Booklet
+            </Button> */}
+            <Button color="info" size="lg" href="https://symposium2023.blob.core.windows.net/symposium/IspeakCardsTAHIT (3).pdf" style={{ marginRight: '10px' }}>
+              <i className="fas fa-download" />
+              Download
+            </Button>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={12}>
             <h2 className={classes.title}>Our Mission:</h2>
             <h4 className={classes.description}>
               To promote language access within healthcare by facilitating training, education, and communication between government, providers, interpreters, translators, and individual stakeholders.  We pursue our mission with a commitment to improving health equity, clinical outcomes, and patient safety for people with limited English proficiency.
