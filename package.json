@@ -21,7 +21,6 @@
     "next-compose-plugins": "2.2.0",
     "next-connect": "^0.9.1",
     "next-images": "^1.8.5",
-    "node-sass": "^6.0.1",
     "nouislider": "14.7.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
@@ -41,7 +40,7 @@
     "react-table": "^7.6.3",
     "react-tagsinput": "3.19.0",
     "react-text-mask": "^5.4.3",
-    "sass": "^1.69.3",
+    "sass": "^1.89.2",
     "sharp": "^0.27.0",
     "swr": "^0.4.0",
     "webpack": "5.88.2"

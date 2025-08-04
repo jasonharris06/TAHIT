@@ -115,6 +115,17 @@ export default function HeaderLinks(props) {
 
       </ListItem>
       <ListItem className={classes.listItem}>
+        <Link href="/texas-star-award/texas-star-nomination-form">
+          <Button
+            color={"transparent"}
+            target="_blank"
+            className={classes.navButton}
+          >
+            <AccountBalance className={classes.icons} />Government Relations
+          </Button>
+        </Link>
+      </ListItem>
+      <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
           navDropdown
@@ -126,7 +137,7 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={InsertInvitationIcon}
           dropdownList={[
-            <Link href="https://www.eventbrite.com/e/2023-tahit-regional-las-conference-tickets-727560431837?aff=oddtdtcreator&fbclid=IwAR3pROy9Tcaoy09ezHlRxNdgNDbqzTJR2OBzJ4BYcU-foZOeRYHO7oPOveE" target="_blank">
+            <Link href="https://www.eventbrite.com/e/17th-annual-tahit-language-access-symposium-houston-texas-tickets-1432320151129?aff=erelpanelorg" target="_blank">
               <a className={classes.dropdownLink}>
                 <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
               </a>
