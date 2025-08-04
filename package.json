@@ -75,5 +75,6 @@
   "devDependencies": {
     "eslint": "^8.52.0",
     "eslint-plugin-react": "^7.33.2"
-  }
+  },
+  "buildCommand": "npm install --legacy-peer-deps && npm run build"
 }
