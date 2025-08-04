@@ -238,7 +238,7 @@ export default function SectionContacts({ ...rest }) {
       {/* Contact us 1 END */}
       {/* Contact us 2 START */}
       <div className={classes.contacts2}>
-        <div className={classes.map}>
+        {/* <div className={classes.map}>
           <LoadScript googleMapsApiKey="YOUR_KEY_HERE">
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
@@ -249,7 +249,7 @@ export default function SectionContacts({ ...rest }) {
               <Marker position={{ lat: 44.43353, lng: 26.093928 }} />
             </GoogleMap>
           </LoadScript>
-        </div>
+        </div> */}
         <GridItem xs={12} sm={6} md={6}>
           <Card className={classes.card2}>
             <form>
