@@ -69,7 +69,7 @@ export default function Header(props) {
       <Toolbar className={classes.container}>
         <Button className={classes.title}>
           <Link href="/">
-            <a>{brand}</a>
+            {brand}
           </Link>
         </Button>
         <Hidden smDown implementation="css" className={classes.hidden}>

@@ -123,24 +123,17 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={InsertInvitationIcon}
           dropdownList={[
-            <Link href="/symposium/registration">
-              <a className={classes.dropdownLink}>
-                <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
-              </a>
+            <Link key="registration" href="/symposium/registration" className={classes.dropdownLink}>
+              <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
             </Link>,
-            <Link href="/symposium/sponsorship">
-              <a className={classes.dropdownLink}>
-                <LocalPlayIcon className={classes.dropdownIcons} />
-                Sponsorship
-              </a>
+            <Link key="sponsorship" href="/symposium/sponsorship" className={classes.dropdownLink}>
+              <LocalPlayIcon className={classes.dropdownIcons} />
+              Sponsorship
             </Link>,
-            <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
-              <a className={classes.dropdownLink}>
-                <StarOutlineIcon className={classes.dropdownIcons} />
-                Past Symposia
-              </a>
+            <Link key="past-symposia" href="/symposium/past-symposia" className={classes.dropdownLink}>
+              <StarOutlineIcon className={classes.dropdownIcons} />
+              Past Symposia
             </Link>
-
           ]}
         />
       </ListItem>
@@ -156,31 +149,18 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={StarIcon}
           dropdownList={[
-            <Link href="/texas-star-award/past-recipients">
-              <a className={classes.dropdownLink}>
-                <People className={classes.dropdownIcons} /> Past Awardees
-              </a>
+            <Link key="past-recipients" href="/texas-star-award/past-recipients" className={classes.dropdownLink}>
+              <People className={classes.dropdownIcons} /> Past Awardees
             </Link>,
-            <Link href="/texas-star-award/texas-star-nomination-form">
-              <a className={classes.dropdownLink}>
-                <InsertInvitationIcon className={classes.dropdownIcons} /> Texas Star Nomination Form
-              </a>
-            </Link>,
-            // <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
-            //   <a className={classes.dropdownLink}>
-            //     <StarOutlineIcon className={classes.dropdownIcons} />
-            //      Past Symposia
-            //    </a>
-            // </Link>
-
+            <Link key="nomination-form" href="/texas-star-award/texas-star-nomination-form" className={classes.dropdownLink}>
+              <InsertInvitationIcon className={classes.dropdownIcons} /> Texas Star Nomination Form
+            </Link>
           ]}
         />
       </ListItem>
-
     </List>
   );
 }
-
 
 HeaderLinks.defaultProps = {
   hoverColor: "primary"

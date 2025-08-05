@@ -100,28 +100,26 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list + " " + classes.mlAuto}>
       <ListItem className={classes.listItem}>
-        <Link href="/about-us" as="/about-us">
+        <Link href="/about-us">
           <Button
             color={"transparent"}
             target="_blank"
-            className={classes.navButton}
-
+            className={classes.navLink}
+            style={{ color: 'white' }}
           >
-            <InfoIcon className={classes.icons} />About Us
-            {/* <ShoppingCart className={classes.icons} />About Us */}
-            {/* About Us */}
+            <InfoIcon className={classes.icons} style={{ color: 'white' }} />About Us
           </Button>
         </Link>
-
       </ListItem>
       <ListItem className={classes.listItem}>
         <Link href="/texas-star-award/texas-star-nomination-form">
           <Button
             color={"transparent"}
             target="_blank"
-            className={classes.navButton}
+            className={classes.navLink}
+            style={{ color: 'white' }}
           >
-            <AccountBalance className={classes.icons} />Government Relations
+            <AccountBalance className={classes.icons} style={{ color: 'white' }} />Government Relations
           </Button>
         </Link>
       </ListItem>
@@ -137,24 +135,17 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={InsertInvitationIcon}
           dropdownList={[
-            <Link href="https://www.eventbrite.com/e/17th-annual-tahit-language-access-symposium-houston-texas-tickets-1432320151129?aff=erelpanelorg" target="_blank">
-              <a className={classes.dropdownLink}>
-                <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
-              </a>
+            <Link key="registration" href="https://www.eventbrite.com/e/17th-annual-tahit-language-access-symposium-houston-texas-tickets-1432320151129?aff=erelpanelorg" target="_blank" className={classes.dropdownLink}>
+              <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
             </Link>,
-            <Link href="/symposium/sponsorship">
-              <a className={classes.dropdownLink}>
-                <LocalPlayIcon className={classes.dropdownIcons} />
-                Sponsorship
-              </a>
+            <Link key="sponsorship" href="/symposium/sponsorship" className={classes.dropdownLink}>
+              <LocalPlayIcon className={classes.dropdownIcons} />
+              Sponsorship
             </Link>,
-            <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
-              <a className={classes.dropdownLink}>
-                <StarOutlineIcon className={classes.dropdownIcons} />
-                Past Symposia
-              </a>
+            <Link key="past-symposia" href="/symposium/past-symposia" className={classes.dropdownLink}>
+              <StarOutlineIcon className={classes.dropdownIcons} />
+              Past Symposia
             </Link>
-
           ]}
         />
       </ListItem>
@@ -170,187 +161,19 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={StarIcon}
           dropdownList={[
-            <Link href="/texas-star-award/past-recipients">
-              <a className={classes.dropdownLink}>
-                <People className={classes.dropdownIcons} /> Past Awardees
-              </a>
+            <Link key="past-recipients" href="/texas-star-award/past-recipients" className={classes.dropdownLink}>
+              <People className={classes.dropdownIcons} /> Past Awardees
             </Link>,
-            <Link href="/texas-star-award/texas-star-nomination-form">
-              <a className={classes.dropdownLink}>
-                <InsertInvitationIcon className={classes.dropdownIcons} /> Texas Star Nomination Form
-              </a>
-            </Link>,
-            // <Link href="/symposium/past-symposia" as="/symposium/past-symposia">
-            //   <a className={classes.dropdownLink}>
-            //     <StarOutlineIcon className={classes.dropdownIcons} />
-            //      Past Symposia
-            //    </a>
-            // </Link>
-
-          ]}
-        />
-      </ListItem>
-      {/* <ListItem className={classes.listItem}>
-        <CustomDropdown
-          noLiPadding
-          navDropdown
-          hoverColor={dropdownHoverColor}
-          buttonText="Sections"
-          buttonProps={{
-            className: classes.navLink,
-            color: "transparent"
-          }}
-          buttonIcon={ViewDay}
-          dropdownList={[
-            <Link href="/sections#headers">
-              <a
-                className={classes.dropdownLink}
-                onClick={e => smoothScroll(e, "headers")}
-              >
-                <Dns className={classes.dropdownIcons} /> Headers
-              </a>
-            </Link>,
-            <Link href="/sections#features">
-              <a
-                className={classes.dropdownLink}
-                onClick={e => smoothScroll(e, "features")}
-              >
-                <Build className={classes.dropdownIcons} /> Features
-              </a>
-            </Link>,
-            <Link href="/sections#blogs">
-              <a
-                className={classes.dropdownLink}
-                onClick={e => smoothScroll(e, "blogs")}
-              >
-                <ListIcon className={classes.dropdownIcons} /> Blogs
-              </a>
-            </Link>,
-            <Link href="/sections#teams">
-              <a
-                className={classes.dropdownLink}
-                onClick={e => smoothScroll(e, "teams")}
-              >
-                <People className={classes.dropdownIcons} /> Teams
-              </a>
-            </Link>,
-            <Link href="/sections#projects">
-              <a
-                className={classes.dropdownLink}
-                onClick={e => smoothScroll(e, "projects")}
-              >
-                <Assignment className={classes.dropdownIcons} /> Projects
-              </a>
-            </Link>,
-            <Link href="/sections#pricing">
-              <a
-                className={classes.dropdownLink}
-                onClick={e => smoothScroll(e, "pricing")}
-              >
-                <MonetizationOn className={classes.dropdownIcons} /> Pricing
-              </a>
-            </Link>,
-            <Link href="/sections#testimonials">
-              <a
-                className={classes.dropdownLink}
-                onClick={e => smoothScroll(e, "testimonials")}
-              >
-                <Chat className={classes.dropdownIcons} /> Testimonials
-              </a>
-            </Link>,
-            <Link href="/sections#contacts">
-              <a
-                className={classes.dropdownLink}
-                onClick={e => smoothScroll(e, "contacts")}
-              >
-                <Call className={classes.dropdownIcons} /> Contacts
-              </a>
+            <Link key="nomination-form" href="/texas-star-award/texas-star-nomination-form" className={classes.dropdownLink}>
+              <InsertInvitationIcon className={classes.dropdownIcons} /> Texas Star Nomination Form
             </Link>
           ]}
         />
       </ListItem>
-      <ListItem className={classes.listItem}>
-        <CustomDropdown
-          noLiPadding
-          navDropdown
-          hoverColor={dropdownHoverColor}
-          buttonText="Examples"
-          buttonProps={{
-            className: classes.navLink,
-            color: "transparent"
-          }}
-          buttonIcon={ViewCarousel}
-          dropdownList={[
-            <Link href="/about-us">
-              <a className={classes.dropdownLink}>
-                <AccountBalance className={classes.dropdownIcons} /> About Us
-              </a>
-            </Link>,
-            <Link href="/blog-post">
-              <a className={classes.dropdownLink}>
-                <ArtTrack className={classes.dropdownIcons} /> Blog Post
-              </a>
-            </Link>,
-            <Link href="/blog-posts">
-              <a className={classes.dropdownLink}>
-                <ViewQuilt className={classes.dropdownIcons} /> Blog Posts
-              </a>
-            </Link>,
-            <Link href="/contact-us">
-              <a className={classes.dropdownLink}>
-                <LocationOn className={classes.dropdownIcons} /> Contact Us
-              </a>
-            </Link>,
-            <Link href="/landing-page">
-              <a className={classes.dropdownLink}>
-                <ViewDay className={classes.dropdownIcons} /> Landing Page
-              </a>
-            </Link>,
-       
-            <Link href="/pricing">
-              <a className={classes.dropdownLink}>
-                <AttachMoney className={classes.dropdownIcons} /> Pricing Page
-              </a>
-            </Link>,
-            <Link href="/shopping-cart">
-              <a className={classes.dropdownLink}>
-                <ShoppingBasket className={classes.dropdownIcons} /> Shopping
-                Cart
-              </a>
-            </Link>,
-            <Link href="/ecommerce">
-              <a className={classes.dropdownLink}>
-                <Store className={classes.dropdownIcons} /> Ecommerce Page
-              </a>
-            </Link>,
-            <Link href="/product">
-              <a className={classes.dropdownLink}>
-                <ShoppingCart className={classes.dropdownIcons} /> Product Page
-              </a>
-            </Link>,
-            <Link href="/profile">
-              <a className={classes.dropdownLink}>
-                <AccountCircle className={classes.dropdownIcons} /> Profile Page
-              </a>
-            </Link>,
-            <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?ISPUB=true&invitee=x4ew44166y4do">
-              <a className={classes.dropdownLink}>
-                <PersonAdd className={classes.dropdownIcons} /> Signup Page
-              </a>
-            </Link>,
-            <Link href="/error-page">
-              <a className={classes.dropdownLink}>
-                <Error className={classes.dropdownIcons} /> Error Page
-              </a>
-            </Link>
-          ]}
-        />
-      </ListItem> */}
 
       <ListItem className={classes.listItem}>
-        <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?ISPUB=true&invitee=x4ew44166y4do" as="/signup">
+        <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?ISPUB=true&invitee=x4ew44166y4do">
           <Button
-
             color={"white"}
             target="_blank"
             className={classes.navButton}
@@ -359,49 +182,10 @@ export default function HeaderLinks(props) {
             <ShoppingCart className={classes.icons} />become a member
           </Button>
         </Link>
-        {/* <Hidden mdDown>
-          <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?ISPUB=true&invitee=x4ew44166y4do" as="/signup">
-            <Button
-
-              color={"white"}
-              target="_blank"
-              className={classes.navButton}
-              round
-            >
-              <ShoppingCart className={classes.icons} />become a member
-          </Button>
-          </Link>
-        </Hidden>
-        <Hidden mdUp>
-          <Link href="https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?ISPUB=true&invitee=x4ew44166y4do" as="/signup">
-            <Button
-
-              color={"info"}
-              target="_blank"
-              className={classes.navButton}
-              round
-            >
-              <ShoppingCart className={classes.icons} /> become a member
-          </Button>
-          </Link>
-        </Hidden> */}
       </ListItem>
-      {/* <ListItem className={classes.listItem}>
-        <Link href="/login" as="/login">
-          <Button
-
-            color={"login"}
-            target="_blank"
-            className={classes.navButton}
-            round
-          ><Icon.LogIn className={classes.icons} />Log In
-          </Button>
-        </Link>
-      </ListItem> */}
     </List>
   );
 }
-
 
 HeaderLinks.defaultProps = {
   hoverColor: "primary"

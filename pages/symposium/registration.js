@@ -72,15 +72,13 @@ export default function AboutUsPage() {
             <div className={classes.left}>
               <List className={classes.list}>
                 <ListItem className={classes.inlineBlock}>
-                  <Link href='/home' as="/home" >
-                    <a className={classes.block}>
-                      TAHIT
-                    </a>
+                  <Link href="/home" className={classes.block}>
+                    TAHIT
                   </Link>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>
-                  <Link href="/about-us" as="/about-us">
-                    <a className={classes.block}>About us</a>
+                  <Link href="/about-us" className={classes.block}>
+                    About us
                   </Link>
                 </ListItem>
                 <ListItem className={classes.inlineBlock}>

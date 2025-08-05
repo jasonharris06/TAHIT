@@ -18,8 +18,6 @@ import Muted from "../../components/Typography/Muted.js";
 import CustomInput from "../../components/CustomInput/CustomInput.js";
 import Footer from "../../components/Footer/Footer.js";
 
-
-
 import styles from "/styles/jss/nextjs-material-kit-pro/pages/componentsSections/footerStyle.js";
 
 const useStyles = makeStyles(styles);
@@ -68,10 +66,8 @@ export default function SectionFooter() {
           <div className={classes.footer}>
             <GridContainer>
               <GridItem xs={4} sm={3} md={3}>
-                <Link href='/home' as="/home" >
-                  <a href="/home">
-                    <h5>TAHIT</h5>
-                  </a>
+                <Link href='/home'>
+                  <h5>TAHIT</h5>
                 </Link>
                 <Muted>
                   Texas Association of Healthcare Interpreters and Translators. All rights reserved.
@@ -81,18 +77,18 @@ export default function SectionFooter() {
                 <h5>About</h5>
                 <ul className={classes.linksVertical}>
                   <li>
-                    <Link href="/about-us" as="/about-us">
-                      <a href="#pablo">About us</a>
+                    <Link href="/about-us">
+                      About us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/history" as="/history">
-                      <a href="#pablo">History</a>
+                    <Link href="/history">
+                      History
                     </Link>
                   </li>
                   <li>
-                    <Link href="/contact-us" as="/contact-us">
-                      <a href="/contact-us">Contact us</a>
+                    <Link href="/contact-us">
+                      Contact us
                     </Link>
                   </li>
                 </ul>
@@ -107,8 +103,8 @@ export default function SectionFooter() {
                     <a href="#pablo">Sponsorship</a>
                   </li>
                   <li>
-                    <Link href="/past-symposia" as="/past-symposia">
-                      <a href="/past-symposia">Past Symposia</a>
+                    <Link href="/past-symposia">
+                      Past Symposia
                     </Link>
                   </li>
                 </ul>
