@@ -194,7 +194,30 @@ export default function SectionHomeInfo({ ...rest }) {
                 </Card>
               </GridItem>
             </GridContainer>
+            {/*keynote speaker section */}
 
+            <div className={classes.textCenter} style={{ marginBottom: "40px" }}>
+              <h2 className={classes.title} style={{ marginBottom: "20px" }}>
+                Keynote Speaker
+              </h2>
+
+              <h4 className={classes.description} style={{ marginBottom: "30px" }}>
+                Bruce Adelson, CEO of Federal Compliance Consulting, LLC
+              </h4>
+              <Image
+                src="/img/symposiums/2025/2025_poster.png"
+                alt="Bruce Adelson- 2025 TAHIT Symposium Keynote Speaker"
+                width={800}
+                height={1000}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.1)"
+                }}
+              />
+
+            </div>
             {/* Symposium Agenda Section */}
             <div className={classes.textCenter} style={{ marginBottom: "40px" }}>
               <h2 className={classes.title} style={{ marginBottom: "20px" }}>
