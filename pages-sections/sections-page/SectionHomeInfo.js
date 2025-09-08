@@ -38,7 +38,7 @@ export default function SectionHomeInfo({ ...rest }) {
               The leading event for professionals in healthcare interpretation and translation!
             </h4>
 
-            {/* Call to Action Buttons - Register and Download */}
+
             <div className={classes.textCenter} style={{ marginBottom: "40px" }}>
               <div style={{
                 display: "flex",
@@ -83,52 +83,53 @@ export default function SectionHomeInfo({ ...rest }) {
                 <Button
                   color="info"
                   size="lg"
-                  href="/img/symposiums/2025/TAHIT 2025 Symposium Flyer Registration (1) (2).pdf"
+                  href="https://symposium2023.blob.core.windows.net/symposium/2025/2025%20Symposium%20Program.pdf"
                   target="_blank"
+                  download="2025-Symposium-Program.pdf"
                   style={{
                     margin: "5px",
                     minWidth: "200px"
                   }}
                 >
                   <i className="fas fa-download" style={{ marginRight: "8px" }} />
-                  Download Event Flyer
+                  Download 2025 Symposium Booklet
                 </Button>
               </div>
               <style jsx>{`
-                @keyframes pulse {
-                  0% {
-                    transform: scale(1);
-                    box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.7);
-                  }
-                  70% {
-                    transform: scale(1.05);
-                    box-shadow: 0 0 0 15px rgba(233, 30, 99, 0);
-                  }
-                  100% {
-                    transform: scale(1);
-                    box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
-                  }
-                }
-                
-                @keyframes twinkle {
-                  0%, 100% {
-                    opacity: 1;
-                    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
-                  }
-                  25% {
-                    opacity: 0.3;
-                    text-shadow: 0 0 6px rgba(255, 255, 255, 1);
-                  }
-                  50% {
-                    opacity: 0.8;
-                    text-shadow: 0 0 10px rgba(255, 255, 255, 1);
-                  }
-                  75% {
-                    opacity: 0.4;
-                    text-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
-                  }
-                }
-              `}</style>
+                    @keyframes pulse {
+                      0% {
+                      transform: scale(1);
+                      box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.7);
+                      }
+                      70% {
+                      transform: scale(1.05);
+                      box-shadow: 0 0 0 15px rgba(233, 30, 99, 0);
+                      }
+                      100% {
+                      transform: scale(1);
+                      box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
+                      }
+                    }
+                    
+                    @keyframes twinkle {
+                      0%, 100% {
+                      opacity: 1;
+                      text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+                      }
+                      25% {
+                      opacity: 0.3;
+                      text-shadow: 0 0 6px rgba(255, 255, 255, 1);
+                      }
+                      50% {
+                      opacity: 0.8;
+                      text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+                      }
+                      75% {
+                      opacity: 0.4;
+                      text-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+                      }
+                    }
+                    `}</style>
             </div>
 
             {/* Event Details Cards */}
@@ -263,7 +264,7 @@ export default function SectionHomeInfo({ ...rest }) {
               Make sure you download or view the symposium booklet
             </h4>
             <br />
-            <Button color="info" size="lg" href="https://symposium2023.blob.core.windows.net/symposium/Geometric Shapes Business Company Profile Booklet Cover (4).pdf" style={{ marginRight: '10px' }}>
+            <Button color="info" size="lg" href="https://symposium2023.blob.core.windows.net/symposium/2025/2025%20Symposium%20Program.pdf" style={{ marginRight: '10px' }}>
               <i className="fas fa-download" />
               Download
             </Button> */}
