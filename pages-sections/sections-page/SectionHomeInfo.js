@@ -32,7 +32,7 @@ export default function SectionHomeInfo({ ...rest }) {
       <div className={classes.pricingSection}>
         {/* <div className={classes.container}> */}
         <GridContainer>
-          <GridItem xs={12} sm={12} md={12}>
+          {/* <GridItem xs={12} sm={12} md={12}>
             <h2 className={classes.title + " " + classes.textCenter}>2025 TAHIT Symposium</h2>
             <h4 className={classes.description + " " + classes.textCenter} style={{ marginBottom: "30px" }}>
               The leading event for professionals in healthcare interpretation and translation!
@@ -133,7 +133,7 @@ export default function SectionHomeInfo({ ...rest }) {
             </div>
 
             {/* Event Details Cards */}
-            <GridContainer style={{ marginBottom: "40px" }}>
+          {/* <GridContainer style={{ marginBottom: "40px" }}>
               <GridItem xs={12} sm={6} md={3}>
                 <Card style={{ height: "200px", display: "flex", flexDirection: "column" }}>
                   <CardBody style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -194,9 +194,9 @@ export default function SectionHomeInfo({ ...rest }) {
                   </CardBody>
                 </Card>
               </GridItem>
-            </GridContainer>
-            {/*keynote speaker section */}
-
+            </GridContainer> */}
+          {/*keynote speaker section */}
+          {/* 
             <div className={classes.textCenter} style={{ marginBottom: "40px" }}>
               <h2 className={classes.title} style={{ marginBottom: "20px" }}>
                 Keynote Speaker
@@ -218,9 +218,9 @@ export default function SectionHomeInfo({ ...rest }) {
                 }}
               />
 
-            </div>
-            {/* Symposium Agenda Section */}
-            <div className={classes.textCenter} style={{ marginBottom: "40px" }}>
+            </div> */}
+          {/* Symposium Agenda Section */}
+          {/* <div className={classes.textCenter} style={{ marginBottom: "40px" }}>
               <h2 className={classes.title} style={{ marginBottom: "20px" }}>
                 Symposium Agenda
               </h2>
@@ -258,9 +258,9 @@ export default function SectionHomeInfo({ ...rest }) {
                 <i className="fas fa-expand" style={{ marginRight: "8px" }} />
                 View Full Agenda
               </Button>
-            </div>
+            </div> */}
 
-            {/* <h4 className={classes.description}>
+          {/* <h4 className={classes.description}>
               Make sure you download or view the symposium booklet
             </h4>
             <br />
@@ -268,17 +268,188 @@ export default function SectionHomeInfo({ ...rest }) {
               <i className="fas fa-download" />
               Download
             </Button> */}
+          {/* </GridItem> */}
+
+
+          <GridItem xs={12} sm={12} md={12}>
+            <h2 className={classes.title + " " + classes.textCenter}>ISpeak Cards: Your Language Access Tool</h2>
+            <h4 className={classes.description + " " + classes.textCenter} style={{ marginBottom: "30px" }}>
+              Empowering individuals with limited English proficiency to access essential services
+            </h4>
+
+            {/* ISpeak Card Explanation Section */}
+            <GridContainer style={{ marginBottom: "40px" }}>
+              <GridItem xs={12} sm={12} md={6}>
+                <div style={{ padding: "20px" }}>
+                  <h3 style={{ color: "#e91e63", marginBottom: "20px" }}>What are ISpeak Cards?</h3>
+                  <p style={{ lineHeight: "1.8", fontSize: "16px", marginBottom: "20px", color: "#333" }}>
+                    ISpeak Cards are free, pocket-sized language identification cards that help non-English speaking individuals
+                    communicate their language needs when accessing critical services. These cards bridge the communication gap
+                    and ensure that everyone receives the language assistance they are entitled to under Title VI of the Civil Rights Act.
+                  </p>
+
+                  <h3 style={{ color: "#e91e63", marginBottom: "20px" }}>Why are they important?</h3>
+                  <div style={{ lineHeight: "1.8", fontSize: "16px" }}>
+                    <p style={{ marginBottom: "15px", color: "#333" }}>
+                      <strong>✓ Legal Right:</strong> Non-English speaking persons have a right to free interpretation assistance in their language.
+                    </p>
+                    <p style={{ marginBottom: "15px", color: "#333" }}>
+                      <strong>✓ Easy Identification:</strong> Service providers can quickly identify your language before calling an interpreter.
+                    </p>
+                    <p style={{ marginBottom: "15px", color: "#333" }}>
+                      <strong>✓ Universal Access:</strong> Use them at hospitals, public assistance programs, schools, courts, and emergency services.
+                    </p>
+                    <p style={{ marginBottom: "15px", color: "#333" }}>
+                      <strong>✓ No Barriers:</strong> This card is not required to receive services—it simply makes the process smoother.
+                    </p>
+                  </div>
+                </div>
+              </GridItem>
+
+              <GridItem xs={12} sm={12} md={6}>
+                <div style={{ padding: "20px" }}>
+                  <h3 style={{ color: "#e91e63", marginBottom: "20px" }}>Where can you use ISpeak Cards?</h3>
+                  <GridContainer>
+                    <GridItem xs={6} sm={6} md={6} style={{ marginBottom: "20px" }}>
+                      <div style={{
+                        textAlign: "center",
+                        padding: "15px",
+                        backgroundColor: "#f8f9fa",
+                        borderRadius: "8px",
+                        height: "140px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}>
+                        <i className="fas fa-hospital" style={{ fontSize: "2rem", color: "#e91e63", marginBottom: "10px" }} />
+                        <p style={{ margin: "0", fontWeight: "500", color: "#333" }}>Hospitals & Health Clinics</p>
+                      </div>
+                    </GridItem>
+                    <GridItem xs={6} sm={6} md={6} style={{ marginBottom: "20px" }}>
+                      <div style={{
+                        textAlign: "center",
+                        padding: "15px",
+                        backgroundColor: "#f8f9fa",
+                        borderRadius: "8px",
+                        height: "140px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}>
+                        <i className="fas fa-hands-helping" style={{ fontSize: "2rem", color: "#e91e63", marginBottom: "10px" }} />
+                        <p style={{ margin: "0", fontWeight: "500", color: "#333" }}>Public Assistance Programs</p>
+                      </div>
+                    </GridItem>
+                    <GridItem xs={6} sm={6} md={6} style={{ marginBottom: "20px" }}>
+                      <div style={{
+                        textAlign: "center",
+                        padding: "15px",
+                        backgroundColor: "#f8f9fa",
+                        borderRadius: "8px",
+                        height: "140px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}>
+                        <i className="fas fa-graduation-cap" style={{ fontSize: "2rem", color: "#e91e63", marginBottom: "10px" }} />
+                        <p style={{ margin: "0", fontWeight: "500", color: "#333" }}>Public Schools & Universities</p>
+                      </div>
+                    </GridItem>
+                    <GridItem xs={6} sm={6} md={6} style={{ marginBottom: "20px" }}>
+                      <div style={{
+                        textAlign: "center",
+                        padding: "15px",
+                        backgroundColor: "#f8f9fa",
+                        borderRadius: "8px",
+                        height: "140px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}>
+                        <i className="fas fa-balance-scale" style={{ fontSize: "2rem", color: "#e91e63", marginBottom: "10px" }} />
+                        <p style={{ margin: "0", fontWeight: "500", color: "#333" }}>Courts (City, County, State, Federal)</p>
+                      </div>
+                    </GridItem>
+                    <GridItem xs={6} sm={6} md={6} style={{ marginBottom: "20px" }}>
+                      <div style={{
+                        textAlign: "center",
+                        padding: "15px",
+                        backgroundColor: "#f8f9fa",
+                        borderRadius: "8px",
+                        height: "140px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}>
+                        <i className="fas fa-ambulance" style={{ fontSize: "2rem", color: "#e91e63", marginBottom: "10px" }} />
+                        <p style={{ margin: "0", fontWeight: "500", color: "#333" }}>Emergency Services (911/311)</p>
+                      </div>
+                    </GridItem>
+                    <GridItem xs={6} sm={6} md={6} style={{ marginBottom: "20px" }}>
+                      <div style={{
+                        textAlign: "center",
+                        padding: "15px",
+                        backgroundColor: "#f8f9fa",
+                        borderRadius: "8px",
+                        height: "140px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}>
+                        <i className="fas fa-lightbulb" style={{ fontSize: "2rem", color: "#e91e63", marginBottom: "10px" }} />
+                        <p style={{ margin: "0", fontWeight: "500", color: "#333" }}>Public Services (Water, Trash, Electric)</p>
+                      </div>
+                    </GridItem>
+                  </GridContainer>
+                </div>
+              </GridItem>
+            </GridContainer>
+
+            {/* Call to Action */}
+            <div className={classes.textCenter} style={{
+              backgroundColor: "#f8f9fa",
+              padding: "30px",
+              borderRadius: "12px",
+              marginBottom: "40px"
+            }}>
+              <h3 style={{ color: "#e91e63", marginBottom: "20px" }}>Get Your Free ISpeak Cards Today</h3>
+              <p style={{ fontSize: "16px", marginBottom: "25px", maxWidth: "700px", margin: "0 auto 25px", color: "#333" }}>
+                Download, print, and cut out your ISpeak Cards. Keep them with you to ensure you receive
+                the language assistance you deserve in any situation.
+              </p>
+              <Button
+                color="rose"
+                size="lg"
+                href="https://symposium2023.blob.core.windows.net/symposium/IspeakCardsTAHIT (3).pdf"
+                target="_blank"
+                style={{ marginRight: '10px' }}
+              >
+                <i className="fas fa-download" style={{ marginRight: "8px" }} />
+                Download ISpeak Cards
+              </Button>
+            </div>
+
+            {/* Language Access is the Law Banner */}
+            <div className={classes.textCenter} style={{
+              backgroundColor: "#ffd700",
+              padding: "20px",
+              borderRadius: "8px",
+              marginBottom: "40px"
+            }}>
+              <h2 style={{ margin: "0", fontWeight: "bold", fontSize: "2rem", color: "#333" }}>
+                Language Access is the Law
+              </h2>
+            </div>
           </GridItem>
+
           <GridItem xs={12} sm={12} md={12}>
 
-            {/* <h4 className={classes.description}>
-              ISpeak Cards Download</h4>
-            <br />
-           
-            <Button color="info" size="lg" href="https://symposium2023.blob.core.windows.net/symposium/IspeakCardsTAHIT (3).pdf" style={{ marginRight: '10px' }}>
-              <i className="fas fa-download" />
-              Download
-            </Button> */}
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
             <h2 className={classes.title + " " + classes.textCenter}>Our Mission</h2>
