@@ -86,7 +86,7 @@ export default function SectionHomeInfo({ ...rest }) {
                   boxShadow: "0 10px 30px rgba(0,0,0,0.15)"
                 }}>
                   <Image
-                    src="/img/Symposiums/2025/2025_poster.png"
+                    src="/img/symposiums/2025/2025_poster.png"
                     alt="2025 TAHIT Symposium Poster - September 12, 2025 at MD Anderson Cancer Center"
                     width={700}
                     height={990}
