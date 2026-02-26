@@ -347,23 +347,65 @@ export default function SectionHomeInfo({ ...rest }) {
             >
               <h3 style={{ color: "#e91e63", marginBottom: "20px" }}>Get Your Free ISpeak Cards Today</h3>
               <p style={{ fontSize: "16px", marginBottom: "25px", maxWidth: "700px", margin: "0 auto 25px", color: "#333" }}>
-                Download, print, and cut out your ISpeak Cards. Keep them with you to ensure you receive
+                ISpeak Cards are available in <strong>Spanish</strong>, <strong>Arabic</strong>, and <strong>Vietnamese</strong>.
+                Download, print, and cut out the card in your language. Keep it with you to ensure you receive
                 the language assistance you deserve in any situation.
               </p>
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "15px" }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+                }}
               >
-                <Button
-                  color="rose"
-                  size="lg"
-                  href="https://symposium2023.blob.core.windows.net/symposium/IspeakCardsTAHIT (3).pdf"
-                  target="_blank"
-                  style={{ marginRight: '10px' }}
+                <motion.div
+                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <i className="fas fa-download" style={{ marginRight: "8px" }} />
-                  Download ISpeak Cards
-                </Button>
+                  <Button
+                    color="rose"
+                    size="lg"
+                    href="https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/iSPEAKtXsPANISH.pdf"
+                    target="_blank"
+                  >
+                    <i className="fas fa-download" style={{ marginRight: "8px" }} />
+                    Spanish / Español
+                  </Button>
+                </motion.div>
+                <motion.div
+                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    color="rose"
+                    size="lg"
+                    href="https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAKarabic.pdf"
+                    target="_blank"
+                  >
+                    <i className="fas fa-download" style={{ marginRight: "8px" }} />
+                    Arabic / عربي
+                  </Button>
+                </motion.div>
+                <motion.div
+                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    color="rose"
+                    size="lg"
+                    href="https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAKviet.pdf"
+                    target="_blank"
+                  >
+                    <i className="fas fa-download" style={{ marginRight: "8px" }} />
+                    Vietnamese / Tiếng Việt
+                  </Button>
+                </motion.div>
               </motion.div>
             </motion.div>
 
