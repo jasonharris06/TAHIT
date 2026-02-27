@@ -347,7 +347,7 @@ export default function SectionHomeInfo({ ...rest }) {
             >
               <h3 style={{ color: "#e91e63", marginBottom: "20px" }}>Get Your Free ISpeak Cards Today</h3>
               <p style={{ fontSize: "16px", marginBottom: "25px", maxWidth: "700px", margin: "0 auto 25px", color: "#333" }}>
-                ISpeak Cards are available in <strong>Spanish</strong>, <strong>Arabic</strong>, and <strong>Vietnamese</strong>.
+                ISpeak Cards are available in <strong>Spanish</strong>, <strong>Arabic</strong>, <strong>ASL</strong>, and <strong>Vietnamese</strong>.
                 Download, print, and cut out the card in your language. Keep it with you to ensure you receive
                 the language assistance you deserve in any situation.
               </p>
@@ -404,6 +404,21 @@ export default function SectionHomeInfo({ ...rest }) {
                   >
                     <i className="fas fa-download" style={{ marginRight: "8px" }} />
                     Vietnamese / Tiếng Việt
+                  </Button>
+                </motion.div>
+                <motion.div
+                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    color="rose"
+                    size="lg"
+                    href="https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAK%20ASL.pdf"
+                    target="_blank"
+                  >
+                    <i className="fas fa-download" style={{ marginRight: "8px" }} />
+                    ASL / American Sign Language
                   </Button>
                 </motion.div>
               </motion.div>
