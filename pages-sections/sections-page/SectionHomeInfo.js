@@ -346,81 +346,97 @@ export default function SectionHomeInfo({ ...rest }) {
               variants={fadeInUp}
             >
               <h3 style={{ color: "#e91e63", marginBottom: "20px" }}>Get Your Free ISpeak Cards Today</h3>
-              <p style={{ fontSize: "16px", marginBottom: "25px", maxWidth: "700px", margin: "0 auto 25px", color: "#333" }}>
-                ISpeak Cards are available in <strong>Spanish</strong>, <strong>Arabic</strong>, <strong>ASL</strong>, and <strong>Vietnamese</strong>.
-                Download, print, and cut out the card in your language. Keep it with you to ensure you receive
-                the language assistance you deserve in any situation.
+              <p style={{ fontSize: "16px", maxWidth: "700px", margin: "0 auto 30px", color: "#555", lineHeight: "1.7" }}>
+                ISpeak Cards are free, pocket-sized cards available in seven languages. Download, print, and
+                cut out the card in your language — keep it with you to quickly communicate your needs and
+                receive the language assistance you are entitled to.
               </p>
               <motion.div
-                style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "15px" }}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(155px, 1fr))",
+                  gap: "16px",
+                  maxWidth: "900px",
+                  margin: "0 auto"
+                }}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={{
                   hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+                  visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
                 }}
               >
-                <motion.div
-                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    color="rose"
-                    size="lg"
-                    href="https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/iSPEAKtXsPANISH.pdf"
+                {[
+                  { lang: "Spanish", native: "Español", flag: "🇪🇸", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/iSPEAKtXsPANISH.pdf" },
+                  { lang: "Arabic", native: "عربي", flag: "�🇦", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAKarabic.pdf" },
+                  { lang: "Vietnamese", native: "Tiếng Việt", flag: "🇻🇳", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAKviet.pdf" },
+                  { lang: "ASL", native: "American Sign Language", icon: "fa-american-sign-language-interpreting", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAK%20ASL.pdf" },
+                  { lang: "Burmese", native: "ဗမာ", flag: "🇲🇲", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/Burmese_I%20Speak%20Texas_WalletCard-2026-01.pdf", isNew: true },
+                  { lang: "Cantonese", native: "廣東話", flag: "🇭🇰", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/Cantonese_I%20Speak%20Texas_WalletCard-2026-01.pdf", isNew: true },
+                  { lang: "Chinese", native: "中文", flag: "🇨🇳", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/Chinese_I%20Speak%20Texas_WalletCard-2026-01.pdf", isNew: true },
+                ].map((item, index) => (
+                  <motion.a
+                    key={index}
+                    href={item.href}
                     target="_blank"
+                    rel="noopener noreferrer"
+                    variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 } }}
+                    whileHover={{ y: -5, boxShadow: "0 10px 28px rgba(233, 30, 99, 0.22)" }}
+                    whileTap={{ scale: 0.97 }}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      padding: "22px 14px 16px",
+                      backgroundColor: "#fff",
+                      borderRadius: "14px",
+                      border: "2px solid #fce4ec",
+                      textDecoration: "none",
+                      cursor: "pointer",
+                      position: "relative",
+                      boxShadow: "0 2px 10px rgba(0,0,0,0.07)",
+                      minHeight: "150px"
+                    }}
                   >
-                    <i className="fas fa-download" style={{ marginRight: "8px" }} />
-                    Spanish / Español
-                  </Button>
-                </motion.div>
-                <motion.div
-                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    color="rose"
-                    size="lg"
-                    href="https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAKarabic.pdf"
-                    target="_blank"
-                  >
-                    <i className="fas fa-download" style={{ marginRight: "8px" }} />
-                    Arabic / عربي
-                  </Button>
-                </motion.div>
-                <motion.div
-                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    color="rose"
-                    size="lg"
-                    href="https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAKviet.pdf"
-                    target="_blank"
-                  >
-                    <i className="fas fa-download" style={{ marginRight: "8px" }} />
-                    Vietnamese / Tiếng Việt
-                  </Button>
-                </motion.div>
-                <motion.div
-                  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    color="rose"
-                    size="lg"
-                    href="https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAK%20ASL.pdf"
-                    target="_blank"
-                  >
-                    <i className="fas fa-download" style={{ marginRight: "8px" }} />
-                    ASL / American Sign Language
-                  </Button>
-                </motion.div>
+                    {/* {item.isNew && (
+                      <span style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                        backgroundColor: "#e91e63",
+                        color: "#fff",
+                        fontSize: "9px",
+                        fontWeight: "800",
+                        padding: "2px 7px",
+                        borderRadius: "10px",
+                        letterSpacing: "0.8px",
+                        textTransform: "uppercase"
+                      }}>2026</span>
+                    )} */}
+                    <div style={{ textAlign: "center", flex: 1 }}>
+                      <p style={{ margin: "0 0 3px", fontWeight: "700", color: "#333", fontSize: "15px" }}>{item.lang}</p>
+                      <p style={{ margin: "0", color: "#888", fontSize: "12px", lineHeight: "1.3" }}>{item.native}</p>
+                    </div>
+                    <div style={{
+                      marginTop: "14px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      color: "#e91e63",
+                      fontSize: "12px",
+                      fontWeight: "700",
+                      borderTop: "1px solid #fce4ec",
+                      paddingTop: "10px",
+                      width: "100%",
+                      justifyContent: "center"
+                    }}>
+                      <i className="fas fa-download" style={{ fontSize: "11px" }} />
+                      <span>Download PDF</span>
+                    </div>
+                  </motion.a>
+                ))}
               </motion.div>
             </motion.div>
 
