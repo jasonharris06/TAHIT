@@ -20,6 +20,7 @@ import pricingStyle from "/styles/jss/nextjs-material-kit-pro/pages/sectionsSect
 import cardBlog3 from "../../assets/img/background-texture.jpg";
 import { Grid } from "@material-ui/core";
 import { motion } from "framer-motion";
+import { trackEvent, setTag } from "../../lib/clarity.js";
 
 const useStyles = makeStyles(pricingStyle);
 
@@ -381,6 +382,10 @@ export default function SectionHomeInfo({ ...rest }) {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => {
+                      trackEvent("ispeak_card_download");
+                      setTag("language", item.lang);
+                    }}
                     variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 } }}
                     whileHover={{ y: -5, boxShadow: "0 10px 28px rgba(233, 30, 99, 0.22)" }}
                     whileTap={{ scale: 0.97 }}
