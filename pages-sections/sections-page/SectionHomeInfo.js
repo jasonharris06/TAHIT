@@ -371,7 +371,7 @@ export default function SectionHomeInfo({ ...rest }) {
                 {[
                   { lang: "Spanish", native: "Español", flag: "🇪🇸", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/iSPEAKtXsPANISH.pdf" },
                   { lang: "Arabic", native: "عربي", flag: "�🇦", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAKarabic.pdf" },
-                  { lang: "Vietnamese", native: "Tiếng Việt", flag: "🇻🇳", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAKviet.pdf" },
+                  { lang: "Vietnamese", native: "Tiếng Việt", flag: "🇻🇳", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAK%20Vietnamese.pdf" },
                   { lang: "ASL", native: "American Sign Language", icon: "fa-american-sign-language-interpreting", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/SPEAK%20ASL.pdf" },
                   { lang: "Burmese", native: "ဗမာ", flag: "🇲🇲", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/Burmese_I%20Speak%20Texas_WalletCard-2026-01.pdf", isNew: true },
                   { lang: "Cantonese", native: "廣東話", flag: "🇭🇰", href: "https://symposium2023.blob.core.windows.net/symposium/ispeak_cards/Cantonese_I%20Speak%20Texas_WalletCard-2026-01.pdf", isNew: true },
