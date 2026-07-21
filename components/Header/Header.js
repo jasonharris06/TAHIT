@@ -126,6 +126,7 @@ Header.propTypes = {
     "rose",
     "dark",
     "gradient",
+    "gradientNavy",
     "login",
     "memberNav"
   ]),
@@ -152,6 +153,7 @@ Header.propTypes = {
       "rose",
       "dark",
       "gradient",
+      "gradientNavy",
       "login",
       "memberNav"
     ]).isRequired

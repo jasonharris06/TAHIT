@@ -52,6 +52,7 @@ import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
 import Button from "../../components/CustomButtons/Button.js";
 
 import styles from "/styles/jss/nextjs-material-kit-pro/components/headerLinksStyle.js";
+import { symposium2026 } from "../../data/symposium2026.js";
 
 const useStyles = makeStyles(styles);
 
@@ -100,26 +101,25 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list + " " + classes.mlAuto}>
       <ListItem className={classes.listItem}>
-        <Link href="/about-us">
+        {/* No hardcoded colour: navLink is `color: inherit`, so these pick up white
+            from the transparent header and dark text inside the mobile drawer,
+            which is portaled outside the AppBar. */}
+        <Link href="/about-us" style={{ color: "inherit" }}>
           <Button
             color={"transparent"}
-            target="_blank"
             className={classes.navLink}
-            style={{ color: 'white' }}
           >
-            <InfoIcon className={classes.icons} style={{ color: 'white' }} />About Us
+            <InfoIcon className={classes.icons} />About Us
           </Button>
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link href="/texas-star-award/texas-star-nomination-form">
+        <Link href="/texas-star-award/texas-star-nomination-form" style={{ color: "inherit" }}>
           <Button
             color={"transparent"}
-            target="_blank"
             className={classes.navLink}
-            style={{ color: 'white' }}
           >
-            <AccountBalance className={classes.icons} style={{ color: 'white' }} />Government Relations
+            <AccountBalance className={classes.icons} />Government Relations
           </Button>
         </Link>
       </ListItem>
@@ -135,7 +135,7 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={InsertInvitationIcon}
           dropdownList={[
-            <Link key="registration" href="https://www.eventbrite.com/e/17th-annual-tahit-language-access-symposium-houston-texas-tickets-1432320151129?aff=erelpanelorg" target="_blank" className={classes.dropdownLink}>
+            <Link key="registration" href={symposium2026.registrationUrl} target="_blank" className={classes.dropdownLink}>
               <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
             </Link>,
             <Link key="sponsorship" href="/symposium/sponsorship" className={classes.dropdownLink}>
