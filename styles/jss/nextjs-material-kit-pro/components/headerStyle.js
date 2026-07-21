@@ -72,7 +72,8 @@ const headerStyle = theme => ({
   },
   appResponsive: {
     margin: "20px 10px",
-    marginTop: "0px"
+    // Clear the absolutely-positioned drawer close button.
+    marginTop: "48px"
   },
   primary: {
     backgroundColor: primaryColor[0],
@@ -168,6 +169,13 @@ const headerStyle = theme => ({
     // border: 0,
     // borderRadius: 3,
     //boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 55,
+    padding: '0 30px',
+  },
+  // Scrolled-state bar for the home page, matched to the 2026 hero/symposium palette.
+  gradientNavy: {
+    background: 'linear-gradient(90deg, #071426 0%, #0a3c73 55%, #0b6ba8 100%);',
     color: 'white',
     height: 55,
     padding: '0 30px',
