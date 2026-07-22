@@ -43,7 +43,7 @@ export default function SectionHomeHero() {
           <Image src={whiteLogo} alt="" width={132} height={132} priority />
         </motion.div>
 
-        <motion.p className="hh-eyebrow" initial="hidden" animate="visible" custom={1} variants={rise}>
+        <motion.p className="hh-title" initial="hidden" animate="visible" custom={1} variants={rise}>
           Texas Association of
         </motion.p>
 

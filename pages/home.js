@@ -1,11 +1,9 @@
 /*eslint-disable*/ import React from "react";
-import Image from "next/image";
 
 // core components
 import Header from "../components/Header/Header.js";
 import HeaderLinks from "../components/Header/HeaderLinks.js";
-
-import whiteLogo from "../assets/img/logo-white.png";
+import Brand from "../components/Header/Brand.js";
 
 // Sections for this page
 import SectionHomeHero from "../pages-sections/sections-page/SectionHomeHero.js";
@@ -34,15 +32,7 @@ export default function LandingPage({ ...rest }) {
     <div>
       <Header
         color="transparent"
-        brand={
-          // Flex lockup — the old 6/6 GridContainer stretched to half the toolbar
-          // and ran the wordmark into the first nav item.
-          <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
-            <Image src={whiteLogo} alt="" width={34} height={34} />
-            <span style={{ fontSize: "1.15rem", fontWeight: 800, letterSpacing: "0.06em" }}>
-              TAHIT
-            </span>
-          </span>}
+        brand={<Brand />}
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         changeColorOnScroll={{

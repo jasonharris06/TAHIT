@@ -50,7 +50,7 @@ export default function SectionISpeak() {
           variants={rise}
         >
           <span className="kicker">Free resource</span>
-          <h2 id="isp-heading">ISpeak Cards</h2>
+          <h2 id="isp-heading">ISpeak Texas Cards</h2>
           <p className="lede">
             Free, pocket-sized language identification cards that help people with
             limited English proficiency say what language they need — before the
@@ -137,6 +137,38 @@ export default function SectionISpeak() {
               </a>
             ))}
           </div>
+        </motion.div>
+
+        {/* ------------------------------------------------- sponsor */}
+        <motion.div
+          className="isp-sponsor"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          variants={rise}
+        >
+          <span className="sponsorKicker">Initiative Sponsor</span>
+          <p className="sponsorThanks">
+            A heartfelt thank-you to <strong>Martti</strong> for their generous
+            support of the ISpeak Texas Card initiative. Martti&rsquo;s commitment to
+            breaking language barriers in healthcare makes programs like this
+            possible &mdash; ensuring every patient can communicate in the language
+            they know best.
+          </p>
+          <a
+            href="https://www.martti.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sponsorLink"
+            aria-label="Visit Martti — Medical Interpreter Services for Hospitals &amp; Health Systems"
+          >
+            <img
+              src="/img/martti-logo.svg"
+              alt="Martti — an equiti solution"
+              className="sponsorLogo"
+            />
+          </a>
         </motion.div>
       </div>
 
@@ -374,6 +406,66 @@ export default function SectionISpeak() {
         @media (max-width: 479px) {
           .benefits {
             grid-template-columns: 1fr;
+          }
+        }
+
+        /* ---- sponsor ---- */
+        :global(.isp-sponsor) {
+          margin-top: 28px;
+          padding: 38px 44px 42px;
+          border-radius: 20px;
+          background: #f4f8fb;
+          border: 1px solid #e4ecf3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 18px;
+        }
+        .sponsorKicker {
+          display: inline-block;
+          padding: 6px 14px;
+          border-radius: 999px;
+          background: rgba(11, 107, 168, 0.08);
+          border: 1px solid rgba(11, 107, 168, 0.24);
+          color: #0b6ba8;
+          font-size: 0.63rem;
+          font-weight: 800;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+        }
+        .sponsorThanks {
+          max-width: 620px;
+          font-size: 0.95rem;
+          line-height: 1.68;
+          color: #5a6b7d;
+          margin: 0;
+        }
+        .sponsorThanks strong {
+          color: #06203f;
+          font-weight: 700;
+        }
+        .sponsorLink {
+          display: inline-block;
+          transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+          outline-offset: 4px;
+        }
+        .sponsorLink:hover,
+        .sponsorLink:focus-visible {
+          opacity: 0.82;
+          transform: scale(1.04);
+        }
+        .sponsorLogo {
+          display: block;
+          width: 200px;
+          height: auto;
+        }
+        @media (max-width: 767px) {
+          :global(.isp-sponsor) {
+            padding: 30px 22px 34px;
+          }
+          .sponsorLogo {
+            width: 160px;
           }
         }
       `}</style>
