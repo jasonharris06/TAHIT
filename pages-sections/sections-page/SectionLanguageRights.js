@@ -56,11 +56,11 @@ export default function SectionLanguageRights() {
             services — in a hospital, a clinic, a courtroom, or an emergency.
           </p>
           <p className="sub">
-            An ISpeak card makes that right easy to exercise. Pocket-sized, free, and
+            An ISpeak Texas card makes that right easy to exercise. Pocket-sized, free, and
             available in seven languages.
           </p>
           <a href="#ispeak-cards" onClick={() => trackEvent("rights_ispeak")}>
-            Get a free ISpeak card
+            Get a free ISpeak Texas card
             <i className="fas fa-arrow-right" aria-hidden="true" />
           </a>
         </motion.div>
