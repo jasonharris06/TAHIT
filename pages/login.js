@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import SiteHeader from "../components/Header/SiteHeader.js";
 import Link from "next/link"
 import Router from "next/router";
 import { useUser } from '../lib/hooks'
@@ -20,10 +21,7 @@ import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
 import Check from "@material-ui/icons/Check";
 import Favorite from "@material-ui/icons/Favorite";
-import whiteLogo from "../assets/img/logo-white.png"
 // core components
-import Header from "../components/Header/Header.js";
-import HeaderLinks from "../components/Header/HeaderLinks.js";
 import Footer from "../components/Footer/Footer.js";
 import GridContainer from "../components/Grid/GridContainer.js";
 import GridItem from "../components/Grid/GridItem.js";
@@ -84,23 +82,7 @@ export default function SignUpPage({ ...rest }) {
   const classes = useStyles();
   return (
     <div>
-      <Header
-        absolute
-        color="transparent"
-        brand={
-          <GridContainer>
-            <GridItem xs={6} sm={6} md={6}>
-              <img src={whiteLogo}
-                alt="Tahit Logo"
-                width={40}
-                height={40} /></GridItem>
-            <GridItem xs={6} sm={6} md={6}>
-              <h5>TAHIT</h5>
-            </GridItem>
-          </GridContainer>}
-
-        {...rest}
-      />
+      <SiteHeader {...rest} />
       <div
         className={classes.page}
         style={{

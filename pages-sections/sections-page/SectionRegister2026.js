@@ -6,8 +6,9 @@ import { symposium2026 as ev } from "../../data/symposium2026.js";
 import { trackEvent } from "../../lib/clarity.js";
 
 /**
- * Closing conversion block for the 2026 symposium, plus a mobile-only sticky
- * register bar that appears once the visitor scrolls past the hero.
+ * Closing block for the 2026 symposium, plus a mobile-only sticky flyer
+ * download bar that appears once the visitor scrolls past the hero.
+ * Registration closed Sept 29, 2026, so the CTAs point at the program flyer.
  */
 export default function SectionRegister2026() {
   const [showBar, setShowBar] = React.useState(false);
@@ -18,8 +19,6 @@ export default function SectionRegister2026() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const register = (where) => () => trackEvent(`symposium_2026_register_${where}`);
 
   return (
     <>
@@ -32,9 +31,9 @@ export default function SectionRegister2026() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="kicker">Registration is open</span>
+          <span className="kicker">Registration is closed</span>
           <h2 className="title">
-            Join us in Dallas on
+            See you in Dallas on
             <span className="date"> October 2, 2026</span>
           </h2>
           <p className="lede">
@@ -43,14 +42,19 @@ export default function SectionRegister2026() {
 
           <a
             className="btnPrimary"
-            href={ev.registrationUrl}
+            href={ev.flyerUrl}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={register("footer")}
+            download
+            onClick={() => trackEvent("symposium_2026_flyer_download_footer")}
           >
-            Register on Eventbrite
-            <i className="fas fa-arrow-right" aria-hidden="true" />
+            <i className="fas fa-download" aria-hidden="true" />
+            Download the Program Flyer
           </a>
+          <p className="hint">
+            Click the button above to download the full 28-page program (PDF, 57 MB) and keep it
+            handy on the day.
+          </p>
 
           <p className="venue">
             <i className="fas fa-map-marker-alt" aria-hidden="true" />
@@ -64,7 +68,7 @@ export default function SectionRegister2026() {
               rel="noopener noreferrer"
               onClick={() => trackEvent("symposium_2026_membership")}
             >
-              Members save on registration — join TAHIT
+              Become a TAHIT member
             </a>
             <span className="sep" aria-hidden="true">
               ·
@@ -165,6 +169,13 @@ export default function SectionRegister2026() {
           .btnPrimary:hover :global(i) {
             transform: translateX(4px);
           }
+          .hint {
+            margin: 16px auto 0;
+            max-width: 460px;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, 0.72);
+          }
           .venue {
             display: flex;
             align-items: center;
@@ -224,12 +235,13 @@ export default function SectionRegister2026() {
           <span>Oct 2, 2026 · Dallas</span>
         </div>
         <a
-          href={ev.registrationUrl}
+          href={ev.flyerUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={register("sticky")}
+          download
+          onClick={() => trackEvent("symposium_2026_flyer_download_sticky")}
         >
-          Register
+          <i className="fas fa-download" aria-hidden="true" /> Download flyer
         </a>
 
         <style jsx>{`

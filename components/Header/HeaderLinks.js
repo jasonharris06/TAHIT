@@ -19,6 +19,7 @@ import StarIcon from '@material-ui/icons/Star';
 import StarOutlineIcon from '@material-ui/icons/StarBorder';
 import LocalPlayIcon from '@material-ui/icons/LocalPlay';
 import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import ViewDay from "@material-ui/icons/ViewDay";
 import Dns from "@material-ui/icons/Dns";
@@ -135,9 +136,9 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={InsertInvitationIcon}
           dropdownList={[
-            <Link key="registration" href={symposium2026.registrationUrl} target="_blank" className={classes.dropdownLink}>
-              <InsertInvitationIcon className={classes.dropdownIcons} /> Registration
-            </Link>,
+            <a key="flyer" href={symposium2026.flyerUrl} target="_blank" rel="noopener noreferrer" download className={classes.dropdownLink}>
+              <GetAppIcon className={classes.dropdownIcons} /> Download Program Flyer
+            </a>,
             <Link key="sponsorship" href="/symposium/sponsorship" className={classes.dropdownLink}>
               <LocalPlayIcon className={classes.dropdownIcons} />
               Sponsorship

@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import SiteHeader from "../components/Header/SiteHeader.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -7,8 +8,6 @@ import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "../components/Header/Header.js";
-import HeaderLinks from "../components/Header/HeaderLinks.js";
 import Footer from "../components/Footer/Footer.js";
 import GridContainer from "../components/Grid/GridContainer.js";
 import GridItem from "../components/Grid/GridItem.js";
@@ -27,13 +26,7 @@ export default function ErrorPage({ ...rest }) {
   const classes = useStyles();
   return (
     <div>
-      <Header
-        absolute
-        color="transparent"
-        brand="NextJS Material Kit PRO"
-        links={<HeaderLinks dropdownHoverColor="dark" />}
-        {...rest}
-      />
+      <SiteHeader {...rest} />
       <div
         className={classes.pageHeader}
         style={{

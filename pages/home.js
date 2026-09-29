@@ -1,9 +1,7 @@
 /*eslint-disable*/ import React from "react";
+import SiteHeader from "../components/Header/SiteHeader.js";
 
 // core components
-import Header from "../components/Header/Header.js";
-import HeaderLinks from "../components/Header/HeaderLinks.js";
-import Brand from "../components/Header/Brand.js";
 
 // Sections for this page
 import SectionHomeHero from "../pages-sections/sections-page/SectionHomeHero.js";
@@ -30,18 +28,7 @@ export default function LandingPage({ ...rest }) {
 
   return (
     <div>
-      <Header
-        color="transparent"
-        brand={<Brand />}
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        changeColorOnScroll={{
-          height: 300,
-          color: "gradientNavy",
-          filter: "dark"
-        }}
-        {...rest}
-      />
+      <SiteHeader {...rest} />
 
       <SectionHomeHero />
 
