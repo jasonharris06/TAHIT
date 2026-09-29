@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import SiteHeader from "../../components/Header/SiteHeader.js";
 
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -11,8 +12,6 @@ import ListItem from "@material-ui/core/ListItem";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Image from 'next/image'
-import Header from "../../components/Header/Header.js";
-import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
 import Parallax from "../../components/Parallax/Parallax.js";
@@ -33,16 +32,7 @@ export default function Symposium2023Page() {
     const classes = useStyles();
     return (
         <div>
-            <Header
-                brand="TAHIT"
-                links={<HeaderLinks dropdownHoverColor="info" />}
-                fixed
-                color="transparent"
-                changeColorOnScroll={{
-                    height: 300,
-                    color: "info"
-                }}
-            />
+            <SiteHeader />
             <Parallax image={"/img/background-gradient.jpg"} filter="dark" small>
                 <div className={classes.container}>
                     <GridContainer justify="center">

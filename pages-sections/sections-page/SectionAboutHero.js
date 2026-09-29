@@ -5,12 +5,28 @@ import { motion } from "framer-motion";
 import { symposium2026 as ev } from "../../data/symposium2026.js";
 import { trackEvent } from "../../lib/clarity.js";
 
+const ABOUT_ACTIONS = [
+  { label: "Meet the board", href: "#board", primary: true, icon: "fas fa-arrow-right" },
+  { label: "Become a member", href: ev.membershipUrl, external: true, event: "about_hero_membership" }
+];
+
 /**
- * About Us hero. Same visual family as the home page hero (SectionHomeHero) —
- * midnight aurora background, gold-accented title, pill CTAs — sized down for a
- * page that doesn't need a countdown or a poster.
+ * Page hero in the home-page visual family — midnight aurora background,
+ * gold-accented title, pill CTAs — sized down for pages that don't need a
+ * countdown or a poster. Defaults render the About Us hero; other pages pass
+ * their own kicker/title/lede/actions. Wrap the highlighted word of the title
+ * in <span className="accent">.
  */
-export default function SectionAboutHero() {
+export default function SectionAboutHero({
+  kicker = "Who we are",
+  title = (
+    <>
+      About <span className="accent">TAHIT</span>
+    </>
+  ),
+  lede = "The Texas Association of Healthcare Interpreters & Translators is a volunteer-led nonprofit board advancing language access across Texas healthcare — through training, education, and advocacy for people with limited English proficiency.",
+  actions = ABOUT_ACTIONS
+}) {
   const rise = {
     hidden: { opacity: 0, y: 24 },
     visible: (i = 0) => ({
@@ -27,34 +43,32 @@ export default function SectionAboutHero() {
 
       <div className="wrap">
         <motion.p className="kicker" initial="hidden" animate="visible" custom={0} variants={rise}>
-          Who we are
+          {kicker}
         </motion.p>
 
         <motion.h1 className="title" initial="hidden" animate="visible" custom={1} variants={rise}>
-          About <span className="accent">TAHIT</span>
+          {title}
         </motion.h1>
 
         <motion.p className="lede" initial="hidden" animate="visible" custom={2} variants={rise}>
-          The Texas Association of Healthcare Interpreters &amp; Translators is a
-          volunteer-led nonprofit board advancing language access across Texas
-          healthcare — through training, education, and advocacy for people with
-          limited English proficiency.
+          {lede}
         </motion.p>
 
         <motion.div className="cta" initial="hidden" animate="visible" custom={3} variants={rise}>
-          <a className="primary" href="#board">
-            Meet the board
-            <i className="fas fa-arrow-right" aria-hidden="true" />
-          </a>
-          <a
-            className="ghost"
-            href={ev.membershipUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackEvent("about_hero_membership")}
-          >
-            Become a member
-          </a>
+          {actions.map((a) => (
+            <a
+              key={a.label}
+              className={a.primary ? "primary" : "ghost"}
+              href={a.href}
+              {...(a.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              {...(a.download ? { download: true } : {})}
+              onClick={a.event ? () => trackEvent(a.event) : undefined}
+            >
+              {a.iconFirst && <i className={a.iconFirst} aria-hidden="true" />}
+              {a.label}
+              {a.icon && <i className={a.icon} aria-hidden="true" />}
+            </a>
+          ))}
         </motion.div>
       </div>
 
@@ -118,7 +132,7 @@ export default function SectionAboutHero() {
           letter-spacing: -0.035em;
           color: #ffffff;
         }
-        .accent {
+        :global(.about-hero .accent) {
           background: linear-gradient(120deg, #ffd875 0%, #f0ab21 100%);
           -webkit-background-clip: text;
           background-clip: text;

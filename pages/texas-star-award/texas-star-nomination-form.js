@@ -1,12 +1,10 @@
 /*eslint-disable*/
 import React from "react";
+import SiteHeader from "../../components/Header/SiteHeader.js";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 // core components
-import Header from "../../components/Header/Header.js";
-import HeaderLinks from "../../components/Header/HeaderLinks.js";
-import Brand from "../../components/Header/Brand.js";
 import SectionFooter from "../../pages-sections/components/SectionFooterTahit.js";
 
 import whiteLogo from "../../assets/img/logo-white.png";
@@ -28,17 +26,7 @@ export default function TexasStarNominationForm() {
 
   return (
     <div>
-      <Header
-        color="transparent"
-        brand={<Brand />}
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        changeColorOnScroll={{
-          height: 300,
-          color: "gradientNavy",
-          filter: "dark"
-        }}
-      />
+      <SiteHeader />
 
       <section className="hero">
         <span className="aurora a1" aria-hidden="true" />

@@ -115,16 +115,17 @@ function SpeakerModal({ speaker, onClose }) {
 
             <a
               className="modalCta"
-              href={ev.registrationUrl}
+              href={ev.flyerUrl}
               target="_blank"
               rel="noopener noreferrer"
+              download
               onClick={() => {
-                trackEvent("symposium_2026_register_modal");
+                trackEvent("symposium_2026_flyer_download_speaker");
                 setTag("speaker", speaker.slug);
               }}
             >
-              Register for the symposium
-              <i className="fas fa-arrow-right" aria-hidden="true" />
+              <i className="fas fa-download" aria-hidden="true" />
+              Download the Program Flyer
             </a>
           </div>
         </div>

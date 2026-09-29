@@ -159,7 +159,11 @@ function GalleryModal({ onClose }) {
   );
 }
 
-export default function SectionPastSymposia() {
+/**
+ * `showHero={false}` renders just the tile grid, for pages that bring their own
+ * hero (e.g. sponsorship) — `heading` then titles the grid instead.
+ */
+export default function SectionPastSymposia({ showHero = true, heading } = {}) {
   const [selected, setSelected] = React.useState(null);
   const [galleryOpen, setGalleryOpen] = React.useState(false);
 
@@ -193,6 +197,7 @@ export default function SectionPastSymposia() {
 
   return (
     <section className="ps-past" id="past-symposia">
+      {showHero && (
       <div className="ps-hero">
         <div className="ps-glowA" aria-hidden="true" />
         <div className="ps-glowB" aria-hidden="true" />
@@ -212,9 +217,11 @@ export default function SectionPastSymposia() {
           </p>
         </motion.header>
       </div>
+      )}
 
       <div className="ps-body">
         <div className="ps-wrap">
+          {heading && <h2 className="ps-sectionTitle">{heading}</h2>}
           <motion.div
             className="ps-grid"
             initial={{ opacity: 0, y: 24 }}
@@ -318,6 +325,14 @@ export default function SectionPastSymposia() {
           overflow: hidden;
           background: linear-gradient(180deg, #f4f8fc 0%, #eef4fa 100%);
           padding: 72px 0 108px;
+        }
+        .ps-sectionTitle {
+          margin: 0 0 36px;
+          text-align: center;
+          font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+          font-weight: 800;
+          letter-spacing: -0.02em;
+          color: #0a1730;
         }
         .ps-wrap {
           position: relative;

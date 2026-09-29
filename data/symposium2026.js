@@ -22,7 +22,10 @@ export const symposium2026 = {
   sponsorshipUrl: "/symposium/sponsorship",
   membershipUrl:
     "https://www.memberplanet.com/Groups/GroupJoinLoginNew.aspx?ISPUB=true&invitee=x4ew44166y4do",
-  saveTheDateImage: "/img/symposiums/2026/save-the-date.png"
+  saveTheDateImage: "/img/symposiums/2026/save-the-date.png",
+  // Full program flyer (28 pages, ~57 MB) hosted in Azure Blob Storage.
+  flyerUrl:
+    "https://symposium2023.blob.core.windows.net/symposium/2026/TAHIT_2026_Symposium_FINAL_Print_Ready_28PP.pdf"
 };
 
 /**

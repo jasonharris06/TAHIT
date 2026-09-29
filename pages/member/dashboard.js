@@ -18,7 +18,7 @@ import { useUser } from '../../lib/hooks'
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "../../components/Header/Header.js";
+import SiteHeader from "../../components/Header/SiteHeader.js";
 import HeaderLinks from "../../components/Header/MemberHeaderLinks.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 import Footer from "../../components/Footer/Footer.js";
@@ -70,27 +70,16 @@ export default function MemberDashboard() {
         <CircularProgress color="inherit" />
       </Backdrop>
       {user && <div>
-        <Header
+        <SiteHeader
           brand={
-            <GridContainer>
-              <GridItem xs={6} sm={6} md={6}>
-                <Image src={whiteLogo}
-                  alt="Tahit Logo"
-                  width={40}
-                  height={40} /></GridItem>
-              <GridItem xs={6} sm={6} md={6}>
-                <h5>{`Hello, ${user.profile.salutations ? `${user.profile.salutations} ` : ""}
-      ${user.profile.firstName} ${user.profile.lastName} 
-      ${user.profile.honorifics ? `${user.profile.honorifics}` : ""}`}</h5>
-              </GridItem>
-            </GridContainer>}
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
+              <Image src={whiteLogo} alt="" width={34} height={34} />
+              <span style={{ fontSize: "1rem", fontWeight: 700 }}>
+                {`Hello, ${user.profile.salutations ? `${user.profile.salutations} ` : ""}${user.profile.firstName} ${user.profile.lastName}${user.profile.honorifics ? ` ${user.profile.honorifics}` : ""}`}
+              </span>
+            </span>
+          }
           links={<HeaderLinks dropdownHoverColor="info" />}
-          fixed
-          color="transparent"
-          changeColorOnScroll={{
-            height: 300,
-            color: "memberNav"
-          }}
         />
 
 

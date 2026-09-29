@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from "react";
+import SiteHeader from "../../components/Header/SiteHeader.js";
 import { useUser } from '../../lib/hooks'
 import { useRouter } from 'next/router'
 import Router from "next/router";
@@ -14,8 +15,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // core components
 import Parallax from "../../components/Parallax/Parallax.js";
-import Header from "../../components/Header/Header.js";
-import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
 import SectionProfileForm from "../../pages-sections/sections-page/SectionProfileFormTahit"
@@ -23,7 +22,6 @@ import SectionProfileForm from "../../pages-sections/sections-page/SectionProfil
 import contactUsStyle from "/styles/jss/nextjs-material-kit-pro/pages/contactUsStyle.js";
 import SectionFooter from "../../pages-sections/components/SectionFooterTahit";
 
-import whiteLogo from "../../assets/img/logo-white.png"
 import Data from "../../data/profileDropdowns.json"
 
 
@@ -70,28 +68,7 @@ export default function ProfileEdit({ ...rest }) {
 
   return (
     <div>
-      <Header
-        color="transparent"
-        brand={
-          <GridContainer>
-            <GridItem xs={6} sm={6} md={6}>
-              <img src={whiteLogo}
-                alt="Tahit Logo"
-                width={35}
-                height={35} /></GridItem>
-            <GridItem xs={6} sm={6} md={6}>
-              <h5>TAHIT</h5>
-            </GridItem>
-          </GridContainer>}
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        changeColorOnScroll={{
-          height: 300,
-          color: "gradient",
-          filter: "dark"
-        }}
-        {...rest}
-      />
+      <SiteHeader {...rest} />
       <Parallax image="../../assets/img/background-gradient.jpg" filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">

@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -94,6 +95,138 @@ function Countdown({ target }) {
   );
 }
 
+/**
+ * Full-screen PDF viewer for the program flyer. Portalled to <body> because the
+ * hero copy sits inside a transformed motion.div, which would otherwise become
+ * the containing block for position: fixed.
+ */
+function FlyerModal({ url, title, onClose }) {
+  const closeRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    closeRef.current && closeRef.current.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div className="backdrop" onClick={onClose}>
+      <div
+        className="dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="bar">
+          <span className="barTitle">{title}</span>
+          <div className="barActions">
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              onClick={() => trackEvent("symposium_2026_flyer_download_modal")}
+            >
+              <i className="fas fa-download" aria-hidden="true" />
+              Download
+            </a>
+            <button type="button" ref={closeRef} onClick={onClose} aria-label="Close flyer">
+              <i className="fas fa-times" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+        <iframe className="frame" src={url} title={title} />
+      </div>
+      <style jsx>{`
+        .backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 2000;
+          display: grid;
+          place-items: center;
+          padding: 24px;
+          background: rgba(3, 12, 26, 0.82);
+          backdrop-filter: blur(4px);
+        }
+        .dialog {
+          display: flex;
+          flex-direction: column;
+          width: min(1100px, 100%);
+          height: min(92vh, 1400px);
+          border-radius: 16px;
+          overflow: hidden;
+          background: #06203f;
+          box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+          border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+        .bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          padding: 12px 14px 12px 20px;
+          color: #ffffff;
+        }
+        .barTitle {
+          font-size: 0.95rem;
+          font-weight: 700;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .barActions {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex: none;
+        }
+        .barActions a,
+        .barActions button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          height: 38px;
+          padding: 0 16px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          background: transparent;
+          color: #ffffff !important;
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .barActions button {
+          width: 38px;
+          padding: 0;
+        }
+        .barActions a:hover,
+        .barActions button:hover,
+        .barActions a:focus-visible,
+        .barActions button:focus-visible {
+          background: rgba(255, 255, 255, 0.12);
+          text-decoration: none;
+        }
+        .frame {
+          flex: 1;
+          width: 100%;
+          border: 0;
+          background: #525659;
+        }
+      `}</style>
+    </div>,
+    document.body
+  );
+}
+
 const FACTS = [
   {
     icon: "fas fa-calendar-alt",
@@ -116,7 +249,19 @@ const FACTS = [
 ];
 
 export default function SectionSymposium2026() {
-  const register = (where) => () => trackEvent(`symposium_2026_register_${where}`);
+  const [flyerOpen, setFlyerOpen] = React.useState(false);
+  const closeFlyer = React.useCallback(() => setFlyerOpen(false), []);
+
+  // Phones and tablets don't render PDFs inside an iframe reliably (iOS shows
+  // only page one, Android shows nothing), so there the link just opens the
+  // PDF in a new tab and we only intercept it on wider screens.
+  const viewFlyer = (e) => {
+    trackEvent("symposium_2026_flyer_view");
+    if (window.matchMedia("(min-width: 960px)").matches) {
+      e.preventDefault();
+      setFlyerOpen(true);
+    }
+  };
 
   return (
     <section className="symposium" id="symposium-2026">
@@ -161,18 +306,36 @@ export default function SectionSymposium2026() {
             <div className="ctaRow">
               <a
                 className="btnPrimary"
-                href={ev.registrationUrl}
+                href={ev.flyerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={register("hero")}
+                download
+                onClick={() => trackEvent("symposium_2026_flyer_download_hero")}
               >
-                Register Now
-                <i className="fas fa-arrow-right" aria-hidden="true" />
+                <i className="fas fa-download" aria-hidden="true" />
+                Download the Program Flyer
               </a>
               <a className="btnGhost" href="#speakers-2026">
                 Meet the speakers
               </a>
             </div>
+
+            <p className="flyerNote">
+              Registration is now closed. Use the <strong>Download</strong> button to save the
+              full 28-page program to your device <span className="flyerMeta">(PDF, 57 MB)</span>
+              {" "}— or{" "}
+              <a
+                className="flyerLink"
+                href={ev.flyerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={viewFlyer}
+              >
+                <i className="far fa-eye" aria-hidden="true" />
+                view it here on the site
+              </a>
+              .
+            </p>
 
             <Countdown target={ev.startsAt} />
           </motion.div>
@@ -185,12 +348,12 @@ export default function SectionSymposium2026() {
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             <a
-              href={ev.registrationUrl}
+              href={ev.flyerUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={register("poster")}
+              onClick={viewFlyer}
               className="posterLink"
-              aria-label={`Register for the ${ev.edition} ${ev.name}`}
+              aria-label={`View the ${ev.edition} ${ev.name} program flyer`}
             >
               <Image
                 src={ev.saveTheDateImage}
@@ -225,6 +388,14 @@ export default function SectionSymposium2026() {
           ))}
         </motion.div>
       </div>
+
+      {flyerOpen && (
+        <FlyerModal
+          url={ev.flyerUrl}
+          title={`${ev.edition} ${ev.name} — Program Flyer`}
+          onClose={closeFlyer}
+        />
+      )}
 
       <style jsx>{`
         .symposium {
@@ -408,6 +579,38 @@ export default function SectionSymposium2026() {
           border-color: rgba(255, 255, 255, 0.6);
           color: #ffffff !important;
           text-decoration: none;
+        }
+
+        .flyerNote {
+          max-width: 560px;
+          margin: 18px 0 0;
+          font-size: 0.92rem;
+          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.82);
+        }
+        .flyerNote strong {
+          color: #ffd98a;
+        }
+        .flyerLink {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          color: #7fd4ff !important;
+          font-size: 0.92rem;
+          font-weight: 600;
+          text-decoration: none;
+          border-bottom: 1px solid rgba(127, 212, 255, 0.35);
+          transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .flyerLink:hover,
+        .flyerLink:focus-visible {
+          color: #ffffff !important;
+          border-color: #ffffff;
+          text-decoration: none;
+        }
+        .flyerMeta {
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.55);
         }
 
         /* styled-jsx cannot scope a class it finds on a component (motion.div), only
